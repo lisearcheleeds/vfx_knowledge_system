@@ -96,3 +96,13 @@
 ## 採用例
 
 [DungeonInnの対応表](../projects/dungeon-inn/CATALOG.md)は、武器16・スキル15・状態14・消費アイテム16を、共通Recipeとゲーム固有の調整値へ対応付ける。対応表は共通知識の索引へ登録しない。
+
+## 高品質基準版からゲーム用への変換
+
+制作は[WORKFLOW](../WORKFLOW.md)の最高品質基準版→引き算→再承認の順で行う。基準版を先に固定して、守る品質を比較しながら層・描画方式・形状/UVを変換する。
+
+- [面上密度と方向UV流れ](../knowledge/techniques/surface-density-core.md)：体積外観を面へ近似する主役候補。
+- [折り曲げ式軸固定ビルボード](../knowledge/techniques/folded-axial-billboard.md)：明部を折り目で分断しない面の区切り方。
+- [変換Evidence](../evidence/quality-baseline-to-core-only.md)と[固有の変換例](../projects/dungeon-inn/runs/fireball-downscale-2026-10-04.md)：採否、失敗、完成品質承認、未計測の範囲。
+
+共通技法はdraft。構造検証・人間の見た目承認・製品実機性能を別々に扱う。

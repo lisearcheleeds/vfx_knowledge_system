@@ -5,7 +5,7 @@ kind: adapter
 title: Unity URP：粒子の密度体積・方向流れ・煙
 summary: ParticleSystemの個体入力と共有ノイズで、密度体積、侵食Mesh面、熱から煙へ変わる尾を作るPreview実装例。
 status: draft
-revision: 1
+revision: 2
 updated_at: '2026-10-04'
 aliases: []
 tags:
@@ -23,8 +23,17 @@ relations:
 - target: rendering/world-depth-and-transparency
   type: requires
   reason: 通常透明Queueと奥行き設定の適用範囲を確認する。
+- target: technique/surface-density-core
+  type: candidate
+  reason: 面上密度の固定Mesh描画を実行した候補。
+  role: core
+- target: technique/folded-axial-billboard
+  type: candidate
+  reason: 進行軸と支点UVを使う向きの候補。
+  role: orientation
 evidence:
 - evidence/organic-fire-volume-preview
+- evidence/quality-baseline-to-core-only
 superseded_by: []
 engine: unity
 compatibility:
@@ -34,6 +43,7 @@ compatibility:
   - Windows Editor
   verification: engine-tested
 ---
+
 
 # Unity URP：粒子の密度体積・方向流れ・煙
 
@@ -106,3 +116,16 @@ Unity起動中のnativeアセットはUnity Editor APIで生成・変更する�
 ## 根拠
 
 [実行記録](../evidence/organic-fire-volume-preview.md)に実装版、撮影条件、観察、未実施項目を保存した。見た目の成功を他条件の保証へ拡張しない。
+
+
+## 品質基準版から固定Meshへの変換
+
+上記の体積・粒子構成は品質基準版の実行例。後続では[面上密度](../knowledge/techniques/surface-density-core.md)と[折り曲げ式ビルボード](../knowledge/techniques/folded-axial-billboard.md)を実装し、飛翔をCoreだけへ削減した。射出・着弾の体積粒子は維持した。
+
+固定描画にはMeshFilter/MeshRendererを使い、MaterialPropertyBlockへ経過秒・固定Seed・Tintを渡す。実装側のWorldEffectMeshViewは入力を受けるだけで、自身のUpdate時計を持たない。Editor Previewが粒子とMeshへ同じ経過時間を渡し、粒子なしでもSeekと再生を行う。単にSceneへ配置してPlayした場合は時間の接続がなく、UVは動かない。ゲーム側時計の接続は未実施。
+
+折り曲げMeshはUV0に描画UV、UV2に支点のlocal長さ座標と外端フラグを持たせる。ShaderのTEXCOORD1へ読み、進行軸・カメラ方向・支点から各頂点を配置する。GetWorldSpaceNormalizeViewDirで透視と平行投影を区別し、軸と視線の一致には基準方向を設ける。Boundsには変形後の範囲を入れる。
+
+UnityEngine.Objectの欠損・破棄判定はUnityのnull比較で行う。欠損ParticleSystemにC#のnull条件演算子を使うと実行時にアクセスする例を検出し、明示的な判定へ修正した。共有MaterialとPropertyBlockで個体入力を渡しても、SRP Batcher成立やGPU費用の低減を保証しない。
+
+[実行Evidence](../evidence/quality-baseline-to-core-only.md)ではRenderer1・ParticleSystem0、時計・シーク、透視/平行投影、既存粒子Previewを確認。ゲームへの接続・製品実機・密集負荷は未測定。

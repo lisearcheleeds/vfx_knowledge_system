@@ -1,0 +1,9 @@
+# 飛翔Core単独の採用記録。品質基準版の全層Recipeとは別構成。
+selected_nodes:
+  - composition/projectile
+  - composition/combat-readability
+  - technique/surface-density-core
+  - technique/folded-axial-billboard
+  - adapter/unity-urp-noise-density
+engine: unity
+conditional_decisions: []

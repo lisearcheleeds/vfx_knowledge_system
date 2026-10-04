@@ -6,7 +6,7 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 
 ## 現在の状態
 
-**知識基盤の土台は構築済み。Unityで最初の制作・撮影・修正・知識還元を実施。** 共通レシピ62件を含む116ノード。火球から体積描画・方向流れ・周期ノイズ・Unity Adapter・実行Evidenceを追加した。見た目の改善を確認した一方、外炎の矩形境界、内部構造・ゲーム接続・性能は未確認。制作ワークフロー全体の完了ではない。
+**知識基盤の土台は構築済み。Unityで最高品質基準版からゲーム用候補への削減・見た目承認・知識還元を実施。** 共通レシピ62件を含む119ノード。面上密度と方向UV流れ、折り曲げ式ビルボード、Core単独への変換Evidenceを追加した。飛翔の見た目は完成品質としてユーザー承認済み。ゲーム接続と実機性能は未検証。
 
 | 入口 | 内容 |
 | --- | --- |
@@ -17,6 +17,7 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 | [共通レシピ](docs/KNOWLEDGE_CATALOG.md)・[知識の境界](docs/KNOWLEDGE_BOUNDARIES.md) | 具体的な推奨構成と再利用の単位 |
 | [DungeonInn採用例](projects/dungeon-inn/CATALOG.md)・[火球の制作記録](projects/dungeon-inn/runs/fireball-2026-10-04.md) | 固有の品目・ID・ゲーム値、反復・評価・未解決事項 |
 | [Unity Adapter](adapters/unity-urp-noise-density.md)・[実行Evidence](evidence/organic-fire-volume-preview.md) | 粒子の密度体積・方向流れ・煙の実装条件と観察 |
+| [高品質版からCore単独への変換例](projects/dungeon-inn/runs/fireball-downscale-2026-10-04.md)・[実行Evidence](evidence/quality-baseline-to-core-only.md) | 最高打点からの引き算、UV・折り目の比率、削減版の承認 |
 | [更新規則](CONTRIBUTING.md)・[テンプレート](templates/NODE.md) | 追加・変更の手順 |
 | [状態・次の実証](docs/STATUS.md)・[未確定事項](docs/OPEN_ITEMS.md) | 到達点、不足、次の確認 |
 
@@ -51,6 +52,6 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-次は火球の動画上の矩形境界を切り分け、内部構造・ゲーム接続・実機負荷を確認する。他エンジンへの適合はそれぞれ実行して判断する。別フォルダの確認・参照にはユーザーへの確認が必要。
+次は承認済み飛翔のゲーム接続・実機負荷と、射出/着弾を含む終了・再利用を確認する。他エンジンへの適合はそれぞれ実行して判断する。別フォルダの確認・参照にはユーザーへの確認が必要。
 
 設計書は現在、直下の `vfx_knowledge_system_design.md` に置いている。設計書に記載された `docs/SYSTEM_DESIGN.md` は将来の想定配置。

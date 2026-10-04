@@ -5,7 +5,7 @@ kind: technique
 title: 進行方向に流れる侵食Mesh面
 summary: 固定MeshのUVと頂点をノイズで変化させ、根元から後方へ流れる炎舌や薄い後流を作る。
 status: draft
-revision: 1
+revision: 2
 updated_at: '2026-10-04'
 aliases: []
 tags:
@@ -36,6 +36,7 @@ relations:
   reason: Unity URPでUV流れ、頂点変位、侵食を組み合わせた制作例。
 evidence:
 - evidence/organic-fire-volume-preview
+- evidence/quality-baseline-to-core-only
 superseded_by: []
 ---
 
@@ -72,3 +73,10 @@ UVの一軸を前方の根元から後方の先端へ割り当てる。サンプ
 ## 根拠と限界
 
 [Unity Adapter](../../adapters/unity-urp-noise-density.md)と[実行記録](../../evidence/organic-fire-volume-preview.md)に少数の実装例がある。全画角・任意のMesh・実機負荷は未確認。軽量代替として[連番粒子](flipbook-particles.md)を比較できるが、自動採用はしない。この技法はdraft。
+
+
+## 削減時に判明した輪郭と価値
+
+後続の[削減例](../../evidence/quality-baseline-to-core-only.md)では、開始フェードを広げるだけでは三角形の底辺の角が残った。前端の幅を半楕円で立ち上げ、侵食とは別の輪郭マスクで角の再表示を防いだ。その後も主役への寄与が小さく、外炎は削除された。前節の「対策未実施」は品質基準版時点の記録であり、この例の最終採用ではない。
+
+形の問題は輪郭マスク、端の露出は元UVの端マスク、連続運動は参照座標の流れとして切り分ける。完成した層でも合成に不要なら残す理由にはならない。固定した面に1粒子を使う必然性はなく、MeshRendererと外部時間入力を候補にする。

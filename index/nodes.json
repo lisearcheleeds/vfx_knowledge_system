@@ -7,9 +7,28 @@
         "type": "claim"
       },
       {
+        "source": "evidence/quality-baseline-to-core-only",
+        "statement": "固定描画をMeshRendererへ整理し、粒子なしのPreview時計とシーク、前後左右・平行投影を実行確認した。",
+        "type": "claim"
+      },
+      {
         "reason": "Unity URPでUV流れ、頂点変位、侵食を組み合わせた制作例。",
         "relation_index": 5,
         "source": "technique/directional-flow-surface",
+        "target": "adapter/unity-urp-noise-density",
+        "type": "implemented_by"
+      },
+      {
+        "reason": "支点をMeshの追加UVへ格納するUnity例。",
+        "relation_index": 2,
+        "source": "technique/folded-axial-billboard",
+        "target": "adapter/unity-urp-noise-density",
+        "type": "implemented_by"
+      },
+      {
+        "reason": "固定MeshRendererと外部時間入力で描画するUnity例。",
+        "relation_index": 5,
+        "source": "technique/surface-density-core",
         "target": "adapter/unity-urp-noise-density",
         "type": "implemented_by"
       },
@@ -1627,6 +1646,28 @@
         "type": "evidence"
       }
     ],
+    "evidence/quality-baseline-to-core-only": [
+      {
+        "source": "adapter/unity-urp-noise-density",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/volumetric-fireball",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/directional-flow-surface",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/folded-axial-billboard",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/surface-density-core",
+        "type": "evidence"
+      }
+    ],
     "evidence/vfx-gameplay-clarity-source": [
       {
         "source": "composition/combat-readability",
@@ -2604,6 +2645,13 @@
         "type": "requires"
       },
       {
+        "reason": "温度色と不透明度を分けて計算する。",
+        "relation_index": 1,
+        "source": "technique/surface-density-core",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
+      {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 3,
         "source": "technique/surface-sigil",
@@ -2671,6 +2719,13 @@
         "type": "requires"
       },
       {
+        "reason": "透明面の前後関係とカメラ依存を確認する。",
+        "relation_index": 1,
+        "source": "technique/folded-axial-billboard",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
+      {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 3,
         "source": "technique/history-ribbon",
@@ -2702,6 +2757,13 @@
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 3,
         "source": "technique/radial-wave",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
+      {
+        "reason": "透明面の重なりと裏面を確認する。",
+        "relation_index": 2,
+        "source": "technique/surface-density-core",
         "target": "rendering/world-depth-and-transparency",
         "type": "requires"
       },
@@ -2794,6 +2856,13 @@
         "type": "requires"
       },
       {
+        "reason": "房と侵食の運動を同一ノイズで作る。",
+        "relation_index": 0,
+        "source": "technique/surface-density-core",
+        "target": "resource/periodic-density-noise",
+        "type": "requires"
+      },
+      {
         "reason": "密度の粗密、侵食、座標変位を再現する。",
         "relation_index": 0,
         "source": "technique/volume-density",
@@ -2843,6 +2912,13 @@
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 0,
         "source": "technique/directional-streak",
+        "target": "resource/unit-effect-mesh-kit",
+        "type": "requires"
+      },
+      {
+        "reason": "頂点・UV・支点を持つ連続面を用意する。",
+        "relation_index": 0,
+        "source": "technique/folded-axial-billboard",
         "target": "resource/unit-effect-mesh-kit",
         "type": "requires"
       },
@@ -4050,6 +4126,11 @@
         "type": "claim"
       },
       {
+        "source": "evidence/quality-baseline-to-core-only",
+        "statement": "開始フェードだけでは底辺の角の改善が小さく、輪郭マスクの改訂後も補助層は不要と判断された。",
+        "type": "claim"
+      },
+      {
         "reason": "前方から後方へ流れる炎舌。矩形面の境界は動画で要修正。",
         "relation_index": 6,
         "requirement": "required",
@@ -4270,6 +4351,37 @@
         "target": "technique/flipbook-particles",
         "type": "alternative",
         "when": "限定画角で連番の形と反復が許容でき、体積・変位の費用を減らしたい場合。"
+      }
+    ],
+    "technique/folded-axial-billboard": [
+      {
+        "reason": "進行軸と支点UVを使う向きの候補。",
+        "relation_index": 4,
+        "role": "orientation",
+        "source": "adapter/unity-urp-noise-density",
+        "target": "technique/folded-axial-billboard",
+        "type": "candidate"
+      },
+      {
+        "source": "evidence/quality-baseline-to-core-only",
+        "statement": "明部をまたぐ等間隔の折り目を尾側へ移し、8頂点を維持して前後方向の分断を避ける構成へ修正した。",
+        "type": "claim"
+      },
+      {
+        "reason": "面上密度のゲーム用候補に適用できる向き。",
+        "relation_index": 17,
+        "role": "orientation",
+        "source": "recipe/volumetric-fireball",
+        "target": "technique/folded-axial-billboard",
+        "type": "candidate"
+      },
+      {
+        "reason": "進行方向を保ちながら面上の主形状を見せる候補。",
+        "relation_index": 3,
+        "role": "orientation",
+        "source": "technique/surface-density-core",
+        "target": "technique/folded-axial-billboard",
+        "type": "candidate"
       }
     ],
     "technique/history-ribbon": [
@@ -5001,6 +5113,30 @@
         "type": "composes"
       }
     ],
+    "technique/surface-density-core": [
+      {
+        "reason": "面上密度の固定Mesh描画を実行した候補。",
+        "relation_index": 3,
+        "role": "core",
+        "source": "adapter/unity-urp-noise-density",
+        "target": "technique/surface-density-core",
+        "type": "candidate"
+      },
+      {
+        "source": "evidence/quality-baseline-to-core-only",
+        "statement": "体積火球の主役を方向UV流れと面上密度近似へ置換し、補助層を削除した飛翔Coreの見た目が完成品質として承認された。",
+        "type": "claim"
+      },
+      {
+        "reason": "品質基準版を参照し、面近似で必要な見た目を保つゲーム用主役候補。",
+        "relation_index": 16,
+        "role": "core",
+        "source": "recipe/volumetric-fireball",
+        "target": "technique/surface-density-core",
+        "type": "alternative",
+        "when": "画角と必要な奥行きが面近似で満たせる場合。"
+      }
+    ],
     "technique/surface-sigil": [
       {
         "reason": "足元の小さな土色の圧縮環を収束させる。未発動の半径R全面を地割れで埋めない。",
@@ -5155,6 +5291,14 @@
         "source": "recipe/volumetric-fireball",
         "target": "technique/volume-density",
         "type": "composes"
+      },
+      {
+        "reason": "内部密度・奥行き・画角の要件が面近似では満たせない場合に比較する。",
+        "relation_index": 4,
+        "role": "core",
+        "source": "technique/surface-density-core",
+        "target": "technique/volume-density",
+        "type": "alternative"
       }
     ]
   },
@@ -5172,7 +5316,8 @@
       },
       "engine": "unity",
       "evidence": [
-        "evidence/organic-fire-volume-preview"
+        "evidence/organic-fire-volume-preview",
+        "evidence/quality-baseline-to-core-only"
       ],
       "id": "adapter/unity-urp-noise-density",
       "kind": "adapter",
@@ -5192,12 +5337,24 @@
           "reason": "通常透明Queueと奥行き設定の適用範囲を確認する。",
           "target": "rendering/world-depth-and-transparency",
           "type": "requires"
+        },
+        {
+          "reason": "面上密度の固定Mesh描画を実行した候補。",
+          "role": "core",
+          "target": "technique/surface-density-core",
+          "type": "candidate"
+        },
+        {
+          "reason": "進行軸と支点UVを使う向きの候補。",
+          "role": "orientation",
+          "target": "technique/folded-axial-billboard",
+          "type": "candidate"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-specific",
-      "sha256": "831301e66039c75f2d285f2c528a004da1d73de7381fd783240ccb049ec55da3",
+      "sha256": "26bcb4ff1ec4f0dbc1d59a1a49497d62ab728c67826ab5dd782ee57561c67cef",
       "status": "draft",
       "summary": "ParticleSystemの個体入力と共有ノイズで、密度体積、侵食Mesh面、熱から煙へ変わる尾を作るPreview実装例。",
       "superseded_by": [],
@@ -5514,6 +5671,80 @@
         "technique"
       ],
       "title": "粒子シミュレーションと描画方法の分離に関する一次資料",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "ダウンスケール",
+        "最高品質からゲーム用アセットへの変換"
+      ],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-04",
+        "claims": [
+          {
+            "statement": "体積火球の主役を方向UV流れと面上密度近似へ置換し、補助層を削除した飛翔Coreの見た目が完成品質として承認された。",
+            "target": "technique/surface-density-core"
+          },
+          {
+            "statement": "明部をまたぐ等間隔の折り目を尾側へ移し、8頂点を維持して前後方向の分断を避ける構成へ修正した。",
+            "target": "technique/folded-axial-billboard"
+          },
+          {
+            "statement": "開始フェードだけでは底辺の角の改善が小さく、輪郭マスクの改訂後も補助層は不要と判断された。",
+            "target": "technique/directional-flow-surface"
+          },
+          {
+            "statement": "固定描画をMeshRendererへ整理し、粒子なしのPreview時計とシーク、前後左右・平行投影を実行確認した。",
+            "target": "adapter/unity-urp-noise-density"
+          }
+        ],
+        "conditions": "Unityの隔離Editor Preview。ゲーム制約を保留した高品質版を起点にユーザーの実物レビューで削減。飛翔だけの承認。",
+        "execution": {
+          "artifacts": [
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101002_ProjectileFireball/1020101002_ProjectileFireball.prefab",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Runtime/Content/Effect/Common/Mesh/VfxUnitFoldedBillboard.asset",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Runtime/Content/Effect/Common/Shader/VfxMeshSurface.shader",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Runtime/Scripts/View/Scene/MainScene/World/Effect/WorldEffectMeshView.cs",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Editor/WorldEffectPrefabPreviewWindow.cs",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/tasks/task_0357.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor、PreviewRenderUtilityの隔離Scene。製品実機の性能未測定。",
+          "executed_at": "2026-10-04",
+          "procedure": "主役と補助層を比較して削除。体積Coreを面近似へ変更し、折り目を明部外へ移動。前後左右の45度俯角・平行投影を描画し、粒子なし時計0.9→0.2秒のシークを確認。ユーザーが見た目を評価。",
+          "renderer": "URP 17.3.0 / DX12"
+        },
+        "limitations": "製品ゲームへの登録・時計・イベント・Pool・階層復元・密集時GPU/CPU計測は未実施。軸方向での中央面短縮は残る。独立内部構造レビュー・全画角・他エンジンは未検証。画像・動画を再生成せずライブPreviewで確認した。",
+        "result": "飛翔はCoreのMeshRenderer1つ、ParticleSystem0個、8頂点・6三角形。ユーザーが完成品質と承認。",
+        "source_kind": "first-party-experiment",
+        "sources": [
+          "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101002_ProjectileFireball/1020101002_ProjectileFireball.prefab",
+          "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Runtime/Content/Effect/Common/Mesh/VfxUnitFoldedBillboard.asset",
+          "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Runtime/Content/Effect/Common/Shader/VfxMeshSurface.shader",
+          "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Runtime/Scripts/View/Scene/MainScene/World/Effect/WorldEffectMeshView.cs",
+          "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/Client/Assets/DungeonInn/Editor/WorldEffectPrefabPreviewWindow.cs",
+          "https://github.com/lisearcheleeds/DesktopDungeon/blob/6963c273/tasks/task_0357.md"
+        ]
+      },
+      "id": "evidence/quality-baseline-to-core-only",
+      "kind": "evidence",
+      "path": "evidence/quality-baseline-to-core-only.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "56fd705a5a77a881ac9f1df62d6176b19f95f1a5014900b1101305c2e7bf8dfb",
+      "status": "reviewed",
+      "summary": "高品質の体積火球を起点に、補助層の削除・面近似・折り目修正を経て飛翔の見た目承認を得た例。",
+      "superseded_by": [],
+      "tags": [
+        "evidence",
+        "fire",
+        "projectile"
+      ],
+      "title": "品質基準版からCore単独への削減と見た目承認",
       "updated_at": "2026-10-04"
     },
     {
@@ -8848,7 +9079,8 @@
         "fireball"
       ],
       "evidence": [
-        "evidence/organic-fire-volume-preview"
+        "evidence/organic-fire-volume-preview",
+        "evidence/quality-baseline-to-core-only"
       ],
       "id": "recipe/volumetric-fireball",
       "kind": "recipe",
@@ -8961,12 +9193,25 @@
           "target": "technique/flipbook-particles",
           "type": "alternative",
           "when": "連番素材の再使用と限定画角で要求を満たせる場合。"
+        },
+        {
+          "reason": "品質基準版を参照し、面近似で必要な見た目を保つゲーム用主役候補。",
+          "role": "core",
+          "target": "technique/surface-density-core",
+          "type": "alternative",
+          "when": "画角と必要な奥行きが面近似で満たせる場合。"
+        },
+        {
+          "reason": "面上密度のゲーム用候補に適用できる向き。",
+          "role": "orientation",
+          "target": "technique/folded-axial-billboard",
+          "type": "candidate"
         }
       ],
-      "revision": 2,
+      "revision": 3,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "2c89ab5928425c5b7be1d7f8e05fc50719acd8f2894acc31827f348bccc16bce",
+      "sha256": "17fad09ad6d266a2384ea68752228500a0649e747607da37626bb195f66c7322",
       "status": "draft",
       "summary": "内部密度による炎の塊、後方へ流れる侵食面、暖色から煙へ変わる尾、冷却する着弾を組み合わせる。",
       "superseded_by": [],
@@ -11184,7 +11429,8 @@
     {
       "aliases": [],
       "evidence": [
-        "evidence/organic-fire-volume-preview"
+        "evidence/organic-fire-volume-preview",
+        "evidence/quality-baseline-to-core-only"
       ],
       "id": "technique/directional-flow-surface",
       "kind": "technique",
@@ -11223,10 +11469,10 @@
           "type": "implemented_by"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "ed4cb4b4be5e8839cfd28d404f55aa37c7e2e661f6cc095dc43234c9f73e2952",
+      "sha256": "c240a7fd3ec4ba35c44713a62b5348dd2dc01c3a49e97e78fa17d6a38806a492",
       "status": "draft",
       "summary": "固定MeshのUVと頂点をノイズで変化させ、根元から後方へ流れる炎舌や薄い後流を作る。",
       "superseded_by": [],
@@ -11347,6 +11593,49 @@
         "combat"
       ],
       "title": "連番素材で形を保つ炎・煙の粒子",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "折り曲げビルボード",
+        "軸固定ビルボード"
+      ],
+      "evidence": [
+        "evidence/quality-baseline-to-core-only"
+      ],
+      "id": "technique/folded-axial-billboard",
+      "kind": "technique",
+      "path": "knowledge/techniques/folded-axial-billboard.md",
+      "relations": [
+        {
+          "reason": "頂点・UV・支点を持つ連続面を用意する。",
+          "target": "resource/unit-effect-mesh-kit",
+          "type": "requires"
+        },
+        {
+          "reason": "透明面の前後関係とカメラ依存を確認する。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        },
+        {
+          "reason": "支点をMeshの追加UVへ格納するUnity例。",
+          "target": "adapter/unity-urp-noise-density",
+          "type": "implemented_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "041a889c6d224161d5b2ac078a9033065e4171fabf702ee33a471f54c9161f2a",
+      "status": "draft",
+      "summary": "進行軸を保つ中央面とカメラを向く前後面をつなぎ、主形状を折り目で分断しない。",
+      "superseded_by": [],
+      "tags": [
+        "technique",
+        "mesh",
+        "billboard"
+      ],
+      "title": "折り曲げ式の軸固定ビルボード",
       "updated_at": "2026-10-04"
     },
     {
@@ -11576,6 +11865,66 @@
       "updated_at": "2026-10-04"
     },
     {
+      "aliases": [
+        "密度近似",
+        "方向UVアニメーション"
+      ],
+      "evidence": [
+        "evidence/quality-baseline-to-core-only"
+      ],
+      "id": "technique/surface-density-core",
+      "kind": "technique",
+      "path": "knowledge/techniques/surface-density-core.md",
+      "relations": [
+        {
+          "reason": "房と侵食の運動を同一ノイズで作る。",
+          "target": "resource/periodic-density-noise",
+          "type": "requires"
+        },
+        {
+          "reason": "温度色と不透明度を分けて計算する。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "透明面の重なりと裏面を確認する。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        },
+        {
+          "reason": "進行方向を保ちながら面上の主形状を見せる候補。",
+          "role": "orientation",
+          "target": "technique/folded-axial-billboard",
+          "type": "candidate"
+        },
+        {
+          "reason": "内部密度・奥行き・画角の要件が面近似では満たせない場合に比較する。",
+          "role": "core",
+          "target": "technique/volume-density",
+          "type": "alternative"
+        },
+        {
+          "reason": "固定MeshRendererと外部時間入力で描画するUnity例。",
+          "target": "adapter/unity-urp-noise-density",
+          "type": "implemented_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "ef275cf28308db3b4536f7f1b728c0f71eed993bc8207306918272bda5bb1f62",
+      "status": "draft",
+      "summary": "体積積分の外観を参照し、面上の密度・侵食・熱色で主役を近似する。",
+      "superseded_by": [],
+      "tags": [
+        "technique",
+        "mesh",
+        "readable-silhouette"
+      ],
+      "title": "面上の密度近似と方向UV流れによる主形状",
+      "updated_at": "2026-10-04"
+    },
+    {
       "aliases": [],
       "evidence": [],
       "id": "technique/surface-sigil",
@@ -11710,6 +12059,7 @@
     "evaluation/status-refresh-and-overlap": [],
     "evidence/organic-fire-volume-preview": [],
     "evidence/particle-simulation-and-renderer-source": [],
+    "evidence/quality-baseline-to-core-only": [],
     "evidence/vfx-gameplay-clarity-source": [],
     "recipe/accented-heavy-impact": [],
     "recipe/aquatic-protein-consumption": [],
@@ -11838,6 +12188,7 @@
         "when": "限定画角で連番の形と反復が許容でき、体積・変位の費用を減らしたい場合。"
       }
     ],
+    "technique/folded-axial-billboard": [],
     "technique/history-ribbon": [],
     "technique/mesh-core": [
       {
@@ -11865,8 +12216,30 @@
     "technique/oriented-projectile-core": [],
     "technique/particle-emission": [],
     "technique/radial-wave": [],
+    "technique/surface-density-core": [
+      {
+        "derived": true,
+        "reason": "品質基準版を参照し、面近似で必要な見た目を保つゲーム用主役候補。",
+        "relation_index": 16,
+        "role": "core",
+        "source": "recipe/volumetric-fireball",
+        "target": "recipe/volumetric-fireball",
+        "type": "alternative",
+        "when": "画角と必要な奥行きが面近似で満たせる場合。"
+      }
+    ],
     "technique/surface-sigil": [],
     "technique/uv-dissolve": [],
-    "technique/volume-density": []
+    "technique/volume-density": [
+      {
+        "derived": true,
+        "reason": "内部密度・奥行き・画角の要件が面近似では満たせない場合に比較する。",
+        "relation_index": 4,
+        "role": "core",
+        "source": "technique/surface-density-core",
+        "target": "technique/surface-density-core",
+        "type": "alternative"
+      }
+    ]
   }
 }

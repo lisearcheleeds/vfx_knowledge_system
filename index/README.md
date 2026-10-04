@@ -15,6 +15,7 @@
 | `evaluation/status-refresh-and-overlap` | [状態の更新・複合時間・重複表示の評価](../knowledge/evaluation/status-refresh-and-overlap.md) | draft |
 | `evidence/organic-fire-volume-preview` | [体積炎・方向流れ・煙のPreview制作と人間評価](../evidence/organic-fire-volume-preview.md) | reviewed |
 | `evidence/particle-simulation-and-renderer-source` | [粒子シミュレーションと描画方法の分離に関する一次資料](../evidence/particle-simulation-and-renderer-source.md) | draft |
+| `evidence/quality-baseline-to-core-only` | [品質基準版からCore単独への削減と見た目承認](../evidence/quality-baseline-to-core-only.md) | reviewed |
 | `evidence/vfx-gameplay-clarity-source` | [VFXのゲーム情報と美術的一貫性に関する一次資料](../evidence/vfx-gameplay-clarity-source.md) | draft |
 | `recipe/accented-heavy-impact` | [強打：短く締めた強い打撃](../knowledge/recipes/abilities/accented-heavy-impact.md) | draft |
 | `recipe/aquatic-protein-consumption` | [魚系の食材：銀の小片と淡青の縁](../knowledge/recipes/consumption/aquatic-protein-consumption.md) | draft |
@@ -111,12 +112,14 @@
 | `technique/directional-streak` | [攻撃軸の針と短い放射筋](../knowledge/techniques/directional-streak.md) | draft |
 | `technique/event-pulse` | [ゲームイベント同期の小さな脈動](../knowledge/techniques/event-pulse.md) | draft |
 | `technique/flipbook-particles` | [連番素材で形を保つ炎・煙の粒子](../knowledge/techniques/flipbook-particles.md) | draft |
+| `technique/folded-axial-billboard` | [折り曲げ式の軸固定ビルボード](../knowledge/techniques/folded-axial-billboard.md) | draft |
 | `technique/history-ribbon` | [移動履歴の先細り帯](../knowledge/techniques/history-ribbon.md) | draft |
 | `technique/mesh-core` | [メッシュによる核](../knowledge/techniques/mesh-core.md) | draft |
 | `technique/orbit-glyphs` | [小さな周回記号による継続状態](../knowledge/techniques/orbit-glyphs.md) | draft |
 | `technique/oriented-projectile-core` | [前方を保つ投射体の実体](../knowledge/techniques/oriented-projectile-core.md) | draft |
 | `technique/particle-emission` | [役割を限定した粒子の発生と運動](../knowledge/techniques/particle-emission.md) | draft |
 | `technique/radial-wave` | [接地した膨張環と圧縮波](../knowledge/techniques/radial-wave.md) | draft |
+| `technique/surface-density-core` | [面上の密度近似と方向UV流れによる主形状](../knowledge/techniques/surface-density-core.md) | draft |
 | `technique/surface-sigil` | [面に沿う輪・扇・記号の展開](../knowledge/techniques/surface-sigil.md) | draft |
 | `technique/uv-dissolve` | [方向性を持つマスク展開と侵食](../knowledge/techniques/uv-dissolve.md) | draft |
 | `technique/volume-density` | [内部密度で形を作る体積描画](../knowledge/techniques/volume-density.md) | draft |

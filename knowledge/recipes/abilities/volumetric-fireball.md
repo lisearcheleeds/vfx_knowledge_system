@@ -5,7 +5,7 @@ kind: recipe
 title: ファイアボール：立体の火球と鋭い着弾爆発
 summary: 内部密度による炎の塊、後方へ流れる侵食面、暖色から煙へ変わる尾、冷却する着弾を組み合わせる。
 status: draft
-revision: 2
+revision: 3
 updated_at: '2026-10-04'
 aliases:
 - ファイアボール：立体の火球と鋭い着弾爆発
@@ -91,8 +91,18 @@ relations:
   reason: 連番を使う軽量化候補。重複する輪郭と画角を再評価する。
   role: flame-shell
   when: 連番素材の再使用と限定画角で要求を満たせる場合。
+- target: technique/surface-density-core
+  type: alternative
+  reason: 品質基準版を参照し、面近似で必要な見た目を保つゲーム用主役候補。
+  role: core
+  when: 画角と必要な奥行きが面近似で満たせる場合。
+- target: technique/folded-axial-billboard
+  type: candidate
+  reason: 面上密度のゲーム用候補に適用できる向き。
+  role: orientation
 evidence:
 - evidence/organic-fire-volume-preview
+- evidence/quality-baseline-to-core-only
 superseded_by: []
 ---
 
@@ -151,3 +161,12 @@ superseded_by: []
 - [詠唱収束](../../techniques/converge-motes.md)、[薄環](../../techniques/radial-wave.md)、[地面境界](../../techniques/surface-sigil.md)、[対象の熱反応](../impacts/impact-fire-contact.md)
 - 代替：[面の核](../../techniques/mesh-core.md)、[連番粒子](../../techniques/flipbook-particles.md)
 - [評価条件](../../evaluation/projectile-readability.md)、[制作の実行記録](../../../evidence/organic-fire-volume-preview.md)
+
+
+## 改訂3：品質基準版とゲーム用候補を分ける
+
+上の必須構成は高品質の体積基準版を選ぶ場合の構成。ゲーム用へ引き算した後も全層を必須にし続ける意味ではない。まず基準版で目標の輪郭・熱・運動を得て、それを見ながら役割への貢献が小さい外炎・尾・煙・光点を比較し、削除・置換した派生のSelectionを別に記録する。full Recipeを選択しつつ必須依存を黙って省略しない。
+
+軽量化後の主役候補に[面上密度と方向UV流れ](../../techniques/surface-density-core.md)を追加した。向きには[折り曲げ式ビルボード](../../techniques/folded-axial-billboard.md)を比較できる。一つの実例では飛翔Coreだけの見た目が完成品質として承認されたが、煙のある体積基準版全体の価値や、他スキルの必要層を否定しない。射出・着弾の尺・構成を飛翔の削減結果へ合わせない。
+
+ダウンスケールは解像度を下げることだけではない。役割を保つ層の削除、表現方式の近似、Renderer/粒子の整理、画角に合わせた面とUVの再配分を含む。必要な識別・方向・イベント情報まで削らない。実行例と固有の採用値への入口は[変換Evidence](../../../evidence/quality-baseline-to-core-only.md)、共通の段階は[WORKFLOW](../../../WORKFLOW.md)に記録する。
