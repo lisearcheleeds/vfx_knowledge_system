@@ -1,0 +1,2183 @@
+{
+  "schema_version": "0.1.0",
+  "project": "DungeonInn",
+  "status": "proposed",
+  "source": "User-provided tables; external project files not read.",
+  "bindings": [
+    {
+      "category": "weapons",
+      "key": "sword",
+      "name": "剣",
+      "recommended_recipes": [
+        "recipe/weapon-sword"
+      ],
+      "game_contract": "通常攻撃：扇形90度。射程・運動面・有効タイミングはゲーム入力。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "blade-arc",
+            "technique/arc-sweep",
+            "90度の弧。外縁は白金、内側は青灰。幅0.07L、根元を細く終端を鋭くする。",
+            "振りの位相で展開、ピーク0.04秒、残留0.12秒。"
+          ],
+          [
+            "blade-wake",
+            "technique/history-ribbon",
+            "刃の根元と先端の二点から薄い追従帯。主弧より暗く短い。",
+            "履歴0.06秒、attack-endで発生停止。"
+          ],
+          [
+            "hit",
+            "recipe/impact-cut",
+            "命中方向に小さな切り線。通常の接触寸法を使う。",
+            "hit-confirmedのみ。"
+          ]
+        ],
+        "timing": "攻撃角90度を守る。Lは刃長。主弧のピークを刃の通過へ合わせ、手元の光が先にヒットを示さない。",
+        "decision": "主役を固定弧にして判定方向と剣の切れを明瞭にし、履歴帯は刃と弧をつなぐ補助にする。大量のスパークより、薄い前縁と鋭い終端の質で仕上げる。",
+        "sharing": "弧・侵食・切断命中を斧や大剣と共有し、幅・曲率・明度曲線を剣専用に持つ。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "axe",
+      "name": "斧",
+      "recommended_recipes": [
+        "recipe/weapon-axe"
+      ],
+      "game_contract": "通常攻撃：扇形120度。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "weighted-arc",
+            "technique/arc-sweep",
+            "120度の弧。内側は灰褐色、外縁は暖白。幅0.12L、終端側を太くする。",
+            "振りに追従、終端で0.06秒の形を保持し0.22秒で消す。"
+          ],
+          [
+            "head-wake",
+            "technique/history-ribbon",
+            "斧頭の軌跡だけを厚い先端・細い後端でつなぐ。",
+            "履歴0.09秒、白い帯にしない。"
+          ],
+          [
+            "hit",
+            "recipe/impact-cut",
+            "標準切断の線幅1.4倍、接触片は短く重い方向。",
+            "実命中。"
+          ]
+        ],
+        "timing": "120度の前方扇形。足元の大規模な粉塵や床破壊は通常攻撃へ付け足さない。",
+        "decision": "斧頭の質量を、弧の外側の厚さと終端に残る形で表す。剣を単純に拡大せず、内側の暗い面と遅れる外縁で重さを作る。",
+        "sharing": "弧・履歴・切断命中は共有候補。終端の厚みと持続を斧の固有調整にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "greatsword",
+      "name": "大剣",
+      "recommended_recipes": [
+        "recipe/weapon-greatsword"
+      ],
+      "game_contract": "通常攻撃：扇形110度。現在の装備/ActorArchetypeからの参照なし。定義済み候補として保持。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "long-arc",
+            "technique/arc-sweep",
+            "110度の長い弧。幅0.10L、外縁を連続させ内側を二つの大きな裂け目へ分ける。",
+            "立上り0.04秒、形の保持0.08秒、残留0.24秒。"
+          ],
+          [
+            "drag-wake",
+            "technique/history-ribbon",
+            "刃全体の運動を追う幅広い灰青の帯。",
+            "履歴0.10秒、attack-end後0.18秒減衰。"
+          ],
+          [
+            "hit",
+            "recipe/impact-cut",
+            "切断線の長さ1.5倍、幅1.25倍。",
+            "実命中。"
+          ]
+        ],
+        "timing": "110度を維持し、剣の90度や斧の120度へ共用パラメータを固定しない。",
+        "decision": "長い一本の外縁で大剣の長さを保ち、幅広い後流を暗くして重さを添える。斧の先端重心とは違い、刃全体が運ぶ大きな平面を主役にする。",
+        "sharing": "メッシュ形と命中部品は共有し、長さ・幅・後流・滞留は大剣の差分。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "scythe",
+      "name": "鎌",
+      "recommended_recipes": [
+        "recipe/weapon-scythe"
+      ],
+      "game_contract": "通常攻撃：円形、判定持続0.35秒。半径はゲーム入力。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "circular-cut",
+            "technique/arc-sweep",
+            "360度の細い帯。外縁を淡青白、内側を灰緑。幅0.05R。",
+            "attack-active内で一周を展開し、0.35秒の有効区間へ同期。"
+          ],
+          [
+            "scythe-tip-wake",
+            "technique/history-ribbon",
+            "刃先を追う短い細帯。後流が円全体を二重に埋めない。",
+            "履歴0.08秒、終了後0.14秒減衰。"
+          ],
+          [
+            "hit",
+            "recipe/impact-cut",
+            "各対象の接触線を円の接線に合わせる。",
+            "ゲームの各hit-confirmedに従う。"
+          ]
+        ],
+        "timing": "0.35秒はゲーム側の判定持続。一周の位相は実モーションへ合わせ、複数周回やヒット回数を追加しない。",
+        "decision": "円形のまとまりと鎌の連続性を一本の細い円周で表す。太い全画面トーラスや複数の同心円を主役にしない。",
+        "sharing": "旋風斬と円形弧の原理を共有するが、鎌は細く持続区間に追従する。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "dagger",
+      "name": "短剣",
+      "recommended_recipes": [
+        "recipe/weapon-dagger"
+      ],
+      "game_contract": "通常攻撃：直接攻撃。射程・予備動作は未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "short-thrust",
+            "technique/directional-streak",
+            "刃の軸に沿う0.45Lの針。幅0.025L、暖白の芯。",
+            "振りの終端で0.02秒立上り、0.08秒消失。"
+          ],
+          [
+            "hit",
+            "recipe/impact-pierce",
+            "直径0.18Wへ小さく締めた接触。",
+            "実命中。"
+          ]
+        ],
+        "timing": "姿勢と攻撃ベクトルに合わせる。射程を提案の針長から決めない。",
+        "decision": "短剣は広い弧ではなく、短距離の急な前進と接触点を主役にする。粒子の余韻を少なくし、次の短い動作の邪魔をしない。",
+        "sharing": "刺突命中を槍と共有し、針長と残留を短剣の差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "spear",
+      "name": "槍",
+      "recommended_recipes": [
+        "recipe/weapon-spear"
+      ],
+      "game_contract": "通常攻撃：直接攻撃。現在の装備/ActorArchetypeから参照なし。定義済み候補として保持。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "spear-axis",
+            "technique/directional-streak",
+            "槍先の運動に沿う細い針と、暗い二本の側筋。針長0.35L。",
+            "前進の終端で明度を上げ、0.12秒で侵食。"
+          ],
+          [
+            "tip-wake",
+            "technique/history-ribbon",
+            "槍先の細い履歴帯。",
+            "履歴0.05秒。"
+          ],
+          [
+            "hit",
+            "recipe/impact-pierce",
+            "攻撃軸へ長さ1.3倍の接触針。",
+            "実命中。"
+          ]
+        ],
+        "timing": "Lは槍の可視長、攻撃距離と有効区間はゲーム側の入力。",
+        "decision": "槍の長い軸を崩さず、先端の動きと一点の接触に光を置く。太い円錐や剣の扇で前方範囲を広く見せない。",
+        "sharing": "短剣と刺突命中・針を共有し、長さ・側筋・短い軌跡で差を出す。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "rod",
+      "name": "棒",
+      "recommended_recipes": [
+        "recipe/weapon-rod"
+      ],
+      "game_contract": "通常攻撃：直接攻撃。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "rod-wake",
+            "technique/history-ribbon",
+            "棒の先端側二点から薄い灰白の帯。武器幅の2〜3倍に留める。",
+            "履歴0.07秒、終端後0.15秒減衰。"
+          ],
+          [
+            "hit",
+            "recipe/impact-blunt",
+            "幅広い接触星と圧縮環。",
+            "実命中。"
+          ]
+        ],
+        "timing": "水平・縦振りの運動面は実モーション。足元の地割れや範囲ダメージを追加しない。",
+        "decision": "武器の実運動を後流で拾い、当たった瞬間だけ放射形へ切り替える。棒に剣の刃のような連続した高明度の弧を付けない。",
+        "sharing": "後流は拳・大盾の小さな運動にも流用可能。接触は打撃共通。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "fist",
+      "name": "拳",
+      "recommended_recipes": [
+        "recipe/weapon-fist"
+      ],
+      "game_contract": "通常攻撃：直接攻撃。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "fist-pressure",
+            "technique/cone-burst",
+            "拳の前へ長さ0.25Wの短い圧力殻。無彩色の薄い面に白い先端。",
+            "突き出し終盤0.05秒、接触後0.08秒で終了。"
+          ],
+          [
+            "hit",
+            "recipe/impact-blunt",
+            "接触星を0.35Wへ締め、輪の距離を短くする。",
+            "実命中。"
+          ]
+        ],
+        "timing": "拳のソケットと攻撃方向へ追従する。ゲームにヒットストップがある場合にのみ同じ停止位相へ対応付ける。",
+        "decision": "拳の素早い加速と一点の重さを、小さな前方形状と短い星で表す。巨大な衝撃波を通常パンチの標準にしない。",
+        "sharing": "強打・剛腕の一撃は圧力殻と打撃反応を拡張し、通常拳との差を作る。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "greatshield",
+      "name": "大盾",
+      "recommended_recipes": [
+        "recipe/weapon-greatshield"
+      ],
+      "game_contract": "通常攻撃：直接攻撃。現在の装備/ActorArchetypeから参照なし。定義済み候補として保持。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "shield-pressure",
+            "technique/radial-wave",
+            "盾面の法線に沿う楕円環。横幅0.75W、縦幅0.55H。",
+            "前進終盤で圧縮し、0.14秒で小さく解放。"
+          ],
+          [
+            "hit",
+            "recipe/impact-blunt",
+            "接触星は横幅1.3倍、輪は薄く広い。",
+            "実命中。"
+          ]
+        ],
+        "timing": "盾面の姿勢・前進へ追従。HはActor身長。防御や無敵の付与をこの攻撃Recipeへ追加しない。",
+        "decision": "盾の面を使った押し込みを主役にし、刺突の針や魔法バリアの球殻と読み分ける。圧力環は接触面に固定して長時間残さない。",
+        "sharing": "打撃の接触は共通、楕円比率と面の圧縮が大盾の差分。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "ironfan",
+      "name": "鉄扇",
+      "recommended_recipes": [
+        "recipe/weapon-ironfan"
+      ],
+      "game_contract": "通常攻撃：直接攻撃。現在の装備/ActorArchetypeから参照なし。定義済み候補として保持。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "fan-wake",
+            "technique/history-ribbon",
+            "扇の外縁を薄い帯で追う。幅0.025L、銀灰。",
+            "履歴0.045秒、0.10秒減衰。"
+          ],
+          [
+            "fan-rays",
+            "technique/directional-streak",
+            "扇の接線へ三本の短い筋。長さ0.35L、中央だけ白芯。",
+            "振りの終端0.07秒。"
+          ],
+          [
+            "hit",
+            "recipe/impact-blunt",
+            "薄い接触星、小さな圧縮環。",
+            "実命中。"
+          ]
+        ],
+        "timing": "接触は受領した打撃分類に合わせる。風弾や遠距離の扇を射出しない。",
+        "decision": "軽い金属の外縁と扇の切り返しを、薄い線の組で表す。見た目が扇でも、マスタの直接攻撃を120度等の範囲攻撃として描かない。",
+        "sharing": "細帯と筋の技法を共用し、扇の外縁の三筋が識別点。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "claw",
+      "name": "爪",
+      "recommended_recipes": [
+        "recipe/weapon-claw"
+      ],
+      "game_contract": "通常攻撃：直接攻撃。モンスター自然武器でも同じ戦闘定義。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "claw-cuts",
+            "technique/arc-sweep",
+            "三本の短い湾曲帯。間隔0.10W、中央を最も太く、色は象牙灰。",
+            "動作に合わせ、一回の解放で0.015秒ずつ美術上のずれ、0.12秒侵食。"
+          ],
+          [
+            "hit",
+            "recipe/impact-cut",
+            "短い切断反応を一組にまとめる。",
+            "ゲームの実命中のみ。"
+          ]
+        ],
+        "timing": "本数と微小なずれは美術上の形であり、ヒット数・効果時間を定義しない。自然武器の幅はActorに合わせる。",
+        "decision": "三本の平行形状で爪を即座に識別し、線の重なりと中央の重みでまとまりを作る。三本の線を三回ダメージの演出にしない。",
+        "sharing": "弧メッシュと切断接触は共通、平行本数と短い曲率を爪の差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "fang",
+      "name": "牙",
+      "recommended_recipes": [
+        "recipe/weapon-fang"
+      ],
+      "game_contract": "通常攻撃：直接攻撃。モンスター自然武器でも同じ戦闘定義。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "jaw-pinch",
+            "technique/directional-streak",
+            "上下の二本の短い針を口の軸へ寄せる。長さ0.22W。",
+            "顎の閉じる位相に同期、0.09秒で侵食。"
+          ],
+          [
+            "hit",
+            "recipe/impact-pierce",
+            "接触環を外へ広げず内側へ一度締める。",
+            "実命中。"
+          ]
+        ],
+        "timing": "二点は顎の美術形状。噛みつきの拘束・出血・二回ヒットを追加しない。",
+        "decision": "外へ裂く爪と逆に、内へ閉じる動きを主役にして噛みつきを識別する。血しぶきに依存せず口の位置と接触の圧縮で成立させる。",
+        "sharing": "刺突の接触を共用し、二点の閉じる形と圧縮方向を差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "bow",
+      "name": "弓",
+      "recommended_recipes": [
+        "recipe/weapon-bow"
+      ],
+      "game_contract": "通常攻撃：飛翔18m/s。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "release",
+            "technique/directional-streak",
+            "弓の矢の出口に短い銀白の射出筋。",
+            "launchで0.07秒。"
+          ],
+          [
+            "arrow",
+            "technique/oriented-projectile-core",
+            "ゲーム側の矢を核に使う。可視矢がなければ矢の素体を用意する。",
+            "位置・速度方向はゲーム入力、18m/s。"
+          ],
+          [
+            "flight-trail",
+            "technique/history-ribbon",
+            "白灰の細い一本。矢より暗い。",
+            "履歴0.05秒、通常速度で尾長約0.9m。"
+          ],
+          [
+            "hit",
+            "recipe/impact-pierce",
+            "小さな刺突接触。",
+            "impact時、核と尾の新規発生を停止。"
+          ]
+        ],
+        "timing": "矢の速度をVFXで再計算しない。約0.9mは18m/s×0.05秒の履歴目安であり、固定射程ではない。",
+        "decision": "矢を大きな発光球で代用せず、実体と短い尾で方向を見せる。細い射出ピークから落ち着いた飛翔へ切り替える。",
+        "sharing": "クロスボウ・狙い撃ちと飛翔・接触の部品を共用候補にし、矢の実体と尾の形を区別する。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "crossbow",
+      "name": "クロスボウ",
+      "recommended_recipes": [
+        "recipe/weapon-crossbow"
+      ],
+      "game_contract": "通常攻撃：飛翔22m/s。現在の装備/ActorArchetypeから参照なし。定義済み候補として保持。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "snap-release",
+            "technique/directional-streak",
+            "射出口に幅の締まった白芯と二本の短い側筋。",
+            "launchで0.04秒。"
+          ],
+          [
+            "bolt",
+            "technique/oriented-projectile-core",
+            "短いボルトの実体。矢より軸が短く鏃を強調。",
+            "ゲーム位置・姿勢、22m/s。"
+          ],
+          [
+            "bolt-trail",
+            "technique/history-ribbon",
+            "灰白の硬い短尾。",
+            "履歴0.04秒、通常速度で尾長約0.88m。"
+          ],
+          [
+            "hit",
+            "recipe/impact-pierce",
+            "接触針を短く、白芯を締める。",
+            "impactのみ。"
+          ]
+        ],
+        "timing": "速度22m/s。尾の履歴は武器特性を読む補助であり、命中判定とは別。",
+        "decision": "弓の流れる尾よりも射出の短さとボルトの硬い形を強調する。火薬武器の巨大なマズル炎や煙は追加しない。",
+        "sharing": "矢の機構を共用し、核の形、射出時間、尾の長さを差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "staff",
+      "name": "杖",
+      "recommended_recipes": [
+        "recipe/weapon-staff"
+      ],
+      "game_contract": "通常攻撃：魔法弾の飛翔10m/s。属性は未指定。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "staff-release",
+            "technique/surface-sigil",
+            "杖先に直径0.30Wの小さな環と青白の点。",
+            "launchで0.12秒、詠唱を追加しない。"
+          ],
+          [
+            "orb",
+            "technique/oriented-projectile-core",
+            "直径0.20Wの球/紡錘。青白の小さな芯と青の面。",
+            "位置・姿勢はゲーム入力、10m/s。"
+          ],
+          [
+            "soft-tail",
+            "technique/history-ribbon",
+            "淡青の先細り尾。核より暗くする。",
+            "履歴0.12秒、通常速度で約1.2m。"
+          ],
+          [
+            "impact",
+            "recipe/impact-blunt",
+            "魔法接触の小さな放射へ調整。色は青白、土片を光点へ置換。",
+            "impactで0.16秒。"
+          ]
+        ],
+        "timing": "新しい詠唱時間・属性状態を追加しない。停止時は核を消し尾だけ減衰する。",
+        "decision": "丸い核と少し長い柔らかな尾で、杖の魔力のまとまりを表す。火炎属性や凍結を根拠なく与えず、無属性の青白をこの版の美術主案とする。",
+        "sharing": "ワンドと魔法核の描画・接触を共用候補にし、Staffは丸さと柔らかい尾で区別する。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "weapons",
+      "key": "wand",
+      "name": "ワンド",
+      "recommended_recipes": [
+        "recipe/weapon-wand"
+      ],
+      "game_contract": "通常攻撃：小型魔法弾の飛翔12m/s。属性は未指定。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "wand-release",
+            "technique/directional-streak",
+            "ワンド先の細い青白の針と小さな点。",
+            "launchで0.06秒。"
+          ],
+          [
+            "dart-core",
+            "technique/oriented-projectile-core",
+            "幅0.10W、長さ0.22Wの滴/紡錘。先端だけ高明度。",
+            "ゲーム位置・姿勢、12m/s。"
+          ],
+          [
+            "fine-tail",
+            "technique/history-ribbon",
+            "淡青の細い尾。Staffの半分程度の横幅。",
+            "履歴0.09秒、通常速度で約1.08m。"
+          ],
+          [
+            "impact",
+            "recipe/impact-blunt",
+            "青白の小さな3方向の星へ調整。圧縮環は直径0.22W。",
+            "impactで0.12秒。"
+          ]
+        ],
+        "timing": "12m/sはゲーム入力。尾の方向や長さから射程・誘導を追加しない。",
+        "decision": "球を小さくするだけでなく、先端の鋭い滴と短い射出でStaffより軽く速い印象を作る。核・尾・接触を同時に太くしない。",
+        "sharing": "Staffと基本部品を共用し、核の縦横比、射出、尾幅、接触形を専用差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "101",
+      "name": "狙い撃ち",
+      "recommended_recipes": [
+        "recipe/charged-arrow"
+      ],
+      "game_contract": "SkillId101：予備動作0.8秒、飛翔24m/s。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "aim-gather",
+            "technique/converge-motes",
+            "矢の根元へ小さな銀白の点6個を集め、最後に一本の細い軸へ締める。",
+            "windup進捗0.8秒へ同期。最後の20%で明度上昇。"
+          ],
+          [
+            "release",
+            "technique/directional-streak",
+            "通常弓より鋭く、二本の側筋を添えた一閃。",
+            "launchで0.04秒のピーク、0.10秒終了。"
+          ],
+          [
+            "arrow",
+            "technique/oriented-projectile-core",
+            "ゲーム側の矢の先端だけ白金に光らせる。",
+            "ゲームの飛翔入力24m/s。"
+          ],
+          [
+            "tail",
+            "technique/history-ribbon",
+            "一本の細い白金の尾。通常矢より長く、先頭を最も明るくする。",
+            "履歴0.10秒、速度24m/sで約2.4m。"
+          ],
+          [
+            "hit",
+            "recipe/impact-pierce",
+            "針長1.4倍、接触白芯を一度だけ強くする。",
+            "実impact。"
+          ]
+        ],
+        "timing": "構えは0.8秒の実進捗、命中は飛翔距離に依存するimpact。予兆に対象マークを使う場合も選択対象だけに置き、未来の命中を確定した表示にしない。",
+        "decision": "精度は照準の一点収束と一直線の尾で表す。大きな球や爆発で威力を誇張せず、通常矢との差は張り詰めた準備・細い長尾・締まった命中で出す。",
+        "sharing": "弓の実体・飛翔・刺突命中を共有候補にする。SkillId101の収束と尾長は固有調整。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "102",
+      "name": "旋風斬",
+      "recommended_recipes": [
+        "recipe/circular-slash"
+      ],
+      "game_contract": "SkillId102：予備動作0.4秒、半径2.5m。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "coil",
+            "technique/converge-motes",
+            "武器と腰の周囲へ淡い白青の短線を収束。",
+            "windup0.4秒に同期。"
+          ],
+          [
+            "round-slash",
+            "technique/arc-sweep",
+            "半径2.5mの360度弧。幅0.10mを初期値にし、先頭を厚く後端を薄くする。",
+            "発動で一周を実モーションに同期し、残留0.20秒。"
+          ],
+          [
+            "low-wind",
+            "technique/radial-wave",
+            "低い薄環を主弧の内側へ一枚。白灰、主弧より暗い。",
+            "発動後0.12〜0.28秒で侵食。"
+          ],
+          [
+            "hit",
+            "recipe/impact-cut",
+            "対象ごとの小さな切断接触。",
+            "実hit-confirmedのみ。"
+          ]
+        ],
+        "timing": "半径2.5mは有効範囲。ヒット回数や有効持続は未提供なのでモーション/ゲームイベントへ同期し、鎌の0.35秒を流用しない。",
+        "decision": "360度の一本の主弧で攻撃の一周を明瞭にする。風の粒子を何周もループさせず、旋回の先頭・厚薄・後端で速度を表す。",
+        "sharing": "鎌の円形弧を共有候補にするが、旋風斬の半径・厚み・発動の解放を固有調整にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "103",
+      "name": "ファイアボール",
+      "recommended_recipes": [
+        "recipe/volumetric-fireball"
+      ],
+      "game_contract": "SkillId103：詠唱1.2秒＋予備動作0.2秒、飛翔14m/s、着弾半径2m。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "cast",
+            "technique/converge-motes",
+            "手元の橙の点8個を収束し、淡黄の小さな核を作る。",
+            "cast進捗1.2秒、release準備0.2秒に同期。"
+          ],
+          [
+            "core",
+            "technique/mesh-core",
+            "直径0.45Wの球/紡錘。淡黄の芯は直径0.14W、外面は橙。",
+            "launch→impact/stop、位置は実投射体。"
+          ],
+          [
+            "flame-shell",
+            "technique/flipbook-particles",
+            "核の周囲へ向きの異なる炎舌4枚。根元は核、先端は後方へ伸ばす。",
+            "飛翔中は位相をずらし、impactで新規発生停止。"
+          ],
+          [
+            "tail",
+            "technique/history-ribbon",
+            "核の後方へ幅0.22W→先端0の橙の帯。芯は狭く外縁は赤。",
+            "履歴0.12秒、14m/sで尾長約1.68m、停止後0.20秒減衰。"
+          ],
+          [
+            "explosion-shell",
+            "technique/flipbook-particles",
+            "impact中心で低い球状の炎塊6枚を一回解放。煙は小さな房3枚。",
+            "淡黄ピーク0.03〜0.07秒、橙の膨張0.07〜0.22秒、煙0.60秒まで。"
+          ],
+          [
+            "blast-wave",
+            "technique/radial-wave",
+            "低い薄環が中心から半径2m内へ走る。主炎より暗い。",
+            "0.08〜0.24秒。追加ダメージを持たない美術波。"
+          ],
+          [
+            "footprint",
+            "technique/surface-sigil",
+            "実impact位置の地面へ半径2mの細い境界。面はごく薄い橙。",
+            "impactで全体表示、0.30秒で侵食して終了。"
+          ],
+          [
+            "hit",
+            "recipe/impact-fire-contact",
+            "範囲内の実命中対象に小さな熱反応。",
+            "実hit-confirmedのみ。"
+          ]
+        ],
+        "timing": "詠唱と予備動作はゲーム進捗、飛翔14m/sはゲーム位置、爆発は実impactに従う。未来の着弾地点は推測で予告しない。範囲境界は半径2mで動かさず、残留火炎を継続床ダメージにしない。",
+        "decision": "主役は粒子の塊ではなく、毎フレーム輪郭が読める立体の熱核にする。少数の連番炎で有機的な揺らぎを加え、飛翔方向は先細り尾、着弾の威力は短い白芯と膨張の差で作る。",
+        "sharing": "詠唱収束、投射体、炎素材、熱接触を共有候補にする。炎殻・着弾膨張・尾の比率はこの火球の主案。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "104",
+      "name": "ヒール",
+      "recommended_recipes": [
+        "recipe/targeted-healing-cast"
+      ],
+      "game_contract": "SkillId104：詠唱0.8秒、対象の回復効果1秒。受領表の記載順ではActorEffectId8がヒール。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "healer-cast",
+            "technique/converge-motes",
+            "使用者の手元へミント色の光点6個を収束。",
+            "cast進捗0.8秒、終盤に小さな白芯。"
+          ],
+          [
+            "healer-seal",
+            "technique/surface-sigil",
+            "手元の小さな輪を0.24Wへ絞る。",
+            "詠唱中、cancelで畳む。"
+          ],
+          [
+            "target-heal",
+            "recipe/targeted-restoration-burst",
+            "対象の身体パルスと葉の上昇は状態適用の一回として再生。",
+            "target-effect-applied→実際の状態終了。"
+          ]
+        ],
+        "timing": "対象の1秒はゲーム側の効果持続。詠唱開始から0.8秒を足したローカルタイマーで成功を出さず、対象への適用に同期する。",
+        "decision": "使用者の準備と対象の回復を別原点にし、対象には明瞭な上昇の形を渡す。長い天上の光柱や未定義の回復弾を追加せず、身体・足元・上昇葉の短い組合せで完成させる。",
+        "sharing": "対象側はActorEffectId8と同じ知識を参照し、スキル本体と状態側から二重の回復Burstを発生させない。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "105",
+      "name": "急所突き",
+      "recommended_recipes": [
+        "recipe/weakening-thrust"
+      ],
+      "game_contract": "SkillId105：予備動作0.3秒、弱体10秒。ActorEffectId9/12のどちらかは受領表から確定しない。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "point-focus",
+            "technique/converge-motes",
+            "刃先へ赤金の点4個を短く集める。",
+            "windup0.3秒。"
+          ],
+          [
+            "vital-axis",
+            "technique/directional-streak",
+            "通常刺突より締まった針。長さ0.55L、白芯と赤金の縁。",
+            "attack-active、接触ピーク0.04秒、0.12秒侵食。"
+          ],
+          [
+            "hit",
+            "recipe/impact-pierce",
+            "急所の接触針を少し長くし、放射を増やさない。",
+            "実hit-confirmed。"
+          ],
+          [
+            "debuff-mark",
+            "technique/orbit-glyphs",
+            "対象の外縁に欠けた下向き記号。状態ハンドラが通常/強の形を選ぶ。",
+            "実effect-appliedで開始、更新後の期限とremoveへ追従。"
+          ]
+        ],
+        "timing": "弱体10秒は状態入力に追従。sourceの具体的なActorEffectId対応は未提供なので、通常/強のRecipeを比較用リンクとして保持し、両方を同時採用しない。",
+        "decision": "一点の精度を主役にし、赤金の接触から暗紫の下降記号へ切り替えて、物理命中と攻撃低下を別に読む。丸い爆発や長い拘束を付け足さない。",
+        "sharing": "刺突接触と弱体継続の部品を共有する。急所の細い赤金と短い準備を固有差分にする。"
+      },
+      "mapping_notes": "弱体の具体的なActorEffectId9/12対応は未照合。実状態から一つ選ぶ。"
+    },
+    {
+      "category": "skills",
+      "key": "201",
+      "name": "号令",
+      "recommended_recipes": [
+        "recipe/sharp-self-buff-cast"
+      ],
+      "game_contract": "SkillId201：予備動作0.6秒、自分への攻撃強化15秒。ActorEffectId10。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "chest-gather",
+            "technique/converge-motes",
+            "自分の胸/武器へ暖金の点6個を引き込む。",
+            "windup0.6秒。"
+          ],
+          [
+            "self-status",
+            "recipe/sharp-self-empowerment",
+            "胸の短いパルスと上向き山形の解放、その後は小さな強化記号。",
+            "自分へのActorEffectId10適用に同期。"
+          ]
+        ],
+        "timing": "15秒は状態の有効期間。スキルの尺で強化を解除しない。号令の声やカメラ振動はゲーム側の許可された演出と別途接続する。",
+        "decision": "胸から上へ押し上げる動きで号令の意思と力を表す。自分の周囲へ大きな同心円を広げて味方へ作用するように見せない。",
+        "sharing": "継続の強化カテゴリは鼓舞・食事と共用候補。号令の準備と鋭い上向き解放は専用。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "202",
+      "name": "なぎ払い",
+      "recommended_recipes": [
+        "recipe/wide-weapon-sweep"
+      ],
+      "game_contract": "SkillId202：予備動作0.6秒、扇形120度、武器射程＋1m。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "sweep-load",
+            "technique/converge-motes",
+            "武器の手元へ灰白の筋を短く集める。",
+            "windup0.6秒。"
+          ],
+          [
+            "wide-front-arc",
+            "technique/arc-sweep",
+            "120度、外半径は入力された武器射程＋1m。外縁は象牙白、内面は薄い灰青。幅0.07R。",
+            "attack-activeの振りへ同期、主形保持0.07秒、残留0.24秒。"
+          ],
+          [
+            "weapon-wake",
+            "technique/history-ribbon",
+            "刃の実軌道へ暗い後流。",
+            "履歴0.10秒。"
+          ],
+          [
+            "hit",
+            "recipe/impact-cut",
+            "前方に当たった対象だけ小さな切断反応。",
+            "実命中。"
+          ]
+        ],
+        "timing": "Rはゲームが計算した武器射程＋1m。元射程が不明でも固定の半径を捏造せず、この入力で組み立てる。",
+        "decision": "拡張射程の一枚の弧を主役にし、武器から外縁まで連続する内面でなぎ払いの到達を見せる。円形の旋風や複数方向の小弧へ分散しない。",
+        "sharing": "剣・斧の弧原理を共用し、120度の広い内面・拡張R・遅い後端を専用差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "203",
+      "name": "地響き",
+      "recommended_recipes": [
+        "recipe/ground-shockwave"
+      ],
+      "game_contract": "SkillId203：詠唱1秒＋予備動作0.3秒、半径3m、命中と弱体付与。弱体の具体的なActorEffectId・持続はこの行では未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "ground-load",
+            "technique/surface-sigil",
+            "足元の小さな土色の圧縮環を収束させる。未発動の半径3m全面を地割れで埋めない。",
+            "cast1秒＋windup0.3秒の進捗に同期。"
+          ],
+          [
+            "actual-radius",
+            "technique/surface-sigil",
+            "半径3mの細い境界。薄い土色の面と暖白の外縁。",
+            "発動イベントで全体を表示、0.25秒で終了。"
+          ],
+          [
+            "ground-wave",
+            "technique/radial-wave",
+            "中心からR=3m内へ低い薄環を一枚解放。",
+            "発動後0.04〜0.20秒。ゲームの判定進行を代用しない。"
+          ],
+          [
+            "dust",
+            "technique/flipbook-particles",
+            "地表近くの土埃4房と短い破片6個。胴体へ昇る煙柱にしない。",
+            "粉塵0.55秒、破片0.25秒。"
+          ],
+          [
+            "hit",
+            "recipe/impact-blunt",
+            "実命中位置の小さな圧縮反応。",
+            "hit-confirmed。"
+          ],
+          [
+            "debuff-mark",
+            "technique/orbit-glyphs",
+            "実状態適用で下降記号を表示。状態ID・強度は実入力を使う。",
+            "effect-applied→refresh/remove。"
+          ]
+        ],
+        "timing": "半径3mは発動時の実範囲。遅い波に追加ダメージや時差ヒットを与えない。弱体の詳細は状態イベントへ引き継ぎ、独自に10秒等を追加しない。",
+        "decision": "床に貼り付く圧縮と低い土埃で地面からの力を作る。高い魔法球や巨大な煙で地面・対象を隠さず、固定の実範囲境界と膨張する美術波を分ける。",
+        "sharing": "地面波・粉塵素材・打撃接触・弱体の記号を共用候補にする。足元の圧縮と低い塵の配分は地響き専用。"
+      },
+      "mapping_notes": "弱体の具体的なActorEffectId9/12対応は未照合。実状態から一つ選ぶ。"
+    },
+    {
+      "category": "skills",
+      "key": "204",
+      "name": "剛腕の一撃",
+      "recommended_recipes": [
+        "recipe/charged-heavy-impact"
+      ],
+      "game_contract": "SkillId204：予備動作1秒。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "arm-load",
+            "technique/converge-motes",
+            "腕/武器の打点へ暖白の点8個を集める。終盤は核を小さく締める。",
+            "windup1秒、最後の0.15秒で圧縮を強める。"
+          ],
+          [
+            "arm-pressure",
+            "technique/cone-burst",
+            "前方0.40Wの太い圧力殻。灰金の面に小さな白芯。",
+            "attack-activeで一度解放、0.12秒で畳む。"
+          ],
+          [
+            "heavy-hit",
+            "recipe/impact-blunt",
+            "接触星の幅1.8倍、ピーク保持0.08秒、圧縮環は二枚目を暗く遅らせる。",
+            "実hit-confirmed。"
+          ]
+        ],
+        "timing": "1秒は予備動作。ヒットストップやカメラ揺れはゲーム側にある場合のみ接続し、マスタから新たな停止時間・範囲を定義しない。",
+        "decision": "威力の差は長い収束、短い圧縮、接触の広さ、余韻の遅れで作る。画面を白くする巨大な球や、定義されていない地面範囲波を加えない。",
+        "sharing": "通常拳・強打と圧力殻/打撃反応を共有し、1秒の準備と幅広い接触を剛腕専用にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "205",
+      "name": "強打",
+      "recommended_recipes": [
+        "recipe/accented-heavy-impact"
+      ],
+      "game_contract": "SkillId205：予備動作0.5秒。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "compact-load",
+            "technique/converge-motes",
+            "武器/拳へ暖白の点5個を収束。",
+            "windup0.5秒。"
+          ],
+          [
+            "short-pressure",
+            "technique/cone-burst",
+            "攻撃軸へ長さ0.30Wの圧力殻。",
+            "発動0.08秒。"
+          ],
+          [
+            "strong-hit",
+            "recipe/impact-blunt",
+            "接触星の幅1.3倍、保持0.05秒。薄環は一枚。",
+            "実命中。"
+          ]
+        ],
+        "timing": "0.5秒の準備と実命中に追従。攻撃速度やダメージ・弱体をVFX側で追加しない。",
+        "decision": "通常打撃の読み方を保ちつつ、収束と接触の幅で一段の強さを作る。剛腕の一撃ほど長い余韻を持たせず、反復しても動作のテンポを保つ。",
+        "sharing": "打撃の接触を共用候補にし、通常拳→強打→剛腕で溜め・幅・滞留の差を作る。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "206",
+      "name": "呪いの眼光",
+      "recommended_recipes": [
+        "recipe/weakening-gaze"
+      ],
+      "game_contract": "SkillId206：詠唱0.6秒、対象の弱体10秒。具体的なActorEffectId9/12対応は未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "eye-load",
+            "technique/converge-motes",
+            "使用者の眼/頭部へ紫の点4個を収束。眼の外縁だけ細く点灯。",
+            "cast0.6秒。"
+          ],
+          [
+            "curse-seal",
+            "technique/surface-sigil",
+            "実対象の胸/肩の外縁へ紫の眼形を一回開き、下向きに割る。幅0.35W。",
+            "target-effect-appliedで0.06秒ピーク、0.28秒で終了。"
+          ],
+          [
+            "curse-pulse",
+            "technique/body-shell",
+            "紫の薄い縁が上から下へ一度沈む。",
+            "付与後0.22秒。"
+          ],
+          [
+            "debuff-state",
+            "technique/orbit-glyphs",
+            "欠けた下降記号を低明度で維持。",
+            "実状態の適用・更新・解除へ同期。"
+          ]
+        ],
+        "timing": "10秒は弱体状態の期間。具体的な通常/強のIDは実入力で選び、二つの弱体表示を同時適用しない。",
+        "decision": "眼光の出所は使用者の眼、結果は対象の下降刻印に置く。両者の間へ恒久的なビームを張らず、呪いの成立と弱体中の読みを分ける。",
+        "sharing": "詠唱収束と弱体カテゴリを共有候補にする。眼形と上から沈む付与を固有差分にする。"
+      },
+      "mapping_notes": "弱体の具体的なActorEffectId9/12対応は未照合。実状態から一つ選ぶ。"
+    },
+    {
+      "category": "skills",
+      "key": "207",
+      "name": "再生",
+      "recommended_recipes": [
+        "recipe/self-regeneration-cast"
+      ],
+      "game_contract": "SkillId207：予備動作0.5秒、自己回復6秒。ActorEffectId11は1秒ごとの回復。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "self-gather",
+            "technique/converge-motes",
+            "自分の胸へミント色の点6個を集める。",
+            "windup0.5秒。"
+          ],
+          [
+            "regeneration-state",
+            "recipe/self-regeneration",
+            "身体に沿う緩い上昇と小さな回復刻み。",
+            "自分へのActorEffectId11適用、実tick、refresh/remove。"
+          ]
+        ],
+        "timing": "6秒は初期状態期間、1秒刻みは実tickイベントへ同期。再付与で元の6秒タイマーを残さない。",
+        "decision": "再生は爆発的な回復より、身体の中から巡る柔らかい流れを主役にする。毎秒のフル付与を避け、対象自身の輪郭を読める密度に保つ。",
+        "sharing": "状態11のRecipeへ引き継ぎ、スキル側と状態側の二重ループを作らない。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "208",
+      "name": "火炎の息",
+      "recommended_recipes": [
+        "recipe/instant-fire-cone"
+      ],
+      "game_contract": "SkillId208：予備動作0.8秒、半径5m・90度。瞬間的な範囲攻撃。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "mouth-load",
+            "technique/converge-motes",
+            "口元へ橙の点6個と淡黄の小さな核を集める。",
+            "windup0.8秒、最後に口の輪郭だけ明るくする。"
+          ],
+          [
+            "fan-volume",
+            "technique/cone-burst",
+            "実範囲R=5m・90度へ一致する円錐殻。根元を締め、遠端を5本の炎舌に分ける。",
+            "発動時に全体を表示、主ピーク0.04秒、0.25秒で侵食。"
+          ],
+          [
+            "flame-tongues",
+            "technique/flipbook-particles",
+            "口から扇の中へ向きの異なる炎板6枚。",
+            "一回のBurst、0.18〜0.38秒。長時間の発生をしない。"
+          ],
+          [
+            "actual-sector",
+            "technique/surface-sigil",
+            "ゲームの範囲中心・前方から5m/90度の細い地面境界。",
+            "発動時に全体表示、0.25秒終了。"
+          ],
+          [
+            "embers",
+            "technique/particle-emission",
+            "炎筋の後端から火の粉8個。薄い煙2房は扇内の低い余韻。",
+            "火の粉0.45秒、煙0.55秒まで。"
+          ],
+          [
+            "hit",
+            "recipe/impact-fire-contact",
+            "実対象の小さな熱接触。",
+            "実hit-confirmedのみ。"
+          ]
+        ],
+        "timing": "口のソケットとゲームの範囲中心を区別し、口のオフセットで判定の外まで延長しない。発動時の瞬間範囲を、ゆっくり進む炎前線や連続ダメージへ変えない。",
+        "decision": "瞬間ブレスは持続Emitterではなく、方向の強い一回の形の解放にする。円錐殻で範囲を読み、少数の大きな炎舌で生きた炎を作る。",
+        "sharing": "火球の炎・煙素材と熱接触は共有候補。円錐と扇境界はブレス専用の主形状。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "301",
+      "name": "鼓舞",
+      "recommended_recipes": [
+        "recipe/soft-self-buff-cast"
+      ],
+      "game_contract": "SkillId301：予備動作0.4秒、自分への強化12秒。ActorEffectId14。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "resolve",
+            "technique/converge-motes",
+            "胸へ暖金の点4個を集める。",
+            "windup0.4秒。"
+          ],
+          [
+            "encourage-state",
+            "recipe/soft-self-empowerment",
+            "小さな身体パルスと上向き記号。号令より軽く短い付与。",
+            "自分へのActorEffectId14適用・更新・解除。"
+          ]
+        ],
+        "timing": "12秒は実状態に従う。使用者の周囲に他Actorへ渡る強化波を作らない。",
+        "decision": "号令より短い上昇と柔らかな明度で鼓舞を作る。パーティ全体のオーラではなく、自身の動きと力の上向きの読みを主役にする。",
+        "sharing": "攻撃強化の継続カテゴリは号令と共有候補。準備と付与の明度曲線を鼓舞の差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "skills",
+      "key": "901",
+      "name": "まかない料理",
+      "recommended_recipes": [
+        "recipe/meal-vitality-activation"
+      ],
+      "game_contract": "SkillId901：施設サービス、対象への強化300秒。戦闘の詠唱・予備動作は未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "warm-application",
+            "technique/body-shell",
+            "対象の胸の薄い暖金のパルス。",
+            "施設サービスの実effect-appliedで0.22秒。"
+          ],
+          [
+            "grain-rise",
+            "technique/particle-emission",
+            "柔らかな穀粒/葉の光点5個が胸から上へ昇る。",
+            "寿命0.45秒、0.5H以内。"
+          ],
+          [
+            "vitality-state",
+            "technique/orbit-glyphs",
+            "小さな暖金の上向き山形二枚。常時の大きな足元環を作らない。",
+            "実強化のapply/refresh/removeへ追従、初期300秒。"
+          ]
+        ],
+        "timing": "施設サービスの適用イベントで開始。戦闘の詠唱・使用者の武器演出を追加しない。ActorEffectId3と同じ300秒でも、実対応が未提供なのでID同一と決めつけない。",
+        "decision": "料理の活力は、柔らかな穀粒と暖金の上昇で食事由来の満足感を表す。5分の大きなオーラを維持せず、付与の良さと小さな状態の読みへ分ける。",
+        "sharing": "食事の活力と攻撃強化の継続形を共有候補にする。料理の穀粒・暖かな付与は独自差分。"
+      },
+      "mapping_notes": "ActorEffectId3との同一性は未照合。"
+    },
+    {
+      "category": "states",
+      "key": "1",
+      "name": "ポーション",
+      "recommended_recipes": [
+        "recipe/periodic-health-restoration"
+      ],
+      "game_contract": "ActorEffectId1：ポーション由来、HP回復10秒、1秒ごと。再付与で延長・更新あり。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "apply",
+            "technique/body-shell",
+            "胸から肩のミント色の薄い縁。芯は淡白。",
+            "applyで0.18秒。"
+          ],
+          [
+            "rise",
+            "technique/particle-emission",
+            "胸の周囲から葉/滴6個を0.4Hまで上昇。",
+            "applyで一回、寿命0.35秒。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "腰/肩の外縁にミント色の葉二枚。低明度、半径0.50W。",
+            "実状態のactive中。"
+          ],
+          [
+            "recovery-tick",
+            "technique/event-pulse",
+            "既存の葉が一度明るくなり小さな光点二個が上昇。",
+            "実1秒刻みの回復イベントで0.15秒。"
+          ]
+        ],
+        "timing": "摂取モーションや瓶はゲーム側の使用動作。VFXは実applyと実tickを起点とし、初期10秒で独自に解除しない。",
+        "decision": "飲んだ結果のHP回復を、対象の胸と上昇する葉で伝える。10秒間の大きな緑の光柱は使わず、開始の良さと読みやすい小さな継続に分ける。",
+        "sharing": "ハイポーション・食材・再生・休憩のHPカテゴリと識別葉を共用候補にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "2",
+      "name": "ハイポーション",
+      "recommended_recipes": [
+        "recipe/enhanced-health-restoration"
+      ],
+      "game_contract": "ActorEffectId2：ハイポーション由来、HP回復10秒、1秒ごと。回復量の具体値は未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "apply",
+            "technique/body-shell",
+            "ミントの身体縁に短い白芯。通常ポーションより縁の幅を1.25倍。",
+            "applyで0.05秒ピーク、0.22秒終了。"
+          ],
+          [
+            "double-rise",
+            "technique/particle-emission",
+            "葉8個を二つの高さの束へ分けて上昇。白芯を一束だけに置く。",
+            "0.00/0.08秒の美術上の二段、寿命0.42秒。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "HPの葉三枚。明度は通常と同程度に抑える。",
+            "実active中、カテゴリ集約時の上位表現。"
+          ],
+          [
+            "recovery-tick",
+            "technique/event-pulse",
+            "葉の短い脈動と小光点三個。",
+            "実回復イベントに同期。"
+          ]
+        ],
+        "timing": "美術上の二段Burstは二回回復ではない。1秒ごとの実tick・refresh/removeを状態入力へ追従する。",
+        "decision": "上位品は開始時の二段上昇と葉の数で読み分け、10秒の継続を常時強く発光させない。視覚上の差から回復量を2倍等に推定しない。",
+        "sharing": "通常ポーションと運用を共有し、上位の付与・三枚の識別をパラメータ差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "3",
+      "name": "食事の活力",
+      "recommended_recipes": [
+        "recipe/meal-vitality"
+      ],
+      "game_contract": "ActorEffectId3：食事の活力、攻撃強化300秒。再付与で延長・更新あり。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "apply",
+            "technique/body-shell",
+            "胸の薄い暖金のパルス。",
+            "applyで0.24秒。"
+          ],
+          [
+            "grain-rise",
+            "technique/particle-emission",
+            "丸い穀粒と短い上向き形を合わせた光点5個。",
+            "0.45秒の上昇。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "暖金の小さな上向き山形二枚。粒子の常時放出はしない。",
+            "更新後の実期限まで。"
+          ]
+        ],
+        "timing": "300秒をVFX再生尺へ焼き込まず、実状態を正本にする。refreshは小さな明度持上げだけ。",
+        "decision": "5分の強化は付与の一回を豊かにし、継続は小さな上向き形へ畳む。暖かな色と丸い穀粒で食事由来を伝え、戦闘の鋭い号令と出所を読み分ける。",
+        "sharing": "料理の滋養、まかない料理、号令・鼓舞の攻撃強化カテゴリと共用候補。SkillId901と同じ長さでも対応IDの同一性は未確認。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "4",
+      "name": "マナポーション",
+      "recommended_recipes": [
+        "recipe/periodic-mana-restoration"
+      ],
+      "game_contract": "ActorEffectId4：マナポーション由来、MP回復10秒、1秒ごと。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "apply",
+            "technique/body-shell",
+            "青白の細い身体縁。",
+            "applyで0.20秒。"
+          ],
+          [
+            "crystals",
+            "technique/particle-emission",
+            "細い結晶6個が胸へ一度寄ってから上昇。",
+            "0.40秒。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "淡青の細い結晶二枚。葉と違う角形シルエット。",
+            "実MP回復状態中。"
+          ],
+          [
+            "mana-tick",
+            "technique/event-pulse",
+            "結晶の輪郭だけ短く明るくする。",
+            "実1秒刻みのMP回復イベント。"
+          ]
+        ],
+        "timing": "刻みは実イベント、終了は更新後の状態期限。HP回復が同時でも色を混ぜて白いオーラにしない。",
+        "decision": "MPは澄んだ角形と静かな周回にし、HPの柔らかな葉と形でも読み分ける。青い大きな魔法弾や攻撃の放射筋を回復に使わない。",
+        "sharing": "休憩のMPカテゴリと識別結晶を共用候補にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "5",
+      "name": "エリクサー",
+      "recommended_recipes": [
+        "recipe/premium-restoration-burst"
+      ],
+      "game_contract": "ActorEffectId5：受領表の記載順ではエリクサー、短い回復効果1秒。回復するパラメータの詳細は未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "pearl-apply",
+            "technique/body-shell",
+            "真珠色の縁に薄い暖金の外縁。身体の面は淡くする。",
+            "applyで0.05秒ピーク、0.24秒終了。"
+          ],
+          [
+            "paired-seal",
+            "technique/surface-sigil",
+            "対象の足元に細い環二枚。半径0.35W/0.45W、幅を細くする。",
+            "適用0.04秒/0.10秒の二段、0.35秒まで。"
+          ],
+          [
+            "restoration-rise",
+            "technique/particle-emission",
+            "真珠の光点8個を胸から0.55Hへ上昇。",
+            "寿命0.45秒、余韻は1秒以内。"
+          ]
+        ],
+        "timing": "初期1秒の実状態へ同期。延長時も明度の高い付与をループさせず、小さな余韻へ畳む。",
+        "decision": "特別感は細い二重環と真珠の高低差で作り、全面の白い光柱にしない。未知のHP/MP両回復を青緑の二本の流れで断定せず、汎用の上質な回復として仕上げる。",
+        "sharing": "ヒールの短い回復と身体縁・上昇を共用候補にし、二重環・真珠/暖金の差をエリクサーに持たせる。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "6",
+      "name": "食材の栄養",
+      "recommended_recipes": [
+        "recipe/food-health-restoration"
+      ],
+      "game_contract": "ActorEffectId6：食材の栄養、HP回復5秒。回復刻みの具体値はこの表では未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "nutrition-apply",
+            "technique/body-shell",
+            "ミントの薄い縁を胸へ小さく置く。",
+            "applyで0.16秒。"
+          ],
+          [
+            "small-rise",
+            "technique/particle-emission",
+            "小さな葉4個を0.30Hまで昇らせる。",
+            "0.30秒。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "HPの葉二枚、通常ポーションより小さい0.08W。",
+            "実状態期間、初期5秒。"
+          ],
+          [
+            "recovery-event",
+            "technique/event-pulse",
+            "実回復が届いた時だけ葉を脈動。",
+            "刻みをローカルで創作しない。"
+          ]
+        ],
+        "timing": "5秒は初期期間。実際の回復イベントがない間に、毎秒の回復を見た目だけで付け足さない。",
+        "decision": "食材の簡素な回復は小さく暖かく作り、料理の活力やハイポーションの上位感との差を明確にする。表示を弱くしすぎず、葉の形は残す。",
+        "sharing": "HPカテゴリの葉と身体縁を共有候補。食材は小さな付与と葉の寸法を差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "7",
+      "name": "料理の滋養",
+      "recommended_recipes": [
+        "recipe/restoration-and-vitality"
+      ],
+      "game_contract": "ActorEffectId7：料理の滋養、HP回復5秒、攻撃強化60秒。回復刻みは未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "dish-apply",
+            "technique/body-shell",
+            "胸にミントの縁、その外へ薄い暖金を一度上昇。",
+            "applyで0.22秒。"
+          ],
+          [
+            "nourish-rise",
+            "technique/particle-emission",
+            "葉4個と穀粒4個を分けた二色の短い上昇。",
+            "0.40秒。"
+          ],
+          [
+            "hp-active",
+            "technique/orbit-glyphs",
+            "ミントの葉二枚、HPカテゴリ。",
+            "実HP機能の有効区間、初期5秒。"
+          ],
+          [
+            "attack-active",
+            "technique/orbit-glyphs",
+            "暖金の上向き山形二枚、攻撃強化カテゴリ。",
+            "実強化の有効区間、初期60秒。"
+          ],
+          [
+            "recovery-event",
+            "technique/event-pulse",
+            "実HP回復が届いた時だけ葉を脈動。",
+            "実tickのみ。"
+          ]
+        ],
+        "timing": "HPと攻撃強化の実有効条件・期限を別入力にする。再付与時もそれぞれ更新し、5秒と60秒を一つのVFXタイマーへまとめない。",
+        "decision": "二つの効能を色と形で分け、短い回復が終わったあとに活力だけ残る構造にする。一つの60秒オーラに緑を焼き込んで回復が続くように見せない。",
+        "sharing": "HP表示は栄養/ポーション、強化表示は食事/号令とカテゴリ集約する。料理の二色の付与は固有差分。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "8",
+      "name": "ヒールの回復",
+      "recommended_recipes": [
+        "recipe/targeted-restoration-burst"
+      ],
+      "game_contract": "ActorEffectId8：受領表の記載順ではヒール、対象の回復効果1秒。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "heal-apply",
+            "technique/body-shell",
+            "身体のミントの縁に小さな白芯を一度置く。",
+            "applyで0.05秒ピーク、0.22秒終了。"
+          ],
+          [
+            "heal-seal",
+            "technique/surface-sigil",
+            "足元の細い環。半径0.40W、内側は透明。",
+            "applyで0.08秒ピーク、0.26秒侵食。"
+          ],
+          [
+            "heal-rise",
+            "technique/particle-emission",
+            "葉6個を胸から0.55Hまで一本の上昇へまとめる。",
+            "寿命0.40秒、実状態終了で新規発生を止める。"
+          ]
+        ],
+        "timing": "SkillId104の対象適用と同じ一回の再生を状態ハンドラが所有する。詠唱側から同じ葉を二重に出さない。初期1秒はゲーム効果であり、0.40秒の粒子寿命は制作初期値。",
+        "decision": "回復の成立は身体の輪郭と上向きのまとまった動きに置く。短い効果へ回復刻みのループを追加せず、付与の一回を明瞭にする。",
+        "sharing": "ポーションの葉と身体縁を共用候補にし、ヒールは一度の強い上昇を専用曲線にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "9",
+      "name": "弱体",
+      "recommended_recipes": [
+        "recipe/attack-reduction"
+      ],
+      "game_contract": "ActorEffectId9：弱体、攻撃低下10秒。具体的な付与スキルの対応は未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "weaken-apply",
+            "technique/body-shell",
+            "身体の紫の細い縁が上から下へ沈む。",
+            "applyで0.18秒。"
+          ],
+          [
+            "broken-mark",
+            "technique/particle-emission",
+            "短い紫の欠片4個を胸から下へ散らす。",
+            "寿命0.25秒、床へ長く残さない。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "欠けた下向き山形二枚。暗い面と薄い紫の縁。",
+            "実弱体期間、初期10秒。"
+          ]
+        ],
+        "timing": "状態の実apply/refresh/removeへ追従。急所突き・地響き・眼光のどれがこのIDを付けるかは実イベントで選ぶ。",
+        "decision": "減少は下降と欠けた形で読む。毒の液滴、麻痺の電撃、拘束の鎖を標準に使わず、攻撃低下の意味へ絞る。",
+        "sharing": "強い弱体と下降記号・付与の原理を共有候補。通常は薄い二枚を維持する。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "10",
+      "name": "号令の強化",
+      "recommended_recipes": [
+        "recipe/sharp-self-empowerment"
+      ],
+      "game_contract": "ActorEffectId10：号令の攻撃強化15秒。SkillId201は自分への強化。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "command-apply",
+            "technique/body-shell",
+            "胸と肩の暖金の薄い縁。中央に短い白芯。",
+            "applyで0.04秒ピーク、0.24秒終了。"
+          ],
+          [
+            "command-rise",
+            "technique/particle-emission",
+            "上向きの鋭い山形6個を胸から上へ解放。",
+            "0.30秒、0.45H以内。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "暖金の上向き山形二枚。周囲の味方へ波を出さない。",
+            "実強化期間、初期15秒。"
+          ]
+        ],
+        "timing": "SkillId201の適用と状態10の表示を一回にまとめる。15秒の後もrefreshで有効なら維持し、スキルのアニメーション終了で消さない。",
+        "decision": "号令は鋭い上昇で戦闘的な活力を表し、継続は明瞭な小記号に畳む。持続的な身体全面の発光より、動作と表情を残す。",
+        "sharing": "鼓舞・食事の攻撃強化カテゴリを共用候補にし、号令の鋭い付与を個別に保持する。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "11",
+      "name": "再生の継続",
+      "recommended_recipes": [
+        "recipe/self-regeneration"
+      ],
+      "game_contract": "ActorEffectId11：再生、自己回復6秒、1秒ごと。SkillId207。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "regen-apply",
+            "technique/body-shell",
+            "胸から肩へ淡いミントの縁を滑らかに上げる。",
+            "applyで0.24秒。"
+          ],
+          [
+            "spiral-rise",
+            "technique/particle-emission",
+            "葉6個が身体の外縁を半周しながら0.5H上昇。",
+            "付与一回、寿命0.50秒。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "ミントの葉二枚を静かな上昇位相で周回。",
+            "実状態期間、初期6秒。"
+          ],
+          [
+            "regen-tick",
+            "technique/event-pulse",
+            "葉のパルスと小さな光点二個の上昇。",
+            "実1秒刻みの回復イベント。"
+          ]
+        ],
+        "timing": "SkillId207の適用と状態11のapplyは同じ一回。実tick、延長後の期限、removeを状態側へ引き継ぐ。",
+        "decision": "再生は身体に沿う柔らかな螺旋で内側から戻る感覚を作る。ポーションの直線上昇と区別し、毎秒の大きな環や全身点灯を繰り返さない。",
+        "sharing": "HPカテゴリの継続と刻みはポーション/休憩と共用候補。付与の半周上昇が再生の固有差分。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "12",
+      "name": "弱体（強）",
+      "recommended_recipes": [
+        "recipe/strong-attack-reduction"
+      ],
+      "game_contract": "ActorEffectId12：弱体（強）、攻撃低下10秒。効果量と具体的な付与スキル対応は未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "strong-apply",
+            "technique/body-shell",
+            "濃紫の縁を一度沈め、胸の外縁に小さな欠けを残す。",
+            "applyで0.05秒ピーク、0.26秒終了。"
+          ],
+          [
+            "broken-pieces",
+            "technique/particle-emission",
+            "紫の短い欠片6個を二つの下向きの束へ散らす。",
+            "0.00/0.06秒の美術上の二段、0.30秒終了。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "下向き山形を二重の欠け線にする。通常より形は強く、明度は上げすぎない。",
+            "実状態期間、初期10秒。"
+          ]
+        ],
+        "timing": "美術上の二段は二回適用ではない。状態9と12が重なる場合は実強度の入力とカテゴリ集約で代表形を選び、二組の記号を重ねない。",
+        "decision": "通常より深い欠けと二重の下降で強い低下を示す。大きな鎖や完全な拘束環は移動不能と誤認させるので、攻撃低下の記号を強化する。",
+        "sharing": "通常弱体と原理を共有候補にし、欠けの二重線と付与曲線を強の差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "13",
+      "name": "休憩",
+      "recommended_recipes": [
+        "recipe/rest-health-and-mana"
+      ],
+      "game_contract": "ActorEffectId13：休憩、HP・MP回復30秒、1秒ごと。休憩モーションの詳細は未提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "rest-apply",
+            "technique/body-shell",
+            "胸に低明度の真珠色の薄い縁。",
+            "applyで0.20秒。"
+          ],
+          [
+            "hp-active",
+            "technique/orbit-glyphs",
+            "身体外縁のミントの葉二枚。",
+            "実HP回復状態中。"
+          ],
+          [
+            "mp-active",
+            "technique/orbit-glyphs",
+            "別の高さに淡青の結晶二枚。葉と同一面に重ねない。",
+            "実MP回復状態中。"
+          ],
+          [
+            "rest-tick",
+            "technique/event-pulse",
+            "葉と結晶を同じ実刻みに短く点灯。常時の新しい粒子は出さない。",
+            "実1秒刻みのHP/MP回復イベント。"
+          ]
+        ],
+        "timing": "30秒は初期期間。解除、移動や中断の可否はゲーム側の休憩状態に従い、VFXだけで休憩を継続しない。",
+        "decision": "休憩は戦闘の解放ではなく、静かな二つの識別形で作る。30秒の光柱や眠りのZ字、未定義の睡眠状態を追加しない。",
+        "sharing": "HPは葉、MPは結晶の共通カテゴリを参照し、他の回復元と同時でも一組ずつへ集約する。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "states",
+      "key": "14",
+      "name": "鼓舞の強化",
+      "recommended_recipes": [
+        "recipe/soft-self-empowerment"
+      ],
+      "game_contract": "ActorEffectId14：鼓舞、攻撃強化12秒。SkillId301は自分への強化。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "encourage-apply",
+            "technique/body-shell",
+            "胸の暖金の縁を短く一度持ち上げる。",
+            "applyで0.04秒ピーク、0.18秒終了。"
+          ],
+          [
+            "encourage-rise",
+            "technique/particle-emission",
+            "柔らかい上向き山形4個。号令より少なく短い。",
+            "0.24秒、0.35H以内。"
+          ],
+          [
+            "active",
+            "technique/orbit-glyphs",
+            "暖金の上向き山形二枚。号令と同じカテゴリ識別。",
+            "実状態期間、初期12秒。"
+          ]
+        ],
+        "timing": "SkillId301の適用と状態14のapplyを一回にまとめる。refresh/removeは実状態へ同期し、元の12秒タイマーで消さない。",
+        "decision": "号令より軽い立上りと短い上昇で鼓舞を読み分ける。継続カテゴリの意味は同じなので、長時間の形を別の色へ分裂させない。",
+        "sharing": "号令・食事の強化カテゴリは共用候補。付与の柔らかさと短さを鼓舞の差分にする。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2001",
+      "name": "ポーション",
+      "recommended_recipes": [
+        "recipe/liquid-remedy-use",
+        "recipe/periodic-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2001：ポーション → ActorEffectId1。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "瓶/手元の小さなミントの滴二個と短い白い点。",
+            "使用成功時に手元/口元から胸へ短く寄せる。0.18秒、0.20W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/periodic-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "ポーションは清潔な滴と対象のミントの回復で仕上げる。瓶のモーションと効果の付与を分け、使用した感触は小さな一回の光で補う。",
+        "sharing": "継続はActorEffectId1のカテゴリを共有候補とし、ポーションの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2002",
+      "name": "ハイポーション",
+      "recommended_recipes": [
+        "recipe/liquid-remedy-use",
+        "recipe/enhanced-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2002：ハイポーション → ActorEffectId2。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "ミントの滴三個、中央だけ短い白芯。",
+            "使用成功時に二段の高さで胸へ寄せる。0.22秒、0.25W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/enhanced-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "上位品は通常品と同じ滴の言語を保ち、芯と三点のまとまりで格を上げる。量を増やした煙や大きな環より、輪郭の質と二段の付与で差を作る。",
+        "sharing": "継続はActorEffectId2のカテゴリを共有候補とし、ハイポーションの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2003",
+      "name": "エリクサー",
+      "recommended_recipes": [
+        "recipe/premium-remedy-use",
+        "recipe/premium-restoration-burst"
+      ],
+      "game_contract": "消費アイテムId2003：エリクサー → ActorEffectId5。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "真珠色の点四個が小さな暖金の弧を描く。",
+            "使用成功時0.20秒で胸へ収束。原点の周囲0.25W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/premium-restoration-burst",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "エリクサーの特別感は真珠と薄い金の組合せに置き、対象側の二重環へ続ける。未知の回復パラメータを色の二本の流れで断定しない。",
+        "sharing": "継続はActorEffectId5のカテゴリを共有候補とし、エリクサーの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2004",
+      "name": "マナポーション",
+      "recommended_recipes": [
+        "recipe/mana-remedy-use",
+        "recipe/periodic-mana-restoration"
+      ],
+      "game_contract": "消費アイテムId2004：マナポーション → ActorEffectId4。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "淡青の細い結晶三個と小さな青白の点。",
+            "使用成功時0.18秒で胸へ内向きに寄せる。0.20W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/periodic-mana-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "HPの柔らかな滴に対して、MPは澄んだ角形で読み分ける。魔法弾の発射に見える長い針や攻撃の放射を飲用へ付けない。",
+        "sharing": "継続はActorEffectId4のカテゴリを共有候補とし、マナポーションの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2101",
+      "name": "ゆでたまご",
+      "recommended_recipes": [
+        "recipe/soft-protein-consumption",
+        "recipe/food-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2101：ゆでたまご → ActorEffectId6。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "乳白の丸い光点二個と淡い黄の小点。",
+            "摂取成功時0.18秒の小さな上昇。口元/手元の0.15W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/food-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "柔らかな丸みと淡黄の小さな温かさで、簡素な栄養の印象を作る。対象側の回復は食材共通の葉へ渡し、卵固有の大きな殻の破裂を追加しない。",
+        "sharing": "継続はActorEffectId6のカテゴリを共有候補とし、ゆでたまごの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2102",
+      "name": "おにぎり",
+      "recommended_recipes": [
+        "recipe/grain-consumption",
+        "recipe/food-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2102：おにぎり → ActorEffectId6。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "象牙白の穀粒三個を一束へまとめる。",
+            "摂取成功時0.20秒の上昇と収束。0.18W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/food-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "小さな穀粒のまとまりで食事感を作る。米粒を身体の周囲へ大量に散らさず、胸の回復へ視線を渡す。",
+        "sharing": "継続はActorEffectId6のカテゴリを共有候補とし、おにぎりの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2103",
+      "name": "ビール",
+      "recommended_recipes": [
+        "recipe/foamy-beverage-consumption",
+        "recipe/food-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2103：ビール → ActorEffectId6。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "クリーム色の小さな丸点三個と薄い琥珀色の弧。",
+            "飲用成功時0.18秒で口元から昇って消える。0.15W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/food-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "短い泡の抜けと琥珀の光で飲用の満足感を作る。対応効果は食材のHP回復であり、酔い・ふらつき・MP回復を見た目から追加しない。",
+        "sharing": "継続はActorEffectId6のカテゴリを共有候補とし、ビールの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2104",
+      "name": "肉",
+      "recommended_recipes": [
+        "recipe/savory-protein-consumption",
+        "recipe/food-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2104：肉 → ActorEffectId6。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "暖白の細い光点二個と小さな土金の点。",
+            "摂取成功時0.22秒の低い上昇。0.18W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/food-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "肉の滋味は小さな暖かい上昇で表し、血や脂の飛散を標準にしない。対象側は食材共通のHP回復へ引き継ぐ。",
+        "sharing": "継続はActorEffectId6のカテゴリを共有候補とし、肉の出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2105",
+      "name": "謎の肉",
+      "recommended_recipes": [
+        "recipe/savory-protein-consumption",
+        "recipe/food-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2105：謎の肉 → ActorEffectId6。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "暗い暖灰の外縁を持つ金の光点二個。片方を少し曲がる軌道にする。",
+            "摂取成功時0.24秒の小さな曲線上昇。0.18W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/food-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "謎の肉は一つの変わった曲線で違和感を出すが、毒・呪いの紫の継続を追加しない。対応する効果は他の食材と同じ栄養である。",
+        "sharing": "継続はActorEffectId6のカテゴリを共有候補とし、謎の肉の出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2106",
+      "name": "魚",
+      "recommended_recipes": [
+        "recipe/aquatic-protein-consumption",
+        "recipe/food-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2106：魚 → ActorEffectId6。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "銀白の短い鱗状の光三個、外縁にごく薄い淡青。",
+            "摂取成功時0.18秒の短いきらめき。0.15W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/food-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "魚は銀白の小さな反射で出所を示し、MP回復や水属性の攻撃に読める大きな青い流れを使わない。",
+        "sharing": "継続はActorEffectId6のカテゴリを共有候補とし、魚の出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2107",
+      "name": "魚の串焼き",
+      "recommended_recipes": [
+        "recipe/warm-meal-consumption",
+        "recipe/restoration-and-vitality"
+      ],
+      "game_contract": "消費アイテムId2107：魚の串焼き → ActorEffectId7。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "銀白の点二個と暖金の上昇筋二本。",
+            "使用成功時0.24秒で暖金の束へまとまり、胸の複合付与へ渡す。"
+          ],
+          [
+            "target-state",
+            "recipe/restoration-and-vitality",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "魚の反射と焼き料理の暖金を短く合わせる。対象側は料理のHP回復5秒と強化60秒を二つの識別形で持ち、串そのものをVFXとして重複生成しない。",
+        "sharing": "継続はActorEffectId7のカテゴリを共有候補とし、魚の串焼きの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2108",
+      "name": "肉の串焼き",
+      "recommended_recipes": [
+        "recipe/warm-meal-consumption",
+        "recipe/restoration-and-vitality"
+      ],
+      "game_contract": "消費アイテムId2108：肉の串焼き → ActorEffectId7。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "暖白の小さな蒸気状の点二個と金の穀粒二個。",
+            "使用成功時0.26秒の上昇。0.20W以内、低い不透明度。"
+          ],
+          [
+            "target-state",
+            "recipe/restoration-and-vitality",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "焼き料理の温かさを短い柔らかな上昇で出し、対象の緑と金の複合付与を主役にする。煙柱や焦げの大面積を加えない。",
+        "sharing": "継続はActorEffectId7のカテゴリを共有候補とし、肉の串焼きの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2109",
+      "name": "ラーメン",
+      "recommended_recipes": [
+        "recipe/warm-meal-consumption",
+        "recipe/restoration-and-vitality"
+      ],
+      "game_contract": "消費アイテムId2109：ラーメン → ActorEffectId7。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "暖灰白の薄い湯気二房と小さな暖金の点。",
+            "使用成功時0.30秒の細い螺旋上昇。口元/手元の0.25W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/restoration-and-vitality",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "ラーメンは湯気の細い螺旋で温かさを作り、付与の複合効果へ視線をつなぐ。湯気は人物とUIを覆わず、長い新規回復ループを品目側へ作らない。",
+        "sharing": "継続はActorEffectId7のカテゴリを共有候補とし、ラーメンの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2110",
+      "name": "コロッケ",
+      "recommended_recipes": [
+        "recipe/crispy-food-consumption",
+        "recipe/food-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2110：コロッケ → ActorEffectId6。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "小さな金の欠片四個。最大の一個だけ輪郭を残す。",
+            "摂取成功時0.14秒の小さな散りと上昇。0.12W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/food-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "衣の軽い歯触りは短い欠片の散りで表す。品名が料理でも受領対応はActorEffectId6なので、攻撃強化の金の継続記号を勝手に付けない。",
+        "sharing": "継続はActorEffectId6のカテゴリを共有候補とし、コロッケの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2111",
+      "name": "ポテト",
+      "recommended_recipes": [
+        "recipe/starchy-food-consumption",
+        "recipe/food-health-restoration"
+      ],
+      "game_contract": "消費アイテムId2111：ポテト → ActorEffectId6。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "暖金の丸い光点二個と淡白の小点。",
+            "摂取成功時0.18秒で柔らかく上昇。0.15W以内。"
+          ],
+          [
+            "target-state",
+            "recipe/food-health-restoration",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "丸く素朴な上昇で栄養の良さを作る。実アイテムの調理形態を未確認のまま揚げ油や特殊な料理強化の演出を追加しない。",
+        "sharing": "継続はActorEffectId6のカテゴリを共有候補とし、ポテトの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    },
+    {
+      "category": "items",
+      "key": "2112",
+      "name": "からあげ",
+      "recommended_recipes": [
+        "recipe/crispy-food-consumption",
+        "recipe/restoration-and-vitality"
+      ],
+      "game_contract": "消費アイテムId2112：からあげ → ActorEffectId7。個別対応表はユーザー提供。",
+      "visual_adjustments": {
+        "layers": [
+          [
+            "source-accent",
+            "technique/particle-emission",
+            "小さな金の欠片四個と暖白の柔らかな点二個。",
+            "使用成功時0.20秒の小さな散りから暖金の上昇へ切り替える。"
+          ],
+          [
+            "target-state",
+            "recipe/restoration-and-vitality",
+            "対象側の付与・継続・実回復刻み・更新・解除は参照先の状態Recipeを使う。",
+            "実effect-appliedで一回。品目側と状態側から二重再生しない。"
+          ]
+        ],
+        "timing": "use-success/consumption-confirmedは必要な意味上の入力であり、既存API名を確認したものではない。使用成立と実状態適用に同期し、失敗・中断・未消費で成功の付与を出さない。使用時の寸法・秒数は制作初期値で、ゲームの使用時間・回復期間を変えない。",
+        "decision": "軽い衣の散りと温かい上昇を短くつなぎ、料理の回復と活力の二色を対象側に渡す。品目側へ長い粒子ループを置かない。",
+        "sharing": "継続はActorEffectId7のカテゴリを共有候補とし、からあげの出所の短いaccentだけを差分にする。別々の完成Prefabへ分けるかは制作比較後に決める。"
+      },
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+    }
+  ]
+}

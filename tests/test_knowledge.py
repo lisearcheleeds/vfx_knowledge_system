@@ -24,8 +24,18 @@ class FoundationTests(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory(prefix="knowledge-", dir=self.work_base)
         self.root = Path(self.temp.name).resolve()
         self.assertTrue(self.root.is_relative_to(self.work_base.resolve()))
-        for directory in ("schemas", "knowledge"):
-            shutil.copytree(REPOSITORY / directory, self.root / directory)
+        shutil.copytree(REPOSITORY / "schemas", self.root / "schemas")
+        # Keep the original eight-node fixture independent of catalog growth.
+        for relative in (
+            "semantics/fireball.md", "semantics/magic-orb.md",
+            "compositions/projectile.md",
+            "recipes/fireball-readable-core.md", "recipes/magic-orb-readable-core.md",
+            "techniques/mesh-core.md", "techniques/billboard.md",
+            "evaluation/projectile-readability.md",
+        ):
+            destination = self.root / "knowledge" / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(REPOSITORY / "knowledge" / relative, destination)
 
     def tearDown(self):
         # Verify the final deletion target before TemporaryDirectory cleans recursively.

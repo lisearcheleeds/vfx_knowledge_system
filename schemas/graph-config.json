@@ -1,7 +1,7 @@
 {
   "node_roots": ["knowledge", "adapters", "evidence"],
-  "document_roots": ["docs", "templates", "tools", "benchmarks"],
-  "tags": ["projectile", "fire", "magic", "readable-silhouette", "mesh", "billboard", "lifecycle", "evaluation"],
+  "document_roots": ["docs", "templates", "tools", "benchmarks", "projects"],
+  "tags": ["projectile", "fire", "magic", "readable-silhouette", "mesh", "billboard", "lifecycle", "evaluation", "combat", "melee", "status", "resource", "rendering", "area", "technique", "evidence", "recipe", "semantic"],
   "relations": {
     "expresses": {"dependency": false, "symmetric": false, "target_kinds": ["semantic"]},
     "composes": {"dependency": "required", "symmetric": false},

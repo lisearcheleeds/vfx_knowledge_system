@@ -6,7 +6,7 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 
 ## 現在の状態
 
-**知識基盤の初期土台は構築済み。制作ワークフローは未実証。** 文書、スキーマ、索引、構造検証と8件のdraftノードを整備した。エンジン用Adapter、実行Evidence、完成アセットは未作成。
+**知識基盤の土台は構築済み。制作ワークフローは未実証。** 共通レシピ62件を含む111件のdraftノードを整備した。素材は仕様段階で、エンジン用Adapter、実行Evidence、完成アセットは未作成。
 
 | 入口 | 内容 |
 | --- | --- |
@@ -14,6 +14,8 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 | [WORKFLOW](WORKFLOW.md) | 制作・評価・更新の手順 |
 | [SCHEMA](SCHEMA.md)・[GLOSSARY](GLOSSARY.md) | ノード・関係・用語の規約 |
 | [索引](index/README.md) | 登録済み知識の入口 |
+| [共通レシピ](docs/KNOWLEDGE_CATALOG.md)・[知識の境界](docs/KNOWLEDGE_BOUNDARIES.md) | 具体的な推奨構成と再利用の単位 |
+| [DungeonInn採用例](projects/dungeon-inn/CATALOG.md) | 固有の品目・ID・ゲーム値と共通知識の対応 |
 | [更新規則](CONTRIBUTING.md)・[テンプレート](templates/NODE.md) | 追加・変更の手順 |
 | [状態・次の実証](docs/STATUS.md)・[未確定事項](docs/OPEN_ITEMS.md) | 到達点、不足、次の確認 |
 
