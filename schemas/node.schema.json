@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VFX knowledge node metadata 0.1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "kind", "title", "summary", "status", "revision", "updated_at", "aliases", "tags", "scope", "relations", "evidence"],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "id": {"$ref": "#/$defs/id"},
+    "kind": {"enum": ["semantic", "composition", "recipe", "technique", "resource", "rendering", "evaluation", "adapter", "evidence"]},
+    "title": {"$ref": "#/$defs/text"},
+    "summary": {"$ref": "#/$defs/text"},
+    "status": {"enum": ["draft", "reviewed", "validated", "deprecated"]},
+    "revision": {"type": "integer", "minimum": 1},
+    "updated_at": {"type": "string", "format": "date"},
+    "aliases": {"$ref": "#/$defs/texts"},
+    "tags": {"$ref": "#/$defs/texts"},
+    "scope": {"enum": ["engine-neutral", "engine-specific"]},
+    "relations": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/relation"}},
+    "evidence": {"$ref": "#/$defs/ids"},
+    "superseded_by": {"$ref": "#/$defs/ids"},
+    "engine": {"$ref": "#/$defs/text"},
+    "compatibility": {
+      "type": "object", "additionalProperties": false,
+      "required": ["engine_version", "renderer", "platforms", "verification"],
+      "properties": {
+        "engine_version": {"type": ["string", "null"], "minLength": 1},
+        "renderer": {"type": ["string", "null"], "minLength": 1},
+        "platforms": {"$ref": "#/$defs/texts"},
+        "verification": {"enum": ["unverified", "documentation-only", "engine-tested"]}
+      }
+    },
+    "evidence_details": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_kind", "claims", "conditions", "result", "limitations", "sources", "checked_at"],
+      "properties": {
+        "source_kind": {"enum": ["official-documentation", "first-party-experiment", "reproduced-test", "production-observation", "hypothesis"]},
+        "claims": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/claim"}},
+        "conditions": {"$ref": "#/$defs/text"},
+        "result": {"$ref": "#/$defs/text"},
+        "limitations": {"$ref": "#/$defs/text"},
+        "sources": {"type": "array", "items": {"type": "string", "format": "uri"}, "uniqueItems": true},
+        "checked_at": {"type": ["string", "null"], "format": "date"},
+        "execution": {
+          "type": "object", "additionalProperties": false,
+          "required": ["engine", "engine_version", "renderer", "environment", "executed_at", "procedure", "artifacts"],
+          "properties": {
+            "engine": {"$ref": "#/$defs/text"},
+            "engine_version": {"$ref": "#/$defs/text"},
+            "renderer": {"$ref": "#/$defs/text"},
+            "environment": {"$ref": "#/$defs/text"},
+            "executed_at": {"type": "string", "format": "date"},
+            "procedure": {"$ref": "#/$defs/text"},
+            "artifacts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/text"}}
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"kind": {"const": "adapter"}}}, "then": {"required": ["engine", "compatibility"], "properties": {"scope": {"const": "engine-specific"}}}},
+    {"if": {"properties": {"scope": {"const": "engine-specific"}}}, "then": {"required": ["engine", "compatibility"]}},
+    {"if": {"properties": {"scope": {"const": "engine-neutral"}}}, "then": {"not": {"anyOf": [{"required": ["engine"]}, {"required": ["compatibility"]}]}}},
+    {"if": {"properties": {"kind": {"const": "evidence"}}}, "then": {"required": ["evidence_details"]}, "else": {"not": {"required": ["evidence_details"]}}}
+  ],
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "pattern": "\\S"},
+    "texts": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+    "id": {"type": "string", "pattern": "^(semantic|composition|recipe|technique|resource|rendering|evaluation|adapter|evidence)/[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "claim": {
+      "type": "object", "additionalProperties": false, "required": ["target", "statement"],
+      "properties": {"target": {"$ref": "#/$defs/id"}, "statement": {"$ref": "#/$defs/text"}}
+    },
+    "relation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["target", "type", "reason"],
+      "properties": {
+        "target": {"$ref": "#/$defs/id"},
+        "type": {"enum": ["expresses", "composes", "candidate", "requires", "enhances", "alternative", "conflicts_with", "implemented_by", "evaluated_by"]},
+        "reason": {"$ref": "#/$defs/text"},
+        "when": {"$ref": "#/$defs/text"},
+        "role": {"$ref": "#/$defs/text"},
+        "requirement": {"enum": ["required", "optional"]},
+        "evidence": {"$ref": "#/$defs/ids"}
+      },
+      "allOf": [{"if": {"properties": {"type": {"const": "composes"}}}, "then": {"required": ["requirement"]}, "else": {"not": {"required": ["requirement"]}}}]
+    }
+  }
+}

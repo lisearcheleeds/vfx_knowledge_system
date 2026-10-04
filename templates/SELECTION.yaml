@@ -1,0 +1,15 @@
+# 構造確認用の選択例。エンジンで実装可能な完成構成ではない。
+# 候補比較を行った後、実際に採用するIDへ置き換える。
+selected_nodes:
+  - recipe/fireball-readable-core
+  - technique/mesh-core
+engine: null
+conditional_decisions: []
+# whenを持つ必須依存の適用を判断した場合だけ、下記形式で記録する。
+# source_revisionとrelation_indexは、参照した正本と照合する。
+# conditional_decisions:
+#   - source: "<採用したノードID>"
+#     source_revision: 1
+#     relation_index: 0
+#     applies: true
+#     reason: "今回のProfile・Brief・根拠に照らした適用判断の理由"

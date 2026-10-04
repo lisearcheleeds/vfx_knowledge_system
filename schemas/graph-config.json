@@ -1,0 +1,16 @@
+{
+  "node_roots": ["knowledge", "adapters", "evidence"],
+  "document_roots": ["docs", "templates", "tools", "benchmarks"],
+  "tags": ["projectile", "fire", "magic", "readable-silhouette", "mesh", "billboard", "lifecycle", "evaluation"],
+  "relations": {
+    "expresses": {"dependency": false, "symmetric": false, "target_kinds": ["semantic"]},
+    "composes": {"dependency": "required", "symmetric": false},
+    "candidate": {"dependency": false, "symmetric": false},
+    "requires": {"dependency": true, "symmetric": false},
+    "enhances": {"dependency": false, "symmetric": false},
+    "alternative": {"dependency": false, "symmetric": true},
+    "conflicts_with": {"dependency": false, "symmetric": true},
+    "implemented_by": {"dependency": false, "symmetric": false, "target_kinds": ["adapter"]},
+    "evaluated_by": {"dependency": false, "symmetric": false, "target_kinds": ["evaluation"]}
+  }
+}

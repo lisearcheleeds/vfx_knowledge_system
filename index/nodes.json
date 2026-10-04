@@ -1,0 +1,468 @@
+{
+  "backlinks": {
+    "composition/projectile": [
+      {
+        "reason": "発射・飛翔・着弾・終了の役割構造を利用する。",
+        "relation_index": 1,
+        "requirement": "required",
+        "role": "lifecycle",
+        "source": "recipe/fireball-readable-core",
+        "target": "composition/projectile",
+        "type": "composes"
+      },
+      {
+        "reason": "火炎弾と共通の投射体ライフサイクルを利用する。",
+        "relation_index": 1,
+        "requirement": "required",
+        "role": "lifecycle",
+        "source": "recipe/magic-orb-readable-core",
+        "target": "composition/projectile",
+        "type": "composes"
+      },
+      {
+        "reason": "発射・飛翔・着弾・終了の役割を整理する入口となる。",
+        "relation_index": 0,
+        "source": "semantic/fireball",
+        "target": "composition/projectile",
+        "type": "candidate"
+      },
+      {
+        "reason": "投射体のライフサイクルを共有できる。",
+        "relation_index": 0,
+        "source": "semantic/magic-orb",
+        "target": "composition/projectile",
+        "type": "candidate"
+      }
+    ],
+    "evaluation/projectile-readability": [
+      {
+        "reason": "飛翔・着弾・停止の読み取りと運用を確認する。",
+        "relation_index": 0,
+        "source": "composition/projectile",
+        "target": "evaluation/projectile-readability",
+        "type": "evaluated_by"
+      },
+      {
+        "reason": "核・飛翔・着弾の視認性とライフサイクルを確認する。",
+        "relation_index": 4,
+        "source": "recipe/fireball-readable-core",
+        "target": "evaluation/projectile-readability",
+        "type": "evaluated_by"
+      },
+      {
+        "reason": "飛翔・着弾・終了の共通評価を使う。",
+        "relation_index": 4,
+        "source": "recipe/magic-orb-readable-core",
+        "target": "evaluation/projectile-readability",
+        "type": "evaluated_by"
+      }
+    ],
+    "recipe/fireball-readable-core": [
+      {
+        "reason": "核の輪郭と火炎属性を分けて設計する構成案。",
+        "relation_index": 1,
+        "source": "semantic/fireball",
+        "target": "recipe/fireball-readable-core",
+        "type": "candidate"
+      }
+    ],
+    "recipe/magic-orb-readable-core": [
+      {
+        "reason": "魔法弾の主要情報を核と着弾に割り当てる構成案。",
+        "relation_index": 1,
+        "source": "semantic/magic-orb",
+        "target": "recipe/magic-orb-readable-core",
+        "type": "candidate"
+      }
+    ],
+    "semantic/fireball": [
+      {
+        "reason": "火炎属性・飛翔方向・着弾の意味を表現する。",
+        "relation_index": 0,
+        "source": "recipe/fireball-readable-core",
+        "target": "semantic/fireball",
+        "type": "expresses"
+      }
+    ],
+    "semantic/magic-orb": [
+      {
+        "reason": "球状の魔法投射体・方向・着弾を表現する。",
+        "relation_index": 0,
+        "source": "recipe/magic-orb-readable-core",
+        "target": "semantic/magic-orb",
+        "type": "expresses"
+      }
+    ],
+    "technique/billboard": [
+      {
+        "reason": "核を素材で構成する代替候補。",
+        "relation_index": 3,
+        "role": "core",
+        "source": "recipe/fireball-readable-core",
+        "target": "technique/billboard",
+        "type": "candidate",
+        "when": "想定するカメラと背景で板の輪郭が成立する。"
+      },
+      {
+        "reason": "同じ核の役割を板と素材で構成する候補。",
+        "relation_index": 3,
+        "role": "core",
+        "source": "recipe/magic-orb-readable-core",
+        "target": "technique/billboard",
+        "type": "candidate",
+        "when": "限定した画角と素材による核が美術上成立する。"
+      },
+      {
+        "reason": "同じ核の役割に対し、形状と素材の負担を変える代替候補。",
+        "relation_index": 0,
+        "role": "core",
+        "source": "technique/mesh-core",
+        "target": "technique/billboard",
+        "type": "alternative",
+        "when": "限定した画角で板の見え方が成立する場合。"
+      }
+    ],
+    "technique/mesh-core": [
+      {
+        "reason": "核の形状を外周の揺らぎから分離する候補。",
+        "relation_index": 2,
+        "role": "core",
+        "source": "recipe/fireball-readable-core",
+        "target": "technique/mesh-core",
+        "type": "candidate",
+        "when": "複数方向で安定した立体的な輪郭が必要。"
+      },
+      {
+        "reason": "共通のメッシュ核を魔法弾にも利用する候補。",
+        "relation_index": 2,
+        "role": "core",
+        "source": "recipe/magic-orb-readable-core",
+        "target": "technique/mesh-core",
+        "type": "candidate",
+        "when": "カメラ移動と遮蔽に対して立体的な核が必要。"
+      }
+    ]
+  },
+  "generated": true,
+  "nodes": [
+    {
+      "aliases": [
+        "投射体",
+        "projectile"
+      ],
+      "evidence": [],
+      "id": "composition/projectile",
+      "kind": "composition",
+      "path": "knowledge/compositions/projectile.md",
+      "relations": [
+        {
+          "reason": "飛翔・着弾・停止の読み取りと運用を確認する。",
+          "target": "evaluation/projectile-readability",
+          "type": "evaluated_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "c36b71be8880ae9c65a52eeecdecf84962b7a0d9ff077d51f493627c93d286fa",
+      "status": "draft",
+      "summary": "発射・飛翔・着弾・終了の役割と、ゲームイベントによる同期を定義する。",
+      "superseded_by": [],
+      "tags": [
+        "projectile",
+        "lifecycle"
+      ],
+      "title": "投射体のライフサイクル",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "投射体評価",
+        "projectile readability"
+      ],
+      "evidence": [],
+      "id": "evaluation/projectile-readability",
+      "kind": "evaluation",
+      "path": "knowledge/evaluation/projectile-readability.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "f44281421014db3d5cba656bb51fa3c723344e7b4797ce531bbf165cffc3417c",
+      "status": "draft",
+      "summary": "核・飛翔・着弾・終了を、背景・視点・同時表示・運用条件で確認する評価案。",
+      "superseded_by": [],
+      "tags": [
+        "projectile",
+        "evaluation",
+        "lifecycle"
+      ],
+      "title": "投射体の視認性とライフサイクルの評価",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "輪郭重視の火炎弾",
+        "readable fireball"
+      ],
+      "evidence": [],
+      "id": "recipe/fireball-readable-core",
+      "kind": "recipe",
+      "path": "knowledge/recipes/fireball-readable-core.md",
+      "relations": [
+        {
+          "reason": "火炎属性・飛翔方向・着弾の意味を表現する。",
+          "target": "semantic/fireball",
+          "type": "expresses"
+        },
+        {
+          "reason": "発射・飛翔・着弾・終了の役割構造を利用する。",
+          "requirement": "required",
+          "role": "lifecycle",
+          "target": "composition/projectile",
+          "type": "composes"
+        },
+        {
+          "reason": "核の形状を外周の揺らぎから分離する候補。",
+          "role": "core",
+          "target": "technique/mesh-core",
+          "type": "candidate",
+          "when": "複数方向で安定した立体的な輪郭が必要。"
+        },
+        {
+          "reason": "核を素材で構成する代替候補。",
+          "role": "core",
+          "target": "technique/billboard",
+          "type": "candidate",
+          "when": "想定するカメラと背景で板の輪郭が成立する。"
+        },
+        {
+          "reason": "核・飛翔・着弾の視認性とライフサイクルを確認する。",
+          "target": "evaluation/projectile-readability",
+          "type": "evaluated_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "98e5c37784605ae099ebb588a9c7c034b1627ecf67fb1b2b96d360cce346b039",
+      "status": "draft",
+      "summary": "火炎弾の核・外周・着弾を役割として分け、核の技法を条件に応じて選ぶ。",
+      "superseded_by": [],
+      "tags": [
+        "projectile",
+        "fire",
+        "readable-silhouette"
+      ],
+      "title": "輪郭を重視したファイアボール",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "魔法弾の核",
+        "readable magic orb"
+      ],
+      "evidence": [],
+      "id": "recipe/magic-orb-readable-core",
+      "kind": "recipe",
+      "path": "knowledge/recipes/magic-orb-readable-core.md",
+      "relations": [
+        {
+          "reason": "球状の魔法投射体・方向・着弾を表現する。",
+          "target": "semantic/magic-orb",
+          "type": "expresses"
+        },
+        {
+          "reason": "火炎弾と共通の投射体ライフサイクルを利用する。",
+          "requirement": "required",
+          "role": "lifecycle",
+          "target": "composition/projectile",
+          "type": "composes"
+        },
+        {
+          "reason": "共通のメッシュ核を魔法弾にも利用する候補。",
+          "role": "core",
+          "target": "technique/mesh-core",
+          "type": "candidate",
+          "when": "カメラ移動と遮蔽に対して立体的な核が必要。"
+        },
+        {
+          "reason": "同じ核の役割を板と素材で構成する候補。",
+          "role": "core",
+          "target": "technique/billboard",
+          "type": "candidate",
+          "when": "限定した画角と素材による核が美術上成立する。"
+        },
+        {
+          "reason": "飛翔・着弾・終了の共通評価を使う。",
+          "target": "evaluation/projectile-readability",
+          "type": "evaluated_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "078b2c05b48dc3a553b04ec3094111b312993bce5d2a7d8abf49a0efd3719e8a",
+      "status": "draft",
+      "summary": "魔法弾の核と着弾を優先し、共有Techniqueから核の描画方法を選ぶ。",
+      "superseded_by": [],
+      "tags": [
+        "projectile",
+        "magic",
+        "readable-silhouette"
+      ],
+      "title": "輪郭を重視した魔法弾",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "ファイアボール",
+        "fireball",
+        "火炎弾"
+      ],
+      "evidence": [],
+      "id": "semantic/fireball",
+      "kind": "semantic",
+      "path": "knowledge/semantics/fireball.md",
+      "relations": [
+        {
+          "reason": "発射・飛翔・着弾・終了の役割を整理する入口となる。",
+          "target": "composition/projectile",
+          "type": "candidate"
+        },
+        {
+          "reason": "核の輪郭と火炎属性を分けて設計する構成案。",
+          "target": "recipe/fireball-readable-core",
+          "type": "candidate"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "61809d3ac9f3ca9b9e1b6aa9e092f43eac36510873efb2e2599077224d171374",
+      "status": "draft",
+      "summary": "火炎属性を持ち、飛翔方向と着弾を伝える投射体の視覚要件。",
+      "superseded_by": [],
+      "tags": [
+        "projectile",
+        "fire"
+      ],
+      "title": "ファイアボール",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "魔法弾",
+        "magic orb"
+      ],
+      "evidence": [],
+      "id": "semantic/magic-orb",
+      "kind": "semantic",
+      "path": "knowledge/semantics/magic-orb.md",
+      "relations": [
+        {
+          "reason": "投射体のライフサイクルを共有できる。",
+          "target": "composition/projectile",
+          "type": "candidate"
+        },
+        {
+          "reason": "魔法弾の主要情報を核と着弾に割り当てる構成案。",
+          "target": "recipe/magic-orb-readable-core",
+          "type": "candidate"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "3c296e0db6907943c60183e102ba480f20f8d15fad555b20bd9284e47f2eb95f",
+      "status": "draft",
+      "summary": "特定の元素属性を固定せず、球状の核・飛翔方向・着弾を伝える魔法投射体。",
+      "superseded_by": [],
+      "tags": [
+        "projectile",
+        "magic"
+      ],
+      "title": "魔法弾",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "ビルボード",
+        "billboard",
+        "カメラ向きの板"
+      ],
+      "evidence": [],
+      "id": "technique/billboard",
+      "kind": "technique",
+      "path": "knowledge/techniques/billboard.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "d47f730fad3e166a29061c3e6a4297a18bf092edf2132c48c82f8b7348ff2075",
+      "status": "draft",
+      "summary": "カメラに向けた板と素材で核や外周を描く候補。",
+      "superseded_by": [],
+      "tags": [
+        "billboard",
+        "readable-silhouette"
+      ],
+      "title": "ビルボード",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "メッシュ核",
+        "mesh core"
+      ],
+      "evidence": [],
+      "id": "technique/mesh-core",
+      "kind": "technique",
+      "path": "knowledge/techniques/mesh-core.md",
+      "relations": [
+        {
+          "reason": "同じ核の役割に対し、形状と素材の負担を変える代替候補。",
+          "role": "core",
+          "target": "technique/billboard",
+          "type": "alternative",
+          "when": "限定した画角で板の見え方が成立する場合。"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "ac819ec0a262900ec658580c411d611a9f49ab5427bedd01a02603ca24a60982",
+      "status": "draft",
+      "summary": "独立した立体形状で投射体の核の輪郭を設計する候補。",
+      "superseded_by": [],
+      "tags": [
+        "mesh",
+        "readable-silhouette"
+      ],
+      "title": "メッシュによる核",
+      "updated_at": "2026-10-04"
+    }
+  ],
+  "schema_version": "0.1.0",
+  "symmetric_relations": {
+    "composition/projectile": [],
+    "evaluation/projectile-readability": [],
+    "recipe/fireball-readable-core": [],
+    "recipe/magic-orb-readable-core": [],
+    "semantic/fireball": [],
+    "semantic/magic-orb": [],
+    "technique/billboard": [
+      {
+        "derived": true,
+        "reason": "同じ核の役割に対し、形状と素材の負担を変える代替候補。",
+        "relation_index": 0,
+        "role": "core",
+        "source": "technique/mesh-core",
+        "target": "technique/mesh-core",
+        "type": "alternative",
+        "when": "限定した画角で板の見え方が成立する場合。"
+      }
+    ],
+    "technique/mesh-core": []
+  }
+}

@@ -13,3 +13,9 @@ Desktop.ini
 # Local editor settings
 .vscode/
 .idea/
+
+# Python tools
+.venv/
+__pycache__/
+*.py[cod]
+.test-work/
