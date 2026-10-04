@@ -51,7 +51,14 @@ class CatalogTests(unittest.TestCase):
         keys = [(b["category"], b["key"]) for b in self.bindings]
         self.assertEqual(len(keys), len(set(keys)))
         for binding in self.bindings:
-            result = self.resolve(binding["recommended_recipes"])
+            if "adopted_selection" in binding:
+                path = (REPOSITORY / "projects/dungeon-inn" / binding["adopted_selection"]["path"]).resolve()
+                self.assertTrue(path.is_relative_to(REPOSITORY))
+                selection = knowledge.load_yaml(path.read_text(encoding="utf-8"))
+                knowledge.validate_schema(knowledge.schema_validator(REPOSITORY, "selection.schema.json"), selection, str(path))
+                result = knowledge.resolve_dependencies(self.nodes, self.config, selection)
+            else:
+                result = self.resolve(binding["recommended_recipes"])
             self.assertFalse(result["unresolved_conditions"])
             for _, target, _, _ in binding["visual_adjustments"]["layers"]:
                 self.assertIn(target, self.nodes)
@@ -71,6 +78,26 @@ class CatalogTests(unittest.TestCase):
             self.assertEqual(by_item[item_id]["recommended_recipes"][1], "recipe/" + state)
         self.assertEqual(by_item["2110"]["recommended_recipes"][0], by_item["2112"]["recommended_recipes"][0])
         self.assertNotEqual(by_item["2110"]["recommended_recipes"][1], by_item["2112"]["recommended_recipes"][1])
+
+    def test_latest_fireball_adoption_keeps_baseline_out_of_flight_dependencies(self):
+        binding = next(b for b in self.bindings if b["category"] == "skills" and b["key"] == "103")
+        self.assertEqual(binding["recommended_recipes"], [])
+        self.assertEqual(binding["adopted_selection"]["scope"], "flight-preview")
+        project = REPOSITORY / "projects/dungeon-inn"
+        selection = knowledge.load_yaml((project / binding["adopted_selection"]["path"]).read_text(encoding="utf-8"))
+        required = set(knowledge.resolve_dependencies(self.nodes, self.config, selection)["required_nodes"])
+        self.assertTrue({"technique/surface-density-core", "technique/folded-axial-billboard"}.issubset(required))
+        self.assertTrue({"recipe/volumetric-fireball", "technique/volume-density", "technique/directional-flow-surface", "technique/history-ribbon", "technique/surface-sigil"}.isdisjoint(required))
+        baseline = binding["quality_baseline"]
+        historical = knowledge.load_yaml((project / baseline["selection"]).read_text(encoding="utf-8"))
+        historical_required = set(knowledge.resolve_dependencies(self.nodes, self.config, historical)["required_nodes"])
+        self.assertTrue({"technique/volume-density", "technique/directional-flow-surface", "technique/history-ribbon"}.issubset(historical_required))
+        active_layers = {layer[0]: layer[1] for layer in binding["visual_adjustments"]["layers"]}
+        self.assertEqual(active_layers["core"], "technique/surface-density-core")
+        self.assertEqual(active_layers["release"], "technique/volume-density")
+        self.assertEqual(active_layers["explosion-shell"], "technique/volume-density")
+        self.assertTrue({"flame-shell", "tail", "smoke-wake", "embers", "footprint"}.isdisjoint(active_layers))
+        self.assertIn("flame-shell", {layer[0] for layer in baseline["visual_adjustments"]["layers"]})
 
     def test_primary_attack_recipes_resolve_shared_techniques_without_candidates(self):
         fireball = set(self.resolve(["recipe/volumetric-fireball"])["required_nodes"])

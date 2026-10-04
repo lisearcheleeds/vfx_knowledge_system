@@ -31,7 +31,7 @@
 | --- | --- | --- |
 | 101 狙い撃ち | [recipe/charged-arrow](../../knowledge/recipes/abilities/charged-arrow.md) | 予備動作0.8秒、飛翔24m/s。 |
 | 102 旋風斬 | [recipe/circular-slash](../../knowledge/recipes/abilities/circular-slash.md) | 予備動作0.4秒、半径2.5m。 |
-| 103 ファイアボール | [recipe/volumetric-fireball](../../knowledge/recipes/abilities/volumetric-fireball.md) | 詠唱1.2秒＋予備動作0.2秒、飛翔14m/s、着弾半径2m。 |
+| 103 ファイアボール | 飛翔の最新採用：[Core単独Selection](runs/fireball-downscale-2026-10-04.selection.yaml)。品質基準版：[recipe/volumetric-fireball](../../knowledge/recipes/abilities/volumetric-fireball.md) | 詠唱1.2秒＋予備動作0.2秒、飛翔14m/s、着弾半径2m。 |
 | 104 ヒール | [recipe/targeted-healing-cast](../../knowledge/recipes/abilities/targeted-healing-cast.md) | 詠唱0.8秒、対象の回復効果1秒。受領表の記載順ではActorEffectId8がヒール。 |
 | 105 急所突き | [recipe/weakening-thrust](../../knowledge/recipes/abilities/weakening-thrust.md) | 予備動作0.3秒、弱体10秒。ActorEffectId9/12のどちらかは受領表から確定しない。 |
 | 201 号令 | [recipe/sharp-self-buff-cast](../../knowledge/recipes/abilities/sharp-self-buff-cast.md) | 予備動作0.6秒、自分への攻撃強化15秒。ActorEffectId10。 |
@@ -44,6 +44,21 @@
 | 208 火炎の息 | [recipe/instant-fire-cone](../../knowledge/recipes/abilities/instant-fire-cone.md) | 予備動作0.8秒、半径5m・90度。瞬間的な範囲攻撃。 |
 | 301 鼓舞 | [recipe/soft-self-buff-cast](../../knowledge/recipes/abilities/soft-self-buff-cast.md) | 予備動作0.4秒、自分への強化12秒。ActorEffectId14。 |
 | 901 まかない料理 | [recipe/meal-vitality-activation](../../knowledge/recipes/abilities/meal-vitality-activation.md) | 施設サービス、対象への強化300秒。戦闘の詠唱・予備動作は未提供。 |
+
+## 火球：最新採用と品質基準版
+
+[最新の制作記録](runs/fireball-downscale-2026-10-04.md)を現在の採用値・承認・未検証範囲の正本とする。[初回制作記録](runs/fireball-2026-10-04.md)は比較に使う品質基準版の履歴として保持する。
+
+| 部分 | 現在の採用・状態 |
+| --- | --- |
+| 飛翔 | [面上密度](../../knowledge/techniques/surface-density-core.md)＋[折り曲げ式ビルボード](../../knowledge/techniques/folded-axial-billboard.md)のCore単独。Renderer1、ParticleSystem0。見た目承認済み |
+| 射出・着弾 | [体積描画](../../knowledge/techniques/volume-density.md)と固有の尺を保持。着弾の装飾BlastWaveも保持 |
+| 削除済み | 飛翔の外炎・履歴Trail・煙・火の粉・ルートParticleSystem、着弾Range。範囲2mはゲーム契約として保持 |
+| 未制作・未検証 | 詠唱・対象熱反応、ゲーム時計・イベント・終了・Pool・階層復元、内部構造の独立レビュー、実機性能 |
+
+BINDINGSのSkill103は `adopted_selection` に飛翔の最新Selectionと制作記録を指定する。現在の飛翔を構成する共通Recipeは登録していないため、`recommended_recipes` は空。空を「表現なし」と解釈せず、`adopted_selection.path` をこのフォルダから解決して採用済みノードの依存を取得する。このSelectionの範囲は飛翔Previewだけで、射出・着弾・スキル全体を実証した選択記録ではない。
+
+`quality_baseline` は旧Recipe・Selection・制作値を保存する履歴であり、最新採用へ自動合成しない。体積基準版の全層Recipeを選択したまま、必須層だけを省く扱いにしない。基準版の既知の欠点は比較資料に残す。
 
 ## 状態効果：14件
 
@@ -95,4 +110,4 @@ Item2102は「米・穀物」の見た目として `recipe/grain-consumption` �
 
 急所突き・地響き・呪いの眼光のActorEffect9/12対応、まかない料理の具体的なActorEffectIdは未照合。ヒール→ActorEffect8は初回表の記載順に基づく。最終EffectIdとPrefab/Material/Variantの共用は試作比較後に決める。
 
-ファイアボール、剣/刺突/打撃、食事の複合状態から試作し、明暗背景・密集・中断・再付与・解除を確認する。別プロジェクトの参照・実装前にはユーザーへ確認する。
+火球は最新のCore単独飛翔をゲームへ接続し、保持した射出・着弾を含めて密集・中断・終了・再利用・実機性能を確認する。剣/刺突/打撃や食事の複合状態は試作から開始し、明暗背景・密集・再付与・解除を確認する。別プロジェクトの参照・実装前にはユーザーへ確認する。

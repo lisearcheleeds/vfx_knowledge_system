@@ -15,7 +15,7 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 | [SCHEMA](SCHEMA.md)・[GLOSSARY](GLOSSARY.md) | ノード・関係・用語の規約 |
 | [索引](index/README.md) | 登録済み知識の入口 |
 | [共通レシピ](docs/KNOWLEDGE_CATALOG.md)・[知識の境界](docs/KNOWLEDGE_BOUNDARIES.md) | 具体的な推奨構成と再利用の単位 |
-| [DungeonInn採用例](projects/dungeon-inn/CATALOG.md)・[火球の制作記録](projects/dungeon-inn/runs/fireball-2026-10-04.md) | 固有の品目・ID・ゲーム値、反復・評価・未解決事項 |
+| [DungeonInn採用例](projects/dungeon-inn/CATALOG.md)・[火球の最新採用](projects/dungeon-inn/runs/fireball-downscale-2026-10-04.md) | 固有の品目・ID・ゲーム値、最新構成・評価・未解決事項 |
 | [Unity Adapter](adapters/unity-urp-noise-density.md)・[実行Evidence](evidence/organic-fire-volume-preview.md) | 粒子の密度体積・方向流れ・煙の実装条件と観察 |
 | [高品質版からCore単独への変換例](projects/dungeon-inn/runs/fireball-downscale-2026-10-04.md)・[実行Evidence](evidence/quality-baseline-to-core-only.md) | 最高打点からの引き算、UV・折り目の比率、削減版の承認 |
 | [更新規則](CONTRIBUTING.md)・[テンプレート](templates/NODE.md) | 追加・変更の手順 |
