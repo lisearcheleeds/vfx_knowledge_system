@@ -74,7 +74,8 @@ class CatalogTests(unittest.TestCase):
 
     def test_primary_attack_recipes_resolve_shared_techniques_without_candidates(self):
         fireball = set(self.resolve(["recipe/volumetric-fireball"])["required_nodes"])
-        self.assertTrue({"technique/mesh-core", "technique/flipbook-particles", "technique/history-ribbon", "resource/flame-flipbook"}.issubset(fireball))
+        self.assertTrue({"technique/volume-density", "technique/directional-flow-surface", "technique/history-ribbon", "resource/periodic-density-noise"}.issubset(fireball))
+        self.assertNotIn("technique/mesh-core", fireball)
         sword = set(self.resolve(["recipe/weapon-sword"])["required_nodes"])
         axe = set(self.resolve(["recipe/weapon-axe"])["required_nodes"])
         self.assertIn("technique/arc-sweep", sword & axe)

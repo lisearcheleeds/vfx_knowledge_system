@@ -6,7 +6,7 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 
 ## 現在の状態
 
-**知識基盤の土台は構築済み。制作ワークフローは未実証。** 共通レシピ62件を含む111件のdraftノードを整備した。素材は仕様段階で、エンジン用Adapter、実行Evidence、完成アセットは未作成。
+**知識基盤の土台は構築済み。Unityで最初の制作・撮影・修正・知識還元を実施。** 共通レシピ62件を含む116ノード。火球から体積描画・方向流れ・周期ノイズ・Unity Adapter・実行Evidenceを追加した。見た目の改善を確認した一方、外炎の矩形境界、内部構造・ゲーム接続・性能は未確認。制作ワークフロー全体の完了ではない。
 
 | 入口 | 内容 |
 | --- | --- |
@@ -15,7 +15,8 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 | [SCHEMA](SCHEMA.md)・[GLOSSARY](GLOSSARY.md) | ノード・関係・用語の規約 |
 | [索引](index/README.md) | 登録済み知識の入口 |
 | [共通レシピ](docs/KNOWLEDGE_CATALOG.md)・[知識の境界](docs/KNOWLEDGE_BOUNDARIES.md) | 具体的な推奨構成と再利用の単位 |
-| [DungeonInn採用例](projects/dungeon-inn/CATALOG.md) | 固有の品目・ID・ゲーム値と共通知識の対応 |
+| [DungeonInn採用例](projects/dungeon-inn/CATALOG.md)・[火球の制作記録](projects/dungeon-inn/runs/fireball-2026-10-04.md) | 固有の品目・ID・ゲーム値、反復・評価・未解決事項 |
+| [Unity Adapter](adapters/unity-urp-noise-density.md)・[実行Evidence](evidence/organic-fire-volume-preview.md) | 粒子の密度体積・方向流れ・煙の実装条件と観察 |
 | [更新規則](CONTRIBUTING.md)・[テンプレート](templates/NODE.md) | 追加・変更の手順 |
 | [状態・次の実証](docs/STATUS.md)・[未確定事項](docs/OPEN_ITEMS.md) | 到達点、不足、次の確認 |
 
@@ -50,6 +51,6 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-次は対象エンジン・版・Profileを決め、Adapterと不足知識を整備して制作・撮影・評価・修正・知識更新を実証する。別フォルダの確認・参照にはユーザーへの確認が必要。
+次は火球の動画上の矩形境界を切り分け、内部構造・ゲーム接続・実機負荷を確認する。他エンジンへの適合はそれぞれ実行して判断する。別フォルダの確認・参照にはユーザーへの確認が必要。
 
 設計書は現在、直下の `vfx_knowledge_system_design.md` に置いている。設計書に記載された `docs/SYSTEM_DESIGN.md` は将来の想定配置。

@@ -2,7 +2,7 @@
 
 特定のゲームの品目ではなく、表現する意味・主形状・素材・動き・状態管理から選ぶ共通知識。各Recipeは一つの推奨構成を具体的に示す。採用先は固有ID・範囲・速度・期間・個別調整を `projects/` の対応表へ記録する。[知識と採用先の境界](KNOWLEDGE_BOUNDARIES.md)と[制作方針](VFX_ART_DIRECTION.md)を参照する。
 
-全てdraft。秒数・比率・個数は初稿の美術値で、実測値ではない。Resourceは必要アセットの仕様であり、完成した画像・メッシュの納品ではない。
+全Recipeはdraft。火球はPreview制作から改訂2へ更新し、[実行Evidence](../evidence/organic-fire-volume-preview.md)を持つ。全体のゲーム接続・性能を合格にしたものではない。秒数・比率・個数は初稿の美術値で、実測値ではない。Resourceは必要アセットの仕様であり、完成した画像・メッシュの納品ではない。
 
 ## 武器・自然武器の攻撃
 
@@ -31,7 +31,7 @@
 | --- | --- |
 | [狙い撃ち：張り詰めた収束と強い矢](../knowledge/recipes/abilities/charged-arrow.md) | 細い照準の収束から、鋭い矢の実体と長い一本の尾へ解放する。 |
 | [旋回斬撃：一周する主弧と低い風の残留](../knowledge/recipes/abilities/circular-slash.md) | 半径Rの一周する厚薄のある弧で周囲攻撃を見せる。 |
-| [ファイアボール：立体の火球と鋭い着弾爆発](../knowledge/recipes/abilities/volumetric-fireball.md) | 小さな熱核・方向性のある炎殻・先細り尾・半径Rの一回の爆発を組み合わせる。 |
+| [ファイアボール：立体の火球と鋭い着弾爆発](../knowledge/recipes/abilities/volumetric-fireball.md) | 内部密度の炎塊、後方への侵食面、熱から煙への尾、一回の着弾膨張と冷却。外炎の矩形境界は未解決。 |
 | [ヒール：使用者の収束と対象の上昇回復](../knowledge/recipes/abilities/targeted-healing-cast.md) | 詠唱の小さな環から、対象の回復パルスと上昇する葉へ接続する。 |
 | [急所突き：一点の赤金の刺突と弱体の刻印](../knowledge/recipes/abilities/weakening-thrust.md) | 短い収束、鋭い刺突、接触から沈む弱体記号で急所を伝える。 |
 | [号令：自分を押し上げる強化の解放](../knowledge/recipes/abilities/sharp-self-buff-cast.md) | 使用者自身の胸から上向きの形を解放し、攻撃強化の小さな記号へ畳む。 |

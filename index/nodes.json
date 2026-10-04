@@ -1,5 +1,26 @@
 {
   "backlinks": {
+    "adapter/unity-urp-noise-density": [
+      {
+        "source": "evidence/organic-fire-volume-preview",
+        "statement": "Unity 6000.3.14f1 / URP 17.3.0 / Windows Editor / DX12で3つのPrefabを手動Simulateして撮影した。",
+        "type": "claim"
+      },
+      {
+        "reason": "Unity URPでUV流れ、頂点変位、侵食を組み合わせた制作例。",
+        "relation_index": 5,
+        "source": "technique/directional-flow-surface",
+        "target": "adapter/unity-urp-noise-density",
+        "type": "implemented_by"
+      },
+      {
+        "reason": "Unity URPでの密度積分と粒子入力の制作例。",
+        "relation_index": 4,
+        "source": "technique/volume-density",
+        "target": "adapter/unity-urp-noise-density",
+        "type": "implemented_by"
+      }
+    ],
     "composition/combat-readability": [
       {
         "source": "evidence/vfx-gameplay-clarity-source",
@@ -358,7 +379,7 @@
         "type": "composes"
       },
       {
-        "reason": "主形状・接触・状態の明度と面積を整理する。",
+        "reason": "主形状、接触、境界の明度・面積を整理する。",
         "relation_index": 2,
         "requirement": "required",
         "role": "visual-hierarchy",
@@ -785,7 +806,7 @@
         "type": "composes"
       },
       {
-        "reason": "この推奨構成の時間・空間・発動と終了の契約。",
+        "reason": "実投射体と発動・終了の契約。",
         "relation_index": 1,
         "requirement": "required",
         "role": "lifecycle",
@@ -1439,8 +1460,8 @@
         "type": "evaluated_by"
       },
       {
-        "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
-        "relation_index": 11,
+        "reason": "動画、背景、視点、停止、再利用、実範囲を確認する。",
+        "relation_index": 13,
         "source": "recipe/volumetric-fireball",
         "target": "evaluation/projectile-readability",
         "type": "evaluated_by"
@@ -1572,6 +1593,32 @@
         "source": "recipe/targeted-restoration-burst",
         "target": "evaluation/status-refresh-and-overlap",
         "type": "evaluated_by"
+      }
+    ],
+    "evidence/organic-fire-volume-preview": [
+      {
+        "source": "adapter/unity-urp-noise-density",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/volumetric-fireball",
+        "type": "evidence"
+      },
+      {
+        "source": "resource/periodic-density-noise",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/directional-flow-surface",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/history-ribbon",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/volume-density",
+        "type": "evidence"
       }
     ],
     "evidence/particle-simulation-and-renderer-source": [
@@ -1877,8 +1924,8 @@
         "type": "composes"
       },
       {
-        "reason": "範囲内の実命中対象に小さな熱反応。",
-        "relation_index": 10,
+        "reason": "実命中対象に小さな熱反応。実行例では後続制作。",
+        "relation_index": 12,
         "requirement": "required",
         "role": "hit",
         "source": "recipe/volumetric-fireball",
@@ -2227,7 +2274,13 @@
         "type": "composes"
       }
     ],
-    "recipe/volumetric-fireball": [],
+    "recipe/volumetric-fireball": [
+      {
+        "source": "evidence/organic-fire-volume-preview",
+        "statement": "射出・飛翔・着弾の3部分を改訂構成で制作・撮影した。詠唱と各対象の熱反応は今回の範囲外。",
+        "type": "claim"
+      }
+    ],
     "recipe/warm-meal-consumption": [],
     "recipe/weakening-gaze": [],
     "recipe/weakening-thrust": [],
@@ -2249,6 +2302,13 @@
     "recipe/weapon-wand": [],
     "recipe/wide-weapon-sweep": [],
     "rendering/emission-and-opacity": [
+      {
+        "reason": "体積と面の異なるalpha方式を守る。",
+        "relation_index": 1,
+        "source": "adapter/unity-urp-noise-density",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
       {
         "reason": "????????????????????????",
         "relation_index": 9,
@@ -2488,6 +2548,13 @@
         "type": "requires"
       },
       {
+        "reason": "色面と侵食された輪郭を分けて制御する。",
+        "relation_index": 2,
+        "source": "technique/directional-flow-surface",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
+      {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 3,
         "source": "technique/directional-streak",
@@ -2542,6 +2609,13 @@
         "source": "technique/surface-sigil",
         "target": "rendering/emission-and-opacity",
         "type": "requires"
+      },
+      {
+        "reason": "発光と吸収を同時に扱い、暗い煙を加算だけで消さない。",
+        "relation_index": 1,
+        "source": "technique/volume-density",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
       }
     ],
     "rendering/ground-footprint": [
@@ -2554,6 +2628,13 @@
       }
     ],
     "rendering/world-depth-and-transparency": [
+      {
+        "reason": "通常透明Queueと奥行き設定の適用範囲を確認する。",
+        "relation_index": 2,
+        "source": "adapter/unity-urp-noise-density",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
       {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 4,
@@ -2572,6 +2653,13 @@
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 3,
         "source": "technique/cone-burst",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
+      {
+        "reason": "面の重なり・裏面・奥行きによる消失を確認する。",
+        "relation_index": 3,
+        "source": "technique/directional-flow-surface",
         "target": "rendering/world-depth-and-transparency",
         "type": "requires"
       },
@@ -2614,6 +2702,13 @@
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 3,
         "source": "technique/radial-wave",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
+      {
+        "reason": "透明体積と不透明物・別体積の遮蔽を確認する。",
+        "relation_index": 2,
+        "source": "technique/volume-density",
         "target": "rendering/world-depth-and-transparency",
         "type": "requires"
       }
@@ -2676,12 +2771,33 @@
         "source": "recipe/instant-fire-cone",
         "target": "resource/flame-flipbook",
         "type": "requires"
+      }
+    ],
+    "resource/periodic-density-noise": [
+      {
+        "reason": "体積と面で共用する周期ノイズを用意する。",
+        "relation_index": 0,
+        "source": "adapter/unity-urp-noise-density",
+        "target": "resource/periodic-density-noise",
+        "type": "requires"
       },
       {
-        "reason": "この技法の採用時に必要な素材・処理・描画規約。",
-        "relation_index": 12,
-        "source": "recipe/volumetric-fireball",
-        "target": "resource/flame-flipbook",
+        "source": "evidence/organic-fire-volume-preview",
+        "statement": "周期3DノイズのデータをUnityで生成し、体積と流れ面から利用して撮影した。",
+        "type": "claim"
+      },
+      {
+        "reason": "幅の揺れ、穴、頂点変位を独立に制御する。",
+        "relation_index": 0,
+        "source": "technique/directional-flow-surface",
+        "target": "resource/periodic-density-noise",
+        "type": "requires"
+      },
+      {
+        "reason": "密度の粗密、侵食、座標変位を再現する。",
+        "relation_index": 0,
+        "source": "technique/volume-density",
+        "target": "resource/periodic-density-noise",
         "type": "requires"
       }
     ],
@@ -2699,23 +2815,9 @@
         "source": "recipe/instant-fire-cone",
         "target": "resource/smoke-flipbook",
         "type": "requires"
-      },
-      {
-        "reason": "この技法の採用時に必要な素材・処理・描画規約。",
-        "relation_index": 13,
-        "source": "recipe/volumetric-fireball",
-        "target": "resource/smoke-flipbook",
-        "type": "requires"
       }
     ],
     "resource/unit-effect-mesh-kit": [
-      {
-        "reason": "?????????????????UV??????",
-        "relation_index": 14,
-        "source": "recipe/volumetric-fireball",
-        "target": "resource/unit-effect-mesh-kit",
-        "type": "requires"
-      },
       {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 0,
@@ -2727,6 +2829,13 @@
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 0,
         "source": "technique/cone-burst",
+        "target": "resource/unit-effect-mesh-kit",
+        "type": "requires"
+      },
+      {
+        "reason": "向きとUVを定義した分割面を用意する。",
+        "relation_index": 1,
+        "source": "technique/directional-flow-surface",
         "target": "resource/unit-effect-mesh-kit",
         "type": "requires"
       },
@@ -2969,7 +3078,7 @@
         "type": "expresses"
       },
       {
-        "reason": "この演出が伝える意味と視覚要件。",
+        "reason": "炎の塊の飛翔と、一度の着弾を伝える。",
         "relation_index": 0,
         "source": "recipe/volumetric-fireball",
         "target": "semantic/fireball",
@@ -3898,7 +4007,7 @@
         "type": "composes"
       },
       {
-        "reason": "手元の橙の点8個を収束し、淡黄の小さな核を作る。",
+        "reason": "詠唱進捗に従う収束。実行例では後続制作。",
         "relation_index": 3,
         "requirement": "required",
         "role": "cast",
@@ -3931,6 +4040,22 @@
         "role": "sweep-load",
         "source": "recipe/wide-weapon-sweep",
         "target": "technique/converge-motes",
+        "type": "composes"
+      }
+    ],
+    "technique/directional-flow-surface": [
+      {
+        "source": "evidence/organic-fire-volume-preview",
+        "statement": "方向性のあるUV流れ・ノイズ侵食・Mesh変位を実描画した。ただし動画で矩形面が見える欠点が残る。",
+        "type": "claim"
+      },
+      {
+        "reason": "前方から後方へ流れる炎舌。矩形面の境界は動画で要修正。",
+        "relation_index": 6,
+        "requirement": "required",
+        "role": "flame-shell",
+        "source": "recipe/volumetric-fireball",
+        "target": "technique/directional-flow-surface",
         "type": "composes"
       }
     ],
@@ -4129,25 +4254,30 @@
         "type": "composes"
       },
       {
-        "reason": "核の周囲へ向きの異なる炎舌4枚。根元は核、先端は後方へ伸ばす。",
-        "relation_index": 5,
-        "requirement": "required",
+        "reason": "連番を使う軽量化候補。重複する輪郭と画角を再評価する。",
+        "relation_index": 15,
         "role": "flame-shell",
         "source": "recipe/volumetric-fireball",
         "target": "technique/flipbook-particles",
-        "type": "composes"
+        "type": "alternative",
+        "when": "連番素材の再使用と限定画角で要求を満たせる場合。"
       },
       {
-        "reason": "impact中心で低い球状の炎塊6枚を一回解放。煙は小さな房3枚。",
-        "relation_index": 7,
-        "requirement": "required",
-        "role": "explosion-shell",
-        "source": "recipe/volumetric-fireball",
+        "reason": "連番画像も同じ炎舌の役割の候補になる。",
+        "relation_index": 4,
+        "role": "flame-shell",
+        "source": "technique/directional-flow-surface",
         "target": "technique/flipbook-particles",
-        "type": "composes"
+        "type": "alternative",
+        "when": "限定画角で連番の形と反復が許容でき、体積・変位の費用を減らしたい場合。"
       }
     ],
     "technique/history-ribbon": [
+      {
+        "source": "evidence/organic-fire-volume-preview",
+        "statement": "実移動を与えたnative Trailに暖色から煙色への変化を設定し、煙の房との併用を観察した。",
+        "type": "claim"
+      },
       {
         "reason": "一本の細い白金の尾。通常矢より長く、先頭を最も明るくする。",
         "relation_index": 6,
@@ -4158,8 +4288,8 @@
         "type": "composes"
       },
       {
-        "reason": "核の後方へ幅0.22W→先端0の橙の帯。芯は狭く外縁は赤。",
-        "relation_index": 6,
+        "reason": "実移動の履歴に暖色から暗い煙色への変化を付ける。",
+        "relation_index": 7,
         "requirement": "required",
         "role": "tail",
         "source": "recipe/volumetric-fireball",
@@ -4295,13 +4425,22 @@
         "when": "カメラ移動と遮蔽に対して立体的な核が必要。"
       },
       {
-        "reason": "直径0.45Wの球/紡錘。淡黄の芯は直径0.14W、外面は橙。",
-        "relation_index": 4,
-        "requirement": "required",
+        "reason": "固体の核を伝えたい場合や軽量案として比較する。",
+        "relation_index": 14,
         "role": "core",
         "source": "recipe/volumetric-fireball",
         "target": "technique/mesh-core",
-        "type": "composes"
+        "type": "alternative",
+        "when": "この密度描画を採用できず、硬い輪郭が美術上許容される場合。"
+      },
+      {
+        "reason": "硬い核を伝えたい場合は面の輪郭を持つMeshが適する。",
+        "relation_index": 3,
+        "role": "core",
+        "source": "technique/volume-density",
+        "target": "technique/mesh-core",
+        "type": "alternative",
+        "when": "流体の塊より固体・魔法球の外形を優先する場合。"
       }
     ],
     "technique/orbit-glyphs": [
@@ -4844,8 +4983,8 @@
         "type": "composes"
       },
       {
-        "reason": "低い薄環が中心から半径R内へ走る。主炎より暗い。",
-        "relation_index": 8,
+        "reason": "主炎より暗い薄環を走らせる。追加ダメージを持たない。",
+        "relation_index": 10,
         "requirement": "required",
         "role": "blast-wave",
         "source": "recipe/volumetric-fireball",
@@ -4918,8 +5057,8 @@
         "type": "composes"
       },
       {
-        "reason": "実impact位置の地面へ半径Rの細い境界。面はごく薄い橙。",
-        "relation_index": 9,
+        "reason": "実範囲Rと地面に従う細い境界。",
+        "relation_index": 11,
         "requirement": "required",
         "role": "footprint",
         "source": "recipe/volumetric-fireball",
@@ -4974,10 +5113,102 @@
         "target": "technique/uv-dissolve",
         "type": "requires"
       }
+    ],
+    "technique/volume-density": [
+      {
+        "source": "evidence/organic-fire-volume-preview",
+        "statement": "表面の球形核を内部密度・吸収・発光へ置き換え、侵食された炎と冷却する着弾をPreviewで観察した。",
+        "type": "claim"
+      },
+      {
+        "reason": "短い射出の熱解放。飛翔・着弾と尺を統一しない。",
+        "relation_index": 4,
+        "requirement": "required",
+        "role": "release",
+        "source": "recipe/volumetric-fireball",
+        "target": "technique/volume-density",
+        "type": "composes"
+      },
+      {
+        "reason": "球の面ではなく、侵食され伸びる内部密度を主形状にする。",
+        "relation_index": 5,
+        "requirement": "required",
+        "role": "core",
+        "source": "recipe/volumetric-fireball",
+        "target": "technique/volume-density",
+        "type": "composes"
+      },
+      {
+        "reason": "実位置の後方へ房を重ね、冷却する連続した煙を作る。",
+        "relation_index": 8,
+        "requirement": "required",
+        "role": "smoke-wake",
+        "source": "recipe/volumetric-fireball",
+        "target": "technique/volume-density",
+        "type": "composes"
+      },
+      {
+        "reason": "種・位置・寿命の異なる房を一回解放し、膨張・冷却させる。",
+        "relation_index": 9,
+        "requirement": "required",
+        "role": "explosion-shell",
+        "source": "recipe/volumetric-fireball",
+        "target": "technique/volume-density",
+        "type": "composes"
+      }
     ]
   },
   "generated": true,
   "nodes": [
+    {
+      "aliases": [],
+      "compatibility": {
+        "engine_version": "6000.3.14f1",
+        "platforms": [
+          "Windows Editor"
+        ],
+        "renderer": "URP 17.3.0 / DX12",
+        "verification": "engine-tested"
+      },
+      "engine": "unity",
+      "evidence": [
+        "evidence/organic-fire-volume-preview"
+      ],
+      "id": "adapter/unity-urp-noise-density",
+      "kind": "adapter",
+      "path": "adapters/unity-urp-noise-density.md",
+      "relations": [
+        {
+          "reason": "体積と面で共用する周期ノイズを用意する。",
+          "target": "resource/periodic-density-noise",
+          "type": "requires"
+        },
+        {
+          "reason": "体積と面の異なるalpha方式を守る。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "通常透明Queueと奥行き設定の適用範囲を確認する。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-specific",
+      "sha256": "831301e66039c75f2d285f2c528a004da1d73de7381fd783240ccb049ec55da3",
+      "status": "draft",
+      "summary": "ParticleSystemの個体入力と共有ノイズで、密度体積、侵食Mesh面、熱から煙へ変わる尾を作るPreview実装例。",
+      "superseded_by": [],
+      "tags": [
+        "rendering",
+        "mesh",
+        "fire"
+      ],
+      "title": "Unity URP：粒子の密度体積・方向流れ・煙",
+      "updated_at": "2026-10-04"
+    },
     {
       "aliases": [],
       "evidence": [
@@ -5161,6 +5392,91 @@
         "status"
       ],
       "title": "状態の更新・複合時間・重複表示の評価",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-04",
+        "claims": [
+          {
+            "statement": "射出・飛翔・着弾の3部分を改訂構成で制作・撮影した。詠唱と各対象の熱反応は今回の範囲外。",
+            "target": "recipe/volumetric-fireball"
+          },
+          {
+            "statement": "表面の球形核を内部密度・吸収・発光へ置き換え、侵食された炎と冷却する着弾をPreviewで観察した。",
+            "target": "technique/volume-density"
+          },
+          {
+            "statement": "方向性のあるUV流れ・ノイズ侵食・Mesh変位を実描画した。ただし動画で矩形面が見える欠点が残る。",
+            "target": "technique/directional-flow-surface"
+          },
+          {
+            "statement": "周期3DノイズのデータをUnityで生成し、体積と流れ面から利用して撮影した。",
+            "target": "resource/periodic-density-noise"
+          },
+          {
+            "statement": "実移動を与えたnative Trailに暖色から煙色への変化を設定し、煙の房との併用を観察した。",
+            "target": "technique/history-ribbon"
+          },
+          {
+            "statement": "Unity 6000.3.14f1 / URP 17.3.0 / Windows Editor / DX12で3つのPrefabを手動Simulateして撮影した。",
+            "target": "adapter/unity-urp-noise-density"
+          }
+        ],
+        "conditions": "射出・飛翔・着弾を個別Preview。明暗背景、透視カメラ2視点、手動Simulate。ゲーム制約への削減を保留した品質基準版。",
+        "execution": {
+          "artifacts": [
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101001_FireLaunchFlash/Editor/KnowledgePreview.png",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101001_FireLaunchFlash/Editor/PreviewLight.png",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101001_FireLaunchFlash/Editor/KnowledgePreview.mp4",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101001_FireLaunchFlash/Editor/確認記録.txt",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101001_FireLaunchFlash/Editor/要素分解.txt",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101002_ProjectileFireball/Editor/KnowledgePreview.png",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101002_ProjectileFireball/Editor/PreviewLight.png",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101002_ProjectileFireball/Editor/KnowledgePreview.mp4",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101002_ProjectileFireball/Editor/確認記録.txt",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101002_ProjectileFireball/Editor/要素分解.txt",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101003_FireImpactBurst/Editor/KnowledgePreview.png",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101003_FireImpactBurst/Editor/PreviewLight.png",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101003_FireImpactBurst/Editor/KnowledgePreview.mp4",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101003_FireImpactBurst/Editor/確認記録.txt",
+            "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020101003_FireImpactBurst/Editor/要素分解.txt"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editorの隔離PreviewScene。GPU型番・OS詳細・製品実機の性能は未収集。選択Build TargetはWebだがWebビルドは未実施。",
+          "executed_at": "2026-10-04",
+          "procedure": "ParticleSystemを小刻みにSimulateして移動履歴を作り、部品ごとの開始・ピーク・膨張・冷却・終了を撮影。明暗背景と2視点を比較し、Clear後の再生を確認。",
+          "renderer": "URP 17.3.0 / DX12"
+        },
+        "limitations": "各変更の因果を分離した比較ではない。見た目評価は主観。内部構造の独立レビュー、ゲーム時計・Pool・階層復元・実ゲーム接続、正射影、遮蔽、密集時性能は未確認。流れ面の矩形境界の原因と対策は未検証。",
+        "result": "内部密度の炎、前方から後方への流れ、重なる煙、膨張と冷却を撮影した。人間から大幅改善の評価を受けたが、流れ面の矩形境界が動画で目立つという追加指摘がある。",
+        "source_kind": "first-party-experiment",
+        "sources": [
+          "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Common/Shader/VfxVolumeDensity.shader",
+          "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Common/Shader/VfxMeshSurface.shader",
+          "https://github.com/lisearcheleeds/DesktopDungeon/blob/7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3/Client/Assets/DungeonInn/Runtime/Content/Effect/Common/Editor/制作条件.txt"
+        ]
+      },
+      "id": "evidence/organic-fire-volume-preview",
+      "kind": "evidence",
+      "path": "evidence/organic-fire-volume-preview.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "14178d0014f90bb0aa60e7d2b77b50ba79deef51e713cad35a7b067e0443546f",
+      "status": "reviewed",
+      "summary": "一つのUnity制作例での反復・撮影・主観評価と、動画に残る矩形面の欠点を記録する。",
+      "superseded_by": [],
+      "tags": [
+        "evidence",
+        "fire",
+        "projectile"
+      ],
+      "title": "体積炎・方向流れ・煙のPreview制作と人間評価",
       "updated_at": "2026-10-04"
     },
     {
@@ -8531,113 +8847,128 @@
         "ファイアボール：立体の火球と鋭い着弾爆発",
         "fireball"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/organic-fire-volume-preview"
+      ],
       "id": "recipe/volumetric-fireball",
       "kind": "recipe",
       "path": "knowledge/recipes/abilities/volumetric-fireball.md",
       "relations": [
         {
-          "reason": "この演出が伝える意味と視覚要件。",
+          "reason": "炎の塊の飛翔と、一度の着弾を伝える。",
           "target": "semantic/fireball",
           "type": "expresses"
         },
         {
-          "reason": "この推奨構成の時間・空間・発動と終了の契約。",
+          "reason": "実投射体と発動・終了の契約。",
           "requirement": "required",
           "role": "lifecycle",
           "target": "composition/projectile",
           "type": "composes"
         },
         {
-          "reason": "主形状・接触・状態の明度と面積を整理する。",
+          "reason": "主形状、接触、境界の明度・面積を整理する。",
           "requirement": "required",
           "role": "visual-hierarchy",
           "target": "composition/combat-readability",
           "type": "composes"
         },
         {
-          "reason": "手元の橙の点8個を収束し、淡黄の小さな核を作る。",
+          "reason": "詠唱進捗に従う収束。実行例では後続制作。",
           "requirement": "required",
           "role": "cast",
           "target": "technique/converge-motes",
           "type": "composes"
         },
         {
-          "reason": "直径0.45Wの球/紡錘。淡黄の芯は直径0.14W、外面は橙。",
+          "reason": "短い射出の熱解放。飛翔・着弾と尺を統一しない。",
+          "requirement": "required",
+          "role": "release",
+          "target": "technique/volume-density",
+          "type": "composes"
+        },
+        {
+          "reason": "球の面ではなく、侵食され伸びる内部密度を主形状にする。",
           "requirement": "required",
           "role": "core",
-          "target": "technique/mesh-core",
+          "target": "technique/volume-density",
           "type": "composes"
         },
         {
-          "reason": "核の周囲へ向きの異なる炎舌4枚。根元は核、先端は後方へ伸ばす。",
+          "reason": "前方から後方へ流れる炎舌。矩形面の境界は動画で要修正。",
           "requirement": "required",
           "role": "flame-shell",
-          "target": "technique/flipbook-particles",
+          "target": "technique/directional-flow-surface",
           "type": "composes"
         },
         {
-          "reason": "核の後方へ幅0.22W→先端0の橙の帯。芯は狭く外縁は赤。",
+          "reason": "実移動の履歴に暖色から暗い煙色への変化を付ける。",
           "requirement": "required",
           "role": "tail",
           "target": "technique/history-ribbon",
           "type": "composes"
         },
         {
-          "reason": "impact中心で低い球状の炎塊6枚を一回解放。煙は小さな房3枚。",
+          "reason": "実位置の後方へ房を重ね、冷却する連続した煙を作る。",
           "requirement": "required",
-          "role": "explosion-shell",
-          "target": "technique/flipbook-particles",
+          "role": "smoke-wake",
+          "target": "technique/volume-density",
           "type": "composes"
         },
         {
-          "reason": "低い薄環が中心から半径R内へ走る。主炎より暗い。",
+          "reason": "種・位置・寿命の異なる房を一回解放し、膨張・冷却させる。",
+          "requirement": "required",
+          "role": "explosion-shell",
+          "target": "technique/volume-density",
+          "type": "composes"
+        },
+        {
+          "reason": "主炎より暗い薄環を走らせる。追加ダメージを持たない。",
           "requirement": "required",
           "role": "blast-wave",
           "target": "technique/radial-wave",
           "type": "composes"
         },
         {
-          "reason": "実impact位置の地面へ半径Rの細い境界。面はごく薄い橙。",
+          "reason": "実範囲Rと地面に従う細い境界。",
           "requirement": "required",
           "role": "footprint",
           "target": "technique/surface-sigil",
           "type": "composes"
         },
         {
-          "reason": "範囲内の実命中対象に小さな熱反応。",
+          "reason": "実命中対象に小さな熱反応。実行例では後続制作。",
           "requirement": "required",
           "role": "hit",
           "target": "recipe/impact-fire-contact",
           "type": "composes"
         },
         {
-          "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
+          "reason": "動画、背景、視点、停止、再利用、実範囲を確認する。",
           "target": "evaluation/projectile-readability",
           "type": "evaluated_by"
         },
         {
-          "reason": "この技法の採用時に必要な素材・処理・描画規約。",
-          "target": "resource/flame-flipbook",
-          "type": "requires"
+          "reason": "固体の核を伝えたい場合や軽量案として比較する。",
+          "role": "core",
+          "target": "technique/mesh-core",
+          "type": "alternative",
+          "when": "この密度描画を採用できず、硬い輪郭が美術上許容される場合。"
         },
         {
-          "reason": "この技法の採用時に必要な素材・処理・描画規約。",
-          "target": "resource/smoke-flipbook",
-          "type": "requires"
-        },
-        {
-          "reason": "?????????????????UV??????",
-          "target": "resource/unit-effect-mesh-kit",
-          "type": "requires"
+          "reason": "連番を使う軽量化候補。重複する輪郭と画角を再評価する。",
+          "role": "flame-shell",
+          "target": "technique/flipbook-particles",
+          "type": "alternative",
+          "when": "連番素材の再使用と限定画角で要求を満たせる場合。"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "1c121e1643677c06cf4b4b2aa150788763b7ded84587877c8899887e23018a14",
+      "sha256": "2c89ab5928425c5b7be1d7f8e05fc50719acd8f2894acc31827f348bccc16bce",
       "status": "draft",
-      "summary": "小さな熱核・方向性のある炎殻・先細り尾・半径Rの一回の爆発を組み合わせる。",
+      "summary": "内部密度による炎の塊、後方へ流れる侵食面、暖色から煙へ変わる尾、冷却する着弾を組み合わせる。",
       "superseded_by": [],
       "tags": [
         "recipe",
@@ -10210,6 +10541,29 @@
     },
     {
       "aliases": [],
+      "evidence": [
+        "evidence/organic-fire-volume-preview"
+      ],
+      "id": "resource/periodic-density-noise",
+      "kind": "resource",
+      "path": "knowledge/resources/periodic-density-noise.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "a42f6185e858f13e9f394595ddbc8cf2f350c5a7fdb2cc3031e63e9a99379d9e",
+      "status": "draft",
+      "summary": "密度の大きな房、細部の侵食、低周波の変位を別チャネルで持ち、繰り返し境界を隠す。",
+      "superseded_by": [],
+      "tags": [
+        "resource",
+        "fire"
+      ],
+      "title": "周期的な密度・セル・変位ノイズ",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [],
       "evidence": [],
       "id": "resource/smoke-flipbook",
       "kind": "resource",
@@ -10829,6 +11183,63 @@
     },
     {
       "aliases": [],
+      "evidence": [
+        "evidence/organic-fire-volume-preview"
+      ],
+      "id": "technique/directional-flow-surface",
+      "kind": "technique",
+      "path": "knowledge/techniques/directional-flow-surface.md",
+      "relations": [
+        {
+          "reason": "幅の揺れ、穴、頂点変位を独立に制御する。",
+          "target": "resource/periodic-density-noise",
+          "type": "requires"
+        },
+        {
+          "reason": "向きとUVを定義した分割面を用意する。",
+          "target": "resource/unit-effect-mesh-kit",
+          "type": "requires"
+        },
+        {
+          "reason": "色面と侵食された輪郭を分けて制御する。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "面の重なり・裏面・奥行きによる消失を確認する。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        },
+        {
+          "reason": "連番画像も同じ炎舌の役割の候補になる。",
+          "role": "flame-shell",
+          "target": "technique/flipbook-particles",
+          "type": "alternative",
+          "when": "限定画角で連番の形と反復が許容でき、体積・変位の費用を減らしたい場合。"
+        },
+        {
+          "reason": "Unity URPでUV流れ、頂点変位、侵食を組み合わせた制作例。",
+          "target": "adapter/unity-urp-noise-density",
+          "type": "implemented_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "ed4cb4b4be5e8839cfd28d404f55aa37c7e2e661f6cc095dc43234c9f73e2952",
+      "status": "draft",
+      "summary": "固定MeshのUVと頂点をノイズで変化させ、根元から後方へ流れる炎舌や薄い後流を作る。",
+      "superseded_by": [],
+      "tags": [
+        "technique",
+        "mesh",
+        "fire"
+      ],
+      "title": "進行方向に流れる侵食Mesh面",
+      "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [],
       "evidence": [],
       "id": "technique/directional-streak",
       "kind": "technique",
@@ -10940,7 +11351,9 @@
     },
     {
       "aliases": [],
-      "evidence": [],
+      "evidence": [
+        "evidence/organic-fire-volume-preview"
+      ],
       "id": "technique/history-ribbon",
       "kind": "technique",
       "path": "knowledge/techniques/history-ribbon.md",
@@ -10966,10 +11379,10 @@
           "type": "requires"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "dca89ecea0c3301800c414dac257941dacd049d437788058c8695dc3ae3f0984",
+      "sha256": "a4f1f78f53eb2dd4f6cd2c1c21289b9575f525c5364fd8abad1be02af727811f",
       "status": "draft",
       "summary": "武器や投射体の実移動から、長さ・厚さ・色を制御した帯を生成する。",
       "superseded_by": [],
@@ -10998,10 +11411,10 @@
           "when": "限定した画角で板の見え方が成立する場合。"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "ac819ec0a262900ec658580c411d611a9f49ab5427bedd01a02603ca24a60982",
+      "sha256": "e3c289ecb613ebe4def6d3eba73e04391e4e421a2e8a16950b470ee673f05dae",
       "status": "draft",
       "summary": "独立した立体形状で投射体の核の輪郭を設計する候補。",
       "superseded_by": [],
@@ -11230,10 +11643,63 @@
       ],
       "title": "方向性を持つマスク展開と侵食",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [],
+      "evidence": [
+        "evidence/organic-fire-volume-preview"
+      ],
+      "id": "technique/volume-density",
+      "kind": "technique",
+      "path": "knowledge/techniques/volume-density.md",
+      "relations": [
+        {
+          "reason": "密度の粗密、侵食、座標変位を再現する。",
+          "target": "resource/periodic-density-noise",
+          "type": "requires"
+        },
+        {
+          "reason": "発光と吸収を同時に扱い、暗い煙を加算だけで消さない。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "透明体積と不透明物・別体積の遮蔽を確認する。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        },
+        {
+          "reason": "硬い核を伝えたい場合は面の輪郭を持つMeshが適する。",
+          "role": "core",
+          "target": "technique/mesh-core",
+          "type": "alternative",
+          "when": "流体の塊より固体・魔法球の外形を優先する場合。"
+        },
+        {
+          "reason": "Unity URPでの密度積分と粒子入力の制作例。",
+          "target": "adapter/unity-urp-noise-density",
+          "type": "implemented_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "d24e3aeee6f696565b2cf8dfc76f610f3be8eb2caf30c7c2fc0b9eb73620ff2d",
+      "status": "draft",
+      "summary": "境界Meshを描く代わりに、内部の密度・吸収・発光を積分し、侵食された炎や煙の塊を作る。",
+      "superseded_by": [],
+      "tags": [
+        "technique",
+        "mesh",
+        "fire"
+      ],
+      "title": "内部密度で形を作る体積描画",
+      "updated_at": "2026-10-04"
     }
   ],
   "schema_version": "0.1.0",
   "symmetric_relations": {
+    "adapter/unity-urp-noise-density": [],
     "composition/combat-readability": [],
     "composition/melee-strike": [],
     "composition/projectile": [],
@@ -11242,6 +11708,7 @@
     "evaluation/combat-shape-and-events": [],
     "evaluation/projectile-readability": [],
     "evaluation/status-refresh-and-overlap": [],
+    "evidence/organic-fire-volume-preview": [],
     "evidence/particle-simulation-and-renderer-source": [],
     "evidence/vfx-gameplay-clarity-source": [],
     "recipe/accented-heavy-impact": [],
@@ -11311,6 +11778,7 @@
     "rendering/world-depth-and-transparency": [],
     "resource/effect-mask-atlas": [],
     "resource/flame-flipbook": [],
+    "resource/periodic-density-noise": [],
     "resource/smoke-flipbook": [],
     "resource/unit-effect-mesh-kit": [],
     "semantic/attack-buff": [],
@@ -11345,16 +11813,60 @@
     "technique/body-shell": [],
     "technique/cone-burst": [],
     "technique/converge-motes": [],
+    "technique/directional-flow-surface": [],
     "technique/directional-streak": [],
     "technique/event-pulse": [],
-    "technique/flipbook-particles": [],
+    "technique/flipbook-particles": [
+      {
+        "derived": true,
+        "reason": "連番を使う軽量化候補。重複する輪郭と画角を再評価する。",
+        "relation_index": 15,
+        "role": "flame-shell",
+        "source": "recipe/volumetric-fireball",
+        "target": "recipe/volumetric-fireball",
+        "type": "alternative",
+        "when": "連番素材の再使用と限定画角で要求を満たせる場合。"
+      },
+      {
+        "derived": true,
+        "reason": "連番画像も同じ炎舌の役割の候補になる。",
+        "relation_index": 4,
+        "role": "flame-shell",
+        "source": "technique/directional-flow-surface",
+        "target": "technique/directional-flow-surface",
+        "type": "alternative",
+        "when": "限定画角で連番の形と反復が許容でき、体積・変位の費用を減らしたい場合。"
+      }
+    ],
     "technique/history-ribbon": [],
-    "technique/mesh-core": [],
+    "technique/mesh-core": [
+      {
+        "derived": true,
+        "reason": "固体の核を伝えたい場合や軽量案として比較する。",
+        "relation_index": 14,
+        "role": "core",
+        "source": "recipe/volumetric-fireball",
+        "target": "recipe/volumetric-fireball",
+        "type": "alternative",
+        "when": "この密度描画を採用できず、硬い輪郭が美術上許容される場合。"
+      },
+      {
+        "derived": true,
+        "reason": "硬い核を伝えたい場合は面の輪郭を持つMeshが適する。",
+        "relation_index": 3,
+        "role": "core",
+        "source": "technique/volume-density",
+        "target": "technique/volume-density",
+        "type": "alternative",
+        "when": "流体の塊より固体・魔法球の外形を優先する場合。"
+      }
+    ],
     "technique/orbit-glyphs": [],
     "technique/oriented-projectile-core": [],
     "technique/particle-emission": [],
     "technique/radial-wave": [],
     "technique/surface-sigil": [],
-    "technique/uv-dissolve": []
+    "technique/uv-dissolve": [],
+    "technique/volume-density": []
   }
 }

@@ -1,21 +1,25 @@
 ---
-schema_version: "0.1.0"
+schema_version: 0.1.0
 id: technique/mesh-core
 kind: technique
 title: メッシュによる核
 summary: 独立した立体形状で投射体の核の輪郭を設計する候補。
 status: draft
-revision: 1
-updated_at: "2026-10-04"
-aliases: [メッシュ核, mesh core]
-tags: [mesh, readable-silhouette]
+revision: 2
+updated_at: '2026-10-04'
+aliases:
+- メッシュ核
+- mesh core
+tags:
+- mesh
+- readable-silhouette
 scope: engine-neutral
 relations:
-  - target: technique/billboard
-    type: alternative
-    role: core
-    when: 限定した画角で板の見え方が成立する場合。
-    reason: 同じ核の役割に対し、形状と素材の負担を変える代替候補。
+- target: technique/billboard
+  type: alternative
+  role: core
+  when: 限定した画角で板の見え方が成立する場合。
+  reason: 同じ核の役割に対し、形状と素材の負担を変える代替候補。
 evidence: []
 superseded_by: []
 ---
@@ -33,6 +37,10 @@ superseded_by: []
 ## 弱点・代替・性能
 
 形状の硬さ、背景との明度不足、スケールと遮蔽による読み取りの変化を検証する。[ビルボード](billboard.md)を同じ核の代替候補として比較する。描画負荷は面積・Material・同時表示・対象環境に依存し、低負荷と断定しない。
+
+## 炎の塊との使い分け
+
+球の形が読めることと、炎の塊に見えることは別の要件。硬い球の表面へ色や炎の面を増やしても、境界が残る場合がある。その場合は内部密度による描画（`technique/volume-density`）を比較する。魔法球・固体の核で形を明示したい用途まで廃止しない。
 
 ## 状態
 

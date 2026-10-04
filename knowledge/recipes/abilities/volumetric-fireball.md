@@ -1,144 +1,153 @@
 ---
-schema_version: "0.1.0"
-id: "recipe/volumetric-fireball"
-kind: "recipe"
-title: "ファイアボール：立体の火球と鋭い着弾爆発"
-summary: "小さな熱核・方向性のある炎殻・先細り尾・半径Rの一回の爆発を組み合わせる。"
-status: "draft"
-revision: 1
-updated_at: "2026-10-04"
-aliases: ["ファイアボール：立体の火球と鋭い着弾爆発","fireball"]
-tags: ["recipe","combat"]
-scope: "engine-neutral"
+schema_version: 0.1.0
+id: recipe/volumetric-fireball
+kind: recipe
+title: ファイアボール：立体の火球と鋭い着弾爆発
+summary: 内部密度による炎の塊、後方へ流れる侵食面、暖色から煙へ変わる尾、冷却する着弾を組み合わせる。
+status: draft
+revision: 2
+updated_at: '2026-10-04'
+aliases:
+- ファイアボール：立体の火球と鋭い着弾爆発
+- fireball
+tags:
+- recipe
+- combat
+scope: engine-neutral
 relations:
-  - target: "semantic/fireball"
-    type: "expresses"
-    reason: "この演出が伝える意味と視覚要件。"
-  - target: "composition/projectile"
-    type: "composes"
-    requirement: "required"
-    role: "lifecycle"
-    reason: "この推奨構成の時間・空間・発動と終了の契約。"
-  - target: "composition/combat-readability"
-    type: "composes"
-    requirement: "required"
-    role: "visual-hierarchy"
-    reason: "主形状・接触・状態の明度と面積を整理する。"
-  - target: "technique/converge-motes"
-    type: "composes"
-    requirement: "required"
-    role: "cast"
-    reason: "手元の橙の点8個を収束し、淡黄の小さな核を作る。"
-  - target: "technique/mesh-core"
-    type: "composes"
-    requirement: "required"
-    role: "core"
-    reason: "直径0.45Wの球/紡錘。淡黄の芯は直径0.14W、外面は橙。"
-  - target: "technique/flipbook-particles"
-    type: "composes"
-    requirement: "required"
-    role: "flame-shell"
-    reason: "核の周囲へ向きの異なる炎舌4枚。根元は核、先端は後方へ伸ばす。"
-  - target: "technique/history-ribbon"
-    type: "composes"
-    requirement: "required"
-    role: "tail"
-    reason: "核の後方へ幅0.22W→先端0の橙の帯。芯は狭く外縁は赤。"
-  - target: "technique/flipbook-particles"
-    type: "composes"
-    requirement: "required"
-    role: "explosion-shell"
-    reason: "impact中心で低い球状の炎塊6枚を一回解放。煙は小さな房3枚。"
-  - target: "technique/radial-wave"
-    type: "composes"
-    requirement: "required"
-    role: "blast-wave"
-    reason: "低い薄環が中心から半径R内へ走る。主炎より暗い。"
-  - target: "technique/surface-sigil"
-    type: "composes"
-    requirement: "required"
-    role: "footprint"
-    reason: "実impact位置の地面へ半径Rの細い境界。面はごく薄い橙。"
-  - target: "recipe/impact-fire-contact"
-    type: "composes"
-    requirement: "required"
-    role: "hit"
-    reason: "範囲内の実命中対象に小さな熱反応。"
-  - target: "evaluation/projectile-readability"
-    type: "evaluated_by"
-    reason: "採用先の実画面で形・イベント・終了条件を確認する。"
-  - target: "resource/flame-flipbook"
-    type: "requires"
-    reason: "この技法の採用時に必要な素材・処理・描画規約。"
-  - target: "resource/smoke-flipbook"
-    type: "requires"
-    reason: "この技法の採用時に必要な素材・処理・描画規約。"
-  - target: "resource/unit-effect-mesh-kit"
-    type: "requires"
-    reason: "?????????????????UV??????"
-evidence: []
+- target: semantic/fireball
+  type: expresses
+  reason: 炎の塊の飛翔と、一度の着弾を伝える。
+- target: composition/projectile
+  type: composes
+  reason: 実投射体と発動・終了の契約。
+  requirement: required
+  role: lifecycle
+- target: composition/combat-readability
+  type: composes
+  reason: 主形状、接触、境界の明度・面積を整理する。
+  requirement: required
+  role: visual-hierarchy
+- target: technique/converge-motes
+  type: composes
+  reason: 詠唱進捗に従う収束。実行例では後続制作。
+  requirement: required
+  role: cast
+- target: technique/volume-density
+  type: composes
+  reason: 短い射出の熱解放。飛翔・着弾と尺を統一しない。
+  requirement: required
+  role: release
+- target: technique/volume-density
+  type: composes
+  reason: 球の面ではなく、侵食され伸びる内部密度を主形状にする。
+  requirement: required
+  role: core
+- target: technique/directional-flow-surface
+  type: composes
+  reason: 前方から後方へ流れる炎舌。矩形面の境界は動画で要修正。
+  requirement: required
+  role: flame-shell
+- target: technique/history-ribbon
+  type: composes
+  reason: 実移動の履歴に暖色から暗い煙色への変化を付ける。
+  requirement: required
+  role: tail
+- target: technique/volume-density
+  type: composes
+  reason: 実位置の後方へ房を重ね、冷却する連続した煙を作る。
+  requirement: required
+  role: smoke-wake
+- target: technique/volume-density
+  type: composes
+  reason: 種・位置・寿命の異なる房を一回解放し、膨張・冷却させる。
+  requirement: required
+  role: explosion-shell
+- target: technique/radial-wave
+  type: composes
+  reason: 主炎より暗い薄環を走らせる。追加ダメージを持たない。
+  requirement: required
+  role: blast-wave
+- target: technique/surface-sigil
+  type: composes
+  reason: 実範囲Rと地面に従う細い境界。
+  requirement: required
+  role: footprint
+- target: recipe/impact-fire-contact
+  type: composes
+  reason: 実命中対象に小さな熱反応。実行例では後続制作。
+  requirement: required
+  role: hit
+- target: evaluation/projectile-readability
+  type: evaluated_by
+  reason: 動画、背景、視点、停止、再利用、実範囲を確認する。
+- target: technique/mesh-core
+  type: alternative
+  reason: 固体の核を伝えたい場合や軽量案として比較する。
+  role: core
+  when: この密度描画を採用できず、硬い輪郭が美術上許容される場合。
+- target: technique/flipbook-particles
+  type: alternative
+  reason: 連番を使う軽量化候補。重複する輪郭と画角を再評価する。
+  role: flame-shell
+  when: 連番素材の再使用と限定画角で要求を満たせる場合。
+evidence:
+- evidence/organic-fire-volume-preview
 superseded_by: []
 ---
 
+
 # ファイアボール：立体の火球と鋭い着弾爆発
 
-## 推奨する主案
+## 改訂2の主案
 
-主役は粒子の塊ではなく、毎フレーム輪郭が読める立体の熱核にする。少数の連番炎で有機的な揺らぎを加え、飛翔方向は先細り尾、着弾の威力は短い白芯と膨張の差で作る。
+火球は燃える球体ではなく、前方に熱を持ち後方へ流れて裂ける炎の塊にする。境界Meshではなく内部密度を主形状とし、外側の侵食面と煙を足す。Mesh・粒子・Shaderの役割を分け、粒子の数や画像の細部だけで品質を上げようとしない。
 
-## 採用先が渡す入力
+これは一つの制作案であり、全ての炎に体積描画を必須にする規約ではない。候補・代替・Adapterは自動採用しない。前案の硬い核と連番炎は代替として残し、現在の主案の必須依存には含めない。
 
-準備・詠唱は入力された進捗とモーション、飛翔は実位置、命中は実際の適用イベントに同期する。範囲はRと角度θで入力し、レシピの光・波・尾から追加判定を生成しない。状態の期間・強度は実状態に従う。
+## 入力と所有
 
-食品名・スキルID・初期効果期間等のプロジェクト固有情報は、このノードに固定せず採用先の対応表で指定する。このレシピを選んだ後に、主案の必須依存を解決する。
+詠唱は実進捗、射出は実launch、飛翔は実位置と方向、着弾は実impact、対象反応は実hitへ従う。Actor幅Wと実範囲Rを入力とし、演出から当たり判定や追加ダメージを作らない。ゲーム時計の停止・倍率、投射体消失、teleport、階層切替、再利用の所有は統合側で決める。
 
 ## レイヤー構成
 
-| 役割 | 採用する技法 | 形・素材・配置 | 時間・イベント |
+| 役割 | 技法 | 形と運動 | 時間・終了 |
 | --- | --- | --- | --- |
-| cast | `technique/converge-motes` | 手元の橙の点8個を収束し、淡黄の小さな核を作る。 | 詠唱進捗と発射準備の進捗に同期。 |
-| core | `technique/mesh-core` | 直径0.45Wの球/紡錘。淡黄の芯は直径0.14W、外面は橙。 | launch→impact/stop、位置は実投射体。 |
-| flame-shell | `technique/flipbook-particles` | 核の周囲へ向きの異なる炎舌4枚。根元は核、先端は後方へ伸ばす。 | 飛翔中は位相をずらし、impactで新規発生停止。 |
-| tail | `technique/history-ribbon` | 核の後方へ幅0.22W→先端0の橙の帯。芯は狭く外縁は赤。 | 履歴0.12秒、実速度で尾長実速度×履歴時間の距離、停止後0.20秒減衰。 |
-| explosion-shell | `technique/flipbook-particles` | impact中心で低い球状の炎塊6枚を一回解放。煙は小さな房3枚。 | 淡黄ピーク0.03〜0.07秒、橙の膨張0.07〜0.22秒、煙0.60秒まで。 |
-| blast-wave | `technique/radial-wave` | 低い薄環が中心から半径R内へ走る。主炎より暗い。 | 0.08〜0.24秒。追加ダメージを持たない美術波。 |
-| footprint | `technique/surface-sigil` | 実impact位置の地面へ半径Rの細い境界。面はごく薄い橙。 | impactで全体表示、0.30秒で侵食して終了。 |
-| hit | `recipe/impact-fire-contact` | 範囲内の実命中対象に小さな熱反応。 | 実hit-confirmedのみ。 |
+| cast | converge-motes | 使用者の手元へ熱が収束 | 実詠唱進捗。中断から成功演出を出さない |
+| release | volume-density | 前方へ短く解放する熱の房 | launchの一回。投射体の飛翔尺と別 |
+| core | volume-density | 内部に熱を持つ大きな房、後方の伸長、動く侵食 | 実投射体へ追従しimpact/stopで終える |
+| flame-shell | directional-flow-surface | 長さ・角・Seedの異なる、後方へ流れる薄い炎舌 | 飛翔中のみ。矩形面の境界を動画で確認 |
+| tail | history-ribbon | 黄橙→橙→赤→暗い煙色、先細り | 実移動の履歴。発生停止と残留を分離 |
+| smoke-wake | volume-density | 後方のworld-spaceの房を重ね、冷却・成長・漂流 | 新規発生停止後は残留寿命で消える |
+| explosion-shell | volume-density | 房の寸法・速度・寿命・Seedを変えて一回の膨張 | impactピーク→膨張→冷却→煙。個別の尺を持つ |
+| blast-wave | radial-wave | 主炎より暗い圧力の薄環 | impact後の短い解放。範囲判定ではない |
+| footprint | surface-sigil | 実地面・範囲Rに従う細い境界 | 移動する美術波と別に固定 |
+| hit | impact-fire-contact | 命中した対象だけの小さな熱反応 | 実hitのみ。範囲内全員を推測しない |
 
-## 制作初期値と調整
+## 制作順序
 
-Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実範囲の角度。秒数・比率・個数は具体的な初稿を作るための美術初期値で、測定値ではない。採用先の美術、カメラ、イベント、実範囲に合わせて調整する。[制作方針](../../../docs/VFX_ART_DIRECTION.md)を参照する。
+1. 炎の塊だけを作る。別の熱核・面・尾を外しても、硬い球ではなく炎として読めるか確認する。
+2. 前方から後方への流れを確かめ、外炎を加える。面が矩形の板に見える、辺から急に生まれる、同じ輪郭が繰り返す場合は補助層を足す前に修正する。
+3. 履歴帯と煙を加え、移動速度に対して房が途切れないかを動画で確認する。熱量と不透明度を分ける。
+4. 射出と着弾を別に作る。着弾の一瞬の熱ピーク、膨張、冷却、消失を別々に調整する。
+5. 見た目の品質基準を確認してから、表示サイズ・密集・実機予算に合わせて削減する。制約を一時保留する場合は採用先の明示判断を記録する。
 
-## 共用と差分
+## 調整と軽量化
 
-詠唱収束、投射体、炎素材、熱接触を共有候補にする。炎殻・着弾膨張・尾の比率はこの火球の主案。
+房の大きさ、熱、密度、侵食、流れ速度、寿命、発生密度は別の調整口にする。大きな形が崩れている段階で細かなSprite・光点を増やさない。煙の重なりは速度と可視房の幅に合わせる。共通の固定秒数・個数を全レイヤーへ押し付けない。
 
-## 修正・削減の優先順位
+体積描画の費用は大きい。積分数、煙の房数、画面面積、解像度を比較し、主輪郭と接触の読みを保つ。必要なら面・連番等の代替を選ぶ。削減後の再撮影・実機計測で採用を決める。
 
-主役の輪郭、接触と適用の一致、必要な範囲境界、状態の識別を保持する。密度や負荷を下げるときは補助光点・細い後流・煙から整理する。構成の改訂はrevisionと索引へ反映し、効果名のプログラム分岐を増やさない。
+## 評価と現在の限界
 
-## 採用時の評価
+明暗背景、複数視点、停止、再生、開始・ピーク・冷却・終了を動画で確認する。静止画だけの合格は避ける。実行例では大幅な見た目改善を確認した一方、外炎の矩形面がアニメーションで目立つ指摘が残った。原因切り分けと修正後の確認は未実施。
 
-核・尾・着弾を同じ白い雲にしない。明背景で橙の面、暗背景で淡黄の芯が読め、地面の実範囲と着弾瞬間が一致する。
-
-上記は観察条件であり、成功を確認した記録ではない。
+射出・飛翔・着弾のPreview制作は実施したが、詠唱・対象反応、実ゲーム接続、内部構造の独立レビュー、密集時の性能は未検証。このRecipeはdraft。
 
 ## 接続する知識
 
-- [semantic/fireball](../../semantics/fireball.md)
-- [composition/projectile](../../compositions/projectile.md)
-- [composition/combat-readability](../../compositions/combat-readability.md)
-- [technique/converge-motes](../../techniques/converge-motes.md)
-- [technique/mesh-core](../../techniques/mesh-core.md)
-- [technique/flipbook-particles](../../techniques/flipbook-particles.md)
-- [technique/history-ribbon](../../techniques/history-ribbon.md)
-- [technique/radial-wave](../../techniques/radial-wave.md)
-- [technique/surface-sigil](../../techniques/surface-sigil.md)
-- [recipe/impact-fire-contact](../impacts/impact-fire-contact.md)
-- [evaluation/projectile-readability](../../evaluation/projectile-readability.md)
-- [resource/flame-flipbook](../../resources/flame-flipbook.md)
-- [resource/smoke-flipbook](../../resources/smoke-flipbook.md)
-
-## 検証状態
-
-実装・エンジン再生・撮影・性能測定は未実施。数値は制作初期値であり、実測値ではない。
+- [意味](../../semantics/fireball.md)、[投射体の契約](../../compositions/projectile.md)、[戦闘の視覚階層](../../compositions/combat-readability.md)
+- [内部密度](../../techniques/volume-density.md)、[方向流れ面](../../techniques/directional-flow-surface.md)、[履歴帯](../../techniques/history-ribbon.md)
+- [詠唱収束](../../techniques/converge-motes.md)、[薄環](../../techniques/radial-wave.md)、[地面境界](../../techniques/surface-sigil.md)、[対象の熱反応](../impacts/impact-fire-contact.md)
+- 代替：[面の核](../../techniques/mesh-core.md)、[連番粒子](../../techniques/flipbook-particles.md)
+- [評価条件](../../evaluation/projectile-readability.md)、[制作の実行記録](../../../evidence/organic-fire-volume-preview.md)

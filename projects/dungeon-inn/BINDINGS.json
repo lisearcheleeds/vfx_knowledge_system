@@ -2,7 +2,7 @@
   "schema_version": "0.1.0",
   "project": "DungeonInn",
   "status": "proposed",
-  "source": "User-provided tables; external project files not read.",
+  "source": "User-provided tables; Skill103 preview settings also checked against DesktopDungeon commit 7c8f5e3e6967f0ec46b20017eff364f35cc6d1b3. Other bindings remain proposed.",
   "bindings": [
     {
       "category": "weapons",
@@ -653,57 +653,69 @@
           [
             "cast",
             "technique/converge-motes",
-            "手元の橙の点8個を収束し、淡黄の小さな核を作る。",
-            "cast進捗1.2秒、release準備0.2秒に同期。"
+            "手元の収束。今回未制作、後続。",
+            "実詠唱1.2秒と予備動作0.2秒。"
+          ],
+          [
+            "release",
+            "technique/volume-density",
+            "3房の短い熱解放。",
+            "life0.30秒。launch接続は後続。"
           ],
           [
             "core",
-            "technique/mesh-core",
-            "直径0.45Wの球/紡錘。淡黄の芯は直径0.14W、外面は橙。",
-            "launch→impact/stop、位置は実投射体。"
+            "technique/volume-density",
+            "球の面ではなく内部密度の炎。仮寸法1.5×1.15×3m。",
+            "制作周期4秒。実投射体とimpact/stop接続は後続。"
           ],
           [
             "flame-shell",
-            "technique/flipbook-particles",
-            "核の周囲へ向きの異なる炎舌4枚。根元は核、先端は後方へ伸ばす。",
-            "飛翔中は位相をずらし、impactで新規発生停止。"
+            "technique/directional-flow-surface",
+            "FlameShell0〜3、UV流れ・Noise侵食・頂点変位。動画の矩形面が未解決。",
+            "Coreと同周期。ゲーム終了制御は後続。"
           ],
           [
             "tail",
             "technique/history-ribbon",
-            "核の後方へ幅0.22W→先端0の橙の帯。芯は狭く外縁は赤。",
-            "履歴0.12秒、14m/sで尾長約1.68m、停止後0.20秒減衰。"
+            "黄橙→橙→赤→暗い煙色のnative Trail。",
+            "履歴0.32秒、14m/sで理論長4.48m。停止・teleport制御は後続。"
+          ],
+          [
+            "smoke-wake",
+            "technique/volume-density",
+            "World-space、60個/s、仮寸法1.8×1.5×1.8m、低温。",
+            "寿命0.8秒。密集時負荷は未計測。"
           ],
           [
             "explosion-shell",
-            "technique/flipbook-particles",
-            "impact中心で低い球状の炎塊6枚を一回解放。煙は小さな房3枚。",
-            "淡黄ピーク0.03〜0.07秒、橙の膨張0.07〜0.22秒、煙0.60秒まで。"
+            "technique/volume-density",
+            "Burst8房とSmoke5房、寸法/速度/寿命/Seed差と冷却。",
+            "Burst寿命0.62〜0.82秒、Smoke0.75〜1秒。実impactは後続。"
           ],
           [
             "blast-wave",
             "technique/radial-wave",
-            "低い薄環が中心から半径2m内へ走る。主炎より暗い。",
-            "0.08〜0.24秒。追加ダメージを持たない美術波。"
+            "主炎より暗い薄い圧力環。",
+            "開始0.08秒、寿命0.16秒。追加ダメージなし。"
           ],
           [
             "footprint",
             "technique/surface-sigil",
-            "実impact位置の地面へ半径2mの細い境界。面はごく薄い橙。",
-            "impactで全体表示、0.30秒で侵食して終了。"
+            "半径2mの薄い固定境界、現状は水平Mesh。",
+            "寿命0.30秒。実地面/範囲接続は後続。"
           ],
           [
             "hit",
             "recipe/impact-fire-contact",
-            "範囲内の実命中対象に小さな熱反応。",
+            "命中対象の熱反応。今回未制作、後続。",
             "実hit-confirmedのみ。"
           ]
         ],
         "timing": "詠唱と予備動作はゲーム進捗、飛翔14m/sはゲーム位置、爆発は実impactに従う。未来の着弾地点は推測で予告しない。範囲境界は半径2mで動かさず、残留火炎を継続床ダメージにしない。",
-        "decision": "主役は粒子の塊ではなく、毎フレーム輪郭が読める立体の熱核にする。少数の連番炎で有機的な揺らぎを加え、飛翔方向は先細り尾、着弾の威力は短い白芯と膨張の差で作る。",
-        "sharing": "詠唱収束、投射体、炎素材、熱接触を共有候補にする。炎殻・着弾膨張・尾の比率はこの火球の主案。"
+        "decision": "内部密度で硬い球の輪郭を崩す品質基準版。外炎は方向流れ・Noise侵食・頂点変位、尾は熱から煙へ冷却。着弾は個体差を持つ房。FlameShellの矩形境界は未解決。性能削減は後続。",
+        "sharing": "周期Noise、体積/面Shader、Materialの熱履歴を共有候補とする。EffectIdごとの専用Prefabは射出・飛翔・着弾を個別に持つ。"
       },
-      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+      "mapping_notes": "Preview実装：1020101001射出、1020101002飛翔、1020101003着弾。Recipe改訂2。runs/fireball-2026-10-04.mdが制作値と実行結果の正本。ゲーム登録/時間/Pool未接続。"
     },
     {
       "category": "skills",

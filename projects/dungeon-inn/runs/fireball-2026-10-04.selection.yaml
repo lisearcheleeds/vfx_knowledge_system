@@ -1,0 +1,13 @@
+# 改訂2への知識還元時に、今回実際に制作した範囲を表す選択記録。
+# 全スキルRecipeのcast/hitは未制作なので、技法を明示して選択する。
+selected_nodes:
+  - composition/projectile
+  - composition/combat-readability
+  - technique/volume-density
+  - technique/directional-flow-surface
+  - technique/history-ribbon
+  - technique/radial-wave
+  - technique/surface-sigil
+  - adapter/unity-urp-noise-density
+engine: unity
+conditional_decisions: []
