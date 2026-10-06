@@ -1,0 +1,6 @@
+# 判定後の残像基準版。旧動作同期レシピ・実履歴・Contactは自動採用しない。
+selected_nodes:
+  - recipe/completed-slash-afterimage
+  - adapter/unity-urp-inner-cut-afterimage
+engine: unity
+conditional_decisions: []

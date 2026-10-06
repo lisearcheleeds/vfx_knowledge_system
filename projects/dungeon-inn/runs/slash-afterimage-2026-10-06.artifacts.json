@@ -1,0 +1,279 @@
+{
+  "recorded_at": "2026-10-06",
+  "knowledge_base_commit": "127b196",
+  "game_branch": "art/normal-attack-review",
+  "game_ancestor_commit": "d6781bb3",
+  "version_scope": "local-uncommitted-snapshot; ancestor is not implementation version",
+  "files": [
+    {
+      "path": "Client/Assets/DungeonInn/Editor/WorldEffectPrefabPreviewWindow.cs",
+      "bytes": 19867,
+      "sha256": "48b128e6357d74365bf7d52ec11edd2da0ec220aa67aaa7b22f0b22bc73ca4f8"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Common/Shader/VfxShapeAlpha.shader",
+      "bytes": 15669,
+      "sha256": "33709ed84aec97d3e53358ab73d7ac1ec49a850c11cb4a01aa63fd99e8343150"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Common/Texture/VfxUnitCircleSdf.asset",
+      "bytes": 2098192,
+      "sha256": "100888f78a0bb07551a2b5efb8eeaf477e8316d70a32975e75edacd1ae530e9f"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/1020001001_SwordSlash.prefab",
+      "bytes": 10676,
+      "sha256": "a2a8c8030125a534602fe011497595e41bbcb2464d970b38c09ac44d76759dca"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/1020001001_SwordSlash_Game.prefab",
+      "bytes": 4163,
+      "sha256": "5dee073db67211e139706f0dc10e68fc149fce41dd651b4ba02a66b43bbfeb5b"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Material/BladeArc.mat",
+      "bytes": 1370,
+      "sha256": "013ebe802bd1604b2076fdabba157de5a770c72986f4b5d6aa5116a8aa5eea97"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Material/BladeArc_Review.mat",
+      "bytes": 2292,
+      "sha256": "ceb8948d678c1bc44b066dfb0589c973801423cac34c60ab3db88a93c559c5d4"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Material/FlowLines.mat",
+      "bytes": 1372,
+      "sha256": "1a15e0c6082c5ccef802bfd672ee12d563dd893fba5341ee2fcefe7a3053680e"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Material/FlowLines_Review.mat",
+      "bytes": 2300,
+      "sha256": "d74a1396ce58eccb820ee200ff19418a140330ae27b169d54f84f5cb3cf39b44"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Material/SoftWake.mat",
+      "bytes": 1374,
+      "sha256": "637c7c09661fc83f6efcbdbf65659146e5fa85810f83419fb0003ef7010cd73e"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Material/SoftWake_Review.mat",
+      "bytes": 2298,
+      "sha256": "98b3d4eef0494869a09b24e02f3600b05d7eca4b26b312f6a06b1751d6d85cda"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/BladeArc.asset",
+      "bytes": 152179,
+      "sha256": "b77aa3a2b894cd023521c61cb370a140cb909ede4855d453705cb45f9552b20b"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/BladeArc_Crescent.asset",
+      "bytes": 263172,
+      "sha256": "051323652bcc7d636586044e0a4961e662d938413a28eac591a3be308d017bc7"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/BladeArc_Game.asset",
+      "bytes": 17780,
+      "sha256": "349a16a35698a85f703ef0af4ffea22568cf89dace672e109c4c6996704781a2"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/BladeArc_Review.asset",
+      "bytes": 152174,
+      "sha256": "18d2c47ad64a8420d3471b77847b143f7290659b86e7fa7ee115ccd847791f39"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/FlowLines.asset",
+      "bytes": 255226,
+      "sha256": "9e69d7e19f5d91ce33b8ac5e8d5489c89171b036944ab8e57e47d6c1afbbcbab"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/FlowLines_Crescent.asset",
+      "bytes": 263173,
+      "sha256": "7a4dc90188844b722ab2a63a7efeeb507cd18a84da20be89963510ff6fe37473"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/FlowLines_Review.asset",
+      "bytes": 152191,
+      "sha256": "413f951048a2c598c8b4def583c68b99e2c40d7af7ab14318a437d505a951f6a"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/SoftWake.asset",
+      "bytes": 152183,
+      "sha256": "6011397bf3f8031187efa1ef946da7678ffdef1228a80f3a26d3a2004d7bbdbe"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/SoftWake_Crescent.asset",
+      "bytes": 263172,
+      "sha256": "375cccdd247cab8ec971137de07f54ebbd45a91cc8ef0cb224f2b95557bd5328"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020001001_SwordSlash/Mesh/SoftWake_Review.asset",
+      "bytes": 152176,
+      "sha256": "8a07a565b33d3113ebb77ddc71e86f64f7a9e043742ab288ca31ca0b1c35320d"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020003001_DaggerThrust/1020003001_DaggerThrust.prefab",
+      "bytes": 7410,
+      "sha256": "b26e961c2f20f2617cfa14b9e18a5bc9d134aafc6a7e948fb1cfec447fdc710b"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020003001_DaggerThrust/Material/NearWake.mat",
+      "bytes": 1428,
+      "sha256": "e3281382607f47867f582ec2fe13069437869dcb642c3fbb7c1cb2eefe34a118"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020003001_DaggerThrust/Material/NearWake_Review.mat",
+      "bytes": 2320,
+      "sha256": "0f918ed8291f6d1fc469b808f5ed11213fb246f299908d2e3f07266dfcc445e4"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020003001_DaggerThrust/Material/ThrustNeedle.mat",
+      "bytes": 1424,
+      "sha256": "c548580dcbd2adb0564bff7a6c82347c333a5625b553e6691ae181c3f4fac0e7"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020003001_DaggerThrust/Material/ThrustNeedle_Review.mat",
+      "bytes": 2313,
+      "sha256": "e202d1c0d51c69571583015ad654815d64d7fa8c03ab7f569eed391edf0ea98e"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020003001_DaggerThrust/Mesh/NearWake.asset",
+      "bytes": 140419,
+      "sha256": "571e1f15d9894b76527a6d6ed9c631d422ea1055e34922c94542f58d0f79d212"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020003001_DaggerThrust/Mesh/NearWake_Review.asset",
+      "bytes": 152182,
+      "sha256": "284b2e6d01c2907b0f1613065f4ab2ceb11a197e87475d9ae1ea173a630aa959"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020003001_DaggerThrust/Mesh/ThrustNeedle.asset",
+      "bytes": 140407,
+      "sha256": "d685b38e225449036db98a299b758a7d8aaae83139590368ee65f7d6a3590704"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020003001_DaggerThrust/Mesh/ThrustNeedle_Review.asset",
+      "bytes": 152186,
+      "sha256": "d34bf9b6f56da738efd9ffe05b9de849eac34355b48c53b226dfcbabf920c045"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/1020005001_GreatswordSlash.prefab",
+      "bytes": 10670,
+      "sha256": "817998afaff430b28e97b820b0cea22951ef6fd97476645367d9516b6d90e3d6"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Material/DragWake.mat",
+      "bytes": 1428,
+      "sha256": "5f35830a4c21fefc37bbbe8a924d5467d1da0d9e34e437043c0c6d8e216c92c3"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Material/DragWake_Review.mat",
+      "bytes": 2287,
+      "sha256": "0be24b1259fe9583997584d02ad4c70eda20fe1eb564806c0b03734130924784"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Material/LongBlade.mat",
+      "bytes": 1418,
+      "sha256": "dd7456dce6a6fc61dfbc93f0877736a08f2f0e4cb4d800e5e026f7bd5fbcec86"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Material/LongBlade_Review.mat",
+      "bytes": 2285,
+      "sha256": "4a77045534528ea7a4cbfa67e13c07f9a2ecdfed2525f4851fd7a2c403f98688"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Material/SplitFlow.mat",
+      "bytes": 1425,
+      "sha256": "7b40ec2ec7acec36f48e9baa687b3bc7f217a21c7207818e9dac677b8d95dde5"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Material/SplitFlow_Review.mat",
+      "bytes": 2288,
+      "sha256": "dc31ee3ee451c7bfb0e3b38751d18af389b4b03db2646c5dbc726e216ead5ba9"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Mesh/DragWake.asset",
+      "bytes": 230902,
+      "sha256": "e10a2f0803f921e28fa5347a9a3cc6b0bf0119dac76efab053bab64701830693"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Mesh/DragWake_Crescent.asset",
+      "bytes": 263167,
+      "sha256": "05460feabf741e1e9babcf16188a912dd54c05474717758927647aadee8094a3"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Mesh/DragWake_Review.asset",
+      "bytes": 152182,
+      "sha256": "5ddb37074b671e02a4456afdb337e9cf759a50dddeaa48d002f9bafd1790db80"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Mesh/LongBlade.asset",
+      "bytes": 230895,
+      "sha256": "9f315554d54bfc5b707411113f11f7dd3318491f3f4a48dc789e7d3933e4a563"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Mesh/LongBlade_Crescent.asset",
+      "bytes": 263168,
+      "sha256": "34a0cfaa67a9e8ec952b4be5a9ff55502e5708b507d4dccceb39ee95d3b4c3de"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Mesh/LongBlade_Review.asset",
+      "bytes": 152169,
+      "sha256": "65c0065efba6e34da9181b3394c529cdb7c71dc84166f43b9844501d53971fc8"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Mesh/SplitFlow.asset",
+      "bytes": 1140616,
+      "sha256": "442ae37c4452e0b490fc7dba2282c36fe2c885808b2407e37e872ad68af065f8"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Mesh/SplitFlow_Crescent.asset",
+      "bytes": 263168,
+      "sha256": "fbd3b4963df6abc82ebbbae994e1cac182fcb0b56d145e9cb566e86060a67e3f"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Content/Effect/Effects/1020005001_GreatswordSlash/Mesh/SplitFlow_Review.asset",
+      "bytes": 152187,
+      "sha256": "adeba2d23238e16b2c4cc6c9add93859a9acee62ae2c3d0e389484134023fb66"
+    },
+    {
+      "path": "Client/Assets/DungeonInn/Runtime/Scripts/View/Scene/MainScene/World/Effect/WorldEffectMeshView.cs",
+      "bytes": 1125,
+      "sha256": "d9bec452925eca7f9f5185a8c5c5cc450eeba0ce4f1023b9fb5e5eff472e93c4"
+    },
+    {
+      "path": "tasks/task_0362.md",
+      "bytes": 14865,
+      "sha256": "4b9ecb8bd2793ce605b4f2a97739a0b9cc5a2e3fb2879f725f5decc230d8fee6"
+    },
+    {
+      "path": "tasks/task_0363.md",
+      "bytes": 7061,
+      "sha256": "5534e437e07d3cba9428a73a27b7364412957f71a06da9485128d43b65bff99e"
+    },
+    {
+      "path": "tasks/task_0364.md",
+      "bytes": 4981,
+      "sha256": "9125017843a6159f4ad5421e9467bb394b437caf40700fa7438da30845838f67"
+    },
+    {
+      "path": "tasks/task_0365.md",
+      "bytes": 2722,
+      "sha256": "d2497f5784735a279c1e6784fe7ed3587e3990ab027e42ae43c9830b3b40d28c"
+    },
+    {
+      "path": "tasks/task_0366.md",
+      "bytes": 9334,
+      "sha256": "05f95de5ec45bee4ef40c9e51bba0df1334a6ce388e463f3a24c18aa0f568584"
+    },
+    {
+      "path": "tasks/task_0367.md",
+      "bytes": 4197,
+      "sha256": "adfeeca44680a43b36511ea8f7dc494856e8e8f7433e771bcc6241d5b89513e5"
+    },
+    {
+      "path": "tasks/task_0368.md",
+      "bytes": 4045,
+      "sha256": "e0916aad379d4622c92db050c5288064520d2eb0d00a2a2f13925a6d212c30db"
+    }
+  ]
+}

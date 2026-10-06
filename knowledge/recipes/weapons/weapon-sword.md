@@ -1,52 +1,67 @@
 ---
-schema_version: "0.1.0"
-id: "recipe/weapon-sword"
-kind: "recipe"
-title: "剣：鋭く薄い扇状の斬撃"
-summary: "薄い象牙色の入力角度θ弧と一点の切断反応で、標準的な剣の切れを作る。"
-status: "draft"
-revision: 1
-updated_at: "2026-10-04"
-aliases: ["剣：鋭い入力角度θの斬撃","sword"]
-tags: ["recipe","combat"]
-scope: "engine-neutral"
+schema_version: 0.1.0
+id: recipe/weapon-sword
+kind: recipe
+title: 剣の動作同期：鋭く薄い弧
+summary: 振りの位相を見せる場合の初稿候補。判定後に発火する完成残像は専用レシピを比較する。
+status: draft
+revision: 2
+updated_at: '2026-10-06'
+aliases:
+- 剣：鋭い入力角度θの斬撃
+- sword
+tags:
+- recipe
+- combat
+scope: engine-neutral
 relations:
-  - target: "semantic/slash"
-    type: "expresses"
-    reason: "この演出が伝える意味と視覚要件。"
-  - target: "composition/melee-strike"
-    type: "composes"
-    requirement: "required"
-    role: "lifecycle"
-    reason: "この推奨構成の時間・空間・発動と終了の契約。"
-  - target: "composition/combat-readability"
-    type: "composes"
-    requirement: "required"
-    role: "visual-hierarchy"
-    reason: "主形状・接触・状態の明度と面積を整理する。"
-  - target: "technique/arc-sweep"
-    type: "composes"
-    requirement: "required"
-    role: "blade-arc"
-    reason: "入力角度θの弧。外縁は白金、内側は青灰。幅0.07L、根元を細く終端を鋭くする。"
-  - target: "technique/history-ribbon"
-    type: "composes"
-    requirement: "required"
-    role: "blade-wake"
-    reason: "刃の根元と先端の二点から薄い追従帯。主弧より暗く短い。"
-  - target: "recipe/impact-cut"
-    type: "composes"
-    requirement: "required"
-    role: "hit"
-    reason: "命中方向に小さな切り線。通常の接触寸法を使う。"
-  - target: "evaluation/combat-shape-and-events"
-    type: "evaluated_by"
-    reason: "採用先の実画面で形・イベント・終了条件を確認する。"
+- target: semantic/slash
+  type: expresses
+  reason: この演出が伝える意味と視覚要件。
+- target: composition/melee-strike
+  type: composes
+  requirement: required
+  role: lifecycle
+  reason: この推奨構成の時間・空間・発動と終了の契約。
+- target: composition/combat-readability
+  type: composes
+  requirement: required
+  role: visual-hierarchy
+  reason: 主形状・接触・状態の明度と面積を整理する。
+- target: technique/arc-sweep
+  type: composes
+  requirement: required
+  role: blade-arc
+  reason: 入力角度θの弧。外縁は白金、内側は青灰。幅0.07L、根元を細く終端を鋭くする。
+- target: technique/history-ribbon
+  type: composes
+  requirement: required
+  role: blade-wake
+  reason: 刃の根元と先端の二点から薄い追従帯。主弧より暗く短い。
+- target: recipe/impact-cut
+  type: composes
+  requirement: required
+  role: hit
+  reason: 命中方向に小さな切り線。通常の接触寸法を使う。
+- target: evaluation/combat-shape-and-events
+  type: evaluated_by
+  reason: 採用先の実画面で形・イベント・終了条件を確認する。
+- target: recipe/completed-slash-afterimage
+  type: candidate
+  reason: 判定後の完成残像は別構成として選ぶ。
+  when: 発火時点で刃が通過済みの空間を表現する場合。
+  role: afterimage
 evidence: []
 superseded_by: []
 ---
 
-# 剣：鋭く薄い扇状の斬撃
+# 剣の動作同期：鋭く薄い弧
+
+## 適用条件の改訂：動作中と判定後を分ける
+
+上記は実際の振り・刺突に同期する初稿候補で、武器全般の唯一の表現ではない。発火時点で刃が通過済みなら、[完成した三日月の残像](../completed-slash-afterimage.md)を先に比較する。このレシピの展開・実履歴・Contactの必須依存を、残像だけのPreviewへ持ち込まない。採用先でSelectionを分ける。
+
+武器名や既存アセット名だけで刺突・斬撃を確定しない。金属色と十分な色面opacityは採用先の美術基準に従い、上の象牙・青灰や秒数を無条件に固定しない。フェードインを保持して、消失との重なりも確認する。旧主案の実装・性能は未検証のまま残す。
 
 ## 推奨する主案
 

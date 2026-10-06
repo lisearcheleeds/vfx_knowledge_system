@@ -1,52 +1,67 @@
 ---
-schema_version: "0.1.0"
-id: "recipe/weapon-greatsword"
-kind: "recipe"
-title: "大剣：長く厚い扇状の斬撃"
-summary: "長い外縁と幅広い内側の遅れで、大剣の刃渡りと慣性を表す。"
-status: "draft"
-revision: 1
-updated_at: "2026-10-04"
-aliases: ["大剣：長く厚い入力角度θの斬撃","greatsword"]
-tags: ["recipe","combat"]
-scope: "engine-neutral"
+schema_version: 0.1.0
+id: recipe/weapon-greatsword
+kind: recipe
+title: 大剣の動作同期：長く厚い弧
+summary: 動作中の大型刃と慣性を見せる初稿候補。判定後の幅広い三日月残像は専用レシピを比較する。
+status: draft
+revision: 2
+updated_at: '2026-10-06'
+aliases:
+- 大剣：長く厚い入力角度θの斬撃
+- greatsword
+tags:
+- recipe
+- combat
+scope: engine-neutral
 relations:
-  - target: "semantic/slash"
-    type: "expresses"
-    reason: "この演出が伝える意味と視覚要件。"
-  - target: "composition/melee-strike"
-    type: "composes"
-    requirement: "required"
-    role: "lifecycle"
-    reason: "この推奨構成の時間・空間・発動と終了の契約。"
-  - target: "composition/combat-readability"
-    type: "composes"
-    requirement: "required"
-    role: "visual-hierarchy"
-    reason: "主形状・接触・状態の明度と面積を整理する。"
-  - target: "technique/arc-sweep"
-    type: "composes"
-    requirement: "required"
-    role: "long-arc"
-    reason: "入力角度θの長い弧。幅0.10L、外縁を連続させ内側を二つの大きな裂け目へ分ける。"
-  - target: "technique/history-ribbon"
-    type: "composes"
-    requirement: "required"
-    role: "drag-wake"
-    reason: "刃全体の運動を追う幅広い灰青の帯。"
-  - target: "recipe/impact-cut"
-    type: "composes"
-    requirement: "required"
-    role: "hit"
-    reason: "切断線の長さ1.5倍、幅1.25倍。"
-  - target: "evaluation/combat-shape-and-events"
-    type: "evaluated_by"
-    reason: "採用先の実画面で形・イベント・終了条件を確認する。"
+- target: semantic/slash
+  type: expresses
+  reason: この演出が伝える意味と視覚要件。
+- target: composition/melee-strike
+  type: composes
+  requirement: required
+  role: lifecycle
+  reason: この推奨構成の時間・空間・発動と終了の契約。
+- target: composition/combat-readability
+  type: composes
+  requirement: required
+  role: visual-hierarchy
+  reason: 主形状・接触・状態の明度と面積を整理する。
+- target: technique/arc-sweep
+  type: composes
+  requirement: required
+  role: long-arc
+  reason: 入力角度θの長い弧。幅0.10L、外縁を連続させ内側を二つの大きな裂け目へ分ける。
+- target: technique/history-ribbon
+  type: composes
+  requirement: required
+  role: drag-wake
+  reason: 刃全体の運動を追う幅広い灰青の帯。
+- target: recipe/impact-cut
+  type: composes
+  requirement: required
+  role: hit
+  reason: 切断線の長さ1.5倍、幅1.25倍。
+- target: evaluation/combat-shape-and-events
+  type: evaluated_by
+  reason: 採用先の実画面で形・イベント・終了条件を確認する。
+- target: recipe/completed-slash-afterimage
+  type: candidate
+  reason: 判定後の完成残像は別構成として選ぶ。
+  when: 発火時点で刃が通過済みの空間を表現する場合。
+  role: afterimage
 evidence: []
 superseded_by: []
 ---
 
-# 大剣：長く厚い扇状の斬撃
+# 大剣の動作同期：長く厚い弧
+
+## 適用条件の改訂：動作中と判定後を分ける
+
+上記は実際の振り・刺突に同期する初稿候補で、武器全般の唯一の表現ではない。発火時点で刃が通過済みなら、[完成した三日月の残像](../completed-slash-afterimage.md)を先に比較する。このレシピの展開・実履歴・Contactの必須依存を、残像だけのPreviewへ持ち込まない。採用先でSelectionを分ける。
+
+武器名や既存アセット名だけで刺突・斬撃を確定しない。金属色と十分な色面opacityは採用先の美術基準に従い、上の象牙・青灰や秒数を無条件に固定しない。フェードインを保持して、消失との重なりも確認する。旧主案の実装・性能は未検証のまま残す。
 
 ## 推奨する主案
 
