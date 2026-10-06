@@ -11,7 +11,9 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 | 入口 | 内容 |
 | --- | --- |
 | [設計書](vfx_knowledge_system_design.md)・[実装上の補足](docs/IMPLEMENTATION_NOTES.md) | 設計と申し送り7項目 |
-| [WORKFLOW](WORKFLOW.md) | 制作・評価・更新の手順 |
+| [WORKFLOW](WORKFLOW.md) | 制作・評価・更新の正本入口 |
+| [最高品質の工程表](docs/QUALITY_BASELINE_WORKFLOW.md)・[制作計画](templates/QUALITY_BASELINE_PLAN.md) | 全体像→時間→因数分解→制作→合成→研磨→人間承認 |
+| [ゲーム用の別工程](docs/GAME_ASSET_WORKFLOW.md) | 完成実物の再因数分解、品質比較、削減・統合・実測 |
 | [SCHEMA](SCHEMA.md)・[GLOSSARY](GLOSSARY.md) | ノード・関係・用語の規約 |
 | [索引](index/README.md) | 登録済み知識の入口 |
 | [共通レシピ](docs/KNOWLEDGE_CATALOG.md)・[知識の境界](docs/KNOWLEDGE_BOUNDARIES.md) | 具体的な推奨構成と再利用の単位 |
@@ -28,8 +30,8 @@ Unity、Unreal Engine、Godotで共有する設計判断と、各エンジン固
 1. このREADME、実装上の補足、WORKFLOWを読み、現在の構築範囲を確認する。
 2. 制作時は利用プロジェクトのProfileと参照する知識のコミットを確認する。
 3. 要求に関係する知識、必須依存、根拠、検証条件を取得する。
-4. 構成候補の採用・棄却理由を残し、抽象仕様からエンジン別の実装計画へ進む。
-5. 動画・背景・視点・性能・停止と再利用を評価し、結果を制作記録と知識更新案に残す。
+4. Aでは全体像・時間演出・表現上の分解を先に記録し、技法を選んで最高品質へ作り込む。
+5. 通常速度の全体再生と層比較で磨き、人間の最高品質完成承認後に固定する。ゲーム用変換・統合・実機性能はBで扱う。
 
 候補探索と採用を分け、採用後に必須依存を解決する。`when` は自然言語の判断材料であり、自動評価しない。詳細は設計書の該当章を参照する。
 
