@@ -1,5 +1,19 @@
 {
   "backlinks": {
+    "adapter/unity-urp-analytic-crescent": [
+      {
+        "source": "evidence/sword-slash-analytic-crescent-preview",
+        "statement": "Unityの専用Prefab Previewで、外部経過秒による描画と連番の撮影を行った。",
+        "type": "claim"
+      },
+      {
+        "reason": "Unityで実行した改訂2の解析式三日月。",
+        "relation_index": 6,
+        "source": "recipe/completed-slash-afterimage",
+        "target": "adapter/unity-urp-analytic-crescent",
+        "type": "implemented_by"
+      }
+    ],
     "adapter/unity-urp-inner-cut-afterimage": [
       {
         "source": "evidence/completed-slash-inner-cut-preview",
@@ -7,8 +21,8 @@
         "type": "claim"
       },
       {
-        "reason": "Unityで実行した候補。",
-        "relation_index": 4,
+        "reason": "Unityで実行した候補（改訂1の内側SDF）。",
+        "relation_index": 5,
         "source": "recipe/completed-slash-afterimage",
         "target": "adapter/unity-urp-inner-cut-afterimage",
         "type": "implemented_by"
@@ -1212,7 +1226,7 @@
       },
       {
         "reason": "発火時点と時間を含めて確認する。",
-        "relation_index": 3,
+        "relation_index": 4,
         "source": "recipe/completed-slash-afterimage",
         "target": "evaluation/combat-shape-and-events",
         "type": "evaluated_by"
@@ -1298,6 +1312,13 @@
         "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
         "relation_index": 6,
         "source": "recipe/meal-vitality-activation",
+        "target": "evaluation/combat-shape-and-events",
+        "type": "evaluated_by"
+      },
+      {
+        "reason": "実命中の位置・方向・回数で確認する。",
+        "relation_index": 3,
+        "source": "recipe/metal-contact-sparks",
         "target": "evaluation/combat-shape-and-events",
         "type": "evaluated_by"
       },
@@ -1718,6 +1739,24 @@
         "type": "evidence"
       }
     ],
+    "evidence/sword-slash-analytic-crescent-preview": [
+      {
+        "source": "adapter/unity-urp-analytic-crescent",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/completed-slash-afterimage",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/metal-contact-sparks",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/analytic-crescent-uv",
+        "type": "evidence"
+      }
+    ],
     "evidence/vfx-gameplay-clarity-source": [
       {
         "source": "composition/combat-readability",
@@ -1759,6 +1798,11 @@
     "recipe/charged-heavy-impact": [],
     "recipe/circular-slash": [],
     "recipe/completed-slash-afterimage": [
+      {
+        "source": "evidence/sword-slash-analytic-crescent-preview",
+        "statement": "解析式の三日月を主役にした版が、内側SDF版（65点）より高く評価された。",
+        "type": "claim"
+      },
       {
         "reason": "判定後の完成残像は別構成として選ぶ。",
         "relation_index": 6,
@@ -2205,6 +2249,20 @@
       }
     ],
     "recipe/meal-vitality-activation": [],
+    "recipe/metal-contact-sparks": [
+      {
+        "source": "evidence/sword-slash-analytic-crescent-preview",
+        "statement": "斬撃の中では意味が不明とされた火花が、命中演出として見ると98点と評価された。",
+        "type": "claim"
+      },
+      {
+        "reason": "金属・硬い対象への命中。少数の伸びた火花と閃き。ユーザー評価の高い実例がある。",
+        "relation_index": 8,
+        "source": "recipe/impact-cut",
+        "target": "recipe/metal-contact-sparks",
+        "type": "candidate"
+      }
+    ],
     "recipe/periodic-health-restoration": [
       {
         "reason": "摂取の見た目とゲーム効果を分離する。食品の分類から状態を必須にしない。",
@@ -2487,7 +2545,7 @@
       },
       {
         "reason": "????????????????????????",
-        "relation_index": 8,
+        "relation_index": 9,
         "source": "recipe/impact-cut",
         "target": "rendering/emission-and-opacity",
         "type": "requires"
@@ -2640,6 +2698,13 @@
         "type": "requires"
       },
       {
+        "reason": "色面の不透明度・外縁の加算・外光の配分を決める。",
+        "relation_index": 2,
+        "source": "technique/analytic-crescent-uv",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
+      {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 3,
         "source": "technique/arc-sweep",
@@ -2763,6 +2828,13 @@
     ],
     "rendering/world-depth-and-transparency": [
       {
+        "reason": "透明合成と奥行きの規約。",
+        "relation_index": 1,
+        "source": "adapter/unity-urp-analytic-crescent",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
+      {
         "reason": "透明合成と奥行き規約を確認する。",
         "relation_index": 1,
         "source": "adapter/unity-urp-inner-cut-afterimage",
@@ -2773,6 +2845,13 @@
         "reason": "通常透明Queueと奥行き設定の適用範囲を確認する。",
         "relation_index": 2,
         "source": "adapter/unity-urp-noise-density",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
+      {
+        "reason": "透明描画と奥行きの規約。",
+        "relation_index": 3,
+        "source": "technique/analytic-crescent-uv",
         "target": "rendering/world-depth-and-transparency",
         "type": "requires"
       },
@@ -3525,7 +3604,7 @@
       },
       {
         "reason": "刃の通過方向と形を伝える。",
-        "relation_index": 2,
+        "relation_index": 3,
         "source": "recipe/completed-slash-afterimage",
         "target": "semantic/slash",
         "type": "expresses"
@@ -3534,6 +3613,13 @@
         "reason": "この演出が伝える意味と視覚要件。",
         "relation_index": 0,
         "source": "recipe/impact-cut",
+        "target": "semantic/slash",
+        "type": "expresses"
+      },
+      {
+        "reason": "刃が金属・硬い物に当たった手応え。",
+        "relation_index": 2,
+        "source": "recipe/metal-contact-sparks",
         "target": "semantic/slash",
         "type": "expresses"
       },
@@ -3594,6 +3680,29 @@
         "source": "recipe/starchy-food-consumption",
         "target": "semantic/starchy-food",
         "type": "expresses"
+      }
+    ],
+    "technique/analytic-crescent-uv": [
+      {
+        "reason": "形と時間の式の正本。",
+        "relation_index": 0,
+        "source": "adapter/unity-urp-analytic-crescent",
+        "target": "technique/analytic-crescent-uv",
+        "type": "requires"
+      },
+      {
+        "source": "evidence/sword-slash-analytic-crescent-preview",
+        "statement": "弧帯UV上の解析式で描いた非対称の三日月・模様・消え方が、ユーザーに「とてもいい」と評価された（基準版全体で85点）。",
+        "type": "claim"
+      },
+      {
+        "reason": "非対称の三日月の形・内側の抜き・短縮・外縁と外光を式で連続に作る（改訂2の優先案）。",
+        "relation_index": 1,
+        "requirement": "required",
+        "role": "contour",
+        "source": "recipe/completed-slash-afterimage",
+        "target": "technique/analytic-crescent-uv",
+        "type": "composes"
       }
     ],
     "technique/arc-sweep": [
@@ -3791,6 +3900,15 @@
         "source": "recipe/meal-vitality-activation",
         "target": "technique/billboard",
         "type": "requires"
+      },
+      {
+        "reason": "接触の瞬間の小さな星形の閃き。",
+        "relation_index": 1,
+        "requirement": "optional",
+        "role": "glint",
+        "source": "recipe/metal-contact-sparks",
+        "target": "technique/billboard",
+        "type": "composes"
       },
       {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
@@ -4108,6 +4226,13 @@
         "source": "semantic/slash",
         "target": "technique/completed-arc-afterimage",
         "type": "candidate"
+      },
+      {
+        "reason": "完成した残像の外形・消え方を、テクスチャではなく式で連続に制御する。",
+        "relation_index": 0,
+        "source": "technique/analytic-crescent-uv",
+        "target": "technique/completed-arc-afterimage",
+        "type": "enhances"
       },
       {
         "reason": "判定後に表示する残像の分岐。",
@@ -4695,13 +4820,18 @@
         "type": "claim"
       },
       {
-        "reason": "固定外形から曲線状の穴を拡げる。",
-        "relation_index": 1,
-        "requirement": "required",
-        "role": "contour",
+        "reason": "改訂1の主案。参照の内側曲線が円の組み合わせで近似でき、解析式で作りにくい場合に比較する。",
+        "relation_index": 2,
         "source": "recipe/completed-slash-afterimage",
         "target": "technique/inner-cut-sdf",
-        "type": "composes"
+        "type": "candidate"
+      },
+      {
+        "reason": "同じ「固定外形から内側を抜く」役割。こちらは距離場テクスチャを使わず、厚みの形を弧に沿った関数で持つ。",
+        "relation_index": 1,
+        "source": "technique/analytic-crescent-uv",
+        "target": "technique/inner-cut-sdf",
+        "type": "alternative"
       },
       {
         "reason": "曲線状の内側境界で残像を薄くする候補。",
@@ -5112,6 +5242,15 @@
         "type": "composes"
       },
       {
+        "reason": "少数の伸びた粒子を一方向の円錐へ短く飛ばす。",
+        "relation_index": 0,
+        "requirement": "required",
+        "role": "sparks",
+        "source": "recipe/metal-contact-sparks",
+        "target": "technique/particle-emission",
+        "type": "composes"
+      },
+      {
         "reason": "胸の周囲から葉/滴6個を0.4Hまで上昇。",
         "relation_index": 4,
         "requirement": "required",
@@ -5499,6 +5638,49 @@
   },
   "generated": true,
   "nodes": [
+    {
+      "aliases": [],
+      "compatibility": {
+        "engine_version": "6000.3.14f1",
+        "platforms": [
+          "Windows Editor"
+        ],
+        "renderer": "URP 17.3.0",
+        "verification": "engine-tested"
+      },
+      "engine": "unity",
+      "evidence": [
+        "evidence/sword-slash-analytic-crescent-preview"
+      ],
+      "id": "adapter/unity-urp-analytic-crescent",
+      "kind": "adapter",
+      "path": "adapters/unity-urp-analytic-crescent.md",
+      "relations": [
+        {
+          "reason": "形と時間の式の正本。",
+          "target": "technique/analytic-crescent-uv",
+          "type": "requires"
+        },
+        {
+          "reason": "透明合成と奥行きの規約。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-specific",
+      "sha256": "d1df2276a942bd19ee03a3ee765aadfb6d8247c4de7b2288f859e72633bcbd00",
+      "status": "draft",
+      "summary": "生成した弧帯MeshにMaterialPropertyBlockで外部経過秒を渡し、Shaderで三日月の形・消え方・外光を計算したPreview実装。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "mesh"
+      ],
+      "title": "Unity URP：弧帯Meshと解析式の三日月Shader",
+      "updated_at": "2026-10-06"
+    },
     {
       "aliases": [],
       "compatibility": {
@@ -6056,6 +6238,64 @@
       "aliases": [],
       "evidence": [],
       "evidence_details": {
+        "checked_at": "2026-10-06",
+        "claims": [
+          {
+            "statement": "弧帯UV上の解析式で描いた非対称の三日月・模様・消え方が、ユーザーに「とてもいい」と評価された（基準版全体で85点）。",
+            "target": "technique/analytic-crescent-uv"
+          },
+          {
+            "statement": "解析式の三日月を主役にした版が、内側SDF版（65点）より高く評価された。",
+            "target": "recipe/completed-slash-afterimage"
+          },
+          {
+            "statement": "斬撃の中では意味が不明とされた火花が、命中演出として見ると98点と評価された。",
+            "target": "recipe/metal-contact-sparks"
+          },
+          {
+            "statement": "Unityの専用Prefab Previewで、外部経過秒による描画と連番の撮影を行った。",
+            "target": "adapter/unity-urp-analytic-crescent"
+          }
+        ],
+        "conditions": "専用Prefab Preview。暗い背景と明るい背景、45度俯瞰（yaw -135）と真上。ユーザーがライブPreviewで評価。ゲーム用削減・統合前の基準版。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/sword-slash-2-2026-10-06.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview（WorldEffectPrefabPreviewWindow）",
+          "executed_at": "2026-10-06",
+          "procedure": "Editorスクリプトでテクスチャ・Mesh・Material・Prefabを生成し、Previewの時計で連番を書き出して一覧画像で評価・修正を4回繰り返した後、ユーザーがライブPreviewで評価した。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "ゲーム統合・実機性能・他エンジンは未実施。消失カーブは未調整。明るい背景で淡くなる弱点は未解決。数値評価はユーザーの主観。",
+        "result": "ユーザー評価85点（前任版65点）。残りの差は三日月の消失アニメーションの時間カーブ（0.1秒単位の調整）。火花はContact系に転用する。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/sword-slash-analytic-crescent-preview",
+      "kind": "evidence",
+      "path": "evidence/sword-slash-analytic-crescent-preview.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "12a28cf2ac8b4b49d10d00cc4b3062b5ee1ec8b943ac787c33527177612e98d2",
+      "status": "reviewed",
+      "summary": "前任の版（ユーザー評価65点）を参照せずに作り直し、85点と評価された基準版の記録。火花は命中演出として98点と評価された。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "剣の斬撃残像を解析式の三日月で作り直したPreview記録",
+      "updated_at": "2026-10-06"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
         "checked_at": "2026-10-04",
         "claims": [
           {
@@ -6565,7 +6805,8 @@
         "短剣の三日月"
       ],
       "evidence": [
-        "evidence/completed-slash-inner-cut-preview"
+        "evidence/completed-slash-inner-cut-preview",
+        "evidence/sword-slash-analytic-crescent-preview"
       ],
       "id": "recipe/completed-slash-afterimage",
       "kind": "recipe",
@@ -6579,11 +6820,16 @@
           "type": "composes"
         },
         {
-          "reason": "固定外形から曲線状の穴を拡げる。",
+          "reason": "非対称の三日月の形・内側の抜き・短縮・外縁と外光を式で連続に作る（改訂2の優先案）。",
           "requirement": "required",
           "role": "contour",
-          "target": "technique/inner-cut-sdf",
+          "target": "technique/analytic-crescent-uv",
           "type": "composes"
+        },
+        {
+          "reason": "改訂1の主案。参照の内側曲線が円の組み合わせで近似でき、解析式で作りにくい場合に比較する。",
+          "target": "technique/inner-cut-sdf",
+          "type": "candidate"
         },
         {
           "reason": "刃の通過方向と形を伝える。",
@@ -6596,17 +6842,22 @@
           "type": "evaluated_by"
         },
         {
-          "reason": "Unityで実行した候補。",
+          "reason": "Unityで実行した候補（改訂1の内側SDF）。",
           "target": "adapter/unity-urp-inner-cut-afterimage",
+          "type": "implemented_by"
+        },
+        {
+          "reason": "Unityで実行した改訂2の解析式三日月。",
+          "target": "adapter/unity-urp-analytic-crescent",
           "type": "implemented_by"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "5748fd26479b9000eba0af1796d45047ed3d27af45862a3c00290694bc7dfb44",
+      "sha256": "537b52143650d22f992d8081a8bb5b6b5f2e2f23ab4f4f48d88a704c1ae2f603",
       "status": "draft",
-      "summary": "判定後に発火する剣・短剣・大型刃の残像。固定外形、内側SDF、色面の流れ、並列の立上りと消失を採用する。",
+      "summary": "判定後に発火する剣・短剣・大型刃の残像。主役は弧帯UV上の解析式の非対称三日月を優先し、色面の流れ、並列の立上りと消失、先端へ縮む最後を採用する。",
       "superseded_by": [],
       "tags": [
         "combat",
@@ -7360,15 +7611,20 @@
           "type": "requires"
         },
         {
+          "reason": "金属・硬い対象への命中。少数の伸びた火花と閃き。ユーザー評価の高い実例がある。",
+          "target": "recipe/metal-contact-sparks",
+          "type": "candidate"
+        },
+        {
           "reason": "????????????????????????",
           "target": "rendering/emission-and-opacity",
           "type": "requires"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "efef5f504274704b2ce4a49701759e779ec21f24c198347cfd150d6d5b8296e7",
+      "sha256": "7e3f450bf2f7d5f6ed332b4fccb842d3efd634845929ffa2090f150e656e7a8c",
       "status": "draft",
       "summary": "短い切り線・接触の小さな白芯・法線方向の少数片で切断の瞬間を示す。",
       "superseded_by": [],
@@ -7377,7 +7633,7 @@
         "combat"
       ],
       "title": "切断方向を保つ斬撃の命中",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -8010,6 +8266,60 @@
       ],
       "title": "食事による活力付与：暖かな収束と小さな継続表示",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "接触火花",
+        "contact sparks",
+        "ヒットの火花",
+        "金属の火花"
+      ],
+      "evidence": [
+        "evidence/sword-slash-analytic-crescent-preview"
+      ],
+      "id": "recipe/metal-contact-sparks",
+      "kind": "recipe",
+      "path": "knowledge/recipes/impacts/metal-contact-sparks.md",
+      "relations": [
+        {
+          "reason": "少数の伸びた粒子を一方向の円錐へ短く飛ばす。",
+          "requirement": "required",
+          "role": "sparks",
+          "target": "technique/particle-emission",
+          "type": "composes"
+        },
+        {
+          "reason": "接触の瞬間の小さな星形の閃き。",
+          "requirement": "optional",
+          "role": "glint",
+          "target": "technique/billboard",
+          "type": "composes"
+        },
+        {
+          "reason": "刃が金属・硬い物に当たった手応え。",
+          "target": "semantic/slash",
+          "type": "expresses"
+        },
+        {
+          "reason": "実命中の位置・方向・回数で確認する。",
+          "target": "evaluation/combat-shape-and-events",
+          "type": "evaluated_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "cf731b2229c45e3fb4c07dcc2e83738142974cd53ab5fee564c48daac81360c3",
+      "status": "draft",
+      "summary": "接触点から一方向へ数本の伸びた火花を短く飛ばし、白い閃きを添える命中演出。斬撃・打撃・刺突のContactに汎用で使える。",
+      "superseded_by": [],
+      "tags": [
+        "recipe",
+        "combat",
+        "melee"
+      ],
+      "title": "金属の接触火花と一瞬の閃き",
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -11661,6 +11971,57 @@
       "updated_at": "2026-10-04"
     },
     {
+      "aliases": [
+        "analytic crescent",
+        "解析式の三日月",
+        "弧帯UV",
+        "三日月の消失カーブ"
+      ],
+      "evidence": [
+        "evidence/sword-slash-analytic-crescent-preview"
+      ],
+      "id": "technique/analytic-crescent-uv",
+      "kind": "technique",
+      "path": "knowledge/techniques/analytic-crescent-uv.md",
+      "relations": [
+        {
+          "reason": "完成した残像の外形・消え方を、テクスチャではなく式で連続に制御する。",
+          "target": "technique/completed-arc-afterimage",
+          "type": "enhances"
+        },
+        {
+          "reason": "同じ「固定外形から内側を抜く」役割。こちらは距離場テクスチャを使わず、厚みの形を弧に沿った関数で持つ。",
+          "target": "technique/inner-cut-sdf",
+          "type": "alternative"
+        },
+        {
+          "reason": "色面の不透明度・外縁の加算・外光の配分を決める。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "透明描画と奥行きの規約。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "c16548c50984a6dd7fb4961ef6f5feb758b8f6e57795d6b85d04fd0e15e18ae9",
+      "status": "draft",
+      "summary": "弧の帯Meshの角度・半径UVの上で、厚みの形・内側の抜き・短縮・外縁の明部と外光を式で計算する。斬撃残像の主役の優先案。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique",
+        "mesh"
+      ],
+      "title": "弧帯UV上の解析式で描く非対称の三日月",
+      "updated_at": "2026-10-06"
+    },
+    {
       "aliases": [],
       "evidence": [],
       "id": "technique/arc-sweep",
@@ -12556,6 +12917,7 @@
   ],
   "schema_version": "0.1.0",
   "symmetric_relations": {
+    "adapter/unity-urp-analytic-crescent": [],
     "adapter/unity-urp-inner-cut-afterimage": [],
     "adapter/unity-urp-noise-density": [],
     "composition/combat-readability": [],
@@ -12570,6 +12932,7 @@
     "evidence/organic-fire-volume-preview": [],
     "evidence/particle-simulation-and-renderer-source": [],
     "evidence/quality-baseline-to-core-only": [],
+    "evidence/sword-slash-analytic-crescent-preview": [],
     "evidence/vfx-gameplay-clarity-source": [],
     "recipe/accented-heavy-impact": [],
     "recipe/aquatic-protein-consumption": [],
@@ -12595,6 +12958,7 @@
     "recipe/mana-remedy-use": [],
     "recipe/meal-vitality": [],
     "recipe/meal-vitality-activation": [],
+    "recipe/metal-contact-sparks": [],
     "recipe/periodic-health-restoration": [],
     "recipe/periodic-mana-restoration": [],
     "recipe/premium-remedy-use": [],
@@ -12659,6 +13023,7 @@
     "semantic/restoration": [],
     "semantic/slash": [],
     "semantic/starchy-food": [],
+    "technique/analytic-crescent-uv": [],
     "technique/arc-sweep": [],
     "technique/billboard": [
       {
@@ -12703,7 +13068,16 @@
     ],
     "technique/folded-axial-billboard": [],
     "technique/history-ribbon": [],
-    "technique/inner-cut-sdf": [],
+    "technique/inner-cut-sdf": [
+      {
+        "derived": true,
+        "reason": "同じ「固定外形から内側を抜く」役割。こちらは距離場テクスチャを使わず、厚みの形を弧に沿った関数で持つ。",
+        "relation_index": 1,
+        "source": "technique/analytic-crescent-uv",
+        "target": "technique/analytic-crescent-uv",
+        "type": "alternative"
+      }
+    ],
     "technique/mesh-core": [
       {
         "derived": true,

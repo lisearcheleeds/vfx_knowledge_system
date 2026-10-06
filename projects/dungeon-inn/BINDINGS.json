@@ -20,14 +20,14 @@
           ],
           [
             "contour",
-            "technique/inner-cut-sdf",
-            "共有円SDFは内側の抜きだけ。色UVと輪郭座標を分離。",
-            "固有の厚み・戻り短縮・終了は制作記録を参照。"
+            "technique/analytic-crescent-uv",
+            "弧帯UV上の解析式。厚みの最大は振り終わり寄り0.65、最大の厚み0.62m（外半径1.6m）、両端は尖らせる。外縁の明部と外光、筋の流れ。",
+            "Rise0.075秒（前半で大きく上げる）と抜き・短縮を同時開始。0.22秒で細い外縁、0.30秒までに先端へ縮んで消える。"
           ]
         ],
         "timing": "発火時点で刃が通過済み。判定範囲はgame_contractを保持し、ゲーム接続は未実施。",
-        "decision": "旧動作同期・履歴主案から完成残像の専用Selectionへ変更。短剣も針ではなく深く細い三日月。",
-        "sharing": "SDF素材とShaderを共有。形・幅・奥行き・残留は専用調整。DrawCall統合は未検証。"
+        "decision": "前任版を参照せず作り直した解析式の三日月を採用（85点）。火花は命中演出へ分離。消失カーブの調整が残る。",
+        "sharing": "Shaderは基準版専用（ユーザー判断で新設を許可）。共通Shaderへの統合はゲーム用の段階で決める。"
       },
       "mapping_notes": "実EffectIdと採用値は制作記録を参照。今回の承認は基準版の見た目。ゲーム用削減・ゲーム時計/Pool接続・実機性能は別段階。旧提案はinitial_proposalに保持。",
       "initial_proposal": {
@@ -64,9 +64,16 @@
       },
       "adopted_selection": {
         "scope": "completed-afterimage-baseline-preview",
+        "path": "runs/sword-slash-2-2026-10-06.selection.yaml",
+        "production_record": "runs/sword-slash-2-2026-10-06.md",
+        "status": "appearance-rated-85-curve-tuning-pending"
+      },
+      "previous_adoption": {
+        "scope": "completed-afterimage-baseline-preview",
         "path": "runs/slash-afterimage-2026-10-06.selection.yaml",
         "production_record": "runs/slash-afterimage-2026-10-06.md",
-        "status": "appearance-approved-game-integration-unverified"
+        "status": "appearance-approved-game-integration-unverified",
+        "note": "内側SDFの版（1020001001_SwordSlash）。ユーザー評価65点。"
       }
     },
     {

@@ -8,12 +8,12 @@
 | --- | --- |
 | Semantic | 16 |
 | Composition | 5 |
-| Recipe | 63 |
-| Technique | 22 |
+| Recipe | 64 |
+| Technique | 23 |
 | Resource / Rendering | 6 / 3 |
-| Evaluation / Evidence | 3 / 5 |
-| Adapter | 2 |
-| 合計 | 125 |
+| Evaluation / Evidence | 3 / 6 |
+| Adapter | 3 |
+| 合計 | 129 |
 
 Recipe/Technique/Adapterを含む122ノードはdraft。実行Evidence 3件はreviewedで、観察・出典・適用範囲を確認した記録。validatedノードはない。Adapterのengine-testedは記録したWindows Editor条件で実描画したことを示し、製品品質・性能の保証ではない。
 
@@ -52,3 +52,7 @@ Windows / Python 3.13.2で自動テスト31件を実行して成功した。共�
 [Aの工程表](QUALITY_BASELINE_WORKFLOW.md)を12工程で定めた。各工程にゴール・成果物・到達条件・戻り先を持たせ、全体像/時間/役割分解の省略、既存設定の修正だけの制作、機械確認による美術評価の代行を防ぐ。[B](GAME_ASSET_WORKFLOW.md)は完成実物の再因数分解から始まる独立工程。[制作計画](../templates/QUALITY_BASELINE_PLAN.md)と既存テンプレート、設計書、入口も対応。
 
 これは工程の改訂。新工程で制作を再開した実績・最高品質達成の証拠はまだない。新しい実行Evidenceやvalidatedノードを追加していない。登録ノード125件と既存の実行記録は変更しない。
+
+## 剣の作り直しの知識還元（2026-10-06）
+
+前任版（65点）を参照せず作り直した剣の残像が85点と評価された。解析式の三日月の技法、Unity Adapter、命中の火花のRecipe、実行Evidenceを追加し、斬撃残像のRecipeを改訂2として解析式を優先案にした。火花は命中演出として98点。消失の時間カーブの調整が残り、最高品質基準版の完成承認ではない。ゲーム用削減・統合・性能は未検証。

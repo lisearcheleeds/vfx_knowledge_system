@@ -4,6 +4,7 @@
 
 | ID | 名前 | 状態 |
 | --- | --- | --- |
+| `adapter/unity-urp-analytic-crescent` | [Unity URP：弧帯Meshと解析式の三日月Shader](../adapters/unity-urp-analytic-crescent.md) | draft |
 | `adapter/unity-urp-inner-cut-afterimage` | [Unity URP：静止Meshと内側SDFの斬撃残像](../adapters/unity-urp-inner-cut-afterimage.md) | draft |
 | `adapter/unity-urp-noise-density` | [Unity URP：粒子の密度体積・方向流れ・煙](../adapters/unity-urp-noise-density.md) | draft |
 | `composition/combat-readability` | [戦闘エフェクトの主役・補助・状態の階層](../knowledge/compositions/combat-readability.md) | draft |
@@ -18,6 +19,7 @@
 | `evidence/organic-fire-volume-preview` | [体積炎・方向流れ・煙のPreview制作と人間評価](../evidence/organic-fire-volume-preview.md) | reviewed |
 | `evidence/particle-simulation-and-renderer-source` | [粒子シミュレーションと描画方法の分離に関する一次資料](../evidence/particle-simulation-and-renderer-source.md) | draft |
 | `evidence/quality-baseline-to-core-only` | [品質基準版からCore単独への削減と見た目承認](../evidence/quality-baseline-to-core-only.md) | reviewed |
+| `evidence/sword-slash-analytic-crescent-preview` | [剣の斬撃残像を解析式の三日月で作り直したPreview記録](../evidence/sword-slash-analytic-crescent-preview.md) | reviewed |
 | `evidence/vfx-gameplay-clarity-source` | [VFXのゲーム情報と美術的一貫性に関する一次資料](../evidence/vfx-gameplay-clarity-source.md) | draft |
 | `recipe/accented-heavy-impact` | [強打：短く締めた強い打撃](../knowledge/recipes/abilities/accented-heavy-impact.md) | draft |
 | `recipe/aquatic-protein-consumption` | [魚系の食材：銀の小片と淡青の縁](../knowledge/recipes/consumption/aquatic-protein-consumption.md) | draft |
@@ -43,6 +45,7 @@
 | `recipe/mana-remedy-use` | [魔力回復液の飲用：小さな結晶の収束](../knowledge/recipes/consumption/mana-remedy-use.md) | draft |
 | `recipe/meal-vitality` | [食事由来の活力：暖かな攻撃強化](../knowledge/recipes/states/meal-vitality.md) | draft |
 | `recipe/meal-vitality-activation` | [食事による活力付与：暖かな収束と小さな継続表示](../knowledge/recipes/abilities/meal-vitality-activation.md) | draft |
+| `recipe/metal-contact-sparks` | [金属の接触火花と一瞬の閃き](../knowledge/recipes/impacts/metal-contact-sparks.md) | draft |
 | `recipe/periodic-health-restoration` | [継続HP回復：葉の識別と実回復パルス](../knowledge/recipes/states/periodic-health-restoration.md) | draft |
 | `recipe/periodic-mana-restoration` | [継続MP回復：結晶の識別と内向きの脈動](../knowledge/recipes/states/periodic-mana-restoration.md) | draft |
 | `recipe/premium-remedy-use` | [上質な回復液の飲用：真珠と暖金の収束](../knowledge/recipes/consumption/premium-remedy-use.md) | draft |
@@ -107,6 +110,7 @@
 | `semantic/restoration` | [回復](../knowledge/semantics/restoration.md) | draft |
 | `semantic/slash` | [斬撃](../knowledge/semantics/slash.md) | draft |
 | `semantic/starchy-food` | [芋・でんぷん質の食事](../knowledge/semantics/starchy-food.md) | draft |
+| `technique/analytic-crescent-uv` | [弧帯UV上の解析式で描く非対称の三日月](../knowledge/techniques/analytic-crescent-uv.md) | draft |
 | `technique/arc-sweep` | [弧状メッシュの展開による斬撃](../knowledge/techniques/arc-sweep.md) | draft |
 | `technique/billboard` | [ビルボード](../knowledge/techniques/billboard.md) | draft |
 | `technique/body-shell` | [小さな身体表面の発動パルス](../knowledge/techniques/body-shell.md) | draft |
