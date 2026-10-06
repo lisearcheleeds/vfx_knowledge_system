@@ -1,51 +1,66 @@
 ---
-schema_version: "0.1.0"
-id: "recipe/weapon-dagger"
-kind: "recipe"
-title: "短剣：小さく鋭い刺突"
-summary: "短い針と一点の白芯で、短剣の速さと密接した接触を表す。"
-status: "draft"
-revision: 1
-updated_at: "2026-10-04"
-aliases: ["短剣：小さく鋭い刺突","dagger"]
-tags: ["recipe","combat"]
-scope: "engine-neutral"
+schema_version: 0.1.0
+id: recipe/weapon-dagger
+kind: recipe
+title: 短剣の実刺突：小さく鋭い針
+summary: 実際に突き刺す攻撃の候補。短剣の素早い切りや判定後の三日月残像は別レシピで選ぶ。
+status: draft
+revision: 2
+updated_at: '2026-10-06'
+aliases:
+- 短剣：小さく鋭い刺突
+- dagger
+tags:
+- recipe
+- combat
+scope: engine-neutral
 relations:
-  - target: "semantic/piercing"
-    type: "expresses"
-    reason: "この演出が伝える意味と視覚要件。"
-  - target: "composition/melee-strike"
-    type: "composes"
-    requirement: "required"
-    role: "lifecycle"
-    reason: "この推奨構成の時間・空間・発動と終了の契約。"
-  - target: "composition/combat-readability"
-    type: "composes"
-    requirement: "required"
-    role: "visual-hierarchy"
-    reason: "主形状・接触・状態の明度と面積を整理する。"
-  - target: "technique/directional-streak"
-    type: "composes"
-    requirement: "required"
-    role: "short-thrust"
-    reason: "刃の軸に沿う0.45Lの針。幅0.025L、暖白の芯。"
-  - target: "recipe/impact-pierce"
-    type: "composes"
-    requirement: "required"
-    role: "hit"
-    reason: "直径0.18Wへ小さく締めた接触。"
-  - target: "evaluation/combat-shape-and-events"
-    type: "evaluated_by"
-    reason: "採用先の実画面で形・イベント・終了条件を確認する。"
+- target: semantic/piercing
+  type: expresses
+  reason: この演出が伝える意味と視覚要件。
+- target: composition/melee-strike
+  type: composes
+  requirement: required
+  role: lifecycle
+  reason: この推奨構成の時間・空間・発動と終了の契約。
+- target: composition/combat-readability
+  type: composes
+  requirement: required
+  role: visual-hierarchy
+  reason: 主形状・接触・状態の明度と面積を整理する。
+- target: technique/directional-streak
+  type: composes
+  requirement: required
+  role: short-thrust
+  reason: 刃の軸に沿う0.45Lの針。幅0.025L、暖白の芯。
+- target: recipe/impact-pierce
+  type: composes
+  requirement: required
+  role: hit
+  reason: 直径0.18Wへ小さく締めた接触。
+- target: evaluation/combat-shape-and-events
+  type: evaluated_by
+  reason: 採用先の実画面で形・イベント・終了条件を確認する。
+- target: recipe/completed-slash-afterimage
+  type: candidate
+  reason: 判定後の完成残像は別構成として選ぶ。
+  when: 発火時点で刃が通過済みの空間を表現する場合。
+  role: afterimage
 evidence: []
 superseded_by: []
 ---
 
-# 短剣：小さく鋭い刺突
+# 短剣の実刺突：小さく鋭い針
+
+## 適用条件の改訂：動作中と判定後を分ける
+
+上記は実際の振り・刺突に同期する初稿候補で、武器全般の唯一の表現ではない。発火時点で刃が通過済みなら、[完成した三日月の残像](../completed-slash-afterimage.md)を先に比較する。このレシピの展開・実履歴・Contactの必須依存を、残像だけのPreviewへ持ち込まない。採用先でSelectionを分ける。
+
+武器名や既存アセット名だけで刺突・斬撃を確定しない。金属色と十分な色面opacityは採用先の美術基準に従い、上の象牙・青灰や秒数を無条件に固定しない。フェードインを保持して、消失との重なりも確認する。旧主案の実装・性能は未検証のまま残す。
 
 ## 推奨する主案
 
-短剣は広い弧ではなく、短距離の急な前進と接触点を主役にする。粒子の余韻を少なくし、次の短い動作の邪魔をしない。
+実際に突き刺す短剣攻撃を表す場合、短距離の急な前進と接触点を主役にする。粒子の余韻を少なくし、次の短い動作の邪魔をしない。
 
 ## 採用先が渡す入力
 

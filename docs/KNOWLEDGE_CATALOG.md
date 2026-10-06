@@ -6,13 +6,15 @@
 
 ## 武器・自然武器の攻撃
 
+発火時点を先に確認する。判定後の剣・短剣・大剣は[完成した三日月の残像](../knowledge/recipes/completed-slash-afterimage.md)が新しい入口。以下の動作同期・実刺突案を武器名だけで選ばない。
+
 | 推奨レシピ | 主案 |
 | --- | --- |
-| [剣：鋭く薄い扇状の斬撃](../knowledge/recipes/weapons/weapon-sword.md) | 薄い象牙色の入力角度θ弧と一点の切断反応で、標準的な剣の切れを作る。 |
+| [剣の動作同期](../knowledge/recipes/weapons/weapon-sword.md) | 動作中の刃を見せる候補。判定後は下の完成残像を比較する。 |
 | [斧：先端の重い扇状の振り抜き](../knowledge/recipes/weapons/weapon-axe.md) | 先端が厚い弧と遅れる重い残留で、斧の刃重と振り抜きを見せる。 |
-| [大剣：長く厚い扇状の斬撃](../knowledge/recipes/weapons/weapon-greatsword.md) | 長い外縁と幅広い内側の遅れで、大剣の刃渡りと慣性を表す。 |
+| [大剣の動作同期](../knowledge/recipes/weapons/weapon-greatsword.md) | 動作中の大型刃の候補。判定後は完成残像を比較する。 |
 | [鎌：途切れない円形の薙ぎ](../knowledge/recipes/weapons/weapon-scythe.md) | 細い円周を刃先に沿って一周展開し、円形攻撃の流れを保つ。 |
-| [短剣：小さく鋭い刺突](../knowledge/recipes/weapons/weapon-dagger.md) | 短い針と一点の白芯で、短剣の速さと密接した接触を表す。 |
+| [短剣の実刺突](../knowledge/recipes/weapons/weapon-dagger.md) | 実際に突く攻撃だけの候補。短剣の切りを針へ自動分類しない。 |
 | [槍：長い軸を通す刺突](../knowledge/recipes/weapons/weapon-spear.md) | 槍先から伸びる細い軸と二本の短い側筋で、直線的な到達を見せる。 |
 | [棒：しなる後流と面の打撃](../knowledge/recipes/weapons/weapon-rod.md) | 棒先の灰白の後流を短くつなぎ、接触で幅広い衝撃へ切り替える。 |
 | [拳：短い拳圧と鋭い接触](../knowledge/recipes/weapons/weapon-fist.md) | 拳の前に短い圧縮形状を置き、局所の放射でパンチを締める。 |
@@ -106,3 +108,9 @@
 - [変換Evidence](../evidence/quality-baseline-to-core-only.md)と[固有の変換例](../projects/dungeon-inn/runs/fireball-downscale-2026-10-04.md)：採否、失敗、完成品質承認、未計測の範囲。
 
 共通技法はdraft。構造検証・人間の見た目承認・製品実機性能を別々に扱う。
+
+## 判定後の完成残像を選ぶ入口
+
+剣・大剣の旧武器Recipeは動作同期の候補、短剣の旧Recipeは実刺突の候補。武器名だけで自動採用しない。判定後に発火する場合は[完成した三日月の残像](../knowledge/recipes/completed-slash-afterimage.md)、[完成弧](../knowledge/techniques/completed-arc-afterimage.md)、[内側SDF](../knowledge/techniques/inner-cut-sdf.md)、[距離素材](../knowledge/resources/signed-distance-mask.md)、[Unity Adapter](../adapters/unity-urp-inner-cut-afterimage.md)を比較する。
+
+[実行Evidence](../evidence/completed-slash-inner-cut-preview.md)と[三種のフィードバック差分析](../projects/dungeon-inn/runs/slash-afterimage-2026-10-06.md)に適用条件・失敗・見た目承認・未検証範囲を分離した。固有の採用色や秒数を共通の普遍値として扱わない。

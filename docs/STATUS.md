@@ -8,14 +8,14 @@
 | --- | --- |
 | Semantic | 16 |
 | Composition | 5 |
-| Recipe | 62 |
-| Technique | 20 |
-| Resource / Rendering | 5 / 3 |
-| Evaluation / Evidence | 3 / 4 |
-| Adapter | 1 |
-| 合計 | 119 |
+| Recipe | 63 |
+| Technique | 22 |
+| Resource / Rendering | 6 / 3 |
+| Evaluation / Evidence | 3 / 5 |
+| Adapter | 2 |
+| 合計 | 125 |
 
-Recipe/Technique/Adapterを含む117ノードはdraft。実行Evidence 2件はreviewedで、観察・出典・適用範囲を確認した記録。validatedノードはない。Adapterのengine-testedは記録したWindows Editor条件で実描画したことを示し、製品品質・性能の保証ではない。
+Recipe/Technique/Adapterを含む122ノードはdraft。実行Evidence 3件はreviewedで、観察・出典・適用範囲を確認した記録。validatedノードはない。Adapterのengine-testedは記録したWindows Editor条件で実描画したことを示し、製品品質・性能の保証ではない。
 
 Windows / Python 3.13.2で自動テスト31件を実行して成功した。共有、候補の分離、索引・逆参照、重複ID・存在しない参照・必須循環、全61対象の参照、食品外観とゲーム効果の分離を確認する。改訂3の火球は高品質の体積基準版の構成を保持し、面上密度を代替へ追加。採用対応表は最新の飛翔Selectionを指定し、品質基準版を履歴へ分離。旧体積・外炎・Trailが最新飛翔の必須依存へ混入しないことも確認する。
 
@@ -42,3 +42,7 @@ Windows / Python 3.13.2で自動テスト31件を実行して成功した。共�
 5. 剣/刺突/打撃や食品・複合状態の制作循環、Unreal/Godot等のAdapterを各条件で実証する。
 
 今回の成功を全Recipe・全エンジンの再現保証へ拡張しない。
+
+## 完成した斬撃残像の知識還元
+
+[剣・短剣・大剣の差分析](../projects/dungeon-inn/runs/slash-afterimage-2026-10-06.md)を追加した。完成外形、深い三日月、内側SDF、色面と縁透明化、並列の立上り/消失を記録し、旧武器レシピにも適用条件と新方式の入口を追加した。三件の基準版は見た目承認済み。ゲーム用削減・統合・実機性能は未検証。今回Unityを再実行していない。

@@ -30,7 +30,7 @@
 
 エンジンで実行していないRecipe・Adapterは、その事実を明示する。出典から確認できた仕様、設計上の仮説、実際の再現結果を分ける。実測値・成功記録を補完または創作しない。
 
-初期版は全ノード `draft`。火球の品質基準版とCore削減版の実行Evidence 2件を `reviewed` とし、Recipe・Technique・Adapterは `draft` を維持している。`validated` の形式検証では対象IDを明記した根拠を要求し、Recipe・Adapterにはエンジン実行記録を要求する。形式を通すために架空の記録を埋めない。証拠の真正性と適用範囲はレビューする。
+初期版は全ノード `draft`。火球の品質基準版・Core削減版と斬撃残像の実行Evidence 3件を `reviewed` とし、Recipe・Technique・Adapterは `draft` を維持している。`validated` の形式検証では対象IDを明記した根拠を要求し、Recipe・Adapterにはエンジン実行記録を要求する。形式を通すために架空の記録を埋めない。証拠の真正性と適用範囲はレビューする。
 
 ## 6. 再利用・拡張と不正入力を確認する
 

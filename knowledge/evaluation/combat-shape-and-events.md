@@ -1,16 +1,21 @@
 ---
-schema_version: "0.1.0"
-id: "evaluation/combat-shape-and-events"
-kind: "evaluation"
-title: "攻撃の形・範囲・接触時刻の評価"
-summary: "武器ごとのシルエットと発動・命中・範囲を、実際のゲーム入力に合わせて確認する。"
-status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+schema_version: 0.1.0
+id: evaluation/combat-shape-and-events
+kind: evaluation
+title: 攻撃の形・範囲・接触時刻の評価
+summary: 武器ごとのシルエットと発動・命中・範囲を、実際のゲーム入力に合わせて確認する。
+status: draft
+revision: 2
+updated_at: '2026-10-06'
 aliases: []
-tags: ["evaluation","combat"]
-scope: "engine-neutral"
-relations: []
+tags:
+- evaluation
+- combat
+scope: engine-neutral
+relations:
+- target: evidence/completed-slash-inner-cut-preview
+  type: candidate
+  reason: 時間と輪郭を分けて確認した限定例。
 evidence: []
 superseded_by: []
 ---
@@ -27,8 +32,16 @@ superseded_by: []
 強い攻撃でも人物、対象、頭上UIが読めること。多数の接触反応を合成した画面で主役の向きが消えないこと。飛翔速度はゲーム側の値から変更していないこと。
 
 ## 証拠
-通常速度動画とイベント時刻、明暗背景、近遠・側面、同時表示数、端末・解像度・CPU/GPU測定を残す。提案された粒子数だけで性能合格にしない。実際の結果は未取得。
+通常速度のライブPreview等でイベント時刻と見た目を確認する。画像・動画の保存は依頼・権限に従う。明暗背景、近遠・側面、同時表示数と、測定を行った場合の端末・解像度・CPU/GPU条件を残す。提案された粒子数だけで性能合格にしない。実際の結果は未取得。
 
 ## 検証状態
 
 実装・エンジン再生・撮影・性能測定は未実施。数値は制作初期値であり、実測値ではない。
+
+## 残像を評価する時間チェック
+
+発火時点で攻撃が完了しているかを先に確認する。完成外形を置く場合も0秒から突然不透明にしない。立上り開始・途中・終わりと消失開始を秒で記録し、並列が必要なら立上り中の輪郭進行を分離して見る。
+
+参照の初期・中間・後半・薄い終端を照合し、曲線の食い込み、帯幅、残す端、根元、回転中心と端点の区別を確認する。参照のコマ配置をエフェクトの移動と解釈しない。単純な画素数減少、静止画一枚、設定値の存在だけで方向表現を合格にしない。
+
+主役だけ・補助だけ・合成後を通常速度と代表時刻で見る。指摘対象以外の形・色・立上り・流れを失っていないことを確認する。実施済みの残像Previewは[限定実行記録](../../evidence/completed-slash-inner-cut-preview.md)を参照。ゲーム入力・実機負荷の未検証部分とは分ける。

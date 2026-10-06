@@ -2,17 +2,17 @@
 
 [受領仕様](INPUT.md)と[美術方針](ART_DIRECTION.md)に基づく採用案。[BINDINGS.json](BINDINGS.json)に全61対象のゲーム契約・採用Recipe・レイヤー調整を記録する。共通知識は汎用の形・構成・技法として登録し、固有IDや時間はこのフォルダに置く。
 
-共通Recipeは具体的な主案を持つ。候補・代替は自動採用しない。Recipeはdraft。火球の射出・飛翔・着弾はUnity Previewで制作・撮影し、[制作記録](runs/fireball-2026-10-04.md)へ知見を保存した。後続の[変換例](runs/fireball-downscale-2026-10-04.md)では飛翔をCore単独に削減し、折り目比率の修正後に完成品質の見た目承認を得た。内部構造の独立レビュー・ゲーム接続・実機性能は未確認。他対象は未実装。ナレッジIDは実行時EffectIdではない。
+共通Recipeは具体的な主案を持つ。候補・代替は自動採用しない。Recipeはdraft。火球の射出・飛翔・着弾はUnity Previewで制作・撮影し、[制作記録](runs/fireball-2026-10-04.md)へ知見を保存した。後続の[変換例](runs/fireball-downscale-2026-10-04.md)では飛翔をCore単独に削減し、折り目比率の修正後に完成品質の見た目承認を得た。内部構造の独立レビュー・ゲーム接続・実機性能は未確認。剣・短剣・大剣の残像基準版も見た目承認済み。その他の制作・評価はこの更新では追認せず、実装側の記録を参照する。ナレッジIDは実行時EffectIdではない。
 
 ## 通常攻撃：16種
 
 | 対象 | 採用する共通知識 | このゲームの契約 |
 | --- | --- | --- |
-| 剣 | [recipe/weapon-sword](../../knowledge/recipes/weapons/weapon-sword.md) | 通常攻撃：扇形90度。射程・運動面・有効タイミングはゲーム入力。 |
+| 剣 | [完成残像Selection](runs/slash-afterimage-2026-10-06.selection.yaml) | 通常攻撃：扇形90度。射程・運動面・有効タイミングはゲーム入力。 |
 | 斧 | [recipe/weapon-axe](../../knowledge/recipes/weapons/weapon-axe.md) | 通常攻撃：扇形120度。 |
-| 大剣 | [recipe/weapon-greatsword](../../knowledge/recipes/weapons/weapon-greatsword.md) | 通常攻撃：扇形110度。現在の装備/ActorArchetypeからの参照なし。定義済み候補として保持。 |
+| 大剣 | [完成残像Selection](runs/slash-afterimage-2026-10-06.selection.yaml) | 通常攻撃：扇形110度。現在の装備/ActorArchetypeからの参照なし。定義済み候補として保持。 |
 | 鎌 | [recipe/weapon-scythe](../../knowledge/recipes/weapons/weapon-scythe.md) | 通常攻撃：円形、判定持続0.35秒。半径はゲーム入力。 |
-| 短剣 | [recipe/weapon-dagger](../../knowledge/recipes/weapons/weapon-dagger.md) | 通常攻撃：直接攻撃。射程・予備動作は未提供。 |
+| 短剣 | [完成残像Selection](runs/slash-afterimage-2026-10-06.selection.yaml) | 通常攻撃：直接攻撃。射程・予備動作は未提供。 |
 | 槍 | [recipe/weapon-spear](../../knowledge/recipes/weapons/weapon-spear.md) | 通常攻撃：直接攻撃。現在の装備/ActorArchetypeから参照なし。定義済み候補として保持。 |
 | 棒 | [recipe/weapon-rod](../../knowledge/recipes/weapons/weapon-rod.md) | 通常攻撃：直接攻撃。 |
 | 拳 | [recipe/weapon-fist](../../knowledge/recipes/weapons/weapon-fist.md) | 通常攻撃：直接攻撃。 |
@@ -111,3 +111,7 @@ Item2102は「米・穀物」の見た目として `recipe/grain-consumption` �
 急所突き・地響き・呪いの眼光のActorEffect9/12対応、まかない料理の具体的なActorEffectIdは未照合。ヒール→ActorEffect8は初回表の記載順に基づく。最終EffectIdとPrefab/Material/Variantの共用は試作比較後に決める。
 
 火球は最新のCore単独飛翔をゲームへ接続し、保持した射出・着弾を含めて密集・中断・終了・再利用・実機性能を確認する。剣/刺突/打撃や食事の複合状態は試作から開始し、明暗背景・密集・再付与・解除を確認する。別プロジェクトの参照・実装前にはユーザーへ確認する。
+
+## 剣・短剣・大剣の最新採用（2026-10-06）
+
+三件の判定後の残像基準版は見た目承認済み。[差分析・制作記録](runs/slash-afterimage-2026-10-06.md)と[Selection](runs/slash-afterimage-2026-10-06.selection.yaml)が最新採用。上の初期主案は履歴として読み、BINDINGSのadopted_selectionを優先する。ゲーム用削減・統合・性能は未完了。他の通常攻撃・スキルの承認を意味しない。

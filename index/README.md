@@ -4,6 +4,7 @@
 
 | ID | 名前 | 状態 |
 | --- | --- | --- |
+| `adapter/unity-urp-inner-cut-afterimage` | [Unity URP：静止Meshと内側SDFの斬撃残像](../adapters/unity-urp-inner-cut-afterimage.md) | draft |
 | `adapter/unity-urp-noise-density` | [Unity URP：粒子の密度体積・方向流れ・煙](../adapters/unity-urp-noise-density.md) | draft |
 | `composition/combat-readability` | [戦闘エフェクトの主役・補助・状態の階層](../knowledge/compositions/combat-readability.md) | draft |
 | `composition/melee-strike` | [近接攻撃の振り・接触・残留](../knowledge/compositions/melee-strike.md) | draft |
@@ -13,6 +14,7 @@
 | `evaluation/combat-shape-and-events` | [攻撃の形・範囲・接触時刻の評価](../knowledge/evaluation/combat-shape-and-events.md) | draft |
 | `evaluation/projectile-readability` | [投射体の視認性とライフサイクルの評価](../knowledge/evaluation/projectile-readability.md) | draft |
 | `evaluation/status-refresh-and-overlap` | [状態の更新・複合時間・重複表示の評価](../knowledge/evaluation/status-refresh-and-overlap.md) | draft |
+| `evidence/completed-slash-inner-cut-preview` | [斬撃残像の内側SDFと並列立上りのPreview記録](../evidence/completed-slash-inner-cut-preview.md) | reviewed |
 | `evidence/organic-fire-volume-preview` | [体積炎・方向流れ・煙のPreview制作と人間評価](../evidence/organic-fire-volume-preview.md) | reviewed |
 | `evidence/particle-simulation-and-renderer-source` | [粒子シミュレーションと描画方法の分離に関する一次資料](../evidence/particle-simulation-and-renderer-source.md) | draft |
 | `evidence/quality-baseline-to-core-only` | [品質基準版からCore単独への削減と見た目承認](../evidence/quality-baseline-to-core-only.md) | reviewed |
@@ -23,6 +25,7 @@
 | `recipe/charged-arrow` | [狙い撃ち：張り詰めた収束と強い矢](../knowledge/recipes/abilities/charged-arrow.md) | draft |
 | `recipe/charged-heavy-impact` | [剛腕の一撃：長い圧縮からの強い一点解放](../knowledge/recipes/abilities/charged-heavy-impact.md) | draft |
 | `recipe/circular-slash` | [旋回斬撃：一周する主弧と低い風の残留](../knowledge/recipes/abilities/circular-slash.md) | draft |
+| `recipe/completed-slash-afterimage` | [完成した三日月の斬撃残像](../knowledge/recipes/completed-slash-afterimage.md) | draft |
 | `recipe/crispy-food-consumption` | [衣のある料理：少数の暖金の欠片](../knowledge/recipes/consumption/crispy-food-consumption.md) | draft |
 | `recipe/enhanced-health-restoration` | [強調HP回復：二段の付与と葉の識別](../knowledge/recipes/states/enhanced-health-restoration.md) | draft |
 | `recipe/fireball-readable-core` | [輪郭を重視したファイアボール](../knowledge/recipes/fireball-readable-core.md) | draft |
@@ -66,17 +69,17 @@
 | `recipe/weapon-bow` | [弓：実体の矢と短い飛翔線](../knowledge/recipes/weapons/weapon-bow.md) | draft |
 | `recipe/weapon-claw` | [爪：並行する三本の引っかき](../knowledge/recipes/weapons/weapon-claw.md) | draft |
 | `recipe/weapon-crossbow` | [クロスボウ：硬い射出と短いボルト](../knowledge/recipes/weapons/weapon-crossbow.md) | draft |
-| `recipe/weapon-dagger` | [短剣：小さく鋭い刺突](../knowledge/recipes/weapons/weapon-dagger.md) | draft |
+| `recipe/weapon-dagger` | [短剣の実刺突：小さく鋭い針](../knowledge/recipes/weapons/weapon-dagger.md) | draft |
 | `recipe/weapon-fang` | [牙：内へ閉じる二点の噛みつき](../knowledge/recipes/weapons/weapon-fang.md) | draft |
 | `recipe/weapon-fist` | [拳：短い拳圧と鋭い接触](../knowledge/recipes/weapons/weapon-fist.md) | draft |
 | `recipe/weapon-greatshield` | [大盾：面で押し込む衝撃](../knowledge/recipes/weapons/weapon-greatshield.md) | draft |
-| `recipe/weapon-greatsword` | [大剣：長く厚い扇状の斬撃](../knowledge/recipes/weapons/weapon-greatsword.md) | draft |
+| `recipe/weapon-greatsword` | [大剣の動作同期：長く厚い弧](../knowledge/recipes/weapons/weapon-greatsword.md) | draft |
 | `recipe/weapon-ironfan` | [鉄扇：薄い三筋の切り返し](../knowledge/recipes/weapons/weapon-ironfan.md) | draft |
 | `recipe/weapon-rod` | [棒：しなる後流と面の打撃](../knowledge/recipes/weapons/weapon-rod.md) | draft |
 | `recipe/weapon-scythe` | [鎌：途切れない円形の薙ぎ](../knowledge/recipes/weapons/weapon-scythe.md) | draft |
 | `recipe/weapon-spear` | [槍：長い軸を通す刺突](../knowledge/recipes/weapons/weapon-spear.md) | draft |
 | `recipe/weapon-staff` | [杖：丸い魔法核と柔らかな尾](../knowledge/recipes/weapons/weapon-staff.md) | draft |
-| `recipe/weapon-sword` | [剣：鋭く薄い扇状の斬撃](../knowledge/recipes/weapons/weapon-sword.md) | draft |
+| `recipe/weapon-sword` | [剣の動作同期：鋭く薄い弧](../knowledge/recipes/weapons/weapon-sword.md) | draft |
 | `recipe/weapon-wand` | [ワンド：小さな滴状の魔法弾](../knowledge/recipes/weapons/weapon-wand.md) | draft |
 | `recipe/wide-weapon-sweep` | [広域なぎ払い：横へ押し抜く主弧](../knowledge/recipes/abilities/wide-weapon-sweep.md) | draft |
 | `rendering/emission-and-opacity` | [発光の芯と色の面を分ける合成](../knowledge/rendering/emission-and-opacity.md) | draft |
@@ -85,6 +88,7 @@
 | `resource/effect-mask-atlas` | [戦闘・状態用の形状マスクAtlas](../knowledge/resources/effect-mask-atlas.md) | draft |
 | `resource/flame-flipbook` | [方向性を持つ火炎Flipbook](../knowledge/resources/flame-flipbook.md) | draft |
 | `resource/periodic-density-noise` | [周期的な密度・セル・変位ノイズ](../knowledge/resources/periodic-density-noise.md) | draft |
+| `resource/signed-distance-mask` | [輪郭を抜く符号付き距離マスク](../knowledge/resources/signed-distance-mask.md) | draft |
 | `resource/smoke-flipbook` | [衝撃後の薄い煙と粉塵Flipbook](../knowledge/resources/smoke-flipbook.md) | draft |
 | `resource/unit-effect-mesh-kit` | [弧・帯・針・輪・円錐・核の単位メッシュ](../knowledge/resources/unit-effect-mesh-kit.md) | draft |
 | `semantic/attack-buff` | [攻撃強化](../knowledge/semantics/attack-buff.md) | draft |
@@ -106,6 +110,7 @@
 | `technique/arc-sweep` | [弧状メッシュの展開による斬撃](../knowledge/techniques/arc-sweep.md) | draft |
 | `technique/billboard` | [ビルボード](../knowledge/techniques/billboard.md) | draft |
 | `technique/body-shell` | [小さな身体表面の発動パルス](../knowledge/techniques/body-shell.md) | draft |
+| `technique/completed-arc-afterimage` | [判定後の完成した斬撃残像](../knowledge/techniques/completed-arc-afterimage.md) | draft |
 | `technique/cone-burst` | [瞬間範囲を埋める円錐状の解放](../knowledge/techniques/cone-burst.md) | draft |
 | `technique/converge-motes` | [詠唱点へ収束する光点](../knowledge/techniques/converge-motes.md) | draft |
 | `technique/directional-flow-surface` | [進行方向に流れる侵食Mesh面](../knowledge/techniques/directional-flow-surface.md) | draft |
@@ -114,6 +119,7 @@
 | `technique/flipbook-particles` | [連番素材で形を保つ炎・煙の粒子](../knowledge/techniques/flipbook-particles.md) | draft |
 | `technique/folded-axial-billboard` | [折り曲げ式の軸固定ビルボード](../knowledge/techniques/folded-axial-billboard.md) | draft |
 | `technique/history-ribbon` | [移動履歴の先細り帯](../knowledge/techniques/history-ribbon.md) | draft |
+| `technique/inner-cut-sdf` | [固定外形から内側だけをSDFで抜く](../knowledge/techniques/inner-cut-sdf.md) | draft |
 | `technique/mesh-core` | [メッシュによる核](../knowledge/techniques/mesh-core.md) | draft |
 | `technique/orbit-glyphs` | [小さな周回記号による継続状態](../knowledge/techniques/orbit-glyphs.md) | draft |
 | `technique/oriented-projectile-core` | [前方を保つ投射体の実体](../knowledge/techniques/oriented-projectile-core.md) | draft |

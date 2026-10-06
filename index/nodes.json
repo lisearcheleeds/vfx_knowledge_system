@@ -1,5 +1,19 @@
 {
   "backlinks": {
+    "adapter/unity-urp-inner-cut-afterimage": [
+      {
+        "source": "evidence/completed-slash-inner-cut-preview",
+        "statement": "外部時計、シーク、保存値、Shaderを専用Editor Previewで検査した。",
+        "type": "claim"
+      },
+      {
+        "reason": "Unityで実行した候補。",
+        "relation_index": 4,
+        "source": "recipe/completed-slash-afterimage",
+        "target": "adapter/unity-urp-inner-cut-afterimage",
+        "type": "implemented_by"
+      }
+    ],
     "adapter/unity-urp-noise-density": [
       {
         "source": "evidence/organic-fire-volume-preview",
@@ -1197,6 +1211,13 @@
         "type": "evaluated_by"
       },
       {
+        "reason": "発火時点と時間を含めて確認する。",
+        "relation_index": 3,
+        "source": "recipe/completed-slash-afterimage",
+        "target": "evaluation/combat-shape-and-events",
+        "type": "evaluated_by"
+      },
+      {
         "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
         "relation_index": 4,
         "source": "recipe/crispy-food-consumption",
@@ -1614,6 +1635,35 @@
         "type": "evaluated_by"
       }
     ],
+    "evidence/completed-slash-inner-cut-preview": [
+      {
+        "source": "adapter/unity-urp-inner-cut-afterimage",
+        "type": "evidence"
+      },
+      {
+        "reason": "時間と輪郭を分けて確認した限定例。",
+        "relation_index": 0,
+        "source": "evaluation/combat-shape-and-events",
+        "target": "evidence/completed-slash-inner-cut-preview",
+        "type": "candidate"
+      },
+      {
+        "source": "recipe/completed-slash-afterimage",
+        "type": "evidence"
+      },
+      {
+        "source": "resource/signed-distance-mask",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/completed-arc-afterimage",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/inner-cut-sdf",
+        "type": "evidence"
+      }
+    ],
     "evidence/organic-fire-volume-preview": [
       {
         "source": "adapter/unity-urp-noise-density",
@@ -1708,6 +1758,35 @@
     "recipe/charged-arrow": [],
     "recipe/charged-heavy-impact": [],
     "recipe/circular-slash": [],
+    "recipe/completed-slash-afterimage": [
+      {
+        "reason": "判定後の完成残像は別構成として選ぶ。",
+        "relation_index": 6,
+        "role": "afterimage",
+        "source": "recipe/weapon-dagger",
+        "target": "recipe/completed-slash-afterimage",
+        "type": "candidate",
+        "when": "発火時点で刃が通過済みの空間を表現する場合。"
+      },
+      {
+        "reason": "判定後の完成残像は別構成として選ぶ。",
+        "relation_index": 7,
+        "role": "afterimage",
+        "source": "recipe/weapon-greatsword",
+        "target": "recipe/completed-slash-afterimage",
+        "type": "candidate",
+        "when": "発火時点で刃が通過済みの空間を表現する場合。"
+      },
+      {
+        "reason": "判定後の完成残像は別構成として選ぶ。",
+        "relation_index": 7,
+        "role": "afterimage",
+        "source": "recipe/weapon-sword",
+        "target": "recipe/completed-slash-afterimage",
+        "type": "candidate",
+        "when": "発火時点で刃が通過済みの空間を表現する場合。"
+      }
+    ],
     "recipe/crispy-food-consumption": [],
     "recipe/enhanced-health-restoration": [
       {
@@ -2624,6 +2703,13 @@
         "type": "requires"
       },
       {
+        "reason": "色面・縁coverage・全体opacityを分離する。",
+        "relation_index": 1,
+        "source": "technique/inner-cut-sdf",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
+      {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 1,
         "source": "technique/orbit-glyphs",
@@ -2676,6 +2762,13 @@
       }
     ],
     "rendering/world-depth-and-transparency": [
+      {
+        "reason": "透明合成と奥行き規約を確認する。",
+        "relation_index": 1,
+        "source": "adapter/unity-urp-inner-cut-afterimage",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
       {
         "reason": "通常透明Queueと奥行き設定の適用範囲を確認する。",
         "relation_index": 2,
@@ -2867,6 +2960,15 @@
         "relation_index": 0,
         "source": "technique/volume-density",
         "target": "resource/periodic-density-noise",
+        "type": "requires"
+      }
+    ],
+    "resource/signed-distance-mask": [
+      {
+        "reason": "内側境界の符号付き距離を使う。",
+        "relation_index": 0,
+        "source": "technique/inner-cut-sdf",
+        "target": "resource/signed-distance-mask",
         "type": "requires"
       }
     ],
@@ -3422,6 +3524,13 @@
         "type": "expresses"
       },
       {
+        "reason": "刃の通過方向と形を伝える。",
+        "relation_index": 2,
+        "source": "recipe/completed-slash-afterimage",
+        "target": "semantic/slash",
+        "type": "expresses"
+      },
+      {
         "reason": "この演出が伝える意味と視覚要件。",
         "relation_index": 0,
         "source": "recipe/impact-cut",
@@ -3467,6 +3576,13 @@
         "reason": "この演出が伝える意味と視覚要件。",
         "relation_index": 0,
         "source": "recipe/wide-weapon-sweep",
+        "target": "semantic/slash",
+        "type": "expresses"
+      },
+      {
+        "reason": "刃の通過方向を伝える。",
+        "relation_index": 1,
+        "source": "technique/completed-arc-afterimage",
         "target": "semantic/slash",
         "type": "expresses"
       }
@@ -3960,6 +4076,54 @@
         "source": "recipe/weakening-gaze",
         "target": "technique/body-shell",
         "type": "composes"
+      }
+    ],
+    "technique/completed-arc-afterimage": [
+      {
+        "reason": "判定後に表示する残像の分岐。",
+        "relation_index": 0,
+        "role": "afterimage",
+        "source": "composition/melee-strike",
+        "target": "technique/completed-arc-afterimage",
+        "type": "candidate"
+      },
+      {
+        "source": "evidence/completed-slash-inner-cut-preview",
+        "statement": "完成外形を置き、立上り中から輪郭消失を並列に進めた残像の基準版がユーザーに承認された。",
+        "type": "claim"
+      },
+      {
+        "reason": "判定後の固定空間に残像を置く。",
+        "relation_index": 0,
+        "requirement": "required",
+        "role": "afterimage",
+        "source": "recipe/completed-slash-afterimage",
+        "target": "technique/completed-arc-afterimage",
+        "type": "composes"
+      },
+      {
+        "reason": "判定後に表示する残像の分岐。",
+        "relation_index": 0,
+        "role": "afterimage",
+        "source": "semantic/slash",
+        "target": "technique/completed-arc-afterimage",
+        "type": "candidate"
+      },
+      {
+        "reason": "判定後に表示する残像の分岐。",
+        "relation_index": 5,
+        "role": "afterimage",
+        "source": "technique/arc-sweep",
+        "target": "technique/completed-arc-afterimage",
+        "type": "candidate"
+      },
+      {
+        "reason": "判定後に表示する残像の分岐。",
+        "relation_index": 1,
+        "role": "afterimage",
+        "source": "technique/uv-dissolve",
+        "target": "technique/completed-arc-afterimage",
+        "type": "candidate"
       }
     ],
     "technique/cone-burst": [
@@ -4515,6 +4679,37 @@
         "source": "recipe/wide-weapon-sweep",
         "target": "technique/history-ribbon",
         "type": "composes"
+      }
+    ],
+    "technique/inner-cut-sdf": [
+      {
+        "reason": "固定外形と内側穴を分ける。",
+        "relation_index": 0,
+        "source": "adapter/unity-urp-inner-cut-afterimage",
+        "target": "technique/inner-cut-sdf",
+        "type": "requires"
+      },
+      {
+        "source": "evidence/completed-slash-inner-cut-preview",
+        "statement": "固定外形と内側の距離場を分離し、四段階の参照に合わせた薄い外縁への変化をPreviewで確認した。",
+        "type": "claim"
+      },
+      {
+        "reason": "固定外形から曲線状の穴を拡げる。",
+        "relation_index": 1,
+        "requirement": "required",
+        "role": "contour",
+        "source": "recipe/completed-slash-afterimage",
+        "target": "technique/inner-cut-sdf",
+        "type": "composes"
+      },
+      {
+        "reason": "曲線状の内側境界で残像を薄くする候補。",
+        "relation_index": 0,
+        "role": "contour",
+        "source": "technique/completed-arc-afterimage",
+        "target": "technique/inner-cut-sdf",
+        "type": "candidate"
       }
     ],
     "technique/mesh-core": [
@@ -5311,6 +5506,48 @@
         "platforms": [
           "Windows Editor"
         ],
+        "renderer": "URP 17.3.0",
+        "verification": "engine-tested"
+      },
+      "engine": "unity",
+      "evidence": [
+        "evidence/completed-slash-inner-cut-preview"
+      ],
+      "id": "adapter/unity-urp-inner-cut-afterimage",
+      "kind": "adapter",
+      "path": "adapters/unity-urp-inner-cut-afterimage.md",
+      "relations": [
+        {
+          "reason": "固定外形と内側穴を分ける。",
+          "target": "technique/inner-cut-sdf",
+          "type": "requires"
+        },
+        {
+          "reason": "透明合成と奥行き規約を確認する。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-specific",
+      "sha256": "56e6cb27f48ee8a3372f47e3185e3add31f22a51776233384af44f97d8a75cb1",
+      "status": "draft",
+      "summary": "MeshRendererへ外部秒・Seed・Tintを渡し、線形円SDFによる内側抜きと色UVを独立に駆動したPreview実装。",
+      "superseded_by": [],
+      "tags": [
+        "combat"
+      ],
+      "title": "Unity URP：静止Meshと内側SDFの斬撃残像",
+      "updated_at": "2026-10-06"
+    },
+    {
+      "aliases": [],
+      "compatibility": {
+        "engine_version": "6000.3.14f1",
+        "platforms": [
+          "Windows Editor"
+        ],
         "renderer": "URP 17.3.0 / DX12",
         "verification": "engine-tested"
       },
@@ -5395,13 +5632,20 @@
       "id": "composition/melee-strike",
       "kind": "composition",
       "path": "knowledge/compositions/melee-strike.md",
-      "relations": [],
-      "revision": 1,
+      "relations": [
+        {
+          "reason": "判定後に表示する残像の分岐。",
+          "role": "afterimage",
+          "target": "technique/completed-arc-afterimage",
+          "type": "candidate"
+        }
+      ],
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "196a2e5e2dc78c778fd7e07eaa7cfa1d718a1e990b54495f5e6e02ee8e548c0b",
+      "sha256": "688abba4c578437e33b7a22d7c052e1738be25047afc7285867a283077872abb",
       "status": "draft",
-      "summary": "武器の動作に追従する振りと、実際の命中位置の反応を別に制御する。",
+      "summary": "動作中の振り、判定後の残像、実命中の反応を分け、発火時点から主役と時計を選ぶ。",
       "superseded_by": [],
       "tags": [
         "combat",
@@ -5409,7 +5653,7 @@
         "lifecycle"
       ],
       "title": "近接攻撃の振り・接触・残留",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -5490,11 +5734,17 @@
       "id": "evaluation/combat-shape-and-events",
       "kind": "evaluation",
       "path": "knowledge/evaluation/combat-shape-and-events.md",
-      "relations": [],
-      "revision": 1,
+      "relations": [
+        {
+          "reason": "時間と輪郭を分けて確認した限定例。",
+          "target": "evidence/completed-slash-inner-cut-preview",
+          "type": "candidate"
+        }
+      ],
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "0484230e15e1b6ddd71f7f2f44b85880146599271eeeded83bbe6de124165c7f",
+      "sha256": "52304a3f65c15c50d39b3f1df9301283124dada710a6a4e3bd1ea9072217832e",
       "status": "draft",
       "summary": "武器ごとのシルエットと発動・命中・範囲を、実際のゲーム入力に合わせて確認する。",
       "superseded_by": [],
@@ -5503,7 +5753,7 @@
         "combat"
       ],
       "title": "攻撃の形・範囲・接触時刻の評価",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -5550,6 +5800,61 @@
       ],
       "title": "状態の更新・複合時間・重複表示の評価",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-06",
+        "claims": [
+          {
+            "statement": "完成外形を置き、立上り中から輪郭消失を並列に進めた残像の基準版がユーザーに承認された。",
+            "target": "technique/completed-arc-afterimage"
+          },
+          {
+            "statement": "固定外形と内側の距離場を分離し、四段階の参照に合わせた薄い外縁への変化をPreviewで確認した。",
+            "target": "technique/inner-cut-sdf"
+          },
+          {
+            "statement": "外部時計、シーク、保存値、Shaderを専用Editor Previewで検査した。",
+            "target": "adapter/unity-urp-inner-cut-afterimage"
+          }
+        ],
+        "conditions": "専用Prefab Preview。ユーザー提供の曲線参照とレビュー。ゲーム用削減・統合前の基準版。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/slash-afterimage-2026-10-06.md",
+            "projects/dungeon-inn/runs/slash-afterimage-2026-10-06.artifacts.json"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview。Graphics APIはこの記録で再取得していない。",
+          "executed_at": "2026-10-06",
+          "procedure": "既存task_0366〜0368の実行記録を参照。内側輪郭、Bounds、Rise途中の輪郭進行、シークと終端を実描画し、ユーザーが見た目を確認。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "ゲーム統合・実機性能・他エンジン・全画角・独立内部構造レビューは未実施。現在の実装はローカル未コミット。今回は文書更新のみ。",
+        "result": "三種類の残像の見た目がユーザー承認。Riseと輪郭進行の並列を描画で確認。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/completed-slash-inner-cut-preview",
+      "kind": "evidence",
+      "path": "evidence/completed-slash-inner-cut-preview.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "9ff5d46798f5f55d6f8cb2b59e7a081d1b7615d822e2e8a868505de42b30d640",
+      "status": "reviewed",
+      "summary": "参照との差を修正し、剣・細い短剣・大型刃の基準版が見た目承認された限定記録。ゲーム統合・性能の承認ではない。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "斬撃残像の内側SDFと並列立上りのPreview記録",
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [],
@@ -6250,6 +6555,65 @@
       ],
       "title": "旋回斬撃：一周する主弧と低い風の残留",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "SwordSlash",
+        "DaggerThrust",
+        "GreatswordSlash",
+        "剣の残像",
+        "短剣の三日月"
+      ],
+      "evidence": [
+        "evidence/completed-slash-inner-cut-preview"
+      ],
+      "id": "recipe/completed-slash-afterimage",
+      "kind": "recipe",
+      "path": "knowledge/recipes/completed-slash-afterimage.md",
+      "relations": [
+        {
+          "reason": "判定後の固定空間に残像を置く。",
+          "requirement": "required",
+          "role": "afterimage",
+          "target": "technique/completed-arc-afterimage",
+          "type": "composes"
+        },
+        {
+          "reason": "固定外形から曲線状の穴を拡げる。",
+          "requirement": "required",
+          "role": "contour",
+          "target": "technique/inner-cut-sdf",
+          "type": "composes"
+        },
+        {
+          "reason": "刃の通過方向と形を伝える。",
+          "target": "semantic/slash",
+          "type": "expresses"
+        },
+        {
+          "reason": "発火時点と時間を含めて確認する。",
+          "target": "evaluation/combat-shape-and-events",
+          "type": "evaluated_by"
+        },
+        {
+          "reason": "Unityで実行した候補。",
+          "target": "adapter/unity-urp-inner-cut-afterimage",
+          "type": "implemented_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "5748fd26479b9000eba0af1796d45047ed3d27af45862a3c00290694bc7dfb44",
+      "status": "draft",
+      "summary": "判定後に発火する剣・短剣・大型刃の残像。固定外形、内側SDF、色面の流れ、並列の立上りと消失を採用する。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "recipe"
+      ],
+      "title": "完成した三日月の斬撃残像",
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -9829,21 +10193,28 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/combat-shape-and-events",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "判定後の完成残像は別構成として選ぶ。",
+          "role": "afterimage",
+          "target": "recipe/completed-slash-afterimage",
+          "type": "candidate",
+          "when": "発火時点で刃が通過済みの空間を表現する場合。"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "2f5ec02de9cfda59d454b64b6b4a8e5c4c4dde11e33d1f558b096f2f354e139c",
+      "sha256": "3692f6d40fc182c42ff36c7b38442af325d800733392cfa5f7437d957be05174",
       "status": "draft",
-      "summary": "短い針と一点の白芯で、短剣の速さと密接した接触を表す。",
+      "summary": "実際に突き刺す攻撃の候補。短剣の素早い切りや判定後の三日月残像は別レシピで選ぶ。",
       "superseded_by": [],
       "tags": [
         "recipe",
         "combat"
       ],
-      "title": "短剣：小さく鋭い刺突",
-      "updated_at": "2026-10-04"
+      "title": "短剣の実刺突：小さく鋭い針",
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -10088,21 +10459,28 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/combat-shape-and-events",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "判定後の完成残像は別構成として選ぶ。",
+          "role": "afterimage",
+          "target": "recipe/completed-slash-afterimage",
+          "type": "candidate",
+          "when": "発火時点で刃が通過済みの空間を表現する場合。"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "3cfcd995391c226badb128185ace3a3ade3f4ceb09418fad225a6976bfe6a92f",
+      "sha256": "4fb9fb0bf805876b6a98640bfb460a5e0940145e489493e0bfb84e9c25d03175",
       "status": "draft",
-      "summary": "長い外縁と幅広い内側の遅れで、大剣の刃渡りと慣性を表す。",
+      "summary": "動作中の大型刃と慣性を見せる初稿候補。判定後の幅広い三日月残像は専用レシピを比較する。",
       "superseded_by": [],
       "tags": [
         "recipe",
         "combat"
       ],
-      "title": "大剣：長く厚い扇状の斬撃",
-      "updated_at": "2026-10-04"
+      "title": "大剣の動作同期：長く厚い弧",
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -10508,21 +10886,28 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/combat-shape-and-events",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "判定後の完成残像は別構成として選ぶ。",
+          "role": "afterimage",
+          "target": "recipe/completed-slash-afterimage",
+          "type": "candidate",
+          "when": "発火時点で刃が通過済みの空間を表現する場合。"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "a11d255600d672f78dc5aa6f44d96e8b262450d264bdcc94d89391aa49c1994c",
+      "sha256": "7a7fb3a203126a55d1f78c142ad88edec71a008c17a12880d1714378c3008dcd",
       "status": "draft",
-      "summary": "薄い象牙色の入力角度θ弧と一点の切断反応で、標準的な剣の切れを作る。",
+      "summary": "振りの位相を見せる場合の初稿候補。判定後に発火する完成残像は専用レシピを比較する。",
       "superseded_by": [],
       "tags": [
         "recipe",
         "combat"
       ],
-      "title": "剣：鋭く薄い扇状の斬撃",
-      "updated_at": "2026-10-04"
+      "title": "剣の動作同期：鋭く薄い弧",
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -10685,10 +11070,10 @@
       "kind": "rendering",
       "path": "knowledge/rendering/emission-and-opacity.md",
       "relations": [],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "723c50bdce4aac5bbc6dcd0a9cbf7ee8b94b3d1d735aa05285b75609fcbaef33",
+      "sha256": "573fbeb60c54a861bad7398aa0512a2e1d779b0c93abce7ab1cd9f157854d342",
       "status": "draft",
       "summary": "小さな加算の芯と、輪郭を保つ色のアルファ面を分ける描画判断。",
       "superseded_by": [],
@@ -10697,7 +11082,7 @@
         "readable-silhouette"
       ],
       "title": "発光の芯と色の面を分ける合成",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [],
@@ -10806,6 +11191,31 @@
       ],
       "title": "周期的な密度・セル・変位ノイズ",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "signed distance field",
+        "SDF Texture"
+      ],
+      "evidence": [
+        "evidence/completed-slash-inner-cut-preview"
+      ],
+      "id": "resource/signed-distance-mask",
+      "kind": "resource",
+      "path": "knowledge/resources/signed-distance-mask.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "c2e9030db9143717752c0c40b2d6f7bad59cbda288daee04ab750eea734c86d8",
+      "status": "draft",
+      "summary": "色画像と分離した線形距離データ。単純な場は一枚を変換して共有し、符号・単位・有効域を記録する。",
+      "superseded_by": [],
+      "tags": [
+        "combat"
+      ],
+      "title": "輪郭を抜く符号付き距離マスク",
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [],
@@ -11202,11 +11612,18 @@
       "id": "semantic/slash",
       "kind": "semantic",
       "path": "knowledge/semantics/slash.md",
-      "relations": [],
-      "revision": 1,
+      "relations": [
+        {
+          "reason": "判定後に表示する残像の分岐。",
+          "role": "afterimage",
+          "target": "technique/completed-arc-afterimage",
+          "type": "candidate"
+        }
+      ],
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "040c5bc9bbc52e8ac06498eebcebd67486d37825e378a21e845e67ef0f2e49e5",
+      "sha256": "cc604338d477d487e48b732a19dea2bf0d69e3a66bf7be127b18a90899dfce05",
       "status": "draft",
       "summary": "弧または帯の移動と接触によって切断方向を伝える。",
       "superseded_by": [],
@@ -11214,7 +11631,7 @@
         "combat"
       ],
       "title": "斬撃",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [],
@@ -11274,21 +11691,27 @@
           "reason": "この技法の採用時に必要な素材・処理・描画規約。",
           "target": "rendering/world-depth-and-transparency",
           "type": "requires"
+        },
+        {
+          "reason": "判定後に表示する残像の分岐。",
+          "role": "afterimage",
+          "target": "technique/completed-arc-afterimage",
+          "type": "candidate"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "e9ed7e531262022bd31a2f23605d951206912a3033c59159c30545a00d72463c",
+      "sha256": "1b91b968bc1b98b4c9e671e528cce834d6b23becc12f40488169c3fd946eebbb",
       "status": "draft",
-      "summary": "角度・曲率・幅を制御した弧を進行方向へ展開し、刃の通過を読む。",
+      "summary": "動作中の刃を角度・曲率・幅を持つ弧の展開で見せる候補。判定後の完成残像とは用途を分ける。",
       "superseded_by": [],
       "tags": [
         "technique",
         "combat"
       ],
       "title": "弧状メッシュの展開による斬撃",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -11346,6 +11769,46 @@
       ],
       "title": "小さな身体表面の発動パルス",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "completed slash",
+        "斬撃の残像",
+        "振り終わり",
+        "剣閃"
+      ],
+      "evidence": [
+        "evidence/completed-slash-inner-cut-preview"
+      ],
+      "id": "technique/completed-arc-afterimage",
+      "kind": "technique",
+      "path": "knowledge/techniques/completed-arc-afterimage.md",
+      "relations": [
+        {
+          "reason": "曲線状の内側境界で残像を薄くする候補。",
+          "role": "contour",
+          "target": "technique/inner-cut-sdf",
+          "type": "candidate"
+        },
+        {
+          "reason": "刃の通過方向を伝える。",
+          "target": "semantic/slash",
+          "type": "expresses"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "50c1b28b2fe175ad8baac6595fe15c6f69a88d0e52619b714cd4a815d1a7da1c",
+      "status": "draft",
+      "summary": "刃が通過済みの空間を静止した完成弧として置き、色面の流れと方向の読める消失を重ねる。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "判定後の完成した斬撃残像",
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [],
@@ -11684,6 +12147,45 @@
     },
     {
       "aliases": [
+        "SDF",
+        "三日月の内側",
+        "inner cut",
+        "円SDF"
+      ],
+      "evidence": [
+        "evidence/completed-slash-inner-cut-preview"
+      ],
+      "id": "technique/inner-cut-sdf",
+      "kind": "technique",
+      "path": "knowledge/techniques/inner-cut-sdf.md",
+      "relations": [
+        {
+          "reason": "内側境界の符号付き距離を使う。",
+          "target": "resource/signed-distance-mask",
+          "type": "requires"
+        },
+        {
+          "reason": "色面・縁coverage・全体opacityを分離する。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "4a13c126964d821315cc8f5a4466ebcf49944fc9ae0e615b02cb49a9720787b3",
+      "status": "draft",
+      "summary": "外側の弧を保ち、距離場の中心・半径・終端制御で内側から三日月の厚みを消す。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "固定外形から内側だけをSDFで抜く",
+      "updated_at": "2026-10-06"
+    },
+    {
+      "aliases": [
         "メッシュ核",
         "mesh core"
       ],
@@ -11977,21 +12479,27 @@
           "reason": "この技法の採用時に必要な素材・処理・描画規約。",
           "target": "resource/effect-mask-atlas",
           "type": "requires"
+        },
+        {
+          "reason": "判定後に表示する残像の分岐。",
+          "role": "afterimage",
+          "target": "technique/completed-arc-afterimage",
+          "type": "candidate"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "0fff1f27cbe33705cc297c93147e2d8191ebd8fb8362778c09cd09323b7ec57e",
+      "sha256": "7ba71e0308fbca8c3933acd6f286b718ee0d10934f9385a862895c0ff05bec34",
       "status": "draft",
-      "summary": "U/Vと低周波ノイズで主形状を解放し、大きな裂け目から消す。",
+      "summary": "U/Vとノイズで展開・侵食する候補。曲線残像の内側抜きや立上り中の消失を一様ワイプへ置き換えない。",
       "superseded_by": [],
       "tags": [
         "technique",
         "combat"
       ],
       "title": "方向性を持つマスク展開と侵食",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [],
@@ -12048,6 +12556,7 @@
   ],
   "schema_version": "0.1.0",
   "symmetric_relations": {
+    "adapter/unity-urp-inner-cut-afterimage": [],
     "adapter/unity-urp-noise-density": [],
     "composition/combat-readability": [],
     "composition/melee-strike": [],
@@ -12057,6 +12566,7 @@
     "evaluation/combat-shape-and-events": [],
     "evaluation/projectile-readability": [],
     "evaluation/status-refresh-and-overlap": [],
+    "evidence/completed-slash-inner-cut-preview": [],
     "evidence/organic-fire-volume-preview": [],
     "evidence/particle-simulation-and-renderer-source": [],
     "evidence/quality-baseline-to-core-only": [],
@@ -12067,6 +12577,7 @@
     "recipe/charged-arrow": [],
     "recipe/charged-heavy-impact": [],
     "recipe/circular-slash": [],
+    "recipe/completed-slash-afterimage": [],
     "recipe/crispy-food-consumption": [],
     "recipe/enhanced-health-restoration": [],
     "recipe/fireball-readable-core": [],
@@ -12129,6 +12640,7 @@
     "resource/effect-mask-atlas": [],
     "resource/flame-flipbook": [],
     "resource/periodic-density-noise": [],
+    "resource/signed-distance-mask": [],
     "resource/smoke-flipbook": [],
     "resource/unit-effect-mesh-kit": [],
     "semantic/attack-buff": [],
@@ -12161,6 +12673,7 @@
       }
     ],
     "technique/body-shell": [],
+    "technique/completed-arc-afterimage": [],
     "technique/cone-burst": [],
     "technique/converge-motes": [],
     "technique/directional-flow-surface": [],
@@ -12190,6 +12703,7 @@
     ],
     "technique/folded-axial-billboard": [],
     "technique/history-ribbon": [],
+    "technique/inner-cut-sdf": [],
     "technique/mesh-core": [
       {
         "derived": true,
