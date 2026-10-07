@@ -5,8 +5,8 @@ kind: "recipe"
 title: "クロスボウ：硬い射出と短いボルト"
 summary: "鋭い一閃と短い太めのボルトで2半径R/sの機械的な射出を表す。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 2
+updated_at: "2026-10-08"
 aliases: ["クロスボウ：硬い射出と短いボルト","crossbow"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
@@ -47,7 +47,10 @@ relations:
   - target: "evaluation/projectile-readability"
     type: "evaluated_by"
     reason: "採用先の実画面で形・イベント・終了条件を確認する。"
-evidence: []
+  - target: "technique/volumetric-object-proxy"
+    type: "enhances"
+    reason: "この武器・命中に関わる因子。"
+evidence: ["evidence/weapon-contact-free-design-preview"]
 superseded_by: []
 ---
 
@@ -89,6 +92,11 @@ Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実�
 弓との違いが発射と核のシルエットで読める。
 
 上記は観察条件であり、成功を確認した記録ではない。
+
+## 関わる因子
+
+- ボルトの本体は絵ではなく、矢より短く太い立体。（[technique/volumetric-object-proxy](../../techniques/volumetric-object-proxy.md)）
+- 射出に弦の線を重ねない。（[composition/combat-readability](../../compositions/combat-readability.md)）
 
 ## 接続する知識
 

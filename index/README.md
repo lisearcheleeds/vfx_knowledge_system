@@ -24,6 +24,7 @@
 | `evidence/slash-weapon-variants-preview` | [解析式の三日月を短剣・大剣へ展開した再現記録](../evidence/slash-weapon-variants-preview.md) | reviewed |
 | `evidence/sword-slash-analytic-crescent-preview` | [剣の斬撃残像を解析式の三日月で作り直したPreview記録](../evidence/sword-slash-analytic-crescent-preview.md) | reviewed |
 | `evidence/vfx-gameplay-clarity-source` | [VFXのゲーム情報と美術的一貫性に関する一次資料](../evidence/vfx-gameplay-clarity-source.md) | draft |
+| `evidence/weapon-contact-free-design-preview` | [射出・投射体・近接・命中を名称から一から作ったPreview記録](../evidence/weapon-contact-free-design-preview.md) | reviewed |
 | `recipe/accented-heavy-impact` | [強打：短く締めた強い打撃](../knowledge/recipes/abilities/accented-heavy-impact.md) | draft |
 | `recipe/aquatic-protein-consumption` | [魚系の食材：銀の小片と淡青の縁](../knowledge/recipes/consumption/aquatic-protein-consumption.md) | draft |
 | `recipe/attack-reduction` | [攻撃低下：欠けた下降記号](../knowledge/recipes/states/attack-reduction.md) | draft |
@@ -118,6 +119,8 @@
 | `technique/analytic-crescent-uv` | [弧帯UV上の解析式で描く非対称の三日月](../knowledge/techniques/analytic-crescent-uv.md) | draft |
 | `technique/arc-reach-asymmetry` | [弧の片側の長さで刃渡り・射程を読ませる](../knowledge/techniques/arc-reach-asymmetry.md) | draft |
 | `technique/arc-sweep` | [弧状メッシュの展開による斬撃](../knowledge/techniques/arc-sweep.md) | draft |
+| `technique/articulated-closing-parts` | [関節で閉じる生き物の部位を、到達状態と回転で作る](../knowledge/techniques/articulated-closing-parts.md) | draft |
+| `technique/axial-thrust-cone` | [攻撃の軸に沿って伸びる円錐で「突く」を表す](../knowledge/techniques/axial-thrust-cone.md) | draft |
 | `technique/billboard` | [ビルボード](../knowledge/techniques/billboard.md) | draft |
 | `technique/blunt-motion-smear` | [打撃部の幅だけのぼけた振りの帯](../knowledge/techniques/blunt-motion-smear.md) | draft |
 | `technique/body-shell` | [小さな身体表面の発動パルス](../knowledge/techniques/body-shell.md) | draft |
@@ -144,3 +147,5 @@
 | `technique/surface-sigil` | [面に沿う輪・扇・記号の展開](../knowledge/techniques/surface-sigil.md) | draft |
 | `technique/uv-dissolve` | [方向性を持つマスク展開と侵食](../knowledge/techniques/uv-dissolve.md) | draft |
 | `technique/volume-density` | [内部密度で形を作る体積描画](../knowledge/techniques/volume-density.md) | draft |
+| `technique/volumetric-object-proxy` | [実体の物は絵ではなく単純な立体で表す](../knowledge/techniques/volumetric-object-proxy.md) | draft |
+| `technique/wave-direction-semantics` | [衝撃の進む向きで力の意味を読ませる](../knowledge/techniques/wave-direction-semantics.md) | draft |

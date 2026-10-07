@@ -5,13 +5,13 @@ kind: "composition"
 title: "戦闘エフェクトの主役・補助・状態の階層"
 summary: "攻撃形状と命中を主役にし、装飾と継続状態の明度・面積を階層化する構成。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 3
+updated_at: '2026-10-08'
 aliases: []
 tags: ["combat","readable-silhouette"]
 scope: "engine-neutral"
 relations: []
-evidence: ["evidence/vfx-gameplay-clarity-source"]
+evidence: ["evidence/vfx-gameplay-clarity-source", "evidence/weapon-contact-free-design-preview"]
 superseded_by: []
 ---
 
@@ -31,6 +31,14 @@ superseded_by: []
 
 ## 根拠・検証
 視覚階層の制作判断。既存ゲームの美術設定を確認した記録ではない。密集戦闘・明暗背景・カメラ距離で確認する。
+
+## 重ねない・増やさない
+
+- 一つの意味は一つの層に持たせる。別の層がすでに伝えていることを重ねない（残像が描いた斬り跡に命中の切り線を重ねる、伸びる円錐の先に閃きを重ねる、武器の動きで分かる弦を線で描く）。重ねた層は「何を表すのか分からない」要素になる。
+- 輪（円）は範囲やエネルギーの解放を意味する。一点の命中に輪を使うと過剰に見え、光線・術の命中に読める。一点の命中は粒子（閃き・抜ける針・返る火花）で作る。
+- 同じ要素の繰り返しは、短い動作では二つまでで読める。三つ目からはくどくなる。
+- 命中の反応は主役より短く切る。残りすぎると継続効果に見える。
+- 敵の攻撃の予兆の範囲（矩形・円・扇）は、UI/UXの範囲表示が担う。エフェクトとしての予兆は範囲を描かず、溜め・収束など動作の意味を担う。
 
 ## 接続する知識
 

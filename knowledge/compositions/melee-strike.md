@@ -5,8 +5,8 @@ kind: composition
 title: 近接攻撃の振り・接触・残留
 summary: 動作中の振り、判定後の残像、実命中の反応を分け、発火時点から主役と時計を選ぶ。
 status: draft
-revision: 3
-updated_at: '2026-10-07'
+revision: 4
+updated_at: '2026-10-08'
 aliases: []
 tags:
 - combat
@@ -22,8 +22,12 @@ relations:
   type: candidate
   reason: 判定後の残像を武器から推測して作る入口。
   role: afterimage
+- target: technique/wave-direction-semantics
+  type: enhances
+  reason: 振り・命中の圧や波の進む向きで、押す・逸らす等の力の意味を決める。
 evidence:
 - evidence/melee-weapon-free-design-preview
+- evidence/weapon-contact-free-design-preview
 superseded_by: []
 ---
 
@@ -58,3 +62,8 @@ windup/attack-active/attack-endは要求する意味上のイベントであり�
 - 攻撃部位から**前へ飛ぶ粒子は飛び道具・術に見える**。粒子を使うなら振る・斬る向きに沿わせる。
 - 残像の再生開始の時点で判定は済んでいる。開く・回るアニメーションにするなら、判定済みの形（完成した弧の線・範囲の円盤）を最初から置く。
 - 武器ごとの作り方の入口は recipe/melee-weapon-afterimages。
+
+## 振る側と受ける側の向き（2026-10-08）
+
+- 振り・残像は**攻撃する側の動作の向き**（閉じる・突き出す・振り抜く）を表す。命中（Contact）は**受けた側の反応**で、接触点から外へ飛び散る向きにする。噛みつきの命中で光を内へ閉じると、振りの側の動作を繰り返したように読め、受けた反応に見えない。
+- 押す技の圧は前へ、受け流す技の圧は横へ、のように、衝撃の進む向きで力の意味を決める（technique/wave-direction-semantics）。

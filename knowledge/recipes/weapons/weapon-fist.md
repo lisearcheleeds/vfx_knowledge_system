@@ -5,8 +5,8 @@ kind: "recipe"
 title: "拳：短い拳圧と鋭い接触"
 summary: "拳の前に短い圧縮形状を置き、局所の放射でパンチを締める。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 2
+updated_at: "2026-10-08"
 aliases: ["拳：短い拳圧と鋭い接触","fist"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
@@ -37,7 +37,7 @@ relations:
   - target: "evaluation/combat-shape-and-events"
     type: "evaluated_by"
     reason: "採用先の実画面で形・イベント・終了条件を確認する。"
-evidence: []
+evidence: ["evidence/weapon-contact-free-design-preview"]
 superseded_by: []
 ---
 
@@ -77,6 +77,10 @@ Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実�
 連打時に拳の形が隠れず、空振りは前方の後流だけで終わる。
 
 上記は観察条件であり、成功を確認した記録ではない。
+
+## 関わる因子
+
+- 前へ抜ける輪などの繰り返しは二つまで。（[composition/combat-readability](../../compositions/combat-readability.md)）
 
 ## 接続する知識
 
