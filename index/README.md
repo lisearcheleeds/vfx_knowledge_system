@@ -5,6 +5,7 @@
 | ID | 名前 | 状態 |
 | --- | --- | --- |
 | `adapter/unity-urp-analytic-crescent` | [Unity URP：弧帯Meshと解析式の三日月Shader](../adapters/unity-urp-analytic-crescent.md) | draft |
+| `adapter/unity-urp-baseline-sheet-particles` | [Unity URP：時間で動く帯の面と粒子の層で残像を組む](../adapters/unity-urp-baseline-sheet-particles.md) | draft |
 | `adapter/unity-urp-inner-cut-afterimage` | [Unity URP：静止Meshと内側SDFの斬撃残像](../adapters/unity-urp-inner-cut-afterimage.md) | draft |
 | `adapter/unity-urp-noise-density` | [Unity URP：粒子の密度体積・方向流れ・煙](../adapters/unity-urp-noise-density.md) | draft |
 | `composition/combat-readability` | [戦闘エフェクトの主役・補助・状態の階層](../knowledge/compositions/combat-readability.md) | draft |
@@ -16,9 +17,11 @@
 | `evaluation/projectile-readability` | [投射体の視認性とライフサイクルの評価](../knowledge/evaluation/projectile-readability.md) | draft |
 | `evaluation/status-refresh-and-overlap` | [状態の更新・複合時間・重複表示の評価](../knowledge/evaluation/status-refresh-and-overlap.md) | draft |
 | `evidence/completed-slash-inner-cut-preview` | [斬撃残像の内側SDFと並列立上りのPreview記録](../evidence/completed-slash-inner-cut-preview.md) | reviewed |
+| `evidence/melee-weapon-free-design-preview` | [斧・大鎌・鉄扇・棒を武器から一から作ったPreview記録](../evidence/melee-weapon-free-design-preview.md) | reviewed |
 | `evidence/organic-fire-volume-preview` | [体積炎・方向流れ・煙のPreview制作と人間評価](../evidence/organic-fire-volume-preview.md) | reviewed |
 | `evidence/particle-simulation-and-renderer-source` | [粒子シミュレーションと描画方法の分離に関する一次資料](../evidence/particle-simulation-and-renderer-source.md) | draft |
 | `evidence/quality-baseline-to-core-only` | [品質基準版からCore単独への削減と見た目承認](../evidence/quality-baseline-to-core-only.md) | reviewed |
+| `evidence/slash-weapon-variants-preview` | [解析式の三日月を短剣・大剣へ展開した再現記録](../evidence/slash-weapon-variants-preview.md) | reviewed |
 | `evidence/sword-slash-analytic-crescent-preview` | [剣の斬撃残像を解析式の三日月で作り直したPreview記録](../evidence/sword-slash-analytic-crescent-preview.md) | reviewed |
 | `evidence/vfx-gameplay-clarity-source` | [VFXのゲーム情報と美術的一貫性に関する一次資料](../evidence/vfx-gameplay-clarity-source.md) | draft |
 | `recipe/accented-heavy-impact` | [強打：短く締めた強い打撃](../knowledge/recipes/abilities/accented-heavy-impact.md) | draft |
@@ -45,6 +48,7 @@
 | `recipe/mana-remedy-use` | [魔力回復液の飲用：小さな結晶の収束](../knowledge/recipes/consumption/mana-remedy-use.md) | draft |
 | `recipe/meal-vitality` | [食事由来の活力：暖かな攻撃強化](../knowledge/recipes/states/meal-vitality.md) | draft |
 | `recipe/meal-vitality-activation` | [食事による活力付与：暖かな収束と小さな継続表示](../knowledge/recipes/abilities/meal-vitality-activation.md) | draft |
+| `recipe/melee-weapon-afterimages` | [近接武器の残像：武器から推測して技法を選ぶ入口](../knowledge/recipes/weapons/melee-weapon-afterimages.md) | draft |
 | `recipe/metal-contact-sparks` | [金属の接触火花と一瞬の閃き](../knowledge/recipes/impacts/metal-contact-sparks.md) | draft |
 | `recipe/periodic-health-restoration` | [継続HP回復：葉の識別と実回復パルス](../knowledge/recipes/states/periodic-health-restoration.md) | draft |
 | `recipe/periodic-mana-restoration` | [継続MP回復：結晶の識別と内向きの脈動](../knowledge/recipes/states/periodic-mana-restoration.md) | draft |
@@ -110,16 +114,21 @@
 | `semantic/restoration` | [回復](../knowledge/semantics/restoration.md) | draft |
 | `semantic/slash` | [斬撃](../knowledge/semantics/slash.md) | draft |
 | `semantic/starchy-food` | [芋・でんぷん質の食事](../knowledge/semantics/starchy-food.md) | draft |
+| `technique/afterimage-weight-timing` | [残像の時間配分で速さ・重さ・鋭さを読ませる](../knowledge/techniques/afterimage-weight-timing.md) | draft |
 | `technique/analytic-crescent-uv` | [弧帯UV上の解析式で描く非対称の三日月](../knowledge/techniques/analytic-crescent-uv.md) | draft |
+| `technique/arc-reach-asymmetry` | [弧の片側の長さで刃渡り・射程を読ませる](../knowledge/techniques/arc-reach-asymmetry.md) | draft |
 | `technique/arc-sweep` | [弧状メッシュの展開による斬撃](../knowledge/techniques/arc-sweep.md) | draft |
 | `technique/billboard` | [ビルボード](../knowledge/techniques/billboard.md) | draft |
+| `technique/blunt-motion-smear` | [打撃部の幅だけのぼけた振りの帯](../knowledge/techniques/blunt-motion-smear.md) | draft |
 | `technique/body-shell` | [小さな身体表面の発動パルス](../knowledge/techniques/body-shell.md) | draft |
 | `technique/completed-arc-afterimage` | [判定後の完成した斬撃残像](../knowledge/techniques/completed-arc-afterimage.md) | draft |
 | `technique/cone-burst` | [瞬間範囲を埋める円錐状の解放](../knowledge/techniques/cone-burst.md) | draft |
 | `technique/converge-motes` | [詠唱点へ収束する光点](../knowledge/techniques/converge-motes.md) | draft |
+| `technique/crumbling-heavy-wedge` | [焼けた縁から崩れ落ちる重いくさび](../knowledge/techniques/crumbling-heavy-wedge.md) | draft |
 | `technique/directional-flow-surface` | [進行方向に流れる侵食Mesh面](../knowledge/techniques/directional-flow-surface.md) | draft |
 | `technique/directional-streak` | [攻撃軸の針と短い放射筋](../knowledge/techniques/directional-streak.md) | draft |
 | `technique/event-pulse` | [ゲームイベント同期の小さな脈動](../knowledge/techniques/event-pulse.md) | draft |
+| `technique/fan-rib-reveal` | [骨が開く扇と完成した外側の弧](../knowledge/techniques/fan-rib-reveal.md) | draft |
 | `technique/flipbook-particles` | [連番素材で形を保つ炎・煙の粒子](../knowledge/techniques/flipbook-particles.md) | draft |
 | `technique/folded-axial-billboard` | [折り曲げ式の軸固定ビルボード](../knowledge/techniques/folded-axial-billboard.md) | draft |
 | `technique/history-ribbon` | [移動履歴の先細り帯](../knowledge/techniques/history-ribbon.md) | draft |
@@ -129,6 +138,8 @@
 | `technique/oriented-projectile-core` | [前方を保つ投射体の実体](../knowledge/techniques/oriented-projectile-core.md) | draft |
 | `technique/particle-emission` | [役割を限定した粒子の発生と運動](../knowledge/techniques/particle-emission.md) | draft |
 | `technique/radial-wave` | [接地した膨張環と圧縮波](../knowledge/techniques/radial-wave.md) | draft |
+| `technique/rotating-sweep-trails` | [範囲の円盤と順番に回る刃の軌跡](../knowledge/techniques/rotating-sweep-trails.md) | draft |
+| `technique/slash-pressure-haze` | [剣圧・風圧の霞](../knowledge/techniques/slash-pressure-haze.md) | draft |
 | `technique/surface-density-core` | [面上の密度近似と方向UV流れによる主形状](../knowledge/techniques/surface-density-core.md) | draft |
 | `technique/surface-sigil` | [面に沿う輪・扇・記号の展開](../knowledge/techniques/surface-sigil.md) | draft |
 | `technique/uv-dissolve` | [方向性を持つマスク展開と侵食](../knowledge/techniques/uv-dissolve.md) | draft |

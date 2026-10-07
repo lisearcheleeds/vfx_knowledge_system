@@ -1,0 +1,7 @@
+# 武器から推測して一から作った残像（_3）。剣の三日月の作り方は使っていない。
+selected_nodes:
+  - recipe/melee-weapon-afterimages
+  - technique/rotating-sweep-trails
+  - adapter/unity-urp-baseline-sheet-particles
+engine: unity
+conditional_decisions: []

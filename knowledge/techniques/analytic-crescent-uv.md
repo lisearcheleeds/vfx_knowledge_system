@@ -5,8 +5,8 @@ kind: technique
 title: 弧帯UV上の解析式で描く非対称の三日月
 summary: 弧の帯Meshの角度・半径UVの上で、厚みの形・内側の抜き・短縮・外縁の明部と外光を式で計算する。斬撃残像の主役の優先案。
 status: draft
-revision: 1
-updated_at: '2026-10-06'
+revision: 2
+updated_at: '2026-10-07'
 aliases:
 - analytic crescent
 - 解析式の三日月
@@ -31,8 +31,18 @@ relations:
 - target: rendering/world-depth-and-transparency
   type: requires
   reason: 透明描画と奥行きの規約。
+- target: technique/arc-reach-asymmetry
+  type: enhances
+  reason: 弧の範囲を非対称にして刃渡り・射程を読ませる。
+- target: technique/afterimage-weight-timing
+  type: enhances
+  reason: 抜き・短縮・先端への縮みの時間配分で速さ・重さ・鋭さを読ませる。
+- target: technique/slash-pressure-haze
+  type: enhances
+  reason: 重い武器では同じ描き方の薄い霞を外側に足す。
 evidence:
 - evidence/sword-slash-analytic-crescent-preview
+- evidence/slash-weapon-variants-preview
 superseded_by: []
 ---
 
@@ -72,7 +82,21 @@ Meshは外形を覆う弧の帯だけにする。UV.xを振り始め0→振り�
 
 ## 模様
 
-接線方向に長く、横断方向に細かい周期ノイズを振り方向へ流し、明るさの揺らぎとして載せる。内縁は同じノイズで細かく裂くが、裂けの量は厚みに比例させ、外縁の輪郭と最後の細い外縁は崩さない。裂けが大きいと筆跡・爪痕に見える。
+接線方向に長く、横断方向に細かい周期ノイズを振り方向へ流し、明るさの揺らぎとして載せる。内縁は同じノイズで細かく裂くが、外縁の輪郭と最後の細い外縁は崩さない。
+
+**裂けの振れ幅は厚みの比率ではなく、絶対の大きさで上限を持つ**（目安 ±0.05〜0.1 m、かつ厚みの2割以内）。厚みに比例させると、細い帯（短剣の楕円）では帯の中の暗い切れ目、幅広い刃（大剣）では大きなギザギザの歯になった。剣の値（厚みの35%）をそのまま他の武器へ持ち込まない。
+
+## 楕円に引き伸ばすとき
+
+細長い三日月（短剣）は、円弧の帯を進行方向に引き伸ばして作れる。ただし厚み（半径方向）も一緒に伸びるため、先端付近の厚みは攻撃の軸の方向を向き、三日月の腹が尾のように長く見える。片側を短くしたいときは弧の終わりを先端の近くまで寄せ、尾を細くする（[片側の長さ](arc-reach-asymmetry.md)）。
+
+## 武器の性格の読み分け
+
+形と時間の作り方は共通のまま、次の三つの因子で武器の性格を作る。値の目安は recipe/completed-slash-afterimage の「武器の性格と因子」の表。
+
+- 刃渡り・射程: [弧の片側の長さ](arc-reach-asymmetry.md)
+- 速さ・重さ・鋭さ: [時間配分](afterimage-weight-timing.md)
+- 破壊力: [剣圧の霞](slash-pressure-haze.md)
 
 ## 入れないもの
 

@@ -5,13 +5,22 @@ kind: semantic
 title: 斬撃
 summary: 弧または帯の移動と接触によって切断方向を伝える。
 status: draft
-revision: 2
-updated_at: '2026-10-06'
+revision: 3
+updated_at: '2026-10-07'
 aliases: []
 tags:
 - combat
 scope: engine-neutral
 relations:
+- target: technique/arc-reach-asymmetry
+  type: candidate
+  reason: 刃渡り・射程の長さを、残像の片側の長さで伝える。
+- target: technique/afterimage-weight-timing
+  type: candidate
+  reason: 武器の速さ・重さ・鋭さを、残像の時間配分で伝える。
+- target: technique/slash-pressure-haze
+  type: candidate
+  reason: 重い武器の破壊力を、外側の薄い霞で伝える。
 - target: technique/completed-arc-afterimage
   type: candidate
   reason: 判定後に表示する残像の分岐。
@@ -38,3 +47,11 @@ superseded_by: []
 ## 発火時点で表現を選ぶ
 
 動作中の刃と、判定後に残った空間は別の時間契約。[完成弧の残像](../techniques/completed-arc-afterimage.md)では外側を初めから完成させ、内部流れと方向の読める消失を動かす。立上りopacityと消失時計は独立にし、直列再生を既定にしない。意味が異なる既存の展開・履歴方式は削除せず、用途を分けて保持する。
+
+## 武器の性格を読ませる因子
+
+形の種類（細い弧・重い弧など）に加えて、同じ三日月でも次の因子で武器の性格が読み分けられる。
+
+- 刃渡り・射程: [残像の片側の長さ](../techniques/arc-reach-asymmetry.md)。振り終わり側が短いと短い刃、振り始め側が長いと長い射程。
+- 速さ・重さ・鋭さ: [残像の時間配分](../techniques/afterimage-weight-timing.md)。細い外縁だけの時間は鋭さ、太い本体の時間は重さ。
+- 破壊力: [剣圧の霞](../techniques/slash-pressure-haze.md)。重い武器だけにごく薄く。

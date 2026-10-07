@@ -1,0 +1,8 @@
+# 大剣の残像（GreatswordSlash_2）。重さは時間配分（太い本体を長く・細い外縁だけの時間を短く）、破壊力は剣圧の霞。
+selected_nodes:
+  - recipe/completed-slash-afterimage
+  - technique/afterimage-weight-timing
+  - technique/slash-pressure-haze
+  - adapter/unity-urp-analytic-crescent
+engine: unity
+conditional_decisions: []

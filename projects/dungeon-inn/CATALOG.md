@@ -9,15 +9,15 @@
 | 対象 | 採用する共通知識 | このゲームの契約 |
 | --- | --- | --- |
 | 剣 | [作り直し版Selection](runs/sword-slash-2-2026-10-06.selection.yaml)（85点。旧[完成残像Selection](runs/slash-afterimage-2026-10-06.selection.yaml)は65点） | 通常攻撃：扇形90度。射程・運動面・有効タイミングはゲーム入力。 |
-| 斧 | [recipe/weapon-axe](../../knowledge/recipes/weapons/weapon-axe.md) | 通常攻撃：扇形120度。 |
-| 大剣 | [完成残像Selection](runs/slash-afterimage-2026-10-06.selection.yaml) | 通常攻撃：扇形110度。現在の装備/ActorArchetypeからの参照なし。定義済み候補として保持。 |
-| 鎌 | [recipe/weapon-scythe](../../knowledge/recipes/weapons/weapon-scythe.md) | 通常攻撃：円形、判定持続0.35秒。半径はゲーム入力。 |
-| 短剣 | [完成残像Selection](runs/slash-afterimage-2026-10-06.selection.yaml) | 通常攻撃：直接攻撃。射程・予備動作は未提供。 |
+| 斧 | [一から作った版のSelection](runs/melee-weapon-free-design-2026-10-07.axe.selection.yaml)（80点。旧 [recipe/weapon-axe](../../knowledge/recipes/weapons/weapon-axe.md)） | 通常攻撃：扇形120度。 |
+| 大剣 | [展開版Selection](runs/slash-weapon-variants-2026-10-07.greatsword.selection.yaml)（80点。旧は内側SDF） | 通常攻撃：扇形110度。現在の装備/ActorArchetypeからの参照なし。定義済み候補として保持。 |
+| 鎌 | [一から作った版のSelection](runs/melee-weapon-free-design-2026-10-07.scythe.selection.yaml)（90点。旧 [recipe/weapon-scythe](../../knowledge/recipes/weapons/weapon-scythe.md)） | 通常攻撃：円形、判定持続0.35秒。半径はゲーム入力。 |
+| 短剣 | [展開版Selection](runs/slash-weapon-variants-2026-10-07.dagger.selection.yaml)（版3評価待ち。旧は内側SDF） | 通常攻撃：直接攻撃。射程・予備動作は未提供。 |
 | 槍 | [recipe/weapon-spear](../../knowledge/recipes/weapons/weapon-spear.md) | 通常攻撃：直接攻撃。現在の装備/ActorArchetypeから参照なし。定義済み候補として保持。 |
-| 棒 | [recipe/weapon-rod](../../knowledge/recipes/weapons/weapon-rod.md) | 通常攻撃：直接攻撃。 |
+| 棒 | [一から作った版のSelection](runs/melee-weapon-free-design-2026-10-07.rod.selection.yaml)（75点。旧 [recipe/weapon-rod](../../knowledge/recipes/weapons/weapon-rod.md)） | 通常攻撃：直接攻撃。 |
 | 拳 | [recipe/weapon-fist](../../knowledge/recipes/weapons/weapon-fist.md) | 通常攻撃：直接攻撃。 |
 | 大盾 | [recipe/weapon-greatshield](../../knowledge/recipes/weapons/weapon-greatshield.md) | 通常攻撃：直接攻撃。現在の装備/ActorArchetypeから参照なし。定義済み候補として保持。 |
-| 鉄扇 | [recipe/weapon-ironfan](../../knowledge/recipes/weapons/weapon-ironfan.md) | 通常攻撃：直接攻撃。現在の装備/ActorArchetypeから参照なし。定義済み候補として保持。 |
+| 鉄扇 | [一から作った版のSelection](runs/melee-weapon-free-design-2026-10-07.ironfan.selection.yaml)（85点。旧 [recipe/weapon-ironfan](../../knowledge/recipes/weapons/weapon-ironfan.md)） | 通常攻撃：直接攻撃。現在の装備/ActorArchetypeから参照なし。定義済み候補として保持。 |
 | 爪 | [recipe/weapon-claw](../../knowledge/recipes/weapons/weapon-claw.md) | 通常攻撃：直接攻撃。モンスター自然武器でも同じ戦闘定義。 |
 | 牙 | [recipe/weapon-fang](../../knowledge/recipes/weapons/weapon-fang.md) | 通常攻撃：直接攻撃。モンスター自然武器でも同じ戦闘定義。 |
 | 弓 | [recipe/weapon-bow](../../knowledge/recipes/weapons/weapon-bow.md) | 通常攻撃：飛翔18m/s。 |

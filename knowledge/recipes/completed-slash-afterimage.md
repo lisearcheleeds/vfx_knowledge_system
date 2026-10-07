@@ -5,8 +5,8 @@ kind: recipe
 title: 完成した三日月の斬撃残像
 summary: 判定後に発火する剣・短剣・大型刃の残像。主役は弧帯UV上の解析式の非対称三日月を優先し、色面の流れ、並列の立上りと消失、先端へ縮む最後を採用する。
 status: draft
-revision: 2
-updated_at: '2026-10-06'
+revision: 3
+updated_at: '2026-10-07'
 aliases:
 - SwordSlash
 - DaggerThrust
@@ -28,6 +28,21 @@ relations:
   reason: 非対称の三日月の形・内側の抜き・短縮・外縁と外光を式で連続に作る（改訂2の優先案）。
   requirement: required
   role: contour
+- target: technique/arc-reach-asymmetry
+  type: composes
+  requirement: optional
+  role: reach
+  reason: 刃渡りの短い武器・射程の長い武器で、弧の片側の長さを変える。
+- target: technique/afterimage-weight-timing
+  type: composes
+  requirement: optional
+  role: weight
+  reason: 武器の速さ・重さ・鋭さを時間配分で読ませる。
+- target: technique/slash-pressure-haze
+  type: composes
+  requirement: optional
+  role: pressure
+  reason: 重い武器の破壊力を外側の薄い霞で足す。
 - target: technique/inner-cut-sdf
   type: candidate
   reason: 改訂1の主案。参照の内側曲線が円の組み合わせで近似でき、解析式で作りにくい場合に比較する。
@@ -46,10 +61,34 @@ relations:
 evidence:
 - evidence/completed-slash-inner-cut-preview
 - evidence/sword-slash-analytic-crescent-preview
+- evidence/slash-weapon-variants-preview
 superseded_by: []
 ---
 
 # 完成した三日月の斬撃残像
+
+## 改訂3：武器の性格を因子で決めて一度で作る（2026-10-07）
+
+剣（85点）の作り方を共通の土台にし、武器の性格を三つの因子に分けて決める。剣・短剣・大剣の往復で確かめた読み方で、**作り始める前にこの表で因子を決める**。値は剣を1とした比率の目安で、ゲームの攻撃間隔・射程に合わせて調整する。
+
+| 因子 | 読ませること | 剣（基準） | 短剣 | 大剣 | 長柄（薙刀など。未制作） |
+| --- | --- | --- | --- | --- | --- |
+| 弧の形 | 刃の大きさ | 円弧110度・外半径は射程の約0.8倍 | 攻撃方向へ細長い楕円（幅1:奥行5） | 円弧130度・外半径は射程の約0.85倍 | 長い円弧 |
+| [片側の長さ](../techniques/arc-reach-asymmetry.md) | 刃渡り・射程 | ほぼ対称 | **振り終わり側を短く**（凸の先端の近くで終わる） | ほぼ対称 | **振り始め側を長く** |
+| 最大の厚み / 外半径 | 刃の幅 | 約0.4 | 先端が厚く尾は細い | 約0.44・腹を太く | 細め |
+| [全体の尺](../techniques/afterimage-weight-timing.md) | 速さ | 1（0.30秒） | 約0.5 | 約1.3 | 1〜1.2 |
+| 細い外縁だけの時間 | 鋭さ | 全体の約1/4 | 短く | **全体の約1割** | 長め |
+| 抜きのカーブ | 重さ | ほぼ線形 | ほぼ線形・長い側は早く縮める | **前半ゆっくり**（太い本体を保つ） | ほぼ線形 |
+| [剣圧の霞](../techniques/slash-pressure-haze.md) | 破壊力 | なし | なし | **ごく薄く付ける** | なし |
+| 内縁の裂け | 速度感 | 絶対の振れ幅で上限（±0.05〜0.1 m） | 小さく（細い帯で切れ目になる） | 小さく（大きな歯になる） | 小さく |
+
+### 一度で作る手順
+
+1. 武器の性格（刃渡り・速さ・重さ・破壊力）を言葉で決め、上の表で因子の値を選ぶ。表に無い武器は、近い性格の列から組み合わせる。
+2. 片側を短く・長くする場合は、**振り始め側か振り終わり側か**を確かめる（「尾」＝振り終わり側）。取り違えると逆の武器に見える。
+3. 下の「改訂2」の作り方で主役を作り、因子の値を入れる。補助（火花・暗い補助帯）は足さない。
+4. 45度の俯瞰と真上の両方で連番を撮り、表の「読ませること」が形と時間から読めるかを見る。
+
 
 ## 改訂2：優先する作り方（2026-10-06）
 

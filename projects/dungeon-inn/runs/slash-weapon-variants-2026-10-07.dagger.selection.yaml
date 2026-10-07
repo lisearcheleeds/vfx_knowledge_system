@@ -1,0 +1,8 @@
+# 短剣の残像（DaggerThrust_2）。刃渡りの短さは振り終わり側を短くした片側の短い三日月、速さは短い尺で読ませる。
+selected_nodes:
+  - recipe/completed-slash-afterimage
+  - technique/arc-reach-asymmetry
+  - technique/afterimage-weight-timing
+  - adapter/unity-urp-analytic-crescent
+engine: unity
+conditional_decisions: []

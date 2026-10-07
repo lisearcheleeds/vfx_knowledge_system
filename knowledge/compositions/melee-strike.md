@@ -5,8 +5,8 @@ kind: composition
 title: 近接攻撃の振り・接触・残留
 summary: 動作中の振り、判定後の残像、実命中の反応を分け、発火時点から主役と時計を選ぶ。
 status: draft
-revision: 2
-updated_at: '2026-10-06'
+revision: 3
+updated_at: '2026-10-07'
 aliases: []
 tags:
 - combat
@@ -18,7 +18,12 @@ relations:
   type: candidate
   reason: 判定後に表示する残像の分岐。
   role: afterimage
-evidence: []
+- target: recipe/melee-weapon-afterimages
+  type: candidate
+  reason: 判定後の残像を武器から推測して作る入口。
+  role: afterimage
+evidence:
+- evidence/melee-weapon-free-design-preview
 superseded_by: []
 ---
 
@@ -46,3 +51,10 @@ windup/attack-active/attack-endは要求する意味上のイベントであり�
 ## 発火時点で表現を選ぶ
 
 動作中の刃と、判定後に残った空間は別の時間契約。[完成弧の残像](../techniques/completed-arc-afterimage.md)では外側を初めから完成させ、内部流れと方向の読める消失を動かす。立上りopacityと消失時計は独立にし、直列再生を既定にしない。意味が異なる既存の展開・履歴方式は削除せず、用途を分けて保持する。
+
+## 残像と命中の役割の分担（2026-10-07）
+
+- 判定後の残像は「武器が通った空間・振りの性格」だけを表す。**衝突・命中（衝撃の輪・土煙・火花）は命中の演出（Contact）の仕事**で、残像に入れない。入れると、何を表しているのか分からなくなる（棒の振りに付けた衝撃の輪と土煙、剣の残像の先端の火花が「何か不明」と評価された）。
+- 攻撃部位から**前へ飛ぶ粒子は飛び道具・術に見える**。粒子を使うなら振る・斬る向きに沿わせる。
+- 残像の再生開始の時点で判定は済んでいる。開く・回るアニメーションにするなら、判定済みの形（完成した弧の線・範囲の円盤）を最初から置く。
+- 武器ごとの作り方の入口は recipe/melee-weapon-afterimages。
