@@ -5,8 +5,8 @@ kind: composition
 title: 近接攻撃の振り・接触・残留
 summary: 動作中の振り、判定後の残像、実命中の反応を分け、発火時点から主役と時計を選ぶ。
 status: draft
-revision: 4
-updated_at: '2026-10-08'
+revision: 5
+updated_at: '2026-10-10'
 aliases: []
 tags:
 - combat
@@ -28,6 +28,7 @@ relations:
 evidence:
 - evidence/melee-weapon-free-design-preview
 - evidence/weapon-contact-free-design-preview
+- evidence/skill-baselines-preview
 superseded_by: []
 ---
 
@@ -66,4 +67,5 @@ windup/attack-active/attack-endは要求する意味上のイベントであり�
 ## 振る側と受ける側の向き（2026-10-08）
 
 - 振り・残像は**攻撃する側の動作の向き**（閉じる・突き出す・振り抜く）を表す。命中（Contact）は**受けた側の反応**で、接触点から外へ飛び散る向きにする。噛みつきの命中で光を内へ閉じると、振りの側の動作を繰り返したように読め、受けた反応に見えない。
+- 重い打撃の命中は、受けた側の反応（外へ散る破片・輪）に、攻撃の向きへ押し抜ける圧を重ねると、力が通り抜けた重さが出る（解放の圧と同じ形を命中にも使う）。
 - 押す技の圧は前へ、受け流す技の圧は横へ、のように、衝撃の進む向きで力の意味を決める（technique/wave-direction-semantics）。

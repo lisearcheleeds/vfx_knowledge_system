@@ -115,6 +115,16 @@
     ],
     "composition/combat-readability": [
       {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "重い打撃の命中の五方向の星は「ださい」（65・75点）。内側にもう一つ輪を足す方がよく、解放の圧（120点）のような指向性を命中にも持たせてよいと指摘された。回復に輪は入らないが、輪のある版は状態異常の回復なら色を少し青に寄せるだけで100点。実回復の刻みは葉と光を外し、粒を増やして一瞬だけ発生させ、ゆっくり動かすよう指摘された。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "地面の亀裂は地面に付くものなので、大きさがアニメーションするのはおかしいと指摘された。",
+        "type": "claim"
+      },
+      {
         "source": "evidence/vfx-gameplay-clarity-source",
         "statement": "VFXは行動・状態を正確に伝え、全体の一貫性と発生源の個性を両立させる。",
         "type": "claim"
@@ -1097,6 +1107,13 @@
         "source": "recipe/targeted-restoration-burst",
         "target": "composition/refreshable-status",
         "type": "composes"
+      },
+      {
+        "reason": "継続（active）の表示の形を決める。",
+        "relation_index": 0,
+        "source": "technique/status-flow-particles",
+        "target": "composition/refreshable-status",
+        "type": "enhances"
       }
     ],
     "composition/targeted-activation": [
@@ -1835,6 +1852,44 @@
         "type": "evidence"
       }
     ],
+    "evidence/skill-baselines-preview": [
+      {
+        "source": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "evidence"
+      },
+      {
+        "source": "composition/combat-readability",
+        "type": "evidence"
+      },
+      {
+        "source": "composition/melee-strike",
+        "type": "evidence"
+      },
+      {
+        "source": "composition/refreshable-status",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/ignition-burst",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/internal-source-leak",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/radial-layered-vortex",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/rotation-overshoot",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/status-flow-particles",
+        "type": "evidence"
+      }
+    ],
     "evidence/slash-weapon-variants-preview": [
       {
         "source": "adapter/unity-urp-analytic-crescent",
@@ -2312,6 +2367,13 @@
         "source": "recipe/volumetric-fireball",
         "target": "recipe/impact-fire-contact",
         "type": "composes"
+      },
+      {
+        "reason": "炎の命中の炎の動き方。",
+        "relation_index": 0,
+        "source": "technique/ignition-burst",
+        "target": "recipe/impact-fire-contact",
+        "type": "enhances"
       }
     ],
     "recipe/impact-pierce": [
@@ -5378,6 +5440,13 @@
         "type": "composes"
       }
     ],
+    "technique/ignition-burst": [
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "炎の命中は80点。炎が最初から上へ向かうのでなく、全方位へ一瞬向かってから上へ（コンロの着火のボッ）と指摘された。",
+        "type": "claim"
+      }
+    ],
     "technique/inner-cut-sdf": [
       {
         "reason": "固定外形と内側穴を分ける。",
@@ -5412,6 +5481,13 @@
         "source": "technique/completed-arc-afterimage",
         "target": "technique/inner-cut-sdf",
         "type": "candidate"
+      }
+    ],
+    "technique/internal-source-leak": [
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "ブレスの溜めで外から内へ集める粒は70点。炎は体内で生まれるので外からの粒は不要で、口内から漏れる光の筋がよいと指摘された。自己再生の溜めは主張しなくてよい（霞は不要、70点）。",
+        "type": "claim"
       }
     ],
     "technique/mesh-core": [
@@ -5984,6 +6060,13 @@
         "type": "enhances"
       }
     ],
+    "technique/radial-layered-vortex": [
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "回転斬りの溜めは75点で風感が少ない。外周に風、中央にコイル、最外周にほこりと棲み分けると竜巻・渦巻き感が出ると指摘された。",
+        "type": "claim"
+      }
+    ],
     "technique/radial-wave": [
       {
         "reason": "低い薄環を主弧の内側へ一枚。白灰、主弧より暗い。",
@@ -6066,6 +6149,27 @@
         "source": "recipe/weapon-scythe",
         "target": "technique/rotating-sweep-trails",
         "type": "candidate"
+      },
+      {
+        "reason": "回る刃・範囲の円盤の回転量と端の消し方。",
+        "relation_index": 0,
+        "source": "technique/rotation-overshoot",
+        "target": "technique/rotating-sweep-trails",
+        "type": "enhances"
+      }
+    ],
+    "technique/rotation-overshoot": [
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "一周の回転斬りは85点。斬り跡と低い風が360度きっかりで途切れて見え、約390度（1.1回転）回して端をグラデーションにすると自然な回転になると指摘された。手元の小さな渦も390度回してごく短いフェードで消すよう指摘された（85点）。",
+        "type": "claim"
+      },
+      {
+        "reason": "各層の回転量と端の消し方。",
+        "relation_index": 0,
+        "source": "technique/radial-layered-vortex",
+        "target": "technique/rotation-overshoot",
+        "type": "enhances"
       }
     ],
     "technique/slash-pressure-haze": [
@@ -6096,6 +6200,32 @@
         "source": "technique/analytic-crescent-uv",
         "target": "technique/slash-pressure-haze",
         "type": "enhances"
+      }
+    ],
+    "technique/status-flow-particles": [
+      {
+        "reason": "継続の強化・弱体の表示の形。",
+        "relation_index": 0,
+        "source": "composition/combat-readability",
+        "target": "technique/status-flow-particles",
+        "type": "enhances"
+      },
+      {
+        "reason": "継続（active）の表示の形。",
+        "relation_index": 0,
+        "source": "composition/refreshable-status",
+        "target": "technique/status-flow-particles",
+        "type": "enhances"
+      },
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "上向き・下向きの山形の継続表示は60点。表示範囲が広く記号の意味が強い。同じ色の上昇・下降の粒子（弱体は下降する針状の線）にとどめ、色と粒子の向きでバフ・デバフを表すよう指摘された。強い弱体（三枚）は通常の弱体（二枚）と区別が付かず、色で棲み分けるよう指摘された。食事の継続の穂は「食べ物？」と読めなかった。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "版2の継続表示（同色の上昇・下降の粒子）は、粒子の速度が速すぎる（0.2倍ぐらいに）と指摘された。",
+        "type": "claim"
       }
     ],
     "technique/surface-density-core": [
@@ -6358,6 +6488,13 @@
         "source": "recipe/weapon-greatshield",
         "target": "technique/wave-direction-semantics",
         "type": "enhances"
+      },
+      {
+        "reason": "内向き（集める）と外向き（漏れる・押し出す）の向きの意味。",
+        "relation_index": 0,
+        "source": "technique/internal-source-leak",
+        "target": "technique/wave-direction-semantics",
+        "type": "enhances"
       }
     ]
   },
@@ -6420,7 +6557,8 @@
       "engine": "unity",
       "evidence": [
         "evidence/melee-weapon-free-design-preview",
-        "evidence/weapon-contact-free-design-preview"
+        "evidence/weapon-contact-free-design-preview",
+        "evidence/skill-baselines-preview"
       ],
       "id": "adapter/unity-urp-baseline-sheet-particles",
       "kind": "adapter",
@@ -6432,10 +6570,10 @@
           "type": "requires"
         }
       ],
-      "revision": 2,
+      "revision": 3,
       "schema_version": "0.1.0",
       "scope": "engine-specific",
-      "sha256": "6aa82068819a005f93936fd8f85935bd770400659b2d5073b2d4c42229dbc256",
+      "sha256": "5ae5144b609dcf50e363671f58e7f95397ff7fa964b404fc3198da4a282e71e5",
       "status": "draft",
       "summary": "弧・円環・円盤の帯Meshに外部経過秒で動く汎用のシートShaderを載せ、ParticleSystemの層と組み合わせて近接武器の残像を作ったPreview実装。",
       "superseded_by": [],
@@ -6444,7 +6582,7 @@
         "mesh"
       ],
       "title": "Unity URP：時間で動く帯の面と粒子の層で残像を組む",
-      "updated_at": "2026-10-08"
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [],
@@ -6554,16 +6692,23 @@
       "aliases": [],
       "evidence": [
         "evidence/vfx-gameplay-clarity-source",
-        "evidence/weapon-contact-free-design-preview"
+        "evidence/weapon-contact-free-design-preview",
+        "evidence/skill-baselines-preview"
       ],
       "id": "composition/combat-readability",
       "kind": "composition",
       "path": "knowledge/compositions/combat-readability.md",
-      "relations": [],
-      "revision": 3,
+      "relations": [
+        {
+          "reason": "継続の強化・弱体の表示の形。",
+          "target": "technique/status-flow-particles",
+          "type": "enhances"
+        }
+      ],
+      "revision": 4,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "be662c682ad88f5692aa9d3f63da79147718c870d8f3d61e7295b4d69a4e3995",
+      "sha256": "2646438b7d2dbedaa04f75a72b5580cb7e441f2b5f818a40d834eac5638ae0c5",
       "status": "draft",
       "summary": "攻撃形状と命中を主役にし、装飾と継続状態の明度・面積を階層化する構成。",
       "superseded_by": [],
@@ -6572,13 +6717,14 @@
         "readable-silhouette"
       ],
       "title": "戦闘エフェクトの主役・補助・状態の階層",
-      "updated_at": "2026-10-08"
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [],
       "evidence": [
         "evidence/melee-weapon-free-design-preview",
-        "evidence/weapon-contact-free-design-preview"
+        "evidence/weapon-contact-free-design-preview",
+        "evidence/skill-baselines-preview"
       ],
       "id": "composition/melee-strike",
       "kind": "composition",
@@ -6602,10 +6748,10 @@
           "type": "enhances"
         }
       ],
-      "revision": 4,
+      "revision": 5,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "b69c95a75565b10f0b0ae69045003568c1bedb691170a84673a1f425c06db736",
+      "sha256": "03396b28decf71f956d22d45a7993e551e31792233d92282e4748462582e272f",
       "status": "draft",
       "summary": "動作中の振り、判定後の残像、実命中の反応を分け、発火時点から主役と時計を選ぶ。",
       "superseded_by": [],
@@ -6615,7 +6761,7 @@
         "lifecycle"
       ],
       "title": "近接攻撃の振り・接触・残留",
-      "updated_at": "2026-10-08"
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [
@@ -6649,15 +6795,23 @@
     },
     {
       "aliases": [],
-      "evidence": [],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
       "id": "composition/refreshable-status",
       "kind": "composition",
       "path": "knowledge/compositions/refreshable-status.md",
-      "relations": [],
-      "revision": 1,
+      "relations": [
+        {
+          "reason": "継続（active）の表示の形。",
+          "target": "technique/status-flow-particles",
+          "type": "enhances"
+        }
+      ],
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "7dbaf53aca741560f74f7ca5a9ac5aeea834237c8669cce86e76b771fb264a2f",
+      "sha256": "838f8f708e559373002133a31cb585f56528c95ba2b18de0781133da78049142",
       "status": "draft",
       "summary": "状態ID・実際の回復イベント・更新後の期限に追従し、同カテゴリの継続表示を集約する。",
       "superseded_by": [],
@@ -6666,7 +6820,7 @@
         "lifecycle"
       ],
       "title": "再付与できる状態の付与・刻み・継続・解除",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [],
@@ -7079,6 +7233,80 @@
       ],
       "title": "品質基準版からCore単独への削減と見た目承認",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-10",
+        "claims": [
+          {
+            "statement": "一周の回転斬りは85点。斬り跡と低い風が360度きっかりで途切れて見え、約390度（1.1回転）回して端をグラデーションにすると自然な回転になると指摘された。手元の小さな渦も390度回してごく短いフェードで消すよう指摘された（85点）。",
+            "target": "technique/rotation-overshoot"
+          },
+          {
+            "statement": "回転斬りの溜めは75点で風感が少ない。外周に風、中央にコイル、最外周にほこりと棲み分けると竜巻・渦巻き感が出ると指摘された。",
+            "target": "technique/radial-layered-vortex"
+          },
+          {
+            "statement": "炎の命中は80点。炎が最初から上へ向かうのでなく、全方位へ一瞬向かってから上へ（コンロの着火のボッ）と指摘された。",
+            "target": "technique/ignition-burst"
+          },
+          {
+            "statement": "ブレスの溜めで外から内へ集める粒は70点。炎は体内で生まれるので外からの粒は不要で、口内から漏れる光の筋がよいと指摘された。自己再生の溜めは主張しなくてよい（霞は不要、70点）。",
+            "target": "technique/internal-source-leak"
+          },
+          {
+            "statement": "上向き・下向きの山形の継続表示は60点。表示範囲が広く記号の意味が強い。同じ色の上昇・下降の粒子（弱体は下降する針状の線）にとどめ、色と粒子の向きでバフ・デバフを表すよう指摘された。強い弱体（三枚）は通常の弱体（二枚）と区別が付かず、色で棲み分けるよう指摘された。食事の継続の穂は「食べ物？」と読めなかった。",
+            "target": "technique/status-flow-particles"
+          },
+          {
+            "statement": "重い打撃の命中の五方向の星は「ださい」（65・75点）。内側にもう一つ輪を足す方がよく、解放の圧（120点）のような指向性を命中にも持たせてよいと指摘された。回復に輪は入らないが、輪のある版は状態異常の回復なら色を少し青に寄せるだけで100点。実回復の刻みは葉と光を外し、粒を増やして一瞬だけ発生させ、ゆっくり動かすよう指摘された。",
+            "target": "composition/combat-readability"
+          },
+          {
+            "statement": "版2の継続表示（同色の上昇・下降の粒子）は、粒子の速度が速すぎる（0.2倍ぐらいに）と指摘された。",
+            "target": "technique/status-flow-particles"
+          },
+          {
+            "statement": "地面の亀裂は地面に付くものなので、大きさがアニメーションするのはおかしいと指摘された。",
+            "target": "composition/combat-readability"
+          }
+        ],
+        "conditions": "専用Prefab Preview。暗い背景、主に45度俯瞰。ユーザーがライブPreviewで評価。名称とManifestのラベル・時間から意味を推測し、前任のアセットは参照していない。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/skill-baselines-2026-10-08.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview",
+          "executed_at": "2026-10-10",
+          "procedure": "生成スクリプトで面と粒子の層を作り、連番の一覧画像と粒子の位置の読み取りで確認・修正してからユーザーが評価した。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "一つのカメラ条件・一つのプロジェクトの例。評価点はユーザーの主観。ゲーム接続・実状態への同期・性能は未確認。",
+        "result": "版1は60〜120点。120点は剛腕・強打の解放（前へ押し出す椀形の圧）、110点は呪いの印（眼が開いて割れて落ちる）、100点は火の詠唱・急所突きの収束と命中・狙い撃ちの収束。指摘を直した版2は評価待ち。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/skill-baselines-preview",
+      "kind": "evidence",
+      "path": "evidence/skill-baselines-preview.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "36adc1d0dfb8c91f1fb1f8c6a9e9206122c69f13d8483a430ca1cac807eb7c44",
+      "status": "reviewed",
+      "summary": "溜め・解放・命中・適用・継続のスキル41種の版1が60〜120点と評価され、指摘が「回転の量と端」「層の棲み分け」「力の出どころ」「継続表示の記号」「命中の星」に集中した記録。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "スキル41種を名称から一から作ったPreview記録",
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [],
@@ -14050,6 +14278,41 @@
     },
     {
       "aliases": [
+        "着火",
+        "熱接触",
+        "燃え上がり",
+        "ボッ"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/ignition-burst",
+      "kind": "technique",
+      "path": "knowledge/techniques/ignition-burst.md",
+      "relations": [
+        {
+          "reason": "炎の命中の炎の動き方。",
+          "target": "recipe/impact-fire-contact",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "32ae2cc8f18514ae4e4038b59c9ac42e4ad424bbd52888752e6b7ba25ebe7bd2",
+      "status": "draft",
+      "summary": "炎が当たる・燃え上がる瞬間は、最初から上へ向かわせず、全方位へ一瞬だけ広がってすぐ止まり、その後に熱で上へ昇らせる。コンロに着火した時の「ボッ」の動き。",
+      "superseded_by": [],
+      "tags": [
+        "fire",
+        "combat",
+        "technique"
+      ],
+      "title": "着火・炎の命中は、全方位へ一瞬広がってから上へ昇る",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "aliases": [
         "SDF",
         "三日月の内側",
         "inner cut",
@@ -14086,6 +14349,41 @@
       ],
       "title": "固定外形から内側だけをSDFで抜く",
       "updated_at": "2026-10-06"
+    },
+    {
+      "aliases": [
+        "溜め",
+        "収束",
+        "ライトシャフト",
+        "漏れる光",
+        "ブレスの溜め"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/internal-source-leak",
+      "kind": "technique",
+      "path": "knowledge/techniques/internal-source-leak.md",
+      "relations": [
+        {
+          "reason": "内向き（集める）と外向き（漏れる・押し出す）の向きの意味。",
+          "target": "technique/wave-direction-semantics",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "55b5c43129ca0791a5ee514a9ef4c8874bdf1d93a6e6d16c804e9bb0b76136ce",
+      "status": "draft",
+      "summary": "溜め（予備動作）の向きは力の出どころで決める。周りから力を集める技は外から内へ収束させ、体内で生み出す力（ブレスの炎など）は外から集めず、口や身体の隙間から漏れる光の筋で表す。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "体内で生まれる力の溜めは、外から集めず内から漏れる光で表す",
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [
@@ -14228,6 +14526,40 @@
       "updated_at": "2026-10-04"
     },
     {
+      "aliases": [
+        "竜巻",
+        "渦巻き",
+        "旋風",
+        "風感"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/radial-layered-vortex",
+      "kind": "technique",
+      "path": "knowledge/techniques/radial-layered-vortex.md",
+      "relations": [
+        {
+          "reason": "各層の回転量と端の消し方。",
+          "target": "technique/rotation-overshoot",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "5b9c744927560f24b82b55b625a2393dc5cf7029363c3632392bd349ccb079a0",
+      "status": "draft",
+      "summary": "渦を巻く溜め・竜巻は、中央のコイル、外周の流れる風、最外周の舞うほこりと、半径ごとに役割の違う層に分けると、風感と渦巻き感が出る。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "渦・竜巻は半径で層を棲み分ける",
+      "updated_at": "2026-10-10"
+    },
+    {
       "aliases": [],
       "evidence": [],
       "id": "technique/radial-wave",
@@ -14318,6 +14650,41 @@
     },
     {
       "aliases": [
+        "一回転",
+        "390度",
+        "回転斬り",
+        "継ぎ目",
+        "パツッと消える"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/rotation-overshoot",
+      "kind": "technique",
+      "path": "knowledge/techniques/rotation-overshoot.md",
+      "relations": [
+        {
+          "reason": "回る刃・範囲の円盤の回転量と端の消し方。",
+          "target": "technique/rotating-sweep-trails",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "b99c0b3a811bc1b2659a71ac38f22b52f44f8a9efc05394fe9135dbc4ff624b5",
+      "status": "draft",
+      "summary": "回転斬り・渦・巻き込みなど回る表現は、360度きっかりで止めると継ぎ目で途切れて見える。約1.1回転（390度前後）回し、始端・終端をグラデーションで消すと自然な回転になり、回転そのものを強く印象付ける。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "回転は一周きっかりで止めず、約1.1回転して端を消す",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "aliases": [
         "剣圧",
         "風圧",
         "衝撃の霞",
@@ -14350,6 +14717,43 @@
       ],
       "title": "剣圧・風圧の霞",
       "updated_at": "2026-10-07"
+    },
+    {
+      "aliases": [
+        "バフ",
+        "デバフ",
+        "継続表示",
+        "状態異常",
+        "ステータスダウン",
+        "上昇粒子",
+        "下降粒子"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/status-flow-particles",
+      "kind": "technique",
+      "path": "knowledge/techniques/status-flow-particles.md",
+      "relations": [
+        {
+          "reason": "継続（active）の表示の形を決める。",
+          "target": "composition/refreshable-status",
+          "type": "enhances"
+        }
+      ],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "4ce3193d7e8ec018cc9805543b210a1d84bf02ec3b2cab65c847d1b3112f7d38",
+      "status": "draft",
+      "summary": "強化・弱体の継続表示は、上向き・下向きの記号を出さず、身体の外縁の狭い範囲から同じ色の粒子を上昇（強化）・下降（弱体）させて表す。種類は色で、強さは色と密度で分ける。",
+      "superseded_by": [],
+      "tags": [
+        "status",
+        "technique"
+      ],
+      "title": "継続の状態は記号でなく、同じ色の粒子の流れる向きで表す",
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [
@@ -14634,6 +15038,7 @@
     "evidence/organic-fire-volume-preview": [],
     "evidence/particle-simulation-and-renderer-source": [],
     "evidence/quality-baseline-to-core-only": [],
+    "evidence/skill-baselines-preview": [],
     "evidence/slash-weapon-variants-preview": [],
     "evidence/sword-slash-analytic-crescent-preview": [],
     "evidence/vfx-gameplay-clarity-source": [],
@@ -14780,6 +15185,7 @@
     ],
     "technique/folded-axial-billboard": [],
     "technique/history-ribbon": [],
+    "technique/ignition-burst": [],
     "technique/inner-cut-sdf": [
       {
         "derived": true,
@@ -14790,6 +15196,7 @@
         "type": "alternative"
       }
     ],
+    "technique/internal-source-leak": [],
     "technique/mesh-core": [
       {
         "derived": true,
@@ -14815,9 +15222,12 @@
     "technique/orbit-glyphs": [],
     "technique/oriented-projectile-core": [],
     "technique/particle-emission": [],
+    "technique/radial-layered-vortex": [],
     "technique/radial-wave": [],
     "technique/rotating-sweep-trails": [],
+    "technique/rotation-overshoot": [],
     "technique/slash-pressure-haze": [],
+    "technique/status-flow-particles": [],
     "technique/surface-density-core": [
       {
         "derived": true,

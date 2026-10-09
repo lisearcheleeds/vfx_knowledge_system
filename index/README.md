@@ -21,6 +21,7 @@
 | `evidence/organic-fire-volume-preview` | [体積炎・方向流れ・煙のPreview制作と人間評価](../evidence/organic-fire-volume-preview.md) | reviewed |
 | `evidence/particle-simulation-and-renderer-source` | [粒子シミュレーションと描画方法の分離に関する一次資料](../evidence/particle-simulation-and-renderer-source.md) | draft |
 | `evidence/quality-baseline-to-core-only` | [品質基準版からCore単独への削減と見た目承認](../evidence/quality-baseline-to-core-only.md) | reviewed |
+| `evidence/skill-baselines-preview` | [スキル41種を名称から一から作ったPreview記録](../evidence/skill-baselines-preview.md) | reviewed |
 | `evidence/slash-weapon-variants-preview` | [解析式の三日月を短剣・大剣へ展開した再現記録](../evidence/slash-weapon-variants-preview.md) | reviewed |
 | `evidence/sword-slash-analytic-crescent-preview` | [剣の斬撃残像を解析式の三日月で作り直したPreview記録](../evidence/sword-slash-analytic-crescent-preview.md) | reviewed |
 | `evidence/vfx-gameplay-clarity-source` | [VFXのゲーム情報と美術的一貫性に関する一次資料](../evidence/vfx-gameplay-clarity-source.md) | draft |
@@ -135,14 +136,19 @@
 | `technique/flipbook-particles` | [連番素材で形を保つ炎・煙の粒子](../knowledge/techniques/flipbook-particles.md) | draft |
 | `technique/folded-axial-billboard` | [折り曲げ式の軸固定ビルボード](../knowledge/techniques/folded-axial-billboard.md) | draft |
 | `technique/history-ribbon` | [移動履歴の先細り帯](../knowledge/techniques/history-ribbon.md) | draft |
+| `technique/ignition-burst` | [着火・炎の命中は、全方位へ一瞬広がってから上へ昇る](../knowledge/techniques/ignition-burst.md) | draft |
 | `technique/inner-cut-sdf` | [固定外形から内側だけをSDFで抜く](../knowledge/techniques/inner-cut-sdf.md) | draft |
+| `technique/internal-source-leak` | [体内で生まれる力の溜めは、外から集めず内から漏れる光で表す](../knowledge/techniques/internal-source-leak.md) | draft |
 | `technique/mesh-core` | [メッシュによる核](../knowledge/techniques/mesh-core.md) | draft |
 | `technique/orbit-glyphs` | [小さな周回記号による継続状態](../knowledge/techniques/orbit-glyphs.md) | draft |
 | `technique/oriented-projectile-core` | [前方を保つ投射体の実体](../knowledge/techniques/oriented-projectile-core.md) | draft |
 | `technique/particle-emission` | [役割を限定した粒子の発生と運動](../knowledge/techniques/particle-emission.md) | draft |
+| `technique/radial-layered-vortex` | [渦・竜巻は半径で層を棲み分ける](../knowledge/techniques/radial-layered-vortex.md) | draft |
 | `technique/radial-wave` | [接地した膨張環と圧縮波](../knowledge/techniques/radial-wave.md) | draft |
 | `technique/rotating-sweep-trails` | [範囲の円盤と順番に回る刃の軌跡](../knowledge/techniques/rotating-sweep-trails.md) | draft |
+| `technique/rotation-overshoot` | [回転は一周きっかりで止めず、約1.1回転して端を消す](../knowledge/techniques/rotation-overshoot.md) | draft |
 | `technique/slash-pressure-haze` | [剣圧・風圧の霞](../knowledge/techniques/slash-pressure-haze.md) | draft |
+| `technique/status-flow-particles` | [継続の状態は記号でなく、同じ色の粒子の流れる向きで表す](../knowledge/techniques/status-flow-particles.md) | draft |
 | `technique/surface-density-core` | [面上の密度近似と方向UV流れによる主形状](../knowledge/techniques/surface-density-core.md) | draft |
 | `technique/surface-sigil` | [面に沿う輪・扇・記号の展開](../knowledge/techniques/surface-sigil.md) | draft |
 | `technique/uv-dissolve` | [方向性を持つマスク展開と侵食](../knowledge/techniques/uv-dissolve.md) | draft |

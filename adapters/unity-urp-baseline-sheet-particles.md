@@ -5,8 +5,8 @@ kind: adapter
 title: Unity URP：時間で動く帯の面と粒子の層で残像を組む
 summary: 弧・円環・円盤の帯Meshに外部経過秒で動く汎用のシートShaderを載せ、ParticleSystemの層と組み合わせて近接武器の残像を作ったPreview実装。
 status: draft
-revision: 2
-updated_at: '2026-10-08'
+revision: 3
+updated_at: '2026-10-10'
 aliases: []
 tags:
 - combat
@@ -19,6 +19,7 @@ relations:
 evidence:
 - evidence/melee-weapon-free-design-preview
 - evidence/weapon-contact-free-design-preview
+- evidence/skill-baselines-preview
 superseded_by: []
 engine: unity
 compatibility:
@@ -45,6 +46,9 @@ Unity 6000.3.14f1 / URP 17.3.0 / Windows Editor の専用Prefab Previewで実描
 - ParticleSystemの Velocity over Lifetime は、x・y・z の値のモード（定数・曲線）をそろえる。一つの軸だけ曲線にすると速度全体が無視され、粒子が動かない（牙が閉じなかった例）。
 - 粒子を離れた点（顎の蝶番など）を中心に回すときは、軌跡の位置の微分を Velocity over Lifetime（Local）、同じ角度の微分を Rotation over Lifetime（3D・分離軸、ラジアン毎秒）の曲線にする。開始の位置と向きは開始時の角度から計算して、GameObjectの位置と startRotation3D に入れる。曲線は標本を多めに取り、`SmoothTangents` で接線を付ける（既定の平らな接線のままだと積分した位置がずれる）。
 - 全周の帯（弧0〜360度）の継ぎ目では、補間と微分の補助ピクセルで UV.x がわずかに1を越える。UV.x で分岐・計算する値（厚みの区間など）は `saturate` してから使う。越えた値で厚みが0へ飛び、`fwidth` が巨大になって中心から継ぎ目に沿う細い線が出た例がある（正面では見えず、斜めで見える）。
+- ParticleSystemRendererの Max Particle Size は既定 0.5（画面の半分）で、大きな粒（地面の亀裂・炎・身体のまわりの光）が切り詰められる。大きさを指定どおりに見せる粒は上限を外す。上限で切り詰められた見た目で評価を受けた後に外すと、見た目が変わるので大きさを合わせ直す。
+- Limit Velocity over Lifetimeの抵抗（drag）は既定で粒子の大きさと速さに比例して強まり、大きな炎や煙がすぐ止まる。届く距離を設計したい粒は、大きさ・速さに比例しない抵抗にする。
+- 速度の軸のモードの混在（上記）は見た目では気付きにくいので、生成スクリプトで全てのParticleSystemのx・y・zのモードが一致するかを検査して報告する。
 - 帯Mesh を長さ方向の中心線で v＝1 にする細長い帯では、中心線が外縁（d＝0）になる。外縁の柔らかさを大きくすると中心線が暗く抜ける。中心を明るくしたい帯は外縁の柔らかさを0近くにし、柔らかさは内側（両脇）で取る。
 - Mesh の粒子に周回する模様のテクスチャを貼るときは、長さ方向を Clamp、周方向を Repeat にする。両方 Repeat だと後端に先端の明るさがにじみ、輪の線が出る。
 
