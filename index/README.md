@@ -6,6 +6,7 @@
 | --- | --- | --- |
 | `adapter/unity-urp-analytic-crescent` | [Unity URP：弧帯Meshと解析式の三日月Shader](../adapters/unity-urp-analytic-crescent.md) | draft |
 | `adapter/unity-urp-baseline-sheet-particles` | [Unity URP：時間で動く帯の面と粒子の層で残像を組む](../adapters/unity-urp-baseline-sheet-particles.md) | draft |
+| `adapter/unity-urp-game-particle-conversion` | [Unity URP：基準版の帯と粒子を共有素材の粒子へ変換するときのエンジンの事実](../adapters/unity-urp-game-particle-conversion.md) | draft |
 | `adapter/unity-urp-inner-cut-afterimage` | [Unity URP：静止Meshと内側SDFの斬撃残像](../adapters/unity-urp-inner-cut-afterimage.md) | draft |
 | `adapter/unity-urp-noise-density` | [Unity URP：粒子の密度体積・方向流れ・煙](../adapters/unity-urp-noise-density.md) | draft |
 | `composition/combat-readability` | [戦闘エフェクトの主役・補助・状態の階層](../knowledge/compositions/combat-readability.md) | draft |
@@ -17,6 +18,8 @@
 | `evaluation/projectile-readability` | [投射体の視認性とライフサイクルの評価](../knowledge/evaluation/projectile-readability.md) | draft |
 | `evaluation/status-refresh-and-overlap` | [状態の更新・複合時間・重複表示の評価](../knowledge/evaluation/status-refresh-and-overlap.md) | draft |
 | `evidence/completed-slash-inner-cut-preview` | [斬撃残像の内側SDFと並列立上りのPreview記録](../evidence/completed-slash-inner-cut-preview.md) | reviewed |
+| `evidence/game-effect-conversion-preview` | [基準版71件をゲーム用版へ変換したPreview比較の記録](../evidence/game-effect-conversion-preview.md) | reviewed |
+| `evidence/lightweight-vfx-web-sources` | [軽量なゲーム用VFXの技法に関する公開資料](../evidence/lightweight-vfx-web-sources.md) | draft |
 | `evidence/melee-weapon-free-design-preview` | [斧・大鎌・鉄扇・棒を武器から一から作ったPreview記録](../evidence/melee-weapon-free-design-preview.md) | reviewed |
 | `evidence/organic-fire-volume-preview` | [体積炎・方向流れ・煙のPreview制作と人間評価](../evidence/organic-fire-volume-preview.md) | reviewed |
 | `evidence/particle-simulation-and-renderer-source` | [粒子シミュレーションと描画方法の分離に関する一次資料](../evidence/particle-simulation-and-renderer-source.md) | draft |
@@ -93,6 +96,7 @@
 | `recipe/wide-weapon-sweep` | [広域なぎ払い：横へ押し抜く主弧](../knowledge/recipes/abilities/wide-weapon-sweep.md) | draft |
 | `rendering/emission-and-opacity` | [発光の芯と色の面を分ける合成](../knowledge/rendering/emission-and-opacity.md) | draft |
 | `rendering/ground-footprint` | [実範囲に一致する地面の境界](../knowledge/rendering/ground-footprint.md) | draft |
+| `rendering/lightweight-vfx-catalog` | [軽量なゲーム用VFXの技法カタログ](../knowledge/rendering/lightweight-vfx-catalog.md) | draft |
 | `rendering/world-depth-and-transparency` | [世界の遮蔽を保つ透明エフェクト](../knowledge/rendering/world-depth-and-transparency.md) | draft |
 | `resource/effect-mask-atlas` | [戦闘・状態用の形状マスクAtlas](../knowledge/resources/effect-mask-atlas.md) | draft |
 | `resource/flame-flipbook` | [方向性を持つ火炎Flipbook](../knowledge/resources/flame-flipbook.md) | draft |

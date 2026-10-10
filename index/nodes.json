@@ -21,6 +21,13 @@
     ],
     "adapter/unity-urp-baseline-sheet-particles": [
       {
+        "reason": "変換元の基準版の構成。",
+        "relation_index": 1,
+        "source": "adapter/unity-urp-game-particle-conversion",
+        "target": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "enhances"
+      },
+      {
         "source": "evidence/melee-weapon-free-design-preview",
         "statement": "汎用のシートShaderと粒子の層を一つの生成スクリプトで組み、粒子の回転の向きを位置の読み取りで確かめた。",
         "type": "claim"
@@ -57,6 +64,23 @@
         "source": "technique/rotating-sweep-trails",
         "target": "adapter/unity-urp-baseline-sheet-particles",
         "type": "implemented_by"
+      }
+    ],
+    "adapter/unity-urp-game-particle-conversion": [
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "メッシュ粒子の法線に詰めた値を10倍しても描画が変わらず、法線は正規化されて値を運べなかった。UVの整数部に詰めると帯の模様と崩れ方が基準版に近づいた。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "Texture Sheet Animation の startFrame にコマ番号を入れると星・輪のタイルが丸い光になり、(コマ＋0.5)／16 で正しいタイルになった。メッシュ粒子はタイルが効かず薄く見え、UVをタイルの範囲へ焼き直し両面で描くと基準版と同じ濃さになった。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "トレイルの寿命に秒を入れると、寿命10秒の本体の尾が画面の端まで伸びた。尾の秒数を本体の寿命で割ると基準版の長さになった。",
+        "type": "claim"
       }
     ],
     "adapter/unity-urp-inner-cut-afterimage": [
@@ -1768,6 +1792,22 @@
         "type": "evidence"
       }
     ],
+    "evidence/game-effect-conversion-preview": [
+      {
+        "source": "adapter/unity-urp-game-particle-conversion",
+        "type": "evidence"
+      },
+      {
+        "source": "rendering/lightweight-vfx-catalog",
+        "type": "evidence"
+      }
+    ],
+    "evidence/lightweight-vfx-web-sources": [
+      {
+        "source": "rendering/lightweight-vfx-catalog",
+        "type": "evidence"
+      }
+    ],
     "evidence/melee-weapon-free-design-preview": [
       {
         "source": "adapter/unity-urp-baseline-sheet-particles",
@@ -3088,6 +3128,13 @@
         "type": "requires"
       },
       {
+        "reason": "発光の芯と色の面の分け方を、軽量な層の数で実現する。",
+        "relation_index": 1,
+        "source": "rendering/lightweight-vfx-catalog",
+        "target": "rendering/emission-and-opacity",
+        "type": "enhances"
+      },
+      {
         "reason": "色面の不透明度・外縁の加算・外光の配分を決める。",
         "relation_index": 2,
         "source": "technique/analytic-crescent-uv",
@@ -3244,6 +3291,90 @@
         "type": "requires"
       }
     ],
+    "rendering/lightweight-vfx-catalog": [
+      {
+        "reason": "カタログの技法（LW-C3・D1・D2・F2・F5）をUnityの粒子で実装するときの前提。",
+        "relation_index": 0,
+        "source": "adapter/unity-urp-game-particle-conversion",
+        "target": "rendering/lightweight-vfx-catalog",
+        "type": "enhances"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "回る窓の位相・速さが違う帯（大鎌の3枚の刃、旋風斬の溜めのコイルと風）や発生の時刻が違う輪（拳圧）を1つのメッシュにまとめると、刃が同じ角度に重なる・2本目が崩れるなど見た目が破綻し、分けたまま残した。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "狙い撃ちの矢のらせんの糸（距離あたり140粒×2本・上限各600）を、本体と一緒に動く剛体のらせんメッシュ1粒を毎秒26回転させる形に置き換え、基準版と同じらせんに見えた。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "魔法弾・火の詠唱の核を、外の光と芯を焼き込んだ1チャンネルのタイル1粒にすると、青い光と白い芯（橙と淡黄）の差が消えて鈍い色になり、2粒に戻した。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "打撃の命中 400 個（Editor の Play、主スレッド。空 約 5.5 ms）で、ParticleSystem 4 系は約 20 ms（粒子の更新 2.8 ms・頂点の生成 7.9 ms・Batches 22）、VAT を 1 粒のメッシュ粒子に載せると約 16.8 ms（頂点の生成 8.0 ms は残り、Batches は約 400 に増えた）、VAT を MeshRenderer＋GPU インスタンシングで描くと約 5.5 ms（空とほぼ同じ、Batches 17）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "65 種を混ぜた 100 個（1920×1080、240 フレーム平均）で、主スレッドは空 4.69 ms／ParticleSystem 30.38 ms／焼き込み 6.58 ms。Batches は 6／46／201。焼き込みの Batches は層・演出ごとに素材（焼いたテクスチャ）が分かれていたため。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "焼いた記録 194 枚（RGBAFloat）は中身が約 277 万画素だが、大きさが幅 1〜60・高さ数百〜5291 とばらつき、配列テクスチャで最大にそろえると約 985 MB になる見積もりだった。最大は 2.2 秒で繰り返し粒が 7.5 秒生きる継続の演出で、4 周期 8.8 秒を 60 fps・1 フレーム 10 行・変種 3 で記録した 27×5291。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "半透明の費用は描く画素×重なる層×処理の重さで、大きな重なりが主な原因になる（Unreal/UDKの最適化資料、PowerVRの粒子描画の推奨、各記事）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "粒子の透明の余白を、見える範囲を囲む多角形で削ると、煙の例で4角形60%・8角形52%の画素になり、8角形を超えると効果が薄い（Humus、Persson）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "Unityの粒子はローカル空間などの条件で決定的（procedural）になり、画面外で模擬を止めて早送りできる。ワールド空間・重力・ノイズ・衝突・トレイル・サブエミッタ・距離あたりの発生・9区間以上の曲線・スクリプトでの変更で外れる（Unity公式ブログ）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "URPではMaterialPropertyBlockを付けたレンダラーはSRP Batcherの対象外になり、粒子のレンダラーもMPBを使うため対象外（Unity公式マニュアル・フォーラム）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "粒子の個体差はCustom Vertex Streams・Custom Dataで素材を増やさず渡せる（Unity公式マニュアル）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "大人数の戦闘のモバイルゲームで、1演出の粒子を3〜10個、命中を30粒から焼き込みの2粒へ、200粒から大きな50粒へ減らした例。共通のシェーダとアトラスで素材を共有し、全体を一様にする計算は頂点へ移す（PocketGamer.biz、Stabrov）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "一つの演出の部品（描画の単位）を減らし、物理は少数の部品だけに、薄い粒を重ねるより少ない不透明寄りの粒を使う（id Software Quake 4の資料）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "同時数の上限・重要度・距離で演出を間引き、品質設定で落とす（Unreal Niagaraのスケーラビリティ資料）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "多数の別種の小さな演出には従来の粒子が軽く、同じ演出の大量表示はVFX Graphのインスタンシングが有利（Unityフォーラム・VFX Graph資料）。",
+        "type": "claim"
+      }
+    ],
     "rendering/world-depth-and-transparency": [
       {
         "reason": "透明合成と奥行きの規約。",
@@ -3272,6 +3403,13 @@
         "source": "adapter/unity-urp-noise-density",
         "target": "rendering/world-depth-and-transparency",
         "type": "requires"
+      },
+      {
+        "reason": "透明の重なりと描画順の前提。",
+        "relation_index": 0,
+        "source": "rendering/lightweight-vfx-catalog",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "enhances"
       },
       {
         "reason": "透明描画と奥行きの規約。",
@@ -6585,6 +6723,53 @@
       "updated_at": "2026-10-10"
     },
     {
+      "aliases": [
+        "ゲーム用変換",
+        "Custom Vertex Streams",
+        "メッシュ粒子"
+      ],
+      "compatibility": {
+        "engine_version": "6000.3.14f1",
+        "platforms": [
+          "Windows Editor"
+        ],
+        "renderer": "URP 17.3.0",
+        "verification": "engine-tested"
+      },
+      "engine": "unity",
+      "evidence": [
+        "evidence/game-effect-conversion-preview"
+      ],
+      "id": "adapter/unity-urp-game-particle-conversion",
+      "kind": "adapter",
+      "path": "adapters/unity-urp-game-particle-conversion.md",
+      "relations": [
+        {
+          "reason": "カタログの技法（LW-C3・D1・D2・F2・F5）をUnityの粒子で実装するときの前提。",
+          "target": "rendering/lightweight-vfx-catalog",
+          "type": "enhances"
+        },
+        {
+          "reason": "変換元の基準版の構成。",
+          "target": "adapter/unity-urp-baseline-sheet-particles",
+          "type": "enhances"
+        }
+      ],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-specific",
+      "sha256": "fc6fa5e6ed4d5c1fcdc43874aab3e190f968543eb082b631f9fccdcc07387021",
+      "status": "draft",
+      "summary": "最高品質の基準版（帯のMeshRendererと粒子）を、共有素材2つの粒子だけで描くゲーム用版へ機械的に変換したときに確かめた、ParticleSystemのメッシュ粒子・頂点ストリーム・Texture Sheet Animation・トレイルの挙動と、その回避。",
+      "superseded_by": [],
+      "tags": [
+        "mesh",
+        "billboard"
+      ],
+      "title": "Unity URP：基準版の帯と粒子を共有素材の粒子へ変換するときのエンジンの事実",
+      "updated_at": "2026-10-10"
+    },
+    {
       "aliases": [],
       "compatibility": {
         "engine_version": "6000.3.14f1",
@@ -6971,6 +7156,171 @@
       ],
       "title": "斬撃残像の内側SDFと並列立上りのPreview記録",
       "updated_at": "2026-10-06"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-10",
+        "claims": [
+          {
+            "statement": "メッシュ粒子の法線に詰めた値を10倍しても描画が変わらず、法線は正規化されて値を運べなかった。UVの整数部に詰めると帯の模様と崩れ方が基準版に近づいた。",
+            "target": "adapter/unity-urp-game-particle-conversion"
+          },
+          {
+            "statement": "Texture Sheet Animation の startFrame にコマ番号を入れると星・輪のタイルが丸い光になり、(コマ＋0.5)／16 で正しいタイルになった。メッシュ粒子はタイルが効かず薄く見え、UVをタイルの範囲へ焼き直し両面で描くと基準版と同じ濃さになった。",
+            "target": "adapter/unity-urp-game-particle-conversion"
+          },
+          {
+            "statement": "トレイルの寿命に秒を入れると、寿命10秒の本体の尾が画面の端まで伸びた。尾の秒数を本体の寿命で割ると基準版の長さになった。",
+            "target": "adapter/unity-urp-game-particle-conversion"
+          },
+          {
+            "statement": "回る窓の位相・速さが違う帯（大鎌の3枚の刃、旋風斬の溜めのコイルと風）や発生の時刻が違う輪（拳圧）を1つのメッシュにまとめると、刃が同じ角度に重なる・2本目が崩れるなど見た目が破綻し、分けたまま残した。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "狙い撃ちの矢のらせんの糸（距離あたり140粒×2本・上限各600）を、本体と一緒に動く剛体のらせんメッシュ1粒を毎秒26回転させる形に置き換え、基準版と同じらせんに見えた。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "魔法弾・火の詠唱の核を、外の光と芯を焼き込んだ1チャンネルのタイル1粒にすると、青い光と白い芯（橙と淡黄）の差が消えて鈍い色になり、2粒に戻した。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "打撃の命中 400 個（Editor の Play、主スレッド。空 約 5.5 ms）で、ParticleSystem 4 系は約 20 ms（粒子の更新 2.8 ms・頂点の生成 7.9 ms・Batches 22）、VAT を 1 粒のメッシュ粒子に載せると約 16.8 ms（頂点の生成 8.0 ms は残り、Batches は約 400 に増えた）、VAT を MeshRenderer＋GPU インスタンシングで描くと約 5.5 ms（空とほぼ同じ、Batches 17）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "65 種を混ぜた 100 個（1920×1080、240 フレーム平均）で、主スレッドは空 4.69 ms／ParticleSystem 30.38 ms／焼き込み 6.58 ms。Batches は 6／46／201。焼き込みの Batches は層・演出ごとに素材（焼いたテクスチャ）が分かれていたため。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "焼いた記録 194 枚（RGBAFloat）は中身が約 277 万画素だが、大きさが幅 1〜60・高さ数百〜5291 とばらつき、配列テクスチャで最大にそろえると約 985 MB になる見積もりだった。最大は 2.2 秒で繰り返し粒が 7.5 秒生きる継続の演出で、4 周期 8.8 秒を 60 fps・1 フレーム 10 行・変種 3 で記録した 27×5291。",
+            "target": "rendering/lightweight-vfx-catalog"
+          }
+        ],
+        "conditions": "専用Prefab Preview。暗い背景、45度俯瞰、基準版と同じ視点・時刻の5コマを上下に並べた。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/game-effect-conversion-2026-10-10.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview",
+          "executed_at": "2026-10-10",
+          "procedure": "生成スクリプトで変換し、基準版と同じ視点・時刻の連番の比較画像で確認・修正した。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "一つのプロジェクト・一つのカメラ条件。性能は対象機種で未計測。外観の承認はユーザー待ち。",
+        "result": "71件すべてが共有素材だけで描け、Editorの資産を参照しない。最大は5系・粒の上限68。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/game-effect-conversion-preview",
+      "kind": "evidence",
+      "path": "evidence/game-effect-conversion-preview.md",
+      "relations": [],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "4d8043c3de5c50dfc1a09e5b2bb90cdc74f7d5d0bfa52f52fcdc72719efaac83",
+      "status": "reviewed",
+      "summary": "最高品質の基準版を、共有素材2 Shaderの粒子だけで描くゲーム用版へ生成スクリプトで変換し、同じ視点・時刻で並べて比べた。見つけたエンジンの挙動と、まとめ方の失敗と直し方の記録。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "基準版71件をゲーム用版へ変換したPreview比較の記録",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-10",
+        "claims": [
+          {
+            "statement": "半透明の費用は描く画素×重なる層×処理の重さで、大きな重なりが主な原因になる（Unreal/UDKの最適化資料、PowerVRの粒子描画の推奨、各記事）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "粒子の透明の余白を、見える範囲を囲む多角形で削ると、煙の例で4角形60%・8角形52%の画素になり、8角形を超えると効果が薄い（Humus、Persson）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "Unityの粒子はローカル空間などの条件で決定的（procedural）になり、画面外で模擬を止めて早送りできる。ワールド空間・重力・ノイズ・衝突・トレイル・サブエミッタ・距離あたりの発生・9区間以上の曲線・スクリプトでの変更で外れる（Unity公式ブログ）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "URPではMaterialPropertyBlockを付けたレンダラーはSRP Batcherの対象外になり、粒子のレンダラーもMPBを使うため対象外（Unity公式マニュアル・フォーラム）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "粒子の個体差はCustom Vertex Streams・Custom Dataで素材を増やさず渡せる（Unity公式マニュアル）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "大人数の戦闘のモバイルゲームで、1演出の粒子を3〜10個、命中を30粒から焼き込みの2粒へ、200粒から大きな50粒へ減らした例。共通のシェーダとアトラスで素材を共有し、全体を一様にする計算は頂点へ移す（PocketGamer.biz、Stabrov）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "一つの演出の部品（描画の単位）を減らし、物理は少数の部品だけに、薄い粒を重ねるより少ない不透明寄りの粒を使う（id Software Quake 4の資料）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "同時数の上限・重要度・距離で演出を間引き、品質設定で落とす（Unreal Niagaraのスケーラビリティ資料）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "多数の別種の小さな演出には従来の粒子が軽く、同じ演出の大量表示はVFX Graphのインスタンシングが有利（Unityフォーラム・VFX Graph資料）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          }
+        ],
+        "conditions": "Web検索と公開ページの読み込みで確認した（2026-10-10）。数値は各出典の条件の例。",
+        "limitations": "本プロジェクトの機種・画面で測った値ではない。各技法の効果は条件で変わる。",
+        "result": "軽量化の技法を7分類のカタログにまとめた。",
+        "source_kind": "official-documentation",
+        "sources": [
+          "https://www.pocketgamer.biz/vfx-optimisation-in-midcore-games-commonly-overlooked-techniques-and-advanced-methods/",
+          "https://www.humus.name/index.php?ID=266",
+          "https://www.humus.name/Articles/Persson_GraphicsGemsForGames.pdf",
+          "https://unity.com/blog/engine-platform/particlesystem-performance-culling-tips",
+          "https://docs.imgtec.com/performance-guides/graphics-recommendations/html/topics/optimal-particle-rendering-on-powervr.html",
+          "https://docs.unity.cn/Manual/SRPBatcher-Incompatible.html",
+          "https://discussions.unity.com/t/could-srp-batcher-work-with-particles/790166",
+          "https://docs.unity3d.com/6000.2/Documentation/Manual/PartSysVertexStreams.html",
+          "https://docs.unity3d.com/6000.4/Documentation/Manual/PartSysInstancing.html",
+          "https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@17.2/manual/Instancing",
+          "https://discussions.unity.com/t/is-vfx-graph-always-better-than-the-particle-system/816576",
+          "https://dev.epicgames.com/documentation/en-us/unreal-engine/scalability-reference-for-unreal-engine",
+          "https://docs.unrealengine.com/udk/Three/VFXOptimizationResults.html",
+          "https://iddevnet.dhewm3.org/quake4/Effects_Performance.html",
+          "https://developer.nvidia.com/gpugems/gpugems3/part-iv-image-effects/chapter-23-high-speed-screen-particles",
+          "https://realtimevfx.com/t/flipbook-texture-packing-atlas-super-pack-and-stagger-pack/5609",
+          "https://realtimevfx.com/t/why-are-additive-shaders-so-heavy-for-phones/23998",
+          "https://nexus.leagueoflegends.com/en-us/2017/10/dev-leagues-vfx-style-guide/",
+          "https://docs.unity3d.com/cn/2022.1/Manual/DrawCallBatching.html"
+        ]
+      },
+      "id": "evidence/lightweight-vfx-web-sources",
+      "kind": "evidence",
+      "path": "evidence/lightweight-vfx-web-sources.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "683314b76ec4ef762bbcf21323ac6b27f424a991e8efcf5cd7d520eb621eb5fe",
+      "status": "draft",
+      "summary": "オーバードロー・トリミング・粒子のカリング・バッチ・素材の共有・テクスチャの詰め込み・同時数の管理について、エンジンの公式資料と制作者の記事で確認した内容。",
+      "superseded_by": [],
+      "tags": [
+        "evidence",
+        "rendering"
+      ],
+      "title": "軽量なゲーム用VFXの技法に関する公開資料",
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [],
@@ -12867,6 +13217,49 @@
       "updated_at": "2026-10-04"
     },
     {
+      "aliases": [
+        "軽量化",
+        "最適化",
+        "オーバードロー",
+        "ゲーム用エフェクト",
+        "予算",
+        "バッチ",
+        "共有マテリアル",
+        "カタログ"
+      ],
+      "evidence": [
+        "evidence/lightweight-vfx-web-sources",
+        "evidence/game-effect-conversion-preview"
+      ],
+      "id": "rendering/lightweight-vfx-catalog",
+      "kind": "rendering",
+      "path": "knowledge/rendering/lightweight-vfx-catalog.md",
+      "relations": [
+        {
+          "reason": "透明の重なりと描画順の前提。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "enhances"
+        },
+        {
+          "reason": "発光の芯と色の面の分け方を、軽量な層の数で実現する。",
+          "target": "rendering/emission-and-opacity",
+          "type": "enhances"
+        }
+      ],
+      "revision": 3,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "dcb5f731b62488f1faee1e1c51229d9cea013ae32add8b89383874c9ddb8130f",
+      "status": "draft",
+      "summary": "最高品質の基準版をゲーム用へ変換するときに選ぶ軽量化の技法を、予算と管理・画素（重なり）・頂点とシェーダ・素材とバッチ・テクスチャ・粒子の部品・時間の7分類で一覧にする。各技法は何を減らし何を代償にするかと、使う場面・使わない場面を持つ。",
+      "superseded_by": [],
+      "tags": [
+        "rendering"
+      ],
+      "title": "軽量なゲーム用VFXの技法カタログ",
+      "updated_at": "2026-10-10"
+    },
+    {
       "aliases": [],
       "evidence": [],
       "id": "rendering/world-depth-and-transparency",
@@ -15023,6 +15416,7 @@
   "symmetric_relations": {
     "adapter/unity-urp-analytic-crescent": [],
     "adapter/unity-urp-baseline-sheet-particles": [],
+    "adapter/unity-urp-game-particle-conversion": [],
     "adapter/unity-urp-inner-cut-afterimage": [],
     "adapter/unity-urp-noise-density": [],
     "composition/combat-readability": [],
@@ -15034,6 +15428,8 @@
     "evaluation/projectile-readability": [],
     "evaluation/status-refresh-and-overlap": [],
     "evidence/completed-slash-inner-cut-preview": [],
+    "evidence/game-effect-conversion-preview": [],
+    "evidence/lightweight-vfx-web-sources": [],
     "evidence/melee-weapon-free-design-preview": [],
     "evidence/organic-fire-volume-preview": [],
     "evidence/particle-simulation-and-renderer-source": [],
@@ -15110,6 +15506,7 @@
     "recipe/wide-weapon-sweep": [],
     "rendering/emission-and-opacity": [],
     "rendering/ground-footprint": [],
+    "rendering/lightweight-vfx-catalog": [],
     "rendering/world-depth-and-transparency": [],
     "resource/effect-mask-atlas": [],
     "resource/flame-flipbook": [],
