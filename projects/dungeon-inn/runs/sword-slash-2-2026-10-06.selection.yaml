@@ -1,0 +1,6 @@
+# 剣の判定後の残像・作り直し版（SwordSlash_2）。主役は解析式の三日月。火花は斬撃に含めない（命中演出へ）。
+selected_nodes:
+  - recipe/completed-slash-afterimage
+  - adapter/unity-urp-analytic-crescent
+engine: unity
+conditional_decisions: []

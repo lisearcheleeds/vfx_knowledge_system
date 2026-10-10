@@ -5,20 +5,23 @@ kind: "composition"
 title: "再付与できる状態の付与・刻み・継続・解除"
 summary: "状態ID・実際の回復イベント・更新後の期限に追従し、同カテゴリの継続表示を集約する。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 2
+updated_at: '2026-10-10'
 aliases: []
 tags: ["status","lifecycle"]
 scope: "engine-neutral"
-relations: []
-evidence: []
+relations:
+  - target: "technique/status-flow-particles"
+    type: "enhances"
+    reason: "継続（active）の表示の形。"
+evidence: ["evidence/skill-baselines-preview"]
 superseded_by: []
 ---
 
 # 再付与できる状態の付与・刻み・継続・解除
 
 ## 役割
-applyは強い一回の付与、tickは実際の回復・状態イベントに同期する小さな脈動、activeは低明度の識別形状、removeは発生停止と減衰。再付与はrefreshで既存表示を更新する。
+applyは強い一回の付与、tickは実際の回復・状態イベントに同期する小さな粒の一瞬の発生、activeは身体の外縁の狭い範囲で同じ色の粒子が上昇・下降する流れ（記号は使わない。technique/status-flow-particles）、removeは発生停止と減衰。activeの色を変えたらapplyの色も合わせる。再付与はrefreshで既存表示を更新する。
 
 ## 契約
 actor-id、state-id、カテゴリ、強度、実際のexpiry、tickイベント、apply/refresh/removeを入力として要求する。定義された初期持続は参考であり、VFXのローカルタイマーを状態の正本にしない。ゲームが刻みを提供しない状態に1秒ごとの回復イベントを創作しない。

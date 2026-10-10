@@ -5,8 +5,8 @@ kind: "recipe"
 title: "切断方向を保つ斬撃の命中"
 summary: "短い切り線・接触の小さな白芯・法線方向の少数片で切断の瞬間を示す。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 3
+updated_at: "2026-10-08"
 aliases: ["切断方向を保つ斬撃の命中","impact-cut"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
@@ -45,10 +45,13 @@ relations:
   - target: "technique/billboard"
     type: "requires"
     reason: "この技法の採用時に必要な素材・処理・描画規約。"
+  - target: "recipe/metal-contact-sparks"
+    type: "candidate"
+    reason: "金属・硬い対象への命中。少数の伸びた火花と閃き。ユーザー評価の高い実例がある。"
   - target: "rendering/emission-and-opacity"
     type: "requires"
     reason: "????????????????????????"
-evidence: []
+evidence: ["evidence/weapon-contact-free-design-preview"]
 superseded_by: []
 ---
 
@@ -89,6 +92,10 @@ Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実�
 白黒で切る方向が読める。命中がないときは発生せず、連打でも対象の輪郭とUIが見える。
 
 上記は観察条件であり、成功を確認した記録ではない。
+
+## 関わる因子
+
+- 残像が描いた斬り跡に、命中の切り線を重ねない。（[composition/combat-readability](../../compositions/combat-readability.md)）
 
 ## 接続する知識
 

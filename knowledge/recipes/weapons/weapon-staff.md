@@ -5,8 +5,8 @@ kind: "recipe"
 title: "杖：丸い魔法核と柔らかな尾"
 summary: "青白い立体の核と細い周回筋で、杖の実速度魔法弾を表す。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 2
+updated_at: "2026-10-08"
 aliases: ["杖：丸い魔法核と柔らかな尾","staff"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
@@ -47,7 +47,7 @@ relations:
   - target: "evaluation/projectile-readability"
     type: "evaluated_by"
     reason: "採用先の実画面で形・イベント・終了条件を確認する。"
-evidence: []
+evidence: ["evidence/weapon-contact-free-design-preview"]
 superseded_by: []
 ---
 
@@ -89,6 +89,10 @@ Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実�
 核が尾と混ざらず、無属性魔法として炎・回復の配色と識別できる。
 
 上記は観察条件であり、成功を確認した記録ではない。
+
+## 関わる因子
+
+- 魔法弾の命中は主役より短く切る。（[composition/combat-readability](../../compositions/combat-readability.md)）
 
 ## 接続する知識
 

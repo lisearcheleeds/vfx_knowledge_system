@@ -5,8 +5,8 @@ kind: "recipe"
 title: "牙：内へ閉じる二点の噛みつき"
 summary: "上下の短い針と内向きの圧縮で、噛みつきの締まりを示す。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 3
+updated_at: '2026-10-08'
 aliases: ["牙：内へ閉じる二点の噛みつき","fang"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
@@ -37,7 +37,13 @@ relations:
   - target: "evaluation/combat-shape-and-events"
     type: "evaluated_by"
     reason: "採用先の実画面で形・イベント・終了条件を確認する。"
-evidence: []
+  - target: "technique/articulated-closing-parts"
+    type: "enhances"
+    reason: "この武器・命中に関わる因子。"
+  - target: "technique/volumetric-object-proxy"
+    type: "enhances"
+    reason: "この武器・命中に関わる因子。"
+evidence: ["evidence/weapon-contact-free-design-preview"]
 superseded_by: []
 ---
 
@@ -77,6 +83,12 @@ Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実�
 対象の外へ針が飛翔するように見えず、口元と接触位置が一致する。
 
 上記は観察条件であり、成功を確認した記録ではない。
+
+## 関わる因子
+
+- 噛みつきは実物の噛み合わせの到達状態と、顎の回転で作る。（[technique/articulated-closing-parts](../../techniques/articulated-closing-parts.md)）
+- 牙は根元が太く反る立体。（[technique/volumetric-object-proxy](../../techniques/volumetric-object-proxy.md)）
+- 噛みつきの命中は受けた側から外へ飛ぶ。（[composition/melee-strike](../../compositions/melee-strike.md)）
 
 ## 接続する知識
 

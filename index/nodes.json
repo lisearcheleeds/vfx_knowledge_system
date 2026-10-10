@@ -1,5 +1,88 @@
 {
   "backlinks": {
+    "adapter/unity-urp-analytic-crescent": [
+      {
+        "source": "evidence/slash-weapon-variants-preview",
+        "statement": "同じShaderで値と弧の範囲・楕円の倍率だけを変えて二種を作った。既存Meshの上書きの不具合を回避した。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/sword-slash-analytic-crescent-preview",
+        "statement": "Unityの専用Prefab Previewで、外部経過秒による描画と連番の撮影を行った。",
+        "type": "claim"
+      },
+      {
+        "reason": "Unityで実行した改訂2の解析式三日月。",
+        "relation_index": 9,
+        "source": "recipe/completed-slash-afterimage",
+        "target": "adapter/unity-urp-analytic-crescent",
+        "type": "implemented_by"
+      }
+    ],
+    "adapter/unity-urp-baseline-sheet-particles": [
+      {
+        "reason": "変換元の基準版の構成。",
+        "relation_index": 1,
+        "source": "adapter/unity-urp-game-particle-conversion",
+        "target": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "enhances"
+      },
+      {
+        "source": "evidence/melee-weapon-free-design-preview",
+        "statement": "汎用のシートShaderと粒子の層を一つの生成スクリプトで組み、粒子の回転の向きを位置の読み取りで確かめた。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "全周の輪の中心から継ぎ目に沿う細い線（盾・拳で指摘）は、UV.x が1を越える補助ピクセルで厚みの分岐が飛び、fwidth が巨大になったことが原因だった。UV.x を saturate して消えた。盾は版2で100点。",
+        "type": "claim"
+      },
+      {
+        "reason": "Unityで実行した実装。",
+        "relation_index": 1,
+        "source": "technique/blunt-motion-smear",
+        "target": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "implemented_by"
+      },
+      {
+        "reason": "Unityで実行した実装。",
+        "relation_index": 2,
+        "source": "technique/crumbling-heavy-wedge",
+        "target": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "implemented_by"
+      },
+      {
+        "reason": "Unityで実行した実装。",
+        "relation_index": 2,
+        "source": "technique/fan-rib-reveal",
+        "target": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "implemented_by"
+      },
+      {
+        "reason": "Unityで実行した実装。",
+        "relation_index": 2,
+        "source": "technique/rotating-sweep-trails",
+        "target": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "implemented_by"
+      }
+    ],
+    "adapter/unity-urp-game-particle-conversion": [
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "メッシュ粒子の法線に詰めた値を10倍しても描画が変わらず、法線は正規化されて値を運べなかった。UVの整数部に詰めると帯の模様と崩れ方が基準版に近づいた。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "Texture Sheet Animation の startFrame にコマ番号を入れると星・輪のタイルが丸い光になり、(コマ＋0.5)／16 で正しいタイルになった。メッシュ粒子はタイルが効かず薄く見え、UVをタイルの範囲へ焼き直し両面で描くと基準版と同じ濃さになった。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "トレイルの寿命に秒を入れると、寿命10秒の本体の尾が画面の端まで伸びた。尾の秒数を本体の寿命で割ると基準版の長さになった。",
+        "type": "claim"
+      }
+    ],
     "adapter/unity-urp-inner-cut-afterimage": [
       {
         "source": "evidence/completed-slash-inner-cut-preview",
@@ -7,8 +90,8 @@
         "type": "claim"
       },
       {
-        "reason": "Unityで実行した候補。",
-        "relation_index": 4,
+        "reason": "Unityで実行した候補（改訂1の内側SDF）。",
+        "relation_index": 8,
         "source": "recipe/completed-slash-afterimage",
         "target": "adapter/unity-urp-inner-cut-afterimage",
         "type": "implemented_by"
@@ -56,8 +139,23 @@
     ],
     "composition/combat-readability": [
       {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "重い打撃の命中の五方向の星は「ださい」（65・75点）。内側にもう一つ輪を足す方がよく、解放の圧（120点）のような指向性を命中にも持たせてよいと指摘された。回復に輪は入らないが、輪のある版は状態異常の回復なら色を少し青に寄せるだけで100点。実回復の刻みは葉と光を外し、粒を増やして一瞬だけ発生させ、ゆっくり動かすよう指摘された。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "地面の亀裂は地面に付くものなので、大きさがアニメーションするのはおかしいと指摘された。",
+        "type": "claim"
+      },
+      {
         "source": "evidence/vfx-gameplay-clarity-source",
         "statement": "VFXは行動・状態を正確に伝え、全体の一貫性と発生源の個性を両立させる。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "攻撃の予兆（AttackGather）は100点だが、予兆は本来UI/UXの領域（矩形・円・扇の範囲表示）で、エフェクトとしては別の発想が要ると指摘された。撃破（DefeatWisp）は65点で、明確な正解が無いとされた。",
         "type": "claim"
       },
       {
@@ -449,7 +547,7 @@
       },
       {
         "reason": "主形状・接触・状態の明度と面積を整理する。",
-        "relation_index": 2,
+        "relation_index": 3,
         "requirement": "required",
         "role": "visual-hierarchy",
         "source": "recipe/weapon-axe",
@@ -530,7 +628,7 @@
       },
       {
         "reason": "主形状・接触・状態の明度と面積を整理する。",
-        "relation_index": 2,
+        "relation_index": 3,
         "requirement": "required",
         "role": "visual-hierarchy",
         "source": "recipe/weapon-ironfan",
@@ -539,7 +637,7 @@
       },
       {
         "reason": "主形状・接触・状態の明度と面積を整理する。",
-        "relation_index": 2,
+        "relation_index": 3,
         "requirement": "required",
         "role": "visual-hierarchy",
         "source": "recipe/weapon-rod",
@@ -548,7 +646,7 @@
       },
       {
         "reason": "主形状・接触・状態の明度と面積を整理する。",
-        "relation_index": 2,
+        "relation_index": 3,
         "requirement": "required",
         "role": "visual-hierarchy",
         "source": "recipe/weapon-scythe",
@@ -684,6 +782,15 @@
         "type": "composes"
       },
       {
+        "reason": "残像と命中（Contact）の役割の分担と、発火時点の契約。",
+        "relation_index": 0,
+        "requirement": "required",
+        "role": "lifecycle",
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "composition/melee-strike",
+        "type": "composes"
+      },
+      {
         "reason": "この推奨構成の時間・空間・発動と終了の契約。",
         "relation_index": 1,
         "requirement": "required",
@@ -694,7 +801,7 @@
       },
       {
         "reason": "この推奨構成の時間・空間・発動と終了の契約。",
-        "relation_index": 1,
+        "relation_index": 2,
         "requirement": "required",
         "role": "lifecycle",
         "source": "recipe/weapon-axe",
@@ -757,7 +864,7 @@
       },
       {
         "reason": "この推奨構成の時間・空間・発動と終了の契約。",
-        "relation_index": 1,
+        "relation_index": 2,
         "requirement": "required",
         "role": "lifecycle",
         "source": "recipe/weapon-ironfan",
@@ -766,7 +873,7 @@
       },
       {
         "reason": "この推奨構成の時間・空間・発動と終了の契約。",
-        "relation_index": 1,
+        "relation_index": 2,
         "requirement": "required",
         "role": "lifecycle",
         "source": "recipe/weapon-rod",
@@ -775,7 +882,7 @@
       },
       {
         "reason": "この推奨構成の時間・空間・発動と終了の契約。",
-        "relation_index": 1,
+        "relation_index": 2,
         "requirement": "required",
         "role": "lifecycle",
         "source": "recipe/weapon-scythe",
@@ -1024,6 +1131,13 @@
         "source": "recipe/targeted-restoration-burst",
         "target": "composition/refreshable-status",
         "type": "composes"
+      },
+      {
+        "reason": "継続（active）の表示の形を決める。",
+        "relation_index": 0,
+        "source": "technique/status-flow-particles",
+        "target": "composition/refreshable-status",
+        "type": "enhances"
       }
     ],
     "composition/targeted-activation": [
@@ -1212,7 +1326,7 @@
       },
       {
         "reason": "発火時点と時間を含めて確認する。",
-        "relation_index": 3,
+        "relation_index": 7,
         "source": "recipe/completed-slash-afterimage",
         "target": "evaluation/combat-shape-and-events",
         "type": "evaluated_by"
@@ -1302,6 +1416,20 @@
         "type": "evaluated_by"
       },
       {
+        "reason": "形・向き・発火時点を確かめる。",
+        "relation_index": 6,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "evaluation/combat-shape-and-events",
+        "type": "evaluated_by"
+      },
+      {
+        "reason": "実命中の位置・方向・回数で確認する。",
+        "relation_index": 3,
+        "source": "recipe/metal-contact-sparks",
+        "target": "evaluation/combat-shape-and-events",
+        "type": "evaluated_by"
+      },
+      {
         "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
         "relation_index": 4,
         "source": "recipe/premium-remedy-use",
@@ -1380,7 +1508,7 @@
       },
       {
         "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
-        "relation_index": 6,
+        "relation_index": 7,
         "source": "recipe/weapon-axe",
         "target": "evaluation/combat-shape-and-events",
         "type": "evaluated_by"
@@ -1429,21 +1557,21 @@
       },
       {
         "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
-        "relation_index": 6,
+        "relation_index": 7,
         "source": "recipe/weapon-ironfan",
         "target": "evaluation/combat-shape-and-events",
         "type": "evaluated_by"
       },
       {
         "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
-        "relation_index": 5,
+        "relation_index": 6,
         "source": "recipe/weapon-rod",
         "target": "evaluation/combat-shape-and-events",
         "type": "evaluated_by"
       },
       {
         "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
-        "relation_index": 6,
+        "relation_index": 7,
         "source": "recipe/weapon-scythe",
         "target": "evaluation/combat-shape-and-events",
         "type": "evaluated_by"
@@ -1664,6 +1792,52 @@
         "type": "evidence"
       }
     ],
+    "evidence/game-effect-conversion-preview": [
+      {
+        "source": "adapter/unity-urp-game-particle-conversion",
+        "type": "evidence"
+      },
+      {
+        "source": "rendering/lightweight-vfx-catalog",
+        "type": "evidence"
+      }
+    ],
+    "evidence/lightweight-vfx-web-sources": [
+      {
+        "source": "rendering/lightweight-vfx-catalog",
+        "type": "evidence"
+      }
+    ],
+    "evidence/melee-weapon-free-design-preview": [
+      {
+        "source": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "evidence"
+      },
+      {
+        "source": "composition/melee-strike",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/melee-weapon-afterimages",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/blunt-motion-smear",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/crumbling-heavy-wedge",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/fan-rib-reveal",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/rotating-sweep-trails",
+        "type": "evidence"
+      }
+    ],
     "evidence/organic-fire-volume-preview": [
       {
         "source": "adapter/unity-urp-noise-density",
@@ -1718,9 +1892,169 @@
         "type": "evidence"
       }
     ],
+    "evidence/skill-baselines-preview": [
+      {
+        "source": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "evidence"
+      },
+      {
+        "source": "composition/combat-readability",
+        "type": "evidence"
+      },
+      {
+        "source": "composition/melee-strike",
+        "type": "evidence"
+      },
+      {
+        "source": "composition/refreshable-status",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/ignition-burst",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/internal-source-leak",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/radial-layered-vortex",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/rotation-overshoot",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/status-flow-particles",
+        "type": "evidence"
+      }
+    ],
+    "evidence/slash-weapon-variants-preview": [
+      {
+        "source": "adapter/unity-urp-analytic-crescent",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/completed-slash-afterimage",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/afterimage-weight-timing",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/analytic-crescent-uv",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/arc-reach-asymmetry",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/slash-pressure-haze",
+        "type": "evidence"
+      }
+    ],
+    "evidence/sword-slash-analytic-crescent-preview": [
+      {
+        "source": "adapter/unity-urp-analytic-crescent",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/completed-slash-afterimage",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/metal-contact-sparks",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/analytic-crescent-uv",
+        "type": "evidence"
+      }
+    ],
     "evidence/vfx-gameplay-clarity-source": [
       {
         "source": "composition/combat-readability",
+        "type": "evidence"
+      }
+    ],
+    "evidence/weapon-contact-free-design-preview": [
+      {
+        "source": "adapter/unity-urp-baseline-sheet-particles",
+        "type": "evidence"
+      },
+      {
+        "source": "composition/combat-readability",
+        "type": "evidence"
+      },
+      {
+        "source": "composition/melee-strike",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/impact-cut",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/impact-pierce",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/melee-weapon-afterimages",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/weapon-bow",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/weapon-claw",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/weapon-crossbow",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/weapon-fang",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/weapon-fist",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/weapon-greatshield",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/weapon-spear",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/weapon-staff",
+        "type": "evidence"
+      },
+      {
+        "source": "recipe/weapon-wand",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/articulated-closing-parts",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/axial-thrust-cone",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/volumetric-object-proxy",
+        "type": "evidence"
+      },
+      {
+        "source": "technique/wave-direction-semantics",
         "type": "evidence"
       }
     ],
@@ -1759,6 +2093,23 @@
     "recipe/charged-heavy-impact": [],
     "recipe/circular-slash": [],
     "recipe/completed-slash-afterimage": [
+      {
+        "source": "evidence/slash-weapon-variants-preview",
+        "statement": "改訂2の優先する作り方を、値だけ変えて短剣・大剣へ適用でき、初回で短剣80点・大剣70点と評価された。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/sword-slash-analytic-crescent-preview",
+        "statement": "解析式の三日月を主役にした版が、内側SDF版（65点）より高く評価された。",
+        "type": "claim"
+      },
+      {
+        "reason": "研いだ刃で斬る武器（剣・短剣・大剣）。",
+        "relation_index": 1,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "recipe/completed-slash-afterimage",
+        "type": "candidate"
+      },
       {
         "reason": "判定後の完成残像は別構成として選ぶ。",
         "relation_index": 6,
@@ -1933,7 +2284,7 @@
       },
       {
         "reason": "薄い接触星、小さな圧縮環。",
-        "relation_index": 5,
+        "relation_index": 6,
         "requirement": "required",
         "role": "hit",
         "source": "recipe/weapon-ironfan",
@@ -1942,7 +2293,7 @@
       },
       {
         "reason": "幅広い接触星と圧縮環。",
-        "relation_index": 4,
+        "relation_index": 5,
         "requirement": "required",
         "role": "hit",
         "source": "recipe/weapon-rod",
@@ -1970,6 +2321,11 @@
     ],
     "recipe/impact-cut": [
       {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "火花に切り線の帯を重ねた版は75点。切り線は無いほうがよいと指摘された。打撃の命中は90点、魔法の矢の命中は100点。",
+        "type": "claim"
+      },
+      {
         "reason": "対象ごとの小さな切断接触。",
         "relation_index": 6,
         "requirement": "required",
@@ -1980,7 +2336,7 @@
       },
       {
         "reason": "標準切断の線幅1.4倍、接触片は短く重い方向。",
-        "relation_index": 5,
+        "relation_index": 6,
         "requirement": "required",
         "role": "hit",
         "source": "recipe/weapon-axe",
@@ -2007,7 +2363,7 @@
       },
       {
         "reason": "各対象の接触線を円の接線に合わせる。",
-        "relation_index": 5,
+        "relation_index": 6,
         "requirement": "required",
         "role": "hit",
         "source": "recipe/weapon-scythe",
@@ -2051,9 +2407,21 @@
         "source": "recipe/volumetric-fireball",
         "target": "recipe/impact-fire-contact",
         "type": "composes"
+      },
+      {
+        "reason": "炎の命中の炎の動き方。",
+        "relation_index": 0,
+        "source": "technique/ignition-burst",
+        "target": "recipe/impact-fire-contact",
+        "type": "enhances"
       }
     ],
     "recipe/impact-pierce": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "貫く光の針と締まる輪の版は、刺突の命中としては50点（命中に円はやりすぎ、粒子がよい）。レーザー光線の命中としてなら90点と評価された。",
+        "type": "claim"
+      },
       {
         "reason": "針長1.4倍、接触白芯を一度だけ強くする。",
         "relation_index": 7,
@@ -2205,6 +2573,42 @@
       }
     ],
     "recipe/meal-vitality-activation": [],
+    "recipe/melee-weapon-afterimages": [
+      {
+        "reason": "判定後の残像を武器から推測して作る入口。",
+        "relation_index": 1,
+        "role": "afterimage",
+        "source": "composition/melee-strike",
+        "target": "recipe/melee-weapon-afterimages",
+        "type": "candidate"
+      },
+      {
+        "source": "evidence/melee-weapon-free-design-preview",
+        "statement": "剣の三日月を土台にした版は武器の差が出ず、武器から推測して一から作った版は斧80・大鎌90・鉄扇85・棒75点と評価された。",
+        "type": "claim"
+      },
+      {
+        "reason": "この武器・命中に関わる因子。",
+        "relation_index": 6,
+        "source": "recipe/weapon-claw",
+        "target": "recipe/melee-weapon-afterimages",
+        "type": "enhances"
+      }
+    ],
+    "recipe/metal-contact-sparks": [
+      {
+        "source": "evidence/sword-slash-analytic-crescent-preview",
+        "statement": "斬撃の中では意味が不明とされた火花が、命中演出として見ると98点と評価された。",
+        "type": "claim"
+      },
+      {
+        "reason": "金属・硬い対象への命中。少数の伸びた火花と閃き。ユーザー評価の高い実例がある。",
+        "relation_index": 8,
+        "source": "recipe/impact-cut",
+        "target": "recipe/metal-contact-sparks",
+        "type": "candidate"
+      }
+    ],
     "recipe/periodic-health-restoration": [
       {
         "reason": "摂取の見た目とゲーム効果を分離する。食品の分類から状態を必須にしない。",
@@ -2405,21 +2809,105 @@
     "recipe/weakening-gaze": [],
     "recipe/weakening-thrust": [],
     "recipe/weapon-axe": [],
-    "recipe/weapon-bow": [],
-    "recipe/weapon-claw": [],
-    "recipe/weapon-crossbow": [],
+    "recipe/weapon-bow": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "矢の形のテクスチャ（アイコン）を飛ばす版は40点。矢の長さに伸ばした回転楕円体がよいと指摘された。尾は合格。射出の弦の線は無いほうがよい（90点）。",
+        "type": "claim"
+      }
+    ],
+    "recipe/weapon-claw": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "三本の弧の爪は90点。弧を寝かせた角度だけが気になると指摘された。",
+        "type": "claim"
+      }
+    ],
+    "recipe/weapon-crossbow": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "矢と同じく、ボルトのアイコンは40点で、伸ばした楕円体へ替える指摘。射出の弦の線は無いほうがよい（90点）。",
+        "type": "claim"
+      }
+    ],
     "recipe/weapon-dagger": [],
-    "recipe/weapon-fang": [],
-    "recipe/weapon-fist": [],
-    "recipe/weapon-greatshield": [],
+    "recipe/weapon-fang": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "上下の顎の弧と歯の版は25点。狼の牙を上下2本ずつ（計4本）で噛みつく形がよいと指摘された。噛みつきの命中で内へ閉じる表現は10点で、噛みつかれた側のエフェクトなので外へ飛ぶ粒子がよいと指摘された。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "版2（まっすぐの円錐の牙4本）は50点。牙のように曲げる、牙が動いていないのも減点と指摘された。動かなかった原因は速度の曲線の軸のモードが混在していたこと。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "版3（反った牙を平行に動かし、先と先を一点で合わせた形）は「反ってはいるが、牙の配置と角度、噛み合わせが悪い。回転を含めて顎の回転を想定する」と指摘された。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "版4・5（下の牙を上の牙の前に置き、強く反らせた形）は「上顎の歯が下顎の歯より中にあるのか。人間ですら上顎の歯は外側。閉じた時の牙の角度もおかしい」と指摘された。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "版7（上の牙が外・前から下の牙にかぶさり、ほぼ垂直に閉じる長い牙を、蝶番まわりの顎の回転で閉じる形）は「まぁいいでしょう」と合格した。直前の版で牙を短くしたことは「長いまま噛み合った状態にする」と戻された。",
+        "type": "claim"
+      }
+    ],
+    "recipe/weapon-fist": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "前へ抜ける輪が3つの版は90点。輪は2つでよく、3つはやりすぎと指摘された。",
+        "type": "claim"
+      }
+    ],
+    "recipe/weapon-greatshield": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "盾の面に沿った縦の輪が平面のまま広がる版は80点。攻撃方向と内積0の方向だけへ広がる衝撃波は「敵の攻撃をパリィして衝撃を逃がしている」表現になると指摘された。輪を球面のように内側ほど前へ出すと、盾の前面から衝撃を押し出す表現になる。",
+        "type": "claim"
+      }
+    ],
     "recipe/weapon-greatsword": [],
     "recipe/weapon-ironfan": [],
     "recipe/weapon-rod": [],
     "recipe/weapon-scythe": [],
-    "recipe/weapon-spear": [],
-    "recipe/weapon-staff": [],
+    "recipe/weapon-spear": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "非対称の穂先と側面の筋を重ねた版は「何を表現しているか分からない」35点。左右対称のシンプルな突きでよいと指摘された。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "版2（斬撃の帯を左右対称にした形）は40点で「Swordの手法につられすぎて、切ると突くの違いが出ていない。突くは先が尖りすぎていない円錐状・コーン状でアニメーションすべき」と指摘された。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "版3（伸びる円錐）は、穂先の閃き（Tip）が不要という指摘のほかは合格。",
+        "type": "claim"
+      }
+    ],
+    "recipe/weapon-staff": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "射出と魔法弾は100点。魔法弾の命中は85点で、再生時間を2/3にする指摘。",
+        "type": "claim"
+      }
+    ],
     "recipe/weapon-sword": [],
-    "recipe/weapon-wand": [],
+    "recipe/weapon-wand": [
+      {
+        "source": "evidence/weapon-contact-free-design-preview",
+        "statement": "魔法の矢の尾と色は合格だが、丸い芯はダーツに見えず70点。射出は杖との差別化ができていると100点。",
+        "type": "claim"
+      }
+    ],
     "recipe/wide-weapon-sweep": [],
     "rendering/emission-and-opacity": [
       {
@@ -2487,7 +2975,7 @@
       },
       {
         "reason": "????????????????????????",
-        "relation_index": 8,
+        "relation_index": 9,
         "source": "recipe/impact-cut",
         "target": "rendering/emission-and-opacity",
         "type": "requires"
@@ -2640,9 +3128,30 @@
         "type": "requires"
       },
       {
+        "reason": "発光の芯と色の面の分け方を、軽量な層の数で実現する。",
+        "relation_index": 1,
+        "source": "rendering/lightweight-vfx-catalog",
+        "target": "rendering/emission-and-opacity",
+        "type": "enhances"
+      },
+      {
+        "reason": "色面の不透明度・外縁の加算・外光の配分を決める。",
+        "relation_index": 2,
+        "source": "technique/analytic-crescent-uv",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
+      {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 3,
         "source": "technique/arc-sweep",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
+      {
+        "reason": "縁の無い半透明の帯の明度。",
+        "relation_index": 0,
+        "source": "technique/blunt-motion-smear",
         "target": "rendering/emission-and-opacity",
         "type": "requires"
       },
@@ -2668,6 +3177,13 @@
         "type": "requires"
       },
       {
+        "reason": "焼けた縁の発光と面の不透明度の配分。",
+        "relation_index": 0,
+        "source": "technique/crumbling-heavy-wedge",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
+      {
         "reason": "色面と侵食された輪郭を分けて制御する。",
         "relation_index": 2,
         "source": "technique/directional-flow-surface",
@@ -2685,6 +3201,13 @@
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 0,
         "source": "technique/event-pulse",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
+      {
+        "reason": "骨の明るさと面の薄さの配分。",
+        "relation_index": 0,
+        "source": "technique/fan-rib-reveal",
         "target": "rendering/emission-and-opacity",
         "type": "requires"
       },
@@ -2731,6 +3254,13 @@
         "type": "requires"
       },
       {
+        "reason": "薄い円盤と明るい刃の軌跡の明度の差。",
+        "relation_index": 0,
+        "source": "technique/rotating-sweep-trails",
+        "target": "rendering/emission-and-opacity",
+        "type": "requires"
+      },
+      {
         "reason": "温度色と不透明度を分けて計算する。",
         "relation_index": 1,
         "source": "technique/surface-density-core",
@@ -2761,7 +3291,105 @@
         "type": "requires"
       }
     ],
+    "rendering/lightweight-vfx-catalog": [
+      {
+        "reason": "カタログの技法（LW-C3・D1・D2・F2・F5）をUnityの粒子で実装するときの前提。",
+        "relation_index": 0,
+        "source": "adapter/unity-urp-game-particle-conversion",
+        "target": "rendering/lightweight-vfx-catalog",
+        "type": "enhances"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "回る窓の位相・速さが違う帯（大鎌の3枚の刃、旋風斬の溜めのコイルと風）や発生の時刻が違う輪（拳圧）を1つのメッシュにまとめると、刃が同じ角度に重なる・2本目が崩れるなど見た目が破綻し、分けたまま残した。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "狙い撃ちの矢のらせんの糸（距離あたり140粒×2本・上限各600）を、本体と一緒に動く剛体のらせんメッシュ1粒を毎秒26回転させる形に置き換え、基準版と同じらせんに見えた。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "魔法弾・火の詠唱の核を、外の光と芯を焼き込んだ1チャンネルのタイル1粒にすると、青い光と白い芯（橙と淡黄）の差が消えて鈍い色になり、2粒に戻した。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "打撃の命中 400 個（Editor の Play、主スレッド。空 約 5.5 ms）で、ParticleSystem 4 系は約 20 ms（粒子の更新 2.8 ms・頂点の生成 7.9 ms・Batches 22）、VAT を 1 粒のメッシュ粒子に載せると約 16.8 ms（頂点の生成 8.0 ms は残り、Batches は約 400 に増えた）、VAT を MeshRenderer＋GPU インスタンシングで描くと約 5.5 ms（空とほぼ同じ、Batches 17）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "65 種を混ぜた 100 個（1920×1080、240 フレーム平均）で、主スレッドは空 4.69 ms／ParticleSystem 30.38 ms／焼き込み 6.58 ms。Batches は 6／46／201。焼き込みの Batches は層・演出ごとに素材（焼いたテクスチャ）が分かれていたため。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/game-effect-conversion-preview",
+        "statement": "焼いた記録 194 枚（RGBAFloat）は中身が約 277 万画素だが、大きさが幅 1〜60・高さ数百〜5291 とばらつき、配列テクスチャで最大にそろえると約 985 MB になる見積もりだった。最大は 2.2 秒で繰り返し粒が 7.5 秒生きる継続の演出で、4 周期 8.8 秒を 60 fps・1 フレーム 10 行・変種 3 で記録した 27×5291。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "半透明の費用は描く画素×重なる層×処理の重さで、大きな重なりが主な原因になる（Unreal/UDKの最適化資料、PowerVRの粒子描画の推奨、各記事）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "粒子の透明の余白を、見える範囲を囲む多角形で削ると、煙の例で4角形60%・8角形52%の画素になり、8角形を超えると効果が薄い（Humus、Persson）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "Unityの粒子はローカル空間などの条件で決定的（procedural）になり、画面外で模擬を止めて早送りできる。ワールド空間・重力・ノイズ・衝突・トレイル・サブエミッタ・距離あたりの発生・9区間以上の曲線・スクリプトでの変更で外れる（Unity公式ブログ）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "URPではMaterialPropertyBlockを付けたレンダラーはSRP Batcherの対象外になり、粒子のレンダラーもMPBを使うため対象外（Unity公式マニュアル・フォーラム）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "粒子の個体差はCustom Vertex Streams・Custom Dataで素材を増やさず渡せる（Unity公式マニュアル）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "大人数の戦闘のモバイルゲームで、1演出の粒子を3〜10個、命中を30粒から焼き込みの2粒へ、200粒から大きな50粒へ減らした例。共通のシェーダとアトラスで素材を共有し、全体を一様にする計算は頂点へ移す（PocketGamer.biz、Stabrov）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "一つの演出の部品（描画の単位）を減らし、物理は少数の部品だけに、薄い粒を重ねるより少ない不透明寄りの粒を使う（id Software Quake 4の資料）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "同時数の上限・重要度・距離で演出を間引き、品質設定で落とす（Unreal Niagaraのスケーラビリティ資料）。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/lightweight-vfx-web-sources",
+        "statement": "多数の別種の小さな演出には従来の粒子が軽く、同じ演出の大量表示はVFX Graphのインスタンシングが有利（Unityフォーラム・VFX Graph資料）。",
+        "type": "claim"
+      }
+    ],
     "rendering/world-depth-and-transparency": [
+      {
+        "reason": "透明合成と奥行きの規約。",
+        "relation_index": 1,
+        "source": "adapter/unity-urp-analytic-crescent",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
+      {
+        "reason": "透明合成と奥行きの規約。",
+        "relation_index": 0,
+        "source": "adapter/unity-urp-baseline-sheet-particles",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
       {
         "reason": "透明合成と奥行き規約を確認する。",
         "relation_index": 1,
@@ -2773,6 +3401,20 @@
         "reason": "通常透明Queueと奥行き設定の適用範囲を確認する。",
         "relation_index": 2,
         "source": "adapter/unity-urp-noise-density",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "requires"
+      },
+      {
+        "reason": "透明の重なりと描画順の前提。",
+        "relation_index": 0,
+        "source": "rendering/lightweight-vfx-catalog",
+        "target": "rendering/world-depth-and-transparency",
+        "type": "enhances"
+      },
+      {
+        "reason": "透明描画と奥行きの規約。",
+        "relation_index": 3,
+        "source": "technique/analytic-crescent-uv",
         "target": "rendering/world-depth-and-transparency",
         "type": "requires"
       },
@@ -3209,14 +3851,14 @@
       },
       {
         "reason": "この演出が伝える意味と視覚要件。",
-        "relation_index": 0,
+        "relation_index": 1,
         "source": "recipe/weapon-ironfan",
         "target": "semantic/blunt-impact",
         "type": "expresses"
       },
       {
         "reason": "この演出が伝える意味と視覚要件。",
-        "relation_index": 0,
+        "relation_index": 1,
         "source": "recipe/weapon-rod",
         "target": "semantic/blunt-impact",
         "type": "expresses"
@@ -3395,6 +4037,13 @@
         "source": "recipe/weapon-spear",
         "target": "semantic/piercing",
         "type": "expresses"
+      },
+      {
+        "reason": "一点へ貫く動作の主形状。",
+        "relation_index": 0,
+        "source": "technique/axial-thrust-cone",
+        "target": "semantic/piercing",
+        "type": "expresses"
       }
     ],
     "semantic/prepared-food": [
@@ -3525,7 +4174,7 @@
       },
       {
         "reason": "刃の通過方向と形を伝える。",
-        "relation_index": 2,
+        "relation_index": 6,
         "source": "recipe/completed-slash-afterimage",
         "target": "semantic/slash",
         "type": "expresses"
@@ -3538,8 +4187,15 @@
         "type": "expresses"
       },
       {
+        "reason": "刃が金属・硬い物に当たった手応え。",
+        "relation_index": 2,
+        "source": "recipe/metal-contact-sparks",
+        "target": "semantic/slash",
+        "type": "expresses"
+      },
+      {
         "reason": "この演出が伝える意味と視覚要件。",
-        "relation_index": 0,
+        "relation_index": 1,
         "source": "recipe/weapon-axe",
         "target": "semantic/slash",
         "type": "expresses"
@@ -3560,7 +4216,7 @@
       },
       {
         "reason": "この演出が伝える意味と視覚要件。",
-        "relation_index": 0,
+        "relation_index": 1,
         "source": "recipe/weapon-scythe",
         "target": "semantic/slash",
         "type": "expresses"
@@ -3596,6 +4252,129 @@
         "type": "expresses"
       }
     ],
+    "technique/afterimage-weight-timing": [
+      {
+        "source": "evidence/slash-weapon-variants-preview",
+        "statement": "大剣で細い外縁だけの時間を削り太い本体へ回すと、重い振りとして80点に上がった。",
+        "type": "claim"
+      },
+      {
+        "reason": "武器の速さ・重さ・鋭さを時間配分で読ませる。",
+        "relation_index": 3,
+        "requirement": "optional",
+        "role": "weight",
+        "source": "recipe/completed-slash-afterimage",
+        "target": "technique/afterimage-weight-timing",
+        "type": "composes"
+      },
+      {
+        "reason": "武器の速さ・重さ・鋭さを、残像の時間配分で伝える。",
+        "relation_index": 1,
+        "source": "semantic/slash",
+        "target": "technique/afterimage-weight-timing",
+        "type": "candidate"
+      },
+      {
+        "reason": "抜き・短縮・先端への縮みの時間配分で速さ・重さ・鋭さを読ませる。",
+        "relation_index": 5,
+        "source": "technique/analytic-crescent-uv",
+        "target": "technique/afterimage-weight-timing",
+        "type": "enhances"
+      },
+      {
+        "reason": "「素早く短く完了する」は形（短い端）と時間（長い側を早く縮める）の両方で作る。",
+        "relation_index": 1,
+        "source": "technique/arc-reach-asymmetry",
+        "target": "technique/afterimage-weight-timing",
+        "type": "enhances"
+      },
+      {
+        "reason": "伸びる速さと残る時間で、突きの鋭さ・重さを調整する。",
+        "relation_index": 1,
+        "source": "technique/axial-thrust-cone",
+        "target": "technique/afterimage-weight-timing",
+        "type": "enhances"
+      }
+    ],
+    "technique/analytic-crescent-uv": [
+      {
+        "reason": "形と時間の式の正本。",
+        "relation_index": 0,
+        "source": "adapter/unity-urp-analytic-crescent",
+        "target": "technique/analytic-crescent-uv",
+        "type": "requires"
+      },
+      {
+        "source": "evidence/slash-weapon-variants-preview",
+        "statement": "内縁の裂けを厚みに比例させると、細い楕円では暗い切れ目、幅広い刃では大きな歯になった。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/sword-slash-analytic-crescent-preview",
+        "statement": "弧帯UV上の解析式で描いた非対称の三日月・模様・消え方が、ユーザーに「とてもいい」と評価された（基準版全体で85点）。",
+        "type": "claim"
+      },
+      {
+        "reason": "非対称の三日月の形・内側の抜き・短縮・外縁と外光を式で連続に作る（改訂2の優先案）。",
+        "relation_index": 1,
+        "requirement": "required",
+        "role": "contour",
+        "source": "recipe/completed-slash-afterimage",
+        "target": "technique/analytic-crescent-uv",
+        "type": "composes"
+      },
+      {
+        "reason": "抜き・短縮・先端への縮みの時間とカーブを、この配分で決める。",
+        "relation_index": 0,
+        "source": "technique/afterimage-weight-timing",
+        "target": "technique/analytic-crescent-uv",
+        "type": "enhances"
+      },
+      {
+        "reason": "三日月の弧の範囲と厚みの最大の位置を、この技法の読み方に合わせて決める。",
+        "relation_index": 0,
+        "source": "technique/arc-reach-asymmetry",
+        "target": "technique/analytic-crescent-uv",
+        "type": "enhances"
+      },
+      {
+        "reason": "同じ弧の帯の描き方で、主役の外側に別の層として置く。",
+        "relation_index": 0,
+        "source": "technique/slash-pressure-haze",
+        "target": "technique/analytic-crescent-uv",
+        "type": "enhances"
+      }
+    ],
+    "technique/arc-reach-asymmetry": [
+      {
+        "source": "evidence/slash-weapon-variants-preview",
+        "statement": "振り始め側を短くした短剣は「薙刀の射程の長い斬撃」に見え70点に下がった。振り終わり側を短くする必要があった。",
+        "type": "claim"
+      },
+      {
+        "reason": "刃渡りの短い武器・射程の長い武器で、弧の片側の長さを変える。",
+        "relation_index": 2,
+        "requirement": "optional",
+        "role": "reach",
+        "source": "recipe/completed-slash-afterimage",
+        "target": "technique/arc-reach-asymmetry",
+        "type": "composes"
+      },
+      {
+        "reason": "刃渡り・射程の長さを、残像の片側の長さで伝える。",
+        "relation_index": 0,
+        "source": "semantic/slash",
+        "target": "technique/arc-reach-asymmetry",
+        "type": "candidate"
+      },
+      {
+        "reason": "弧の範囲を非対称にして刃渡り・射程を読ませる。",
+        "relation_index": 4,
+        "source": "technique/analytic-crescent-uv",
+        "target": "technique/arc-reach-asymmetry",
+        "type": "enhances"
+      }
+    ],
     "technique/arc-sweep": [
       {
         "reason": "半径Rの360度弧。幅0.10mを初期値にし、先頭を厚く後端を薄くする。",
@@ -3608,7 +4387,7 @@
       },
       {
         "reason": "入力角度θの弧。内側は灰褐色、外縁は暖白。幅0.12L、終端側を太くする。",
-        "relation_index": 3,
+        "relation_index": 4,
         "requirement": "required",
         "role": "weighted-arc",
         "source": "recipe/weapon-axe",
@@ -3635,7 +4414,7 @@
       },
       {
         "reason": "360度の細い帯。外縁を淡青白、内側を灰緑。幅0.05R。",
-        "relation_index": 3,
+        "relation_index": 4,
         "requirement": "required",
         "role": "circular-cut",
         "source": "recipe/weapon-scythe",
@@ -3659,6 +4438,38 @@
         "source": "recipe/wide-weapon-sweep",
         "target": "technique/arc-sweep",
         "type": "composes"
+      }
+    ],
+    "technique/articulated-closing-parts": [
+      {
+        "reason": "関節で閉じて噛む・挟む部位（牙）。",
+        "relation_index": 8,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "technique/articulated-closing-parts",
+        "type": "candidate"
+      },
+      {
+        "reason": "この武器・命中に関わる因子。",
+        "relation_index": 6,
+        "source": "recipe/weapon-fang",
+        "target": "technique/articulated-closing-parts",
+        "type": "enhances"
+      }
+    ],
+    "technique/axial-thrust-cone": [
+      {
+        "reason": "一点へ突く武器（槍）。",
+        "relation_index": 7,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "technique/axial-thrust-cone",
+        "type": "candidate"
+      },
+      {
+        "reason": "この武器・命中に関わる因子。",
+        "relation_index": 7,
+        "source": "recipe/weapon-spear",
+        "target": "technique/axial-thrust-cone",
+        "type": "enhances"
       }
     ],
     "technique/billboard": [
@@ -3793,6 +4604,15 @@
         "type": "requires"
       },
       {
+        "reason": "接触の瞬間の小さな星形の閃き。",
+        "relation_index": 1,
+        "requirement": "optional",
+        "role": "glint",
+        "source": "recipe/metal-contact-sparks",
+        "target": "technique/billboard",
+        "type": "composes"
+      },
+      {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 8,
         "source": "recipe/periodic-health-restoration",
@@ -3912,6 +4732,27 @@
         "target": "technique/billboard",
         "type": "alternative",
         "when": "限定した画角で板の見え方が成立する場合。"
+      }
+    ],
+    "technique/blunt-motion-smear": [
+      {
+        "source": "evidence/melee-weapon-free-design-preview",
+        "statement": "棒のぼけた帯は75点。帯の幅を打撃部に合わせて半分に、衝突の輪と土煙は削除するよう指摘された。",
+        "type": "claim"
+      },
+      {
+        "reason": "鋭くない打撃の武器（棒）。",
+        "relation_index": 5,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "technique/blunt-motion-smear",
+        "type": "candidate"
+      },
+      {
+        "reason": "判定後の残像を作る場合の、打撃部の幅だけのぼけた帯の技法（評価75点）。",
+        "relation_index": 0,
+        "source": "recipe/weapon-rod",
+        "target": "technique/blunt-motion-smear",
+        "type": "candidate"
       }
     ],
     "technique/body-shell": [
@@ -4103,11 +4944,18 @@
       },
       {
         "reason": "判定後に表示する残像の分岐。",
-        "relation_index": 0,
+        "relation_index": 3,
         "role": "afterimage",
         "source": "semantic/slash",
         "target": "technique/completed-arc-afterimage",
         "type": "candidate"
+      },
+      {
+        "reason": "完成した残像の外形・消え方を、テクスチャではなく式で連続に制御する。",
+        "relation_index": 0,
+        "source": "technique/analytic-crescent-uv",
+        "target": "technique/completed-arc-afterimage",
+        "type": "enhances"
       },
       {
         "reason": "判定後に表示する残像の分岐。",
@@ -4116,6 +4964,13 @@
         "source": "technique/arc-sweep",
         "target": "technique/completed-arc-afterimage",
         "type": "candidate"
+      },
+      {
+        "reason": "外側の弧の線は、判定後の完成した残像の考え方。",
+        "relation_index": 1,
+        "source": "technique/fan-rib-reveal",
+        "target": "technique/completed-arc-afterimage",
+        "type": "enhances"
       },
       {
         "reason": "判定後に表示する残像の分岐。",
@@ -4283,6 +5138,27 @@
         "type": "composes"
       }
     ],
+    "technique/crumbling-heavy-wedge": [
+      {
+        "source": "evidence/melee-weapon-free-design-preview",
+        "statement": "斧のくさびと崩れは80点。振り終わりの辺が1→0で切れて見える点を指摘され、グラデーションを足した。",
+        "type": "claim"
+      },
+      {
+        "reason": "重く叩き割る武器（斧）。",
+        "relation_index": 2,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "technique/crumbling-heavy-wedge",
+        "type": "candidate"
+      },
+      {
+        "reason": "判定後の残像を作る場合の、武器から推測して作った新しい技法（評価80点）。",
+        "relation_index": 0,
+        "source": "recipe/weapon-axe",
+        "target": "technique/crumbling-heavy-wedge",
+        "type": "candidate"
+      }
+    ],
     "technique/directional-flow-surface": [
       {
         "source": "evidence/organic-fire-volume-preview",
@@ -4388,7 +5264,7 @@
       },
       {
         "reason": "扇の接線へ三本の短い筋。長さ0.35L、中央だけ白芯。",
-        "relation_index": 4,
+        "relation_index": 5,
         "requirement": "required",
         "role": "fan-rays",
         "source": "recipe/weapon-ironfan",
@@ -4477,6 +5353,27 @@
         "source": "recipe/self-regeneration",
         "target": "technique/event-pulse",
         "type": "composes"
+      }
+    ],
+    "technique/fan-rib-reveal": [
+      {
+        "source": "evidence/melee-weapon-free-design-preview",
+        "statement": "扇と濃い骨が85点。前へ飛ぶ風の筋は何か分からないと指摘され、弧に沿って流れる筋と完成した外側の弧の線に替えた。",
+        "type": "claim"
+      },
+      {
+        "reason": "開いて縁で斬る武器（鉄扇）。",
+        "relation_index": 4,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "technique/fan-rib-reveal",
+        "type": "candidate"
+      },
+      {
+        "reason": "判定後の残像を作る場合の、骨が開く扇の技法（評価85点）。",
+        "relation_index": 0,
+        "source": "recipe/weapon-ironfan",
+        "target": "technique/fan-rib-reveal",
+        "type": "candidate"
       }
     ],
     "technique/flipbook-particles": [
@@ -4574,7 +5471,7 @@
       },
       {
         "reason": "斧頭の軌跡だけを厚い先端・細い後端でつなぐ。",
-        "relation_index": 4,
+        "relation_index": 5,
         "requirement": "required",
         "role": "head-wake",
         "source": "recipe/weapon-axe",
@@ -4610,7 +5507,7 @@
       },
       {
         "reason": "扇の外縁を薄い帯で追う。幅0.025L、銀灰。",
-        "relation_index": 3,
+        "relation_index": 4,
         "requirement": "required",
         "role": "fan-wake",
         "source": "recipe/weapon-ironfan",
@@ -4619,7 +5516,7 @@
       },
       {
         "reason": "棒の先端側二点から薄い灰白の帯。武器幅の2〜3倍に留める。",
-        "relation_index": 3,
+        "relation_index": 4,
         "requirement": "required",
         "role": "rod-wake",
         "source": "recipe/weapon-rod",
@@ -4628,7 +5525,7 @@
       },
       {
         "reason": "刃先を追う短い細帯。後流が円全体を二重に埋めない。",
-        "relation_index": 4,
+        "relation_index": 5,
         "requirement": "required",
         "role": "scythe-tip-wake",
         "source": "recipe/weapon-scythe",
@@ -4681,6 +5578,13 @@
         "type": "composes"
       }
     ],
+    "technique/ignition-burst": [
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "炎の命中は80点。炎が最初から上へ向かうのでなく、全方位へ一瞬向かってから上へ（コンロの着火のボッ）と指摘された。",
+        "type": "claim"
+      }
+    ],
     "technique/inner-cut-sdf": [
       {
         "reason": "固定外形と内側穴を分ける。",
@@ -4695,13 +5599,18 @@
         "type": "claim"
       },
       {
-        "reason": "固定外形から曲線状の穴を拡げる。",
-        "relation_index": 1,
-        "requirement": "required",
-        "role": "contour",
+        "reason": "改訂1の主案。参照の内側曲線が円の組み合わせで近似でき、解析式で作りにくい場合に比較する。",
+        "relation_index": 5,
         "source": "recipe/completed-slash-afterimage",
         "target": "technique/inner-cut-sdf",
-        "type": "composes"
+        "type": "candidate"
+      },
+      {
+        "reason": "同じ「固定外形から内側を抜く」役割。こちらは距離場テクスチャを使わず、厚みの形を弧に沿った関数で持つ。",
+        "relation_index": 1,
+        "source": "technique/analytic-crescent-uv",
+        "target": "technique/inner-cut-sdf",
+        "type": "alternative"
       },
       {
         "reason": "曲線状の内側境界で残像を薄くする候補。",
@@ -4710,6 +5619,13 @@
         "source": "technique/completed-arc-afterimage",
         "target": "technique/inner-cut-sdf",
         "type": "candidate"
+      }
+    ],
+    "technique/internal-source-leak": [
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "ブレスの溜めで外から内へ集める粒は70点。炎は体内で生まれるので外からの粒は不要で、口内から漏れる光の筋がよいと指摘された。自己再生の溜めは主張しなくてよい（霞は不要、70点）。",
+        "type": "claim"
       }
     ],
     "technique/mesh-core": [
@@ -4748,6 +5664,13 @@
         "target": "technique/mesh-core",
         "type": "alternative",
         "when": "流体の塊より固体・魔法球の外形を優先する場合。"
+      },
+      {
+        "reason": "本体のメッシュの形の決め方。",
+        "relation_index": 1,
+        "source": "technique/volumetric-object-proxy",
+        "target": "technique/mesh-core",
+        "type": "enhances"
       }
     ],
     "technique/orbit-glyphs": [
@@ -4959,6 +5882,13 @@
         "source": "recipe/weapon-wand",
         "target": "technique/oriented-projectile-core",
         "type": "composes"
+      },
+      {
+        "reason": "進行方向に向けた本体の形を、絵ではなく立体のシルエットで作る。",
+        "relation_index": 0,
+        "source": "technique/volumetric-object-proxy",
+        "target": "technique/oriented-projectile-core",
+        "type": "enhances"
       }
     ],
     "technique/particle-emission": [
@@ -5112,6 +6042,15 @@
         "type": "composes"
       },
       {
+        "reason": "少数の伸びた粒子を一方向の円錐へ短く飛ばす。",
+        "relation_index": 0,
+        "requirement": "required",
+        "role": "sparks",
+        "source": "recipe/metal-contact-sparks",
+        "target": "technique/particle-emission",
+        "type": "composes"
+      },
+      {
         "reason": "胸の周囲から葉/滴6個を0.4Hまで上昇。",
         "relation_index": 4,
         "requirement": "required",
@@ -5250,6 +6189,20 @@
         "source": "technique/flipbook-particles",
         "target": "technique/particle-emission",
         "type": "requires"
+      },
+      {
+        "reason": "刈った切れ端を回転の向きに飛ばす。",
+        "relation_index": 1,
+        "source": "technique/rotating-sweep-trails",
+        "target": "technique/particle-emission",
+        "type": "enhances"
+      }
+    ],
+    "technique/radial-layered-vortex": [
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "回転斬りの溜めは75点で風感が少ない。外周に風、中央にコイル、最外周にほこりと棲み分けると竜巻・渦巻き感が出ると指摘された。",
+        "type": "claim"
       }
     ],
     "technique/radial-wave": [
@@ -5306,6 +6259,111 @@
         "source": "recipe/weapon-greatshield",
         "target": "technique/radial-wave",
         "type": "composes"
+      },
+      {
+        "reason": "輪・波の広がる面と向きを、伝えたい力の意味から決める。",
+        "relation_index": 0,
+        "source": "technique/wave-direction-semantics",
+        "target": "technique/radial-wave",
+        "type": "enhances"
+      }
+    ],
+    "technique/rotating-sweep-trails": [
+      {
+        "source": "evidence/melee-weapon-free-design-preview",
+        "statement": "最初から見える範囲の円盤と、順番に現れて回る3本の刃の組み合わせが90点。粒子の公転の向きが逆で逆回転に見えた。",
+        "type": "claim"
+      },
+      {
+        "reason": "回転して周りを薙ぎ払う武器（大鎌・回転斬り）。",
+        "relation_index": 3,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "technique/rotating-sweep-trails",
+        "type": "candidate"
+      },
+      {
+        "reason": "判定後の残像を作る場合の、範囲の円盤と回る刃の技法（評価90点）。",
+        "relation_index": 0,
+        "source": "recipe/weapon-scythe",
+        "target": "technique/rotating-sweep-trails",
+        "type": "candidate"
+      },
+      {
+        "reason": "回る刃・範囲の円盤の回転量と端の消し方。",
+        "relation_index": 0,
+        "source": "technique/rotation-overshoot",
+        "target": "technique/rotating-sweep-trails",
+        "type": "enhances"
+      }
+    ],
+    "technique/rotation-overshoot": [
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "一周の回転斬りは85点。斬り跡と低い風が360度きっかりで途切れて見え、約390度（1.1回転）回して端をグラデーションにすると自然な回転になると指摘された。手元の小さな渦も390度回してごく短いフェードで消すよう指摘された（85点）。",
+        "type": "claim"
+      },
+      {
+        "reason": "各層の回転量と端の消し方。",
+        "relation_index": 0,
+        "source": "technique/radial-layered-vortex",
+        "target": "technique/rotation-overshoot",
+        "type": "enhances"
+      }
+    ],
+    "technique/slash-pressure-haze": [
+      {
+        "source": "evidence/slash-weapon-variants-preview",
+        "statement": "大剣の外に置いた薄く広い柔らかな霞が、剣との差（破壊力）として受け入れられた。離れた細い帯は二本目の線に見えた。",
+        "type": "claim"
+      },
+      {
+        "reason": "重い武器の破壊力を外側の薄い霞で足す。",
+        "relation_index": 4,
+        "requirement": "optional",
+        "role": "pressure",
+        "source": "recipe/completed-slash-afterimage",
+        "target": "technique/slash-pressure-haze",
+        "type": "composes"
+      },
+      {
+        "reason": "重い武器の破壊力を、外側の薄い霞で伝える。",
+        "relation_index": 2,
+        "source": "semantic/slash",
+        "target": "technique/slash-pressure-haze",
+        "type": "candidate"
+      },
+      {
+        "reason": "重い武器では同じ描き方の薄い霞を外側に足す。",
+        "relation_index": 6,
+        "source": "technique/analytic-crescent-uv",
+        "target": "technique/slash-pressure-haze",
+        "type": "enhances"
+      }
+    ],
+    "technique/status-flow-particles": [
+      {
+        "reason": "継続の強化・弱体の表示の形。",
+        "relation_index": 0,
+        "source": "composition/combat-readability",
+        "target": "technique/status-flow-particles",
+        "type": "enhances"
+      },
+      {
+        "reason": "継続（active）の表示の形。",
+        "relation_index": 0,
+        "source": "composition/refreshable-status",
+        "target": "technique/status-flow-particles",
+        "type": "enhances"
+      },
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "上向き・下向きの山形の継続表示は60点。表示範囲が広く記号の意味が強い。同じ色の上昇・下降の粒子（弱体は下降する針状の線）にとどめ、色と粒子の向きでバフ・デバフを表すよう指摘された。強い弱体（三枚）は通常の弱体（二枚）と区別が付かず、色で棲み分けるよう指摘された。食事の継続の穂は「食べ物？」と読めなかった。",
+        "type": "claim"
+      },
+      {
+        "source": "evidence/skill-baselines-preview",
+        "statement": "版2の継続表示（同色の上昇・下降の粒子）は、粒子の速度が速すぎる（0.2倍ぐらいに）と指摘された。",
+        "type": "claim"
       }
     ],
     "technique/surface-density-core": [
@@ -5431,6 +6489,13 @@
         "type": "requires"
       },
       {
+        "reason": "崩れて消える溶解の一般形。",
+        "relation_index": 1,
+        "source": "technique/crumbling-heavy-wedge",
+        "target": "technique/uv-dissolve",
+        "type": "enhances"
+      },
+      {
         "reason": "この技法の採用時に必要な素材・処理・描画規約。",
         "relation_index": 2,
         "source": "technique/directional-streak",
@@ -5495,10 +6560,215 @@
         "target": "technique/volume-density",
         "type": "alternative"
       }
+    ],
+    "technique/volumetric-object-proxy": [
+      {
+        "reason": "牙・爪など実体の部位を立体で表す。",
+        "relation_index": 10,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "technique/volumetric-object-proxy",
+        "type": "enhances"
+      },
+      {
+        "reason": "この武器・命中に関わる因子。",
+        "relation_index": 8,
+        "source": "recipe/weapon-bow",
+        "target": "technique/volumetric-object-proxy",
+        "type": "enhances"
+      },
+      {
+        "reason": "この武器・命中に関わる因子。",
+        "relation_index": 8,
+        "source": "recipe/weapon-crossbow",
+        "target": "technique/volumetric-object-proxy",
+        "type": "enhances"
+      },
+      {
+        "reason": "この武器・命中に関わる因子。",
+        "relation_index": 7,
+        "source": "recipe/weapon-fang",
+        "target": "technique/volumetric-object-proxy",
+        "type": "enhances"
+      },
+      {
+        "reason": "この武器・命中に関わる因子。",
+        "relation_index": 8,
+        "source": "recipe/weapon-wand",
+        "target": "technique/volumetric-object-proxy",
+        "type": "enhances"
+      },
+      {
+        "reason": "牙・爪などの部位そのものの立体の形。",
+        "relation_index": 0,
+        "source": "technique/articulated-closing-parts",
+        "target": "technique/volumetric-object-proxy",
+        "type": "enhances"
+      }
+    ],
+    "technique/wave-direction-semantics": [
+      {
+        "reason": "振り・命中の圧や波の進む向きで、押す・逸らす等の力の意味を決める。",
+        "relation_index": 2,
+        "source": "composition/melee-strike",
+        "target": "technique/wave-direction-semantics",
+        "type": "enhances"
+      },
+      {
+        "reason": "面で押し出す武器（大盾）の圧の向き。",
+        "relation_index": 9,
+        "source": "recipe/melee-weapon-afterimages",
+        "target": "technique/wave-direction-semantics",
+        "type": "candidate"
+      },
+      {
+        "reason": "この武器・命中に関わる因子。",
+        "relation_index": 6,
+        "source": "recipe/weapon-greatshield",
+        "target": "technique/wave-direction-semantics",
+        "type": "enhances"
+      },
+      {
+        "reason": "内向き（集める）と外向き（漏れる・押し出す）の向きの意味。",
+        "relation_index": 0,
+        "source": "technique/internal-source-leak",
+        "target": "technique/wave-direction-semantics",
+        "type": "enhances"
+      }
     ]
   },
   "generated": true,
   "nodes": [
+    {
+      "aliases": [],
+      "compatibility": {
+        "engine_version": "6000.3.14f1",
+        "platforms": [
+          "Windows Editor"
+        ],
+        "renderer": "URP 17.3.0",
+        "verification": "engine-tested"
+      },
+      "engine": "unity",
+      "evidence": [
+        "evidence/sword-slash-analytic-crescent-preview",
+        "evidence/slash-weapon-variants-preview"
+      ],
+      "id": "adapter/unity-urp-analytic-crescent",
+      "kind": "adapter",
+      "path": "adapters/unity-urp-analytic-crescent.md",
+      "relations": [
+        {
+          "reason": "形と時間の式の正本。",
+          "target": "technique/analytic-crescent-uv",
+          "type": "requires"
+        },
+        {
+          "reason": "透明合成と奥行きの規約。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        }
+      ],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-specific",
+      "sha256": "d23a1a25e3743b0c6539d5de4858d6747a007c986e5d9f8c80725806b9fe2a58",
+      "status": "draft",
+      "summary": "生成した弧帯MeshにMaterialPropertyBlockで外部経過秒を渡し、Shaderで三日月の形・消え方・外光を計算したPreview実装。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "mesh"
+      ],
+      "title": "Unity URP：弧帯Meshと解析式の三日月Shader",
+      "updated_at": "2026-10-07"
+    },
+    {
+      "aliases": [],
+      "compatibility": {
+        "engine_version": "6000.3.14f1",
+        "platforms": [
+          "Windows Editor"
+        ],
+        "renderer": "URP 17.3.0",
+        "verification": "engine-tested"
+      },
+      "engine": "unity",
+      "evidence": [
+        "evidence/melee-weapon-free-design-preview",
+        "evidence/weapon-contact-free-design-preview",
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "adapter/unity-urp-baseline-sheet-particles",
+      "kind": "adapter",
+      "path": "adapters/unity-urp-baseline-sheet-particles.md",
+      "relations": [
+        {
+          "reason": "透明合成と奥行きの規約。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        }
+      ],
+      "revision": 3,
+      "schema_version": "0.1.0",
+      "scope": "engine-specific",
+      "sha256": "5ae5144b609dcf50e363671f58e7f95397ff7fa964b404fc3198da4a282e71e5",
+      "status": "draft",
+      "summary": "弧・円環・円盤の帯Meshに外部経過秒で動く汎用のシートShaderを載せ、ParticleSystemの層と組み合わせて近接武器の残像を作ったPreview実装。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "mesh"
+      ],
+      "title": "Unity URP：時間で動く帯の面と粒子の層で残像を組む",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "aliases": [
+        "ゲーム用変換",
+        "Custom Vertex Streams",
+        "メッシュ粒子"
+      ],
+      "compatibility": {
+        "engine_version": "6000.3.14f1",
+        "platforms": [
+          "Windows Editor"
+        ],
+        "renderer": "URP 17.3.0",
+        "verification": "engine-tested"
+      },
+      "engine": "unity",
+      "evidence": [
+        "evidence/game-effect-conversion-preview"
+      ],
+      "id": "adapter/unity-urp-game-particle-conversion",
+      "kind": "adapter",
+      "path": "adapters/unity-urp-game-particle-conversion.md",
+      "relations": [
+        {
+          "reason": "カタログの技法（LW-C3・D1・D2・F2・F5）をUnityの粒子で実装するときの前提。",
+          "target": "rendering/lightweight-vfx-catalog",
+          "type": "enhances"
+        },
+        {
+          "reason": "変換元の基準版の構成。",
+          "target": "adapter/unity-urp-baseline-sheet-particles",
+          "type": "enhances"
+        }
+      ],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-specific",
+      "sha256": "fc6fa5e6ed4d5c1fcdc43874aab3e190f968543eb082b631f9fccdcc07387021",
+      "status": "draft",
+      "summary": "最高品質の基準版（帯のMeshRendererと粒子）を、共有素材2つの粒子だけで描くゲーム用版へ機械的に変換したときに確かめた、ParticleSystemのメッシュ粒子・頂点ストリーム・Texture Sheet Animation・トレイルの挙動と、その回避。",
+      "superseded_by": [],
+      "tags": [
+        "mesh",
+        "billboard"
+      ],
+      "title": "Unity URP：基準版の帯と粒子を共有素材の粒子へ変換するときのエンジンの事実",
+      "updated_at": "2026-10-10"
+    },
     {
       "aliases": [],
       "compatibility": {
@@ -5606,16 +6876,24 @@
     {
       "aliases": [],
       "evidence": [
-        "evidence/vfx-gameplay-clarity-source"
+        "evidence/vfx-gameplay-clarity-source",
+        "evidence/weapon-contact-free-design-preview",
+        "evidence/skill-baselines-preview"
       ],
       "id": "composition/combat-readability",
       "kind": "composition",
       "path": "knowledge/compositions/combat-readability.md",
-      "relations": [],
-      "revision": 1,
+      "relations": [
+        {
+          "reason": "継続の強化・弱体の表示の形。",
+          "target": "technique/status-flow-particles",
+          "type": "enhances"
+        }
+      ],
+      "revision": 4,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "c2aebd8f8a2fca877175ef1e53865db6bb3a1920ba5f50b5b5577421ec52a8d6",
+      "sha256": "2646438b7d2dbedaa04f75a72b5580cb7e441f2b5f818a40d834eac5638ae0c5",
       "status": "draft",
       "summary": "攻撃形状と命中を主役にし、装飾と継続状態の明度・面積を階層化する構成。",
       "superseded_by": [],
@@ -5624,11 +6902,15 @@
         "readable-silhouette"
       ],
       "title": "戦闘エフェクトの主役・補助・状態の階層",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [],
-      "evidence": [],
+      "evidence": [
+        "evidence/melee-weapon-free-design-preview",
+        "evidence/weapon-contact-free-design-preview",
+        "evidence/skill-baselines-preview"
+      ],
       "id": "composition/melee-strike",
       "kind": "composition",
       "path": "knowledge/compositions/melee-strike.md",
@@ -5638,12 +6920,23 @@
           "role": "afterimage",
           "target": "technique/completed-arc-afterimage",
           "type": "candidate"
+        },
+        {
+          "reason": "判定後の残像を武器から推測して作る入口。",
+          "role": "afterimage",
+          "target": "recipe/melee-weapon-afterimages",
+          "type": "candidate"
+        },
+        {
+          "reason": "振り・命中の圧や波の進む向きで、押す・逸らす等の力の意味を決める。",
+          "target": "technique/wave-direction-semantics",
+          "type": "enhances"
         }
       ],
-      "revision": 2,
+      "revision": 5,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "688abba4c578437e33b7a22d7c052e1738be25047afc7285867a283077872abb",
+      "sha256": "03396b28decf71f956d22d45a7993e551e31792233d92282e4748462582e272f",
       "status": "draft",
       "summary": "動作中の振り、判定後の残像、実命中の反応を分け、発火時点から主役と時計を選ぶ。",
       "superseded_by": [],
@@ -5653,7 +6946,7 @@
         "lifecycle"
       ],
       "title": "近接攻撃の振り・接触・残留",
-      "updated_at": "2026-10-06"
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [
@@ -5687,15 +6980,23 @@
     },
     {
       "aliases": [],
-      "evidence": [],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
       "id": "composition/refreshable-status",
       "kind": "composition",
       "path": "knowledge/compositions/refreshable-status.md",
-      "relations": [],
-      "revision": 1,
+      "relations": [
+        {
+          "reason": "継続（active）の表示の形。",
+          "target": "technique/status-flow-particles",
+          "type": "enhances"
+        }
+      ],
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "7dbaf53aca741560f74f7ca5a9ac5aeea834237c8669cce86e76b771fb264a2f",
+      "sha256": "838f8f708e559373002133a31cb585f56528c95ba2b18de0781133da78049142",
       "status": "draft",
       "summary": "状態ID・実際の回復イベント・更新後の期限に追従し、同カテゴリの継続表示を集約する。",
       "superseded_by": [],
@@ -5704,7 +7005,7 @@
         "lifecycle"
       ],
       "title": "再付与できる状態の付与・刻み・継続・解除",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [],
@@ -5741,10 +7042,10 @@
           "type": "candidate"
         }
       ],
-      "revision": 2,
+      "revision": 3,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "52304a3f65c15c50d39b3f1df9301283124dada710a6a4e3bd1ea9072217832e",
+      "sha256": "fbb15dcb1f4cf1944d3bdee7acb631e9e496a25ae31bfa4198fc978fc9a6d8aa",
       "status": "draft",
       "summary": "武器ごとのシルエットと発動・命中・範囲を、実際のゲーム入力に合わせて確認する。",
       "superseded_by": [],
@@ -5753,7 +7054,7 @@
         "combat"
       ],
       "title": "攻撃の形・範囲・接触時刻の評価",
-      "updated_at": "2026-10-06"
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [
@@ -5855,6 +7156,237 @@
       ],
       "title": "斬撃残像の内側SDFと並列立上りのPreview記録",
       "updated_at": "2026-10-06"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-10",
+        "claims": [
+          {
+            "statement": "メッシュ粒子の法線に詰めた値を10倍しても描画が変わらず、法線は正規化されて値を運べなかった。UVの整数部に詰めると帯の模様と崩れ方が基準版に近づいた。",
+            "target": "adapter/unity-urp-game-particle-conversion"
+          },
+          {
+            "statement": "Texture Sheet Animation の startFrame にコマ番号を入れると星・輪のタイルが丸い光になり、(コマ＋0.5)／16 で正しいタイルになった。メッシュ粒子はタイルが効かず薄く見え、UVをタイルの範囲へ焼き直し両面で描くと基準版と同じ濃さになった。",
+            "target": "adapter/unity-urp-game-particle-conversion"
+          },
+          {
+            "statement": "トレイルの寿命に秒を入れると、寿命10秒の本体の尾が画面の端まで伸びた。尾の秒数を本体の寿命で割ると基準版の長さになった。",
+            "target": "adapter/unity-urp-game-particle-conversion"
+          },
+          {
+            "statement": "回る窓の位相・速さが違う帯（大鎌の3枚の刃、旋風斬の溜めのコイルと風）や発生の時刻が違う輪（拳圧）を1つのメッシュにまとめると、刃が同じ角度に重なる・2本目が崩れるなど見た目が破綻し、分けたまま残した。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "狙い撃ちの矢のらせんの糸（距離あたり140粒×2本・上限各600）を、本体と一緒に動く剛体のらせんメッシュ1粒を毎秒26回転させる形に置き換え、基準版と同じらせんに見えた。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "魔法弾・火の詠唱の核を、外の光と芯を焼き込んだ1チャンネルのタイル1粒にすると、青い光と白い芯（橙と淡黄）の差が消えて鈍い色になり、2粒に戻した。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "打撃の命中 400 個（Editor の Play、主スレッド。空 約 5.5 ms）で、ParticleSystem 4 系は約 20 ms（粒子の更新 2.8 ms・頂点の生成 7.9 ms・Batches 22）、VAT を 1 粒のメッシュ粒子に載せると約 16.8 ms（頂点の生成 8.0 ms は残り、Batches は約 400 に増えた）、VAT を MeshRenderer＋GPU インスタンシングで描くと約 5.5 ms（空とほぼ同じ、Batches 17）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "65 種を混ぜた 100 個（1920×1080、240 フレーム平均）で、主スレッドは空 4.69 ms／ParticleSystem 30.38 ms／焼き込み 6.58 ms。Batches は 6／46／201。焼き込みの Batches は層・演出ごとに素材（焼いたテクスチャ）が分かれていたため。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "焼いた記録 194 枚（RGBAFloat）は中身が約 277 万画素だが、大きさが幅 1〜60・高さ数百〜5291 とばらつき、配列テクスチャで最大にそろえると約 985 MB になる見積もりだった。最大は 2.2 秒で繰り返し粒が 7.5 秒生きる継続の演出で、4 周期 8.8 秒を 60 fps・1 フレーム 10 行・変種 3 で記録した 27×5291。",
+            "target": "rendering/lightweight-vfx-catalog"
+          }
+        ],
+        "conditions": "専用Prefab Preview。暗い背景、45度俯瞰、基準版と同じ視点・時刻の5コマを上下に並べた。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/game-effect-conversion-2026-10-10.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview",
+          "executed_at": "2026-10-10",
+          "procedure": "生成スクリプトで変換し、基準版と同じ視点・時刻の連番の比較画像で確認・修正した。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "一つのプロジェクト・一つのカメラ条件。性能は対象機種で未計測。外観の承認はユーザー待ち。",
+        "result": "71件すべてが共有素材だけで描け、Editorの資産を参照しない。最大は5系・粒の上限68。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/game-effect-conversion-preview",
+      "kind": "evidence",
+      "path": "evidence/game-effect-conversion-preview.md",
+      "relations": [],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "4d8043c3de5c50dfc1a09e5b2bb90cdc74f7d5d0bfa52f52fcdc72719efaac83",
+      "status": "reviewed",
+      "summary": "最高品質の基準版を、共有素材2 Shaderの粒子だけで描くゲーム用版へ生成スクリプトで変換し、同じ視点・時刻で並べて比べた。見つけたエンジンの挙動と、まとめ方の失敗と直し方の記録。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "基準版71件をゲーム用版へ変換したPreview比較の記録",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-10",
+        "claims": [
+          {
+            "statement": "半透明の費用は描く画素×重なる層×処理の重さで、大きな重なりが主な原因になる（Unreal/UDKの最適化資料、PowerVRの粒子描画の推奨、各記事）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "粒子の透明の余白を、見える範囲を囲む多角形で削ると、煙の例で4角形60%・8角形52%の画素になり、8角形を超えると効果が薄い（Humus、Persson）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "Unityの粒子はローカル空間などの条件で決定的（procedural）になり、画面外で模擬を止めて早送りできる。ワールド空間・重力・ノイズ・衝突・トレイル・サブエミッタ・距離あたりの発生・9区間以上の曲線・スクリプトでの変更で外れる（Unity公式ブログ）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "URPではMaterialPropertyBlockを付けたレンダラーはSRP Batcherの対象外になり、粒子のレンダラーもMPBを使うため対象外（Unity公式マニュアル・フォーラム）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "粒子の個体差はCustom Vertex Streams・Custom Dataで素材を増やさず渡せる（Unity公式マニュアル）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "大人数の戦闘のモバイルゲームで、1演出の粒子を3〜10個、命中を30粒から焼き込みの2粒へ、200粒から大きな50粒へ減らした例。共通のシェーダとアトラスで素材を共有し、全体を一様にする計算は頂点へ移す（PocketGamer.biz、Stabrov）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "一つの演出の部品（描画の単位）を減らし、物理は少数の部品だけに、薄い粒を重ねるより少ない不透明寄りの粒を使う（id Software Quake 4の資料）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "同時数の上限・重要度・距離で演出を間引き、品質設定で落とす（Unreal Niagaraのスケーラビリティ資料）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          },
+          {
+            "statement": "多数の別種の小さな演出には従来の粒子が軽く、同じ演出の大量表示はVFX Graphのインスタンシングが有利（Unityフォーラム・VFX Graph資料）。",
+            "target": "rendering/lightweight-vfx-catalog"
+          }
+        ],
+        "conditions": "Web検索と公開ページの読み込みで確認した（2026-10-10）。数値は各出典の条件の例。",
+        "limitations": "本プロジェクトの機種・画面で測った値ではない。各技法の効果は条件で変わる。",
+        "result": "軽量化の技法を7分類のカタログにまとめた。",
+        "source_kind": "official-documentation",
+        "sources": [
+          "https://www.pocketgamer.biz/vfx-optimisation-in-midcore-games-commonly-overlooked-techniques-and-advanced-methods/",
+          "https://www.humus.name/index.php?ID=266",
+          "https://www.humus.name/Articles/Persson_GraphicsGemsForGames.pdf",
+          "https://unity.com/blog/engine-platform/particlesystem-performance-culling-tips",
+          "https://docs.imgtec.com/performance-guides/graphics-recommendations/html/topics/optimal-particle-rendering-on-powervr.html",
+          "https://docs.unity.cn/Manual/SRPBatcher-Incompatible.html",
+          "https://discussions.unity.com/t/could-srp-batcher-work-with-particles/790166",
+          "https://docs.unity3d.com/6000.2/Documentation/Manual/PartSysVertexStreams.html",
+          "https://docs.unity3d.com/6000.4/Documentation/Manual/PartSysInstancing.html",
+          "https://docs.unity3d.com/Packages/com.unity.visualeffectgraph@17.2/manual/Instancing",
+          "https://discussions.unity.com/t/is-vfx-graph-always-better-than-the-particle-system/816576",
+          "https://dev.epicgames.com/documentation/en-us/unreal-engine/scalability-reference-for-unreal-engine",
+          "https://docs.unrealengine.com/udk/Three/VFXOptimizationResults.html",
+          "https://iddevnet.dhewm3.org/quake4/Effects_Performance.html",
+          "https://developer.nvidia.com/gpugems/gpugems3/part-iv-image-effects/chapter-23-high-speed-screen-particles",
+          "https://realtimevfx.com/t/flipbook-texture-packing-atlas-super-pack-and-stagger-pack/5609",
+          "https://realtimevfx.com/t/why-are-additive-shaders-so-heavy-for-phones/23998",
+          "https://nexus.leagueoflegends.com/en-us/2017/10/dev-leagues-vfx-style-guide/",
+          "https://docs.unity3d.com/cn/2022.1/Manual/DrawCallBatching.html"
+        ]
+      },
+      "id": "evidence/lightweight-vfx-web-sources",
+      "kind": "evidence",
+      "path": "evidence/lightweight-vfx-web-sources.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "683314b76ec4ef762bbcf21323ac6b27f424a991e8efcf5cd7d520eb621eb5fe",
+      "status": "draft",
+      "summary": "オーバードロー・トリミング・粒子のカリング・バッチ・素材の共有・テクスチャの詰め込み・同時数の管理について、エンジンの公式資料と制作者の記事で確認した内容。",
+      "superseded_by": [],
+      "tags": [
+        "evidence",
+        "rendering"
+      ],
+      "title": "軽量なゲーム用VFXの技法に関する公開資料",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-07",
+        "claims": [
+          {
+            "statement": "剣の三日月を土台にした版は武器の差が出ず、武器から推測して一から作った版は斧80・大鎌90・鉄扇85・棒75点と評価された。",
+            "target": "recipe/melee-weapon-afterimages"
+          },
+          {
+            "statement": "斧のくさびと崩れは80点。振り終わりの辺が1→0で切れて見える点を指摘され、グラデーションを足した。",
+            "target": "technique/crumbling-heavy-wedge"
+          },
+          {
+            "statement": "最初から見える範囲の円盤と、順番に現れて回る3本の刃の組み合わせが90点。粒子の公転の向きが逆で逆回転に見えた。",
+            "target": "technique/rotating-sweep-trails"
+          },
+          {
+            "statement": "扇と濃い骨が85点。前へ飛ぶ風の筋は何か分からないと指摘され、弧に沿って流れる筋と完成した外側の弧の線に替えた。",
+            "target": "technique/fan-rib-reveal"
+          },
+          {
+            "statement": "棒のぼけた帯は75点。帯の幅を打撃部に合わせて半分に、衝突の輪と土煙は削除するよう指摘された。",
+            "target": "technique/blunt-motion-smear"
+          },
+          {
+            "statement": "汎用のシートShaderと粒子の層を一つの生成スクリプトで組み、粒子の回転の向きを位置の読み取りで確かめた。",
+            "target": "adapter/unity-urp-baseline-sheet-particles"
+          }
+        ],
+        "conditions": "専用Prefab Preview。暗い背景、45度俯瞰と真上。ユーザーがライブPreviewで評価。前任・剣の版のアセットは参照していない。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/melee-weapon-free-design-2026-10-07.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview",
+          "executed_at": "2026-10-07",
+          "procedure": "生成スクリプトで面と粒子の層を作り、連番の一覧画像で確認・修正してからユーザーが評価した。粒子の回転の向きは位置を2時刻読んで確かめた。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "一つのカメラ条件・一つのプロジェクトの例。評価点はユーザーの主観。ゲーム接続・性能は未確認。",
+        "result": "斧80・大鎌90・鉄扇85・棒75点（版1）。指摘を直した版2は評価待ち。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/melee-weapon-free-design-preview",
+      "kind": "evidence",
+      "path": "evidence/melee-weapon-free-design-preview.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "3536da4718e3c26fc0fefe1a9c55a0aaaa5880a902f7f0187d042756d50895aa",
+      "status": "reviewed",
+      "summary": "剣の作り方を土台にした版が「Swordに引っ張られすぎ」と評価された後、武器から推測して一から作った版が75〜90点と評価された記録。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "斧・大鎌・鉄扇・棒を武器から一から作ったPreview記録",
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [],
@@ -6056,6 +7588,204 @@
       "aliases": [],
       "evidence": [],
       "evidence_details": {
+        "checked_at": "2026-10-10",
+        "claims": [
+          {
+            "statement": "一周の回転斬りは85点。斬り跡と低い風が360度きっかりで途切れて見え、約390度（1.1回転）回して端をグラデーションにすると自然な回転になると指摘された。手元の小さな渦も390度回してごく短いフェードで消すよう指摘された（85点）。",
+            "target": "technique/rotation-overshoot"
+          },
+          {
+            "statement": "回転斬りの溜めは75点で風感が少ない。外周に風、中央にコイル、最外周にほこりと棲み分けると竜巻・渦巻き感が出ると指摘された。",
+            "target": "technique/radial-layered-vortex"
+          },
+          {
+            "statement": "炎の命中は80点。炎が最初から上へ向かうのでなく、全方位へ一瞬向かってから上へ（コンロの着火のボッ）と指摘された。",
+            "target": "technique/ignition-burst"
+          },
+          {
+            "statement": "ブレスの溜めで外から内へ集める粒は70点。炎は体内で生まれるので外からの粒は不要で、口内から漏れる光の筋がよいと指摘された。自己再生の溜めは主張しなくてよい（霞は不要、70点）。",
+            "target": "technique/internal-source-leak"
+          },
+          {
+            "statement": "上向き・下向きの山形の継続表示は60点。表示範囲が広く記号の意味が強い。同じ色の上昇・下降の粒子（弱体は下降する針状の線）にとどめ、色と粒子の向きでバフ・デバフを表すよう指摘された。強い弱体（三枚）は通常の弱体（二枚）と区別が付かず、色で棲み分けるよう指摘された。食事の継続の穂は「食べ物？」と読めなかった。",
+            "target": "technique/status-flow-particles"
+          },
+          {
+            "statement": "重い打撃の命中の五方向の星は「ださい」（65・75点）。内側にもう一つ輪を足す方がよく、解放の圧（120点）のような指向性を命中にも持たせてよいと指摘された。回復に輪は入らないが、輪のある版は状態異常の回復なら色を少し青に寄せるだけで100点。実回復の刻みは葉と光を外し、粒を増やして一瞬だけ発生させ、ゆっくり動かすよう指摘された。",
+            "target": "composition/combat-readability"
+          },
+          {
+            "statement": "版2の継続表示（同色の上昇・下降の粒子）は、粒子の速度が速すぎる（0.2倍ぐらいに）と指摘された。",
+            "target": "technique/status-flow-particles"
+          },
+          {
+            "statement": "地面の亀裂は地面に付くものなので、大きさがアニメーションするのはおかしいと指摘された。",
+            "target": "composition/combat-readability"
+          }
+        ],
+        "conditions": "専用Prefab Preview。暗い背景、主に45度俯瞰。ユーザーがライブPreviewで評価。名称とManifestのラベル・時間から意味を推測し、前任のアセットは参照していない。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/skill-baselines-2026-10-08.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview",
+          "executed_at": "2026-10-10",
+          "procedure": "生成スクリプトで面と粒子の層を作り、連番の一覧画像と粒子の位置の読み取りで確認・修正してからユーザーが評価した。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "一つのカメラ条件・一つのプロジェクトの例。評価点はユーザーの主観。ゲーム接続・実状態への同期・性能は未確認。",
+        "result": "版1は60〜120点。120点は剛腕・強打の解放（前へ押し出す椀形の圧）、110点は呪いの印（眼が開いて割れて落ちる）、100点は火の詠唱・急所突きの収束と命中・狙い撃ちの収束。指摘を直した版2は評価待ち。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/skill-baselines-preview",
+      "kind": "evidence",
+      "path": "evidence/skill-baselines-preview.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "36adc1d0dfb8c91f1fb1f8c6a9e9206122c69f13d8483a430ca1cac807eb7c44",
+      "status": "reviewed",
+      "summary": "溜め・解放・命中・適用・継続のスキル41種の版1が60〜120点と評価され、指摘が「回転の量と端」「層の棲み分け」「力の出どころ」「継続表示の記号」「命中の星」に集中した記録。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "スキル41種を名称から一から作ったPreview記録",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-07",
+        "claims": [
+          {
+            "statement": "改訂2の優先する作り方を、値だけ変えて短剣・大剣へ適用でき、初回で短剣80点・大剣70点と評価された。",
+            "target": "recipe/completed-slash-afterimage"
+          },
+          {
+            "statement": "振り始め側を短くした短剣は「薙刀の射程の長い斬撃」に見え70点に下がった。振り終わり側を短くする必要があった。",
+            "target": "technique/arc-reach-asymmetry"
+          },
+          {
+            "statement": "大剣で細い外縁だけの時間を削り太い本体へ回すと、重い振りとして80点に上がった。",
+            "target": "technique/afterimage-weight-timing"
+          },
+          {
+            "statement": "大剣の外に置いた薄く広い柔らかな霞が、剣との差（破壊力）として受け入れられた。離れた細い帯は二本目の線に見えた。",
+            "target": "technique/slash-pressure-haze"
+          },
+          {
+            "statement": "内縁の裂けを厚みに比例させると、細い楕円では暗い切れ目、幅広い刃では大きな歯になった。",
+            "target": "technique/analytic-crescent-uv"
+          },
+          {
+            "statement": "同じShaderで値と弧の範囲・楕円の倍率だけを変えて二種を作った。既存Meshの上書きの不具合を回避した。",
+            "target": "adapter/unity-urp-analytic-crescent"
+          }
+        ],
+        "conditions": "専用Prefab Preview。暗い背景、45度俯瞰と真上。ユーザーがライブPreviewで評価。前任の短剣・大剣のアセットは参照していない。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/slash-weapon-variants-2026-10-07.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview",
+          "executed_at": "2026-10-07",
+          "procedure": "設定値だけを変える生成スクリプトで二種を作り、連番の一覧画像で確認・修正してからユーザーが評価した。指摘ごとに作り直して再評価した。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "一つのカメラ条件・一つのプロジェクトの例。評価点はユーザーの主観。ゲーム接続・性能は未確認。",
+        "result": "初回 短剣80点・大剣70点。修正後 大剣80点。短剣は短くする端を取り違えて70点、端を入れ替えた版3は評価待ち。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/slash-weapon-variants-preview",
+      "kind": "evidence",
+      "path": "evidence/slash-weapon-variants-preview.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "51c95cef97141fcef2d61649dc33645f5f8f0a76bb89d0fe824021ef01421583",
+      "status": "reviewed",
+      "summary": "剣の知見だけで短剣・大剣の残像を作り、指摘の往復から刃渡り・重さ・破壊力の読ませ方を確かめた記録。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "解析式の三日月を短剣・大剣へ展開した再現記録",
+      "updated_at": "2026-10-07"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-06",
+        "claims": [
+          {
+            "statement": "弧帯UV上の解析式で描いた非対称の三日月・模様・消え方が、ユーザーに「とてもいい」と評価された（基準版全体で85点）。",
+            "target": "technique/analytic-crescent-uv"
+          },
+          {
+            "statement": "解析式の三日月を主役にした版が、内側SDF版（65点）より高く評価された。",
+            "target": "recipe/completed-slash-afterimage"
+          },
+          {
+            "statement": "斬撃の中では意味が不明とされた火花が、命中演出として見ると98点と評価された。",
+            "target": "recipe/metal-contact-sparks"
+          },
+          {
+            "statement": "Unityの専用Prefab Previewで、外部経過秒による描画と連番の撮影を行った。",
+            "target": "adapter/unity-urp-analytic-crescent"
+          }
+        ],
+        "conditions": "専用Prefab Preview。暗い背景と明るい背景、45度俯瞰（yaw -135）と真上。ユーザーがライブPreviewで評価。ゲーム用削減・統合前の基準版。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/sword-slash-2-2026-10-06.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview（WorldEffectPrefabPreviewWindow）",
+          "executed_at": "2026-10-06",
+          "procedure": "Editorスクリプトでテクスチャ・Mesh・Material・Prefabを生成し、Previewの時計で連番を書き出して一覧画像で評価・修正を4回繰り返した後、ユーザーがライブPreviewで評価した。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "ゲーム統合・実機性能・他エンジンは未実施。消失カーブは未調整。明るい背景で淡くなる弱点は未解決。数値評価はユーザーの主観。",
+        "result": "ユーザー評価85点（前任版65点）。残りの差は三日月の消失アニメーションの時間カーブ（0.1秒単位の調整）。火花はContact系に転用する。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/sword-slash-analytic-crescent-preview",
+      "kind": "evidence",
+      "path": "evidence/sword-slash-analytic-crescent-preview.md",
+      "relations": [],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "12a28cf2ac8b4b49d10d00cc4b3062b5ee1ec8b943ac787c33527177612e98d2",
+      "status": "reviewed",
+      "summary": "前任の版（ユーザー評価65点）を参照せずに作り直し、85点と評価された基準版の記録。火花は命中演出として98点と評価された。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "剣の斬撃残像を解析式の三日月で作り直したPreview記録",
+      "updated_at": "2026-10-06"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
         "checked_at": "2026-10-04",
         "claims": [
           {
@@ -6088,6 +7818,124 @@
       ],
       "title": "VFXのゲーム情報と美術的一貫性に関する一次資料",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [],
+      "evidence": [],
+      "evidence_details": {
+        "checked_at": "2026-10-08",
+        "claims": [
+          {
+            "statement": "盾の面に沿った縦の輪が平面のまま広がる版は80点。攻撃方向と内積0の方向だけへ広がる衝撃波は「敵の攻撃をパリィして衝撃を逃がしている」表現になると指摘された。輪を球面のように内側ほど前へ出すと、盾の前面から衝撃を押し出す表現になる。",
+            "target": "recipe/weapon-greatshield"
+          },
+          {
+            "statement": "矢の形のテクスチャ（アイコン）を飛ばす版は40点。矢の長さに伸ばした回転楕円体がよいと指摘された。尾は合格。射出の弦の線は無いほうがよい（90点）。",
+            "target": "recipe/weapon-bow"
+          },
+          {
+            "statement": "矢と同じく、ボルトのアイコンは40点で、伸ばした楕円体へ替える指摘。射出の弦の線は無いほうがよい（90点）。",
+            "target": "recipe/weapon-crossbow"
+          },
+          {
+            "statement": "魔法の矢の尾と色は合格だが、丸い芯はダーツに見えず70点。射出は杖との差別化ができていると100点。",
+            "target": "recipe/weapon-wand"
+          },
+          {
+            "statement": "射出と魔法弾は100点。魔法弾の命中は85点で、再生時間を2/3にする指摘。",
+            "target": "recipe/weapon-staff"
+          },
+          {
+            "statement": "非対称の穂先と側面の筋を重ねた版は「何を表現しているか分からない」35点。左右対称のシンプルな突きでよいと指摘された。",
+            "target": "recipe/weapon-spear"
+          },
+          {
+            "statement": "上下の顎の弧と歯の版は25点。狼の牙を上下2本ずつ（計4本）で噛みつく形がよいと指摘された。噛みつきの命中で内へ閉じる表現は10点で、噛みつかれた側のエフェクトなので外へ飛ぶ粒子がよいと指摘された。",
+            "target": "recipe/weapon-fang"
+          },
+          {
+            "statement": "前へ抜ける輪が3つの版は90点。輪は2つでよく、3つはやりすぎと指摘された。",
+            "target": "recipe/weapon-fist"
+          },
+          {
+            "statement": "三本の弧の爪は90点。弧を寝かせた角度だけが気になると指摘された。",
+            "target": "recipe/weapon-claw"
+          },
+          {
+            "statement": "貫く光の針と締まる輪の版は、刺突の命中としては50点（命中に円はやりすぎ、粒子がよい）。レーザー光線の命中としてなら90点と評価された。",
+            "target": "recipe/impact-pierce"
+          },
+          {
+            "statement": "火花に切り線の帯を重ねた版は75点。切り線は無いほうがよいと指摘された。打撃の命中は90点、魔法の矢の命中は100点。",
+            "target": "recipe/impact-cut"
+          },
+          {
+            "statement": "攻撃の予兆（AttackGather）は100点だが、予兆は本来UI/UXの領域（矩形・円・扇の範囲表示）で、エフェクトとしては別の発想が要ると指摘された。撃破（DefeatWisp）は65点で、明確な正解が無いとされた。",
+            "target": "composition/combat-readability"
+          },
+          {
+            "statement": "版2（斬撃の帯を左右対称にした形）は40点で「Swordの手法につられすぎて、切ると突くの違いが出ていない。突くは先が尖りすぎていない円錐状・コーン状でアニメーションすべき」と指摘された。",
+            "target": "recipe/weapon-spear"
+          },
+          {
+            "statement": "版2（まっすぐの円錐の牙4本）は50点。牙のように曲げる、牙が動いていないのも減点と指摘された。動かなかった原因は速度の曲線の軸のモードが混在していたこと。",
+            "target": "recipe/weapon-fang"
+          },
+          {
+            "statement": "全周の輪の中心から継ぎ目に沿う細い線（盾・拳で指摘）は、UV.x が1を越える補助ピクセルで厚みの分岐が飛び、fwidth が巨大になったことが原因だった。UV.x を saturate して消えた。盾は版2で100点。",
+            "target": "adapter/unity-urp-baseline-sheet-particles"
+          },
+          {
+            "statement": "版3（反った牙を平行に動かし、先と先を一点で合わせた形）は「反ってはいるが、牙の配置と角度、噛み合わせが悪い。回転を含めて顎の回転を想定する」と指摘された。",
+            "target": "recipe/weapon-fang"
+          },
+          {
+            "statement": "版3（伸びる円錐）は、穂先の閃き（Tip）が不要という指摘のほかは合格。",
+            "target": "recipe/weapon-spear"
+          },
+          {
+            "statement": "版4・5（下の牙を上の牙の前に置き、強く反らせた形）は「上顎の歯が下顎の歯より中にあるのか。人間ですら上顎の歯は外側。閉じた時の牙の角度もおかしい」と指摘された。",
+            "target": "recipe/weapon-fang"
+          },
+          {
+            "statement": "版7（上の牙が外・前から下の牙にかぶさり、ほぼ垂直に閉じる長い牙を、蝶番まわりの顎の回転で閉じる形）は「まぁいいでしょう」と合格した。直前の版で牙を短くしたことは「長いまま噛み合った状態にする」と戻された。",
+            "target": "recipe/weapon-fang"
+          }
+        ],
+        "conditions": "専用Prefab Preview。暗い背景、45度俯瞰。ユーザーがライブPreviewで評価。前任のアセットは参照していない。名称から推測できないもの（ファイアボールの3種）は質問し、作らないと回答された。",
+        "execution": {
+          "artifacts": [
+            "projects/dungeon-inn/runs/weapon-contact-free-design-2026-10-08.md"
+          ],
+          "engine": "unity",
+          "engine_version": "6000.3.14f1",
+          "environment": "Windows Editor / 専用Prefab Preview",
+          "executed_at": "2026-10-08",
+          "procedure": "生成スクリプトで面と粒子の層を作り、連番の一覧画像で確認・修正してからユーザーが評価した。",
+          "renderer": "URP 17.3.0"
+        },
+        "limitations": "一つのカメラ条件・一つのプロジェクトの例。評価点はユーザーの主観。ゲーム接続・性能は未確認。",
+        "result": "版1は10〜100点。100点は杖の射出・魔法弾・ワンドの射出・魔法の矢の命中・予兆。版2は盾100点、拳は問題なし（線の修正のみ）、槍40点・牙50点。槍は版3（伸びる円錐）でTip削除のほか合格、牙は版7で合格。",
+        "source_kind": "first-party-experiment",
+        "sources": []
+      },
+      "id": "evidence/weapon-contact-free-design-preview",
+      "kind": "evidence",
+      "path": "evidence/weapon-contact-free-design-preview.md",
+      "relations": [],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "16572c531816f2635eda138664d71218bc2f843c0ab319fb52c9efef7aa4a3ad",
+      "status": "reviewed",
+      "summary": "名称だけから作った射出・投射体・近接・命中・予兆・撃破の21種の版1が10〜100点と評価され、低い評価の原因が「記号的な形」「役割と逆向きの動き」「命中に対して過剰な形」に集中した記録。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "evidence"
+      ],
+      "title": "射出・投射体・近接・命中を名称から一から作ったPreview記録",
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
@@ -6565,7 +8413,9 @@
         "短剣の三日月"
       ],
       "evidence": [
-        "evidence/completed-slash-inner-cut-preview"
+        "evidence/completed-slash-inner-cut-preview",
+        "evidence/sword-slash-analytic-crescent-preview",
+        "evidence/slash-weapon-variants-preview"
       ],
       "id": "recipe/completed-slash-afterimage",
       "kind": "recipe",
@@ -6579,11 +8429,37 @@
           "type": "composes"
         },
         {
-          "reason": "固定外形から曲線状の穴を拡げる。",
+          "reason": "非対称の三日月の形・内側の抜き・短縮・外縁と外光を式で連続に作る（改訂2の優先案）。",
           "requirement": "required",
           "role": "contour",
-          "target": "technique/inner-cut-sdf",
+          "target": "technique/analytic-crescent-uv",
           "type": "composes"
+        },
+        {
+          "reason": "刃渡りの短い武器・射程の長い武器で、弧の片側の長さを変える。",
+          "requirement": "optional",
+          "role": "reach",
+          "target": "technique/arc-reach-asymmetry",
+          "type": "composes"
+        },
+        {
+          "reason": "武器の速さ・重さ・鋭さを時間配分で読ませる。",
+          "requirement": "optional",
+          "role": "weight",
+          "target": "technique/afterimage-weight-timing",
+          "type": "composes"
+        },
+        {
+          "reason": "重い武器の破壊力を外側の薄い霞で足す。",
+          "requirement": "optional",
+          "role": "pressure",
+          "target": "technique/slash-pressure-haze",
+          "type": "composes"
+        },
+        {
+          "reason": "改訂1の主案。参照の内側曲線が円の組み合わせで近似でき、解析式で作りにくい場合に比較する。",
+          "target": "technique/inner-cut-sdf",
+          "type": "candidate"
         },
         {
           "reason": "刃の通過方向と形を伝える。",
@@ -6596,24 +8472,29 @@
           "type": "evaluated_by"
         },
         {
-          "reason": "Unityで実行した候補。",
+          "reason": "Unityで実行した候補（改訂1の内側SDF）。",
           "target": "adapter/unity-urp-inner-cut-afterimage",
+          "type": "implemented_by"
+        },
+        {
+          "reason": "Unityで実行した改訂2の解析式三日月。",
+          "target": "adapter/unity-urp-analytic-crescent",
           "type": "implemented_by"
         }
       ],
-      "revision": 1,
+      "revision": 3,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "5748fd26479b9000eba0af1796d45047ed3d27af45862a3c00290694bc7dfb44",
+      "sha256": "1f63a817c093659c4ae0286a94f340083a2184bd4ae44a63e5839fbef8e0baec",
       "status": "draft",
-      "summary": "判定後に発火する剣・短剣・大型刃の残像。固定外形、内側SDF、色面の流れ、並列の立上りと消失を採用する。",
+      "summary": "判定後に発火する剣・短剣・大型刃の残像。主役は弧帯UV上の解析式の非対称三日月を優先し、色面の流れ、並列の立上りと消失、先端へ縮む最後を採用する。",
       "superseded_by": [],
       "tags": [
         "combat",
         "recipe"
       ],
       "title": "完成した三日月の斬撃残像",
-      "updated_at": "2026-10-06"
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [
@@ -7304,7 +9185,9 @@
         "切断方向を保つ斬撃の命中",
         "impact-cut"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/impact-cut",
       "kind": "recipe",
       "path": "knowledge/recipes/impacts/impact-cut.md",
@@ -7360,15 +9243,20 @@
           "type": "requires"
         },
         {
+          "reason": "金属・硬い対象への命中。少数の伸びた火花と閃き。ユーザー評価の高い実例がある。",
+          "target": "recipe/metal-contact-sparks",
+          "type": "candidate"
+        },
+        {
           "reason": "????????????????????????",
           "target": "rendering/emission-and-opacity",
           "type": "requires"
         }
       ],
-      "revision": 1,
+      "revision": 3,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "efef5f504274704b2ce4a49701759e779ec21f24c198347cfd150d6d5b8296e7",
+      "sha256": "2f6e1f1dd92f110de2cb5cda640c582e7b8d0099ae65016fa35137009f2e54a5",
       "status": "draft",
       "summary": "短い切り線・接触の小さな白芯・法線方向の少数片で切断の瞬間を示す。",
       "superseded_by": [],
@@ -7377,7 +9265,7 @@
         "combat"
       ],
       "title": "切断方向を保つ斬撃の命中",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
@@ -7457,7 +9345,9 @@
         "一点へ刺さる刺突の命中",
         "impact-pierce"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/impact-pierce",
       "kind": "recipe",
       "path": "knowledge/recipes/impacts/impact-pierce.md",
@@ -7518,10 +9408,10 @@
           "type": "requires"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "18f1e389e5a4345f82e0779349c0d75c6291df924914ce5a8492d4eb44f766fe",
+      "sha256": "363b8d174246bfe90ea55e36e2f3e28f354940f11b828d5675078cb2272a2c54",
       "status": "draft",
       "summary": "攻撃軸の細い白芯、短い圧縮環、背後へ抜ける小片で一点接触を強調する。",
       "superseded_by": [],
@@ -7530,7 +9420,7 @@
         "combat"
       ],
       "title": "一点へ刺さる刺突の命中",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
@@ -8010,6 +9900,148 @@
       ],
       "title": "食事による活力付与：暖かな収束と小さな継続表示",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "近接武器",
+        "通常攻撃の残像",
+        "武器から推測",
+        "melee afterimage"
+      ],
+      "evidence": [
+        "evidence/melee-weapon-free-design-preview",
+        "evidence/weapon-contact-free-design-preview"
+      ],
+      "id": "recipe/melee-weapon-afterimages",
+      "kind": "recipe",
+      "path": "knowledge/recipes/weapons/melee-weapon-afterimages.md",
+      "relations": [
+        {
+          "reason": "残像と命中（Contact）の役割の分担と、発火時点の契約。",
+          "requirement": "required",
+          "role": "lifecycle",
+          "target": "composition/melee-strike",
+          "type": "composes"
+        },
+        {
+          "reason": "研いだ刃で斬る武器（剣・短剣・大剣）。",
+          "target": "recipe/completed-slash-afterimage",
+          "type": "candidate"
+        },
+        {
+          "reason": "重く叩き割る武器（斧）。",
+          "target": "technique/crumbling-heavy-wedge",
+          "type": "candidate"
+        },
+        {
+          "reason": "回転して周りを薙ぎ払う武器（大鎌・回転斬り）。",
+          "target": "technique/rotating-sweep-trails",
+          "type": "candidate"
+        },
+        {
+          "reason": "開いて縁で斬る武器（鉄扇）。",
+          "target": "technique/fan-rib-reveal",
+          "type": "candidate"
+        },
+        {
+          "reason": "鋭くない打撃の武器（棒）。",
+          "target": "technique/blunt-motion-smear",
+          "type": "candidate"
+        },
+        {
+          "reason": "形・向き・発火時点を確かめる。",
+          "target": "evaluation/combat-shape-and-events",
+          "type": "evaluated_by"
+        },
+        {
+          "reason": "一点へ突く武器（槍）。",
+          "target": "technique/axial-thrust-cone",
+          "type": "candidate"
+        },
+        {
+          "reason": "関節で閉じて噛む・挟む部位（牙）。",
+          "target": "technique/articulated-closing-parts",
+          "type": "candidate"
+        },
+        {
+          "reason": "面で押し出す武器（大盾）の圧の向き。",
+          "target": "technique/wave-direction-semantics",
+          "type": "candidate"
+        },
+        {
+          "reason": "牙・爪など実体の部位を立体で表す。",
+          "target": "technique/volumetric-object-proxy",
+          "type": "enhances"
+        }
+      ],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "f34a89132653725a7787511b3f9315704c698d898f38dd67d2e09d87ddaf3d24",
+      "status": "draft",
+      "summary": "近接攻撃の残像を作る前に、武器の攻撃部位・鋭さ・重さ・動き方を推測し、それに合う技法を選ぶ。既存の別の武器のレシピを出発点にしない。",
+      "superseded_by": [],
+      "tags": [
+        "recipe",
+        "combat",
+        "melee"
+      ],
+      "title": "近接武器の残像：武器から推測して技法を選ぶ入口",
+      "updated_at": "2026-10-08"
+    },
+    {
+      "aliases": [
+        "接触火花",
+        "contact sparks",
+        "ヒットの火花",
+        "金属の火花"
+      ],
+      "evidence": [
+        "evidence/sword-slash-analytic-crescent-preview"
+      ],
+      "id": "recipe/metal-contact-sparks",
+      "kind": "recipe",
+      "path": "knowledge/recipes/impacts/metal-contact-sparks.md",
+      "relations": [
+        {
+          "reason": "少数の伸びた粒子を一方向の円錐へ短く飛ばす。",
+          "requirement": "required",
+          "role": "sparks",
+          "target": "technique/particle-emission",
+          "type": "composes"
+        },
+        {
+          "reason": "接触の瞬間の小さな星形の閃き。",
+          "requirement": "optional",
+          "role": "glint",
+          "target": "technique/billboard",
+          "type": "composes"
+        },
+        {
+          "reason": "刃が金属・硬い物に当たった手応え。",
+          "target": "semantic/slash",
+          "type": "expresses"
+        },
+        {
+          "reason": "実命中の位置・方向・回数で確認する。",
+          "target": "evaluation/combat-shape-and-events",
+          "type": "evaluated_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "cf731b2229c45e3fb4c07dcc2e83738142974cd53ab5fee564c48daac81360c3",
+      "status": "draft",
+      "summary": "接触点から一方向へ数本の伸びた火花を短く飛ばし、白い閃きを添える命中演出。斬撃・打撃・刺突のContactに汎用で使える。",
+      "superseded_by": [],
+      "tags": [
+        "recipe",
+        "combat",
+        "melee"
+      ],
+      "title": "金属の接触火花と一瞬の閃き",
+      "updated_at": "2026-10-06"
     },
     {
       "aliases": [
@@ -9870,6 +11902,11 @@
       "path": "knowledge/recipes/weapons/weapon-axe.md",
       "relations": [
         {
+          "reason": "判定後の残像を作る場合の、武器から推測して作った新しい技法（評価80点）。",
+          "target": "technique/crumbling-heavy-wedge",
+          "type": "candidate"
+        },
+        {
           "reason": "この演出が伝える意味と視覚要件。",
           "target": "semantic/slash",
           "type": "expresses"
@@ -9915,10 +11952,10 @@
           "type": "evaluated_by"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "ca7ccd59ed2a340d96d169d7cc94e9a169924764e514c602a5e0ee68e10c23da",
+      "sha256": "65b38166761d722d3a71b673bda109aa2f9898f096ea725471e02c616f51692f",
       "status": "draft",
       "summary": "先端が厚い弧と遅れる重い残留で、斧の刃重と振り抜きを見せる。",
       "superseded_by": [],
@@ -9927,14 +11964,16 @@
         "combat"
       ],
       "title": "斧：先端の重い扇状の振り抜き",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [
         "弓：実体の矢と短い飛翔線",
         "bow"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/weapon-bow",
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-bow.md",
@@ -9990,12 +12029,17 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/projectile-readability",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "この武器・命中に関わる因子。",
+          "target": "technique/volumetric-object-proxy",
+          "type": "enhances"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "022cddf1283bcbad7c44d42bee03bc7602ed90502aeeaca23f0fe6cc6bb0b483",
+      "sha256": "8c286d7d1ff01ec65638e5d50ea612bc32cd235aef55173395732ae270e5b80c",
       "status": "draft",
       "summary": "可視の矢を主役にし、射出の細い筋と短い尾で実速度の飛翔を読む。",
       "superseded_by": [],
@@ -10004,14 +12048,16 @@
         "combat"
       ],
       "title": "弓：実体の矢と短い飛翔線",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
         "爪：並行する三本の引っかき",
         "claw"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/weapon-claw",
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-claw.md",
@@ -10053,12 +12099,17 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/combat-shape-and-events",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "この武器・命中に関わる因子。",
+          "target": "recipe/melee-weapon-afterimages",
+          "type": "enhances"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "29120dc99eedc714bde3722746bf15ce8d8e53bfb71ffbe3db0277d47aa5aeca",
+      "sha256": "76299c32d712687f148635f8537ee6f3631f0687be2f725e5d32cee9b188e2bf",
       "status": "draft",
       "summary": "近接した三本の短い曲線を一回の動作として解放する。",
       "superseded_by": [],
@@ -10067,14 +12118,16 @@
         "combat"
       ],
       "title": "爪：並行する三本の引っかき",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
         "クロスボウ：硬い射出と短いボルト",
         "crossbow"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/weapon-crossbow",
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-crossbow.md",
@@ -10130,12 +12183,17 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/projectile-readability",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "この武器・命中に関わる因子。",
+          "target": "technique/volumetric-object-proxy",
+          "type": "enhances"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "ab4193a63fb859b66eb3f9d088af6eb052fda08121d4152a49e572db93a09492",
+      "sha256": "7725293fff7a59530791a6f01dbeeb4d1ec7338b52af0712bbfc3760733353c7",
       "status": "draft",
       "summary": "鋭い一閃と短い太めのボルトで2半径R/sの機械的な射出を表す。",
       "superseded_by": [],
@@ -10144,7 +12202,7 @@
         "combat"
       ],
       "title": "クロスボウ：硬い射出と短いボルト",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
@@ -10221,7 +12279,9 @@
         "牙：内へ閉じる二点の噛みつき",
         "fang"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/weapon-fang",
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-fang.md",
@@ -10263,12 +12323,22 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/combat-shape-and-events",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "この武器・命中に関わる因子。",
+          "target": "technique/articulated-closing-parts",
+          "type": "enhances"
+        },
+        {
+          "reason": "この武器・命中に関わる因子。",
+          "target": "technique/volumetric-object-proxy",
+          "type": "enhances"
         }
       ],
-      "revision": 1,
+      "revision": 3,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "bc73d80d1adad35f6039e6affeed77c453310282bfdadc34e49c80f6824bb6e7",
+      "sha256": "6d55aa0f8fc61af83f2883a5e4102aa4d72ff0bc28bf6dd660a77299798cb690",
       "status": "draft",
       "summary": "上下の短い針と内向きの圧縮で、噛みつきの締まりを示す。",
       "superseded_by": [],
@@ -10277,14 +12347,16 @@
         "combat"
       ],
       "title": "牙：内へ閉じる二点の噛みつき",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
         "拳：短い拳圧と鋭い接触",
         "fist"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/weapon-fist",
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-fist.md",
@@ -10328,10 +12400,10 @@
           "type": "evaluated_by"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "0b6a4fad37b47c3876e190861d9ce59e765c8ad794e413ad28e685d721706eb5",
+      "sha256": "00f6bbf47964fb685a00c1b28159529cf9838bd1009db79f9fdeccc5da12f6bb",
       "status": "draft",
       "summary": "拳の前に短い圧縮形状を置き、局所の放射でパンチを締める。",
       "superseded_by": [],
@@ -10340,14 +12412,16 @@
         "combat"
       ],
       "title": "拳：短い拳圧と鋭い接触",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
         "大盾：面で押し込む衝撃",
         "greatshield"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/weapon-greatshield",
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-greatshield.md",
@@ -10389,12 +12463,17 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/combat-shape-and-events",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "この武器・命中に関わる因子。",
+          "target": "technique/wave-direction-semantics",
+          "type": "enhances"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "bb69d8d516f1cb5dc8adca5d3680cab3c5c02c40a852cc34097661831a770815",
+      "sha256": "fd6f679fb3dc95f08a4399c8f91a8620b3555db9efdba6189b291fd25f3ee42b",
       "status": "draft",
       "summary": "盾の面に沿う楕円の圧力と幅広い接触で、面の打撃を伝える。",
       "superseded_by": [],
@@ -10403,7 +12482,7 @@
         "combat"
       ],
       "title": "大盾：面で押し込む衝撃",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
@@ -10493,6 +12572,11 @@
       "path": "knowledge/recipes/weapons/weapon-ironfan.md",
       "relations": [
         {
+          "reason": "判定後の残像を作る場合の、骨が開く扇の技法（評価85点）。",
+          "target": "technique/fan-rib-reveal",
+          "type": "candidate"
+        },
+        {
           "reason": "この演出が伝える意味と視覚要件。",
           "target": "semantic/blunt-impact",
           "type": "expresses"
@@ -10538,10 +12622,10 @@
           "type": "evaluated_by"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "953b3af2c4e0844810145fa98d7cfee47134a5f163f87b6fc061934d8fc88cde",
+      "sha256": "2d15fd7082190f7559331872faec0468c6ddcce3e07f6113627c4d5fecae7ff4",
       "status": "draft",
       "summary": "扇の外縁から短い三筋を出し、軽い金属の切り返しを見せる。",
       "superseded_by": [],
@@ -10550,7 +12634,7 @@
         "combat"
       ],
       "title": "鉄扇：薄い三筋の切り返し",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [
@@ -10562,6 +12646,11 @@
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-rod.md",
       "relations": [
+        {
+          "reason": "判定後の残像を作る場合の、打撃部の幅だけのぼけた帯の技法（評価75点）。",
+          "target": "technique/blunt-motion-smear",
+          "type": "candidate"
+        },
         {
           "reason": "この演出が伝える意味と視覚要件。",
           "target": "semantic/blunt-impact",
@@ -10601,10 +12690,10 @@
           "type": "evaluated_by"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "3c84a89a8e6785efed2e20fc11e3583ef1114c2d413ae42d1a93a247bc433e8e",
+      "sha256": "5fba890e12fecbce91cbb7ab012c03c9a7edab9f425f6e3f3304c517bafefb42",
       "status": "draft",
       "summary": "棒先の灰白の後流を短くつなぎ、接触で幅広い衝撃へ切り替える。",
       "superseded_by": [],
@@ -10613,7 +12702,7 @@
         "combat"
       ],
       "title": "棒：しなる後流と面の打撃",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [
@@ -10625,6 +12714,11 @@
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-scythe.md",
       "relations": [
+        {
+          "reason": "判定後の残像を作る場合の、範囲の円盤と回る刃の技法（評価90点）。",
+          "target": "technique/rotating-sweep-trails",
+          "type": "candidate"
+        },
         {
           "reason": "この演出が伝える意味と視覚要件。",
           "target": "semantic/slash",
@@ -10671,10 +12765,10 @@
           "type": "evaluated_by"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "2b924efdb7a7845f54930751e0cf097ff668ba70df20c3630253684f9da41cba",
+      "sha256": "715a6bd962ad431003c6f62b540b72a327267f93868a4acfab45fb195ff44ec3",
       "status": "draft",
       "summary": "細い円周を刃先に沿って一周展開し、円形攻撃の流れを保つ。",
       "superseded_by": [],
@@ -10683,14 +12777,16 @@
         "combat"
       ],
       "title": "鎌：途切れない円形の薙ぎ",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [
         "槍：長い軸を通す刺突",
         "spear"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/weapon-spear",
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-spear.md",
@@ -10739,12 +12835,17 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/combat-shape-and-events",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "この武器・命中に関わる因子。",
+          "target": "technique/axial-thrust-cone",
+          "type": "enhances"
         }
       ],
-      "revision": 1,
+      "revision": 3,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "9590edbae2c46faf578ce04d9411f295679fdecfb0e1827d5d741954c6cbbdef",
+      "sha256": "fbab31197a99374a10fb8f3ebb7c5c23074ee4639e231568ca310e98480d45e6",
       "status": "draft",
       "summary": "槍先から伸びる細い軸と二本の短い側筋で、直線的な到達を見せる。",
       "superseded_by": [],
@@ -10753,14 +12854,16 @@
         "combat"
       ],
       "title": "槍：長い軸を通す刺突",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
         "杖：丸い魔法核と柔らかな尾",
         "staff"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/weapon-staff",
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-staff.md",
@@ -10818,10 +12921,10 @@
           "type": "evaluated_by"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "823ff4915ff48fe4a209660fe12f613b5b2c8ae3c0435c17cbbe807dfc3710e2",
+      "sha256": "6a90f9534d06fe8ee937c40c1985ccae8953f9c893085dfeaf4184245a8c3861",
       "status": "draft",
       "summary": "青白い立体の核と細い周回筋で、杖の実速度魔法弾を表す。",
       "superseded_by": [],
@@ -10830,7 +12933,7 @@
         "combat"
       ],
       "title": "杖：丸い魔法核と柔らかな尾",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
@@ -10914,7 +13017,9 @@
         "ワンド：小さな滴状の魔法弾",
         "wand"
       ],
-      "evidence": [],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
       "id": "recipe/weapon-wand",
       "kind": "recipe",
       "path": "knowledge/recipes/weapons/weapon-wand.md",
@@ -10970,12 +13075,17 @@
           "reason": "採用先の実画面で形・イベント・終了条件を確認する。",
           "target": "evaluation/projectile-readability",
           "type": "evaluated_by"
+        },
+        {
+          "reason": "この武器・命中に関わる因子。",
+          "target": "technique/volumetric-object-proxy",
+          "type": "enhances"
         }
       ],
-      "revision": 1,
+      "revision": 2,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "0af01d9f7725a98c143a7d3295de1760fbd98b7bf024ce8855bdaa0af528435e",
+      "sha256": "9743f4613f1352d451339171639f7d1cb0e61263928ca45b0f32618cfbe7292a",
       "status": "draft",
       "summary": "小さな鋭い滴と短い細尾で、ワンドの1半径R/s射出を軽快に見せる。",
       "superseded_by": [],
@@ -10984,7 +13094,7 @@
         "combat"
       ],
       "title": "ワンド：小さな滴状の魔法弾",
-      "updated_at": "2026-10-04"
+      "updated_at": "2026-10-08"
     },
     {
       "aliases": [
@@ -11105,6 +13215,49 @@
       ],
       "title": "実範囲に一致する地面の境界",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "軽量化",
+        "最適化",
+        "オーバードロー",
+        "ゲーム用エフェクト",
+        "予算",
+        "バッチ",
+        "共有マテリアル",
+        "カタログ"
+      ],
+      "evidence": [
+        "evidence/lightweight-vfx-web-sources",
+        "evidence/game-effect-conversion-preview"
+      ],
+      "id": "rendering/lightweight-vfx-catalog",
+      "kind": "rendering",
+      "path": "knowledge/rendering/lightweight-vfx-catalog.md",
+      "relations": [
+        {
+          "reason": "透明の重なりと描画順の前提。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "enhances"
+        },
+        {
+          "reason": "発光の芯と色の面の分け方を、軽量な層の数で実現する。",
+          "target": "rendering/emission-and-opacity",
+          "type": "enhances"
+        }
+      ],
+      "revision": 3,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "dcb5f731b62488f1faee1e1c51229d9cea013ae32add8b89383874c9ddb8130f",
+      "status": "draft",
+      "summary": "最高品質の基準版をゲーム用へ変換するときに選ぶ軽量化の技法を、予算と管理・画素（重なり）・頂点とシェーダ・素材とバッチ・テクスチャ・粒子の部品・時間の7分類で一覧にする。各技法は何を減らし何を代償にするかと、使う場面・使わない場面を持つ。",
+      "superseded_by": [],
+      "tags": [
+        "rendering"
+      ],
+      "title": "軽量なゲーム用VFXの技法カタログ",
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [],
@@ -11614,16 +13767,31 @@
       "path": "knowledge/semantics/slash.md",
       "relations": [
         {
+          "reason": "刃渡り・射程の長さを、残像の片側の長さで伝える。",
+          "target": "technique/arc-reach-asymmetry",
+          "type": "candidate"
+        },
+        {
+          "reason": "武器の速さ・重さ・鋭さを、残像の時間配分で伝える。",
+          "target": "technique/afterimage-weight-timing",
+          "type": "candidate"
+        },
+        {
+          "reason": "重い武器の破壊力を、外側の薄い霞で伝える。",
+          "target": "technique/slash-pressure-haze",
+          "type": "candidate"
+        },
+        {
           "reason": "判定後に表示する残像の分岐。",
           "role": "afterimage",
           "target": "technique/completed-arc-afterimage",
           "type": "candidate"
         }
       ],
-      "revision": 2,
+      "revision": 3,
       "schema_version": "0.1.0",
       "scope": "engine-neutral",
-      "sha256": "cc604338d477d487e48b732a19dea2bf0d69e3a66bf7be127b18a90899dfce05",
+      "sha256": "56f3b7d783a6dbd79e078364306005767c202d39fba86af66eb7c159b3139937",
       "status": "draft",
       "summary": "弧または帯の移動と接触によって切断方向を伝える。",
       "superseded_by": [],
@@ -11631,7 +13799,7 @@
         "combat"
       ],
       "title": "斬撃",
-      "updated_at": "2026-10-06"
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [],
@@ -11659,6 +13827,152 @@
       ],
       "title": "芋・でんぷん質の食事",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "振り速度",
+        "重量感",
+        "鋭さ",
+        "消失カーブ",
+        "時間配分"
+      ],
+      "evidence": [
+        "evidence/slash-weapon-variants-preview"
+      ],
+      "id": "technique/afterimage-weight-timing",
+      "kind": "technique",
+      "path": "knowledge/techniques/afterimage-weight-timing.md",
+      "relations": [
+        {
+          "reason": "抜き・短縮・先端への縮みの時間とカーブを、この配分で決める。",
+          "target": "technique/analytic-crescent-uv",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "2cb22ba665db30746ecebf21eba15cd895243b0da1bfad1553e03a2d0288a28e",
+      "status": "draft",
+      "summary": "斬撃の残像の全体の尺、太い本体を保つ時間、細い外縁だけが残る時間の配分で、武器の速さ・重さ・鋭さを伝える。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique",
+        "lifecycle"
+      ],
+      "title": "残像の時間配分で速さ・重さ・鋭さを読ませる",
+      "updated_at": "2026-10-07"
+    },
+    {
+      "aliases": [
+        "analytic crescent",
+        "解析式の三日月",
+        "弧帯UV",
+        "三日月の消失カーブ"
+      ],
+      "evidence": [
+        "evidence/sword-slash-analytic-crescent-preview",
+        "evidence/slash-weapon-variants-preview"
+      ],
+      "id": "technique/analytic-crescent-uv",
+      "kind": "technique",
+      "path": "knowledge/techniques/analytic-crescent-uv.md",
+      "relations": [
+        {
+          "reason": "完成した残像の外形・消え方を、テクスチャではなく式で連続に制御する。",
+          "target": "technique/completed-arc-afterimage",
+          "type": "enhances"
+        },
+        {
+          "reason": "同じ「固定外形から内側を抜く」役割。こちらは距離場テクスチャを使わず、厚みの形を弧に沿った関数で持つ。",
+          "target": "technique/inner-cut-sdf",
+          "type": "alternative"
+        },
+        {
+          "reason": "色面の不透明度・外縁の加算・外光の配分を決める。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "透明描画と奥行きの規約。",
+          "target": "rendering/world-depth-and-transparency",
+          "type": "requires"
+        },
+        {
+          "reason": "弧の範囲を非対称にして刃渡り・射程を読ませる。",
+          "target": "technique/arc-reach-asymmetry",
+          "type": "enhances"
+        },
+        {
+          "reason": "抜き・短縮・先端への縮みの時間配分で速さ・重さ・鋭さを読ませる。",
+          "target": "technique/afterimage-weight-timing",
+          "type": "enhances"
+        },
+        {
+          "reason": "重い武器では同じ描き方の薄い霞を外側に足す。",
+          "target": "technique/slash-pressure-haze",
+          "type": "enhances"
+        }
+      ],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "69737a40ba0d7531f25586df6ec1afd642074ccbe91401e34ccde5494bdc49e8",
+      "status": "draft",
+      "summary": "弧の帯Meshの角度・半径UVの上で、厚みの形・内側の抜き・短縮・外縁の明部と外光を式で計算する。斬撃残像の主役の優先案。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique",
+        "mesh"
+      ],
+      "title": "弧帯UV上の解析式で描く非対称の三日月",
+      "updated_at": "2026-10-07"
+    },
+    {
+      "aliases": [
+        "刃渡り",
+        "射程の長さ",
+        "片側が短い三日月",
+        "尾の長さ",
+        "非対称の三日月"
+      ],
+      "evidence": [
+        "evidence/slash-weapon-variants-preview"
+      ],
+      "id": "technique/arc-reach-asymmetry",
+      "kind": "technique",
+      "path": "knowledge/techniques/arc-reach-asymmetry.md",
+      "relations": [
+        {
+          "reason": "三日月の弧の範囲と厚みの最大の位置を、この技法の読み方に合わせて決める。",
+          "target": "technique/analytic-crescent-uv",
+          "type": "enhances"
+        },
+        {
+          "reason": "「素早く短く完了する」は形（短い端）と時間（長い側を早く縮める）の両方で作る。",
+          "target": "technique/afterimage-weight-timing",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "78e631a5e03bc7b319be71aefba1cd114d20710145b6a868337ed28e2056125c",
+      "status": "draft",
+      "summary": "斬撃の三日月の振り始め側と振り終わり側の長さを変えて、刃渡りの短さ・射程の長さを伝える。短い刃は振り終わり側を短く、長い得物は振り始め側を長く。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique",
+        "readable-silhouette"
+      ],
+      "title": "弧の片側の長さで刃渡り・射程を読ませる",
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [],
@@ -11715,6 +14029,83 @@
     },
     {
       "aliases": [
+        "噛み合わせ",
+        "顎の回転",
+        "蝶番",
+        "到達状態",
+        "関節"
+      ],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
+      "id": "technique/articulated-closing-parts",
+      "kind": "technique",
+      "path": "knowledge/techniques/articulated-closing-parts.md",
+      "relations": [
+        {
+          "reason": "牙・爪などの部位そのものの立体の形。",
+          "target": "technique/volumetric-object-proxy",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "f336b0534e863cd38e212bd9173fd76542a7879bc7d7468fe62fd57e5982ffc1",
+      "status": "draft",
+      "summary": "顎・爪・はさみ等、関節で閉じる部位は、実物の構造から閉じた到達状態を先に決め、関節を中心にした回転で接触へ加速させる。特徴的な比率は保ち、位置で合わせる。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "関節で閉じる生き物の部位を、到達状態と回転で作る",
+      "updated_at": "2026-10-08"
+    },
+    {
+      "aliases": [
+        "突き",
+        "刺突",
+        "コーン",
+        "円錐",
+        "thrust"
+      ],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
+      "id": "technique/axial-thrust-cone",
+      "kind": "technique",
+      "path": "knowledge/techniques/axial-thrust-cone.md",
+      "relations": [
+        {
+          "reason": "一点へ貫く動作の主形状。",
+          "target": "semantic/piercing",
+          "type": "expresses"
+        },
+        {
+          "reason": "伸びる速さと残る時間で、突きの鋭さ・重さを調整する。",
+          "target": "technique/afterimage-weight-timing",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "c7d6de4bf8e192d2bdb82bb9f57fa397a8d3b7072064fe9f4e0dae6326429570",
+      "status": "draft",
+      "summary": "突きは斬撃の帯（弧・くさび）の変形ではなく、攻撃の軸に沿った先の丸い円錐の立体を手元から一気に伸ばして表す。動作の動詞ごとに主形状が違う。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique",
+        "readable-silhouette"
+      ],
+      "title": "攻撃の軸に沿って伸びる円錐で「突く」を表す",
+      "updated_at": "2026-10-08"
+    },
+    {
+      "aliases": [
         "ビルボード",
         "billboard",
         "カメラ向きの板"
@@ -11737,6 +14128,47 @@
       ],
       "title": "ビルボード",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "棒",
+        "打撃",
+        "モーションブラー",
+        "ぶれ",
+        "smear"
+      ],
+      "evidence": [
+        "evidence/melee-weapon-free-design-preview"
+      ],
+      "id": "technique/blunt-motion-smear",
+      "kind": "technique",
+      "path": "knowledge/techniques/blunt-motion-smear.md",
+      "relations": [
+        {
+          "reason": "縁の無い半透明の帯の明度。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "Unityで実行した実装。",
+          "target": "adapter/unity-urp-baseline-sheet-particles",
+          "type": "implemented_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "4763478a388b7c26dffece7c0df25e05429d4e70bc7521a992fe8ef317a1d8c1",
+      "status": "draft",
+      "summary": "鋭くない打撃武器（棒）の振りを、打撃部が通った幅だけの、縁の無いぼけた帯と振り方向の平行な筋で見せる。衝突は入れない。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique"
+      ],
+      "title": "打撃部の幅だけのぼけた振りの帯",
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [],
@@ -11890,6 +14322,52 @@
       "updated_at": "2026-10-04"
     },
     {
+      "aliases": [
+        "斧",
+        "叩き割る",
+        "重いくさび",
+        "崩れる残像"
+      ],
+      "evidence": [
+        "evidence/melee-weapon-free-design-preview"
+      ],
+      "id": "technique/crumbling-heavy-wedge",
+      "kind": "technique",
+      "path": "knowledge/techniques/crumbling-heavy-wedge.md",
+      "relations": [
+        {
+          "reason": "焼けた縁の発光と面の不透明度の配分。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "崩れて消える溶解の一般形。",
+          "target": "technique/uv-dissolve",
+          "type": "enhances"
+        },
+        {
+          "reason": "Unityで実行した実装。",
+          "target": "adapter/unity-urp-baseline-sheet-particles",
+          "type": "implemented_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "8ace2ad2a17f2a4975f25d60992f78dac0f535553b82277ae8b2af6b03d38cbd",
+      "status": "draft",
+      "summary": "振り終わりへ向かって厚く重くなるくさびの面を、荒れた外縁と焼けた縁を残す溶解で崩して消す。重く叩き割る武器（斧）の残像。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique",
+        "mesh"
+      ],
+      "title": "焼けた縁から崩れ落ちる重いくさび",
+      "updated_at": "2026-10-07"
+    },
+    {
       "aliases": [],
       "evidence": [
         "evidence/organic-fire-volume-preview",
@@ -12015,6 +14493,52 @@
       ],
       "title": "ゲームイベント同期の小さな脈動",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "鉄扇",
+        "扇",
+        "開く",
+        "fan"
+      ],
+      "evidence": [
+        "evidence/melee-weapon-free-design-preview"
+      ],
+      "id": "technique/fan-rib-reveal",
+      "kind": "technique",
+      "path": "knowledge/techniques/fan-rib-reveal.md",
+      "relations": [
+        {
+          "reason": "骨の明るさと面の薄さの配分。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "外側の弧の線は、判定後の完成した残像の考え方。",
+          "target": "technique/completed-arc-afterimage",
+          "type": "enhances"
+        },
+        {
+          "reason": "Unityで実行した実装。",
+          "target": "adapter/unity-urp-baseline-sheet-particles",
+          "type": "implemented_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "9ec824bf2247e53a51900e4b74d9bd0b65e12bf70b7306491aa1ee80e22525be",
+      "status": "draft",
+      "summary": "扇で斬りつける攻撃を、濃い骨と薄い面の扇が片側から開く形で見せ、判定済みを表す完成した弧の線と、弧に沿って流れる筋を添える。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique",
+        "mesh"
+      ],
+      "title": "骨が開く扇と完成した外側の弧",
+      "updated_at": "2026-10-07"
     },
     {
       "aliases": [],
@@ -12147,6 +14671,41 @@
     },
     {
       "aliases": [
+        "着火",
+        "熱接触",
+        "燃え上がり",
+        "ボッ"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/ignition-burst",
+      "kind": "technique",
+      "path": "knowledge/techniques/ignition-burst.md",
+      "relations": [
+        {
+          "reason": "炎の命中の炎の動き方。",
+          "target": "recipe/impact-fire-contact",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "32ae2cc8f18514ae4e4038b59c9ac42e4ad424bbd52888752e6b7ba25ebe7bd2",
+      "status": "draft",
+      "summary": "炎が当たる・燃え上がる瞬間は、最初から上へ向かわせず、全方位へ一瞬だけ広がってすぐ止まり、その後に熱で上へ昇らせる。コンロに着火した時の「ボッ」の動き。",
+      "superseded_by": [],
+      "tags": [
+        "fire",
+        "combat",
+        "technique"
+      ],
+      "title": "着火・炎の命中は、全方位へ一瞬広がってから上へ昇る",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "aliases": [
         "SDF",
         "三日月の内側",
         "inner cut",
@@ -12183,6 +14742,41 @@
       ],
       "title": "固定外形から内側だけをSDFで抜く",
       "updated_at": "2026-10-06"
+    },
+    {
+      "aliases": [
+        "溜め",
+        "収束",
+        "ライトシャフト",
+        "漏れる光",
+        "ブレスの溜め"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/internal-source-leak",
+      "kind": "technique",
+      "path": "knowledge/techniques/internal-source-leak.md",
+      "relations": [
+        {
+          "reason": "内向き（集める）と外向き（漏れる・押し出す）の向きの意味。",
+          "target": "technique/wave-direction-semantics",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "55b5c43129ca0791a5ee514a9ef4c8874bdf1d93a6e6d16c804e9bb0b76136ce",
+      "status": "draft",
+      "summary": "溜め（予備動作）の向きは力の出どころで決める。周りから力を集める技は外から内へ収束させ、体内で生み出す力（ブレスの炎など）は外から集めず、口や身体の隙間から漏れる光の筋で表す。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "体内で生まれる力の溜めは、外から集めず内から漏れる光で表す",
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [
@@ -12325,6 +14919,40 @@
       "updated_at": "2026-10-04"
     },
     {
+      "aliases": [
+        "竜巻",
+        "渦巻き",
+        "旋風",
+        "風感"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/radial-layered-vortex",
+      "kind": "technique",
+      "path": "knowledge/techniques/radial-layered-vortex.md",
+      "relations": [
+        {
+          "reason": "各層の回転量と端の消し方。",
+          "target": "technique/rotation-overshoot",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "5b9c744927560f24b82b55b625a2393dc5cf7029363c3632392bd349ccb079a0",
+      "status": "draft",
+      "summary": "渦を巻く溜め・竜巻は、中央のコイル、外周の流れる風、最外周の舞うほこりと、半径ごとに役割の違う層に分けると、風感と渦巻き感が出る。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "渦・竜巻は半径で層を棲み分ける",
+      "updated_at": "2026-10-10"
+    },
+    {
       "aliases": [],
       "evidence": [],
       "id": "technique/radial-wave",
@@ -12365,6 +14993,160 @@
       ],
       "title": "接地した膨張環と圧縮波",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "大鎌",
+        "回転斬り",
+        "薙ぎ払い",
+        "sweep",
+        "旋風"
+      ],
+      "evidence": [
+        "evidence/melee-weapon-free-design-preview"
+      ],
+      "id": "technique/rotating-sweep-trails",
+      "kind": "technique",
+      "path": "knowledge/techniques/rotating-sweep-trails.md",
+      "relations": [
+        {
+          "reason": "薄い円盤と明るい刃の軌跡の明度の差。",
+          "target": "rendering/emission-and-opacity",
+          "type": "requires"
+        },
+        {
+          "reason": "刈った切れ端を回転の向きに飛ばす。",
+          "target": "technique/particle-emission",
+          "type": "enhances"
+        },
+        {
+          "reason": "Unityで実行した実装。",
+          "target": "adapter/unity-urp-baseline-sheet-particles",
+          "type": "implemented_by"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "48ff521175520e1aa1b455999658069cb68727bd3e0ebf2fbc12550c603cf8be",
+      "status": "draft",
+      "summary": "回転して周りを薙ぎ払う攻撃を、最初から見える範囲の円盤と、半径と速さの違う複数の刃の軌跡が順番に現れて回る形で見せる。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique",
+        "area"
+      ],
+      "title": "範囲の円盤と順番に回る刃の軌跡",
+      "updated_at": "2026-10-07"
+    },
+    {
+      "aliases": [
+        "一回転",
+        "390度",
+        "回転斬り",
+        "継ぎ目",
+        "パツッと消える"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/rotation-overshoot",
+      "kind": "technique",
+      "path": "knowledge/techniques/rotation-overshoot.md",
+      "relations": [
+        {
+          "reason": "回る刃・範囲の円盤の回転量と端の消し方。",
+          "target": "technique/rotating-sweep-trails",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "b99c0b3a811bc1b2659a71ac38f22b52f44f8a9efc05394fe9135dbc4ff624b5",
+      "status": "draft",
+      "summary": "回転斬り・渦・巻き込みなど回る表現は、360度きっかりで止めると継ぎ目で途切れて見える。約1.1回転（390度前後）回し、始端・終端をグラデーションで消すと自然な回転になり、回転そのものを強く印象付ける。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "回転は一周きっかりで止めず、約1.1回転して端を消す",
+      "updated_at": "2026-10-10"
+    },
+    {
+      "aliases": [
+        "剣圧",
+        "風圧",
+        "衝撃の霞",
+        "pressure"
+      ],
+      "evidence": [
+        "evidence/slash-weapon-variants-preview"
+      ],
+      "id": "technique/slash-pressure-haze",
+      "kind": "technique",
+      "path": "knowledge/techniques/slash-pressure-haze.md",
+      "relations": [
+        {
+          "reason": "同じ弧の帯の描き方で、主役の外側に別の層として置く。",
+          "target": "technique/analytic-crescent-uv",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "6a9fa447dea04a01536333c3a52a95ad0765444338409f5580de16b06e59a2ab",
+      "status": "draft",
+      "summary": "斬撃の主役の外縁に重ねて、ごく薄く広い柔らかな霞を外へゆっくり広げ、重い武器の破壊力を足す。離れた細い帯にしない。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "melee",
+        "technique"
+      ],
+      "title": "剣圧・風圧の霞",
+      "updated_at": "2026-10-07"
+    },
+    {
+      "aliases": [
+        "バフ",
+        "デバフ",
+        "継続表示",
+        "状態異常",
+        "ステータスダウン",
+        "上昇粒子",
+        "下降粒子"
+      ],
+      "evidence": [
+        "evidence/skill-baselines-preview"
+      ],
+      "id": "technique/status-flow-particles",
+      "kind": "technique",
+      "path": "knowledge/techniques/status-flow-particles.md",
+      "relations": [
+        {
+          "reason": "継続（active）の表示の形を決める。",
+          "target": "composition/refreshable-status",
+          "type": "enhances"
+        }
+      ],
+      "revision": 2,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "4ce3193d7e8ec018cc9805543b210a1d84bf02ec3b2cab65c847d1b3112f7d38",
+      "status": "draft",
+      "summary": "強化・弱体の継続表示は、上向き・下向きの記号を出さず、身体の外縁の狭い範囲から同じ色の粒子を上昇（強化）・下降（弱体）させて表す。種類は色で、強さは色と密度で分ける。",
+      "superseded_by": [],
+      "tags": [
+        "status",
+        "technique"
+      ],
+      "title": "継続の状態は記号でなく、同じ色の粒子の流れる向きで表す",
+      "updated_at": "2026-10-10"
     },
     {
       "aliases": [
@@ -12552,10 +15334,89 @@
       ],
       "title": "内部密度で形を作る体積描画",
       "updated_at": "2026-10-04"
+    },
+    {
+      "aliases": [
+        "アイコン",
+        "楕円体",
+        "紡錘",
+        "回転体",
+        "立体の代理"
+      ],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
+      "id": "technique/volumetric-object-proxy",
+      "kind": "technique",
+      "path": "knowledge/techniques/volumetric-object-proxy.md",
+      "relations": [
+        {
+          "reason": "進行方向に向けた本体の形を、絵ではなく立体のシルエットで作る。",
+          "target": "technique/oriented-projectile-core",
+          "type": "enhances"
+        },
+        {
+          "reason": "本体のメッシュの形の決め方。",
+          "target": "technique/mesh-core",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "e68eef536081818476c1914f0622026a7f00c91ada28290ae5e6e9b495bb4dcb",
+      "status": "draft",
+      "summary": "矢・弾・牙など実体のある物は、その絵（アイコン）の板ではなく、縦横比・最も太い位置・反りを合わせた単純な回転体で表す。視点が変わっても物として読め、尾や光と組み合わせやすい。",
+      "superseded_by": [],
+      "tags": [
+        "technique",
+        "projectile",
+        "readable-silhouette"
+      ],
+      "title": "実体の物は絵ではなく単純な立体で表す",
+      "updated_at": "2026-10-08"
+    },
+    {
+      "aliases": [
+        "衝撃波の向き",
+        "押し出し",
+        "受け流し",
+        "パリィ",
+        "内積0"
+      ],
+      "evidence": [
+        "evidence/weapon-contact-free-design-preview"
+      ],
+      "id": "technique/wave-direction-semantics",
+      "kind": "technique",
+      "path": "knowledge/techniques/wave-direction-semantics.md",
+      "relations": [
+        {
+          "reason": "輪・波の広がる面と向きを、伝えたい力の意味から決める。",
+          "target": "technique/radial-wave",
+          "type": "enhances"
+        }
+      ],
+      "revision": 1,
+      "schema_version": "0.1.0",
+      "scope": "engine-neutral",
+      "sha256": "46017aed340ec02febdc8422c07d721dde73baea8aa17da85d577ecb620569af",
+      "status": "draft",
+      "summary": "波・輪・圧が攻撃の向きに対してどちらへ動くかで、押し出す・受け流す・吸収する等の力の意味が決まる。形が同じでも進む向きを誤ると別の技に見える。",
+      "superseded_by": [],
+      "tags": [
+        "combat",
+        "technique"
+      ],
+      "title": "衝撃の進む向きで力の意味を読ませる",
+      "updated_at": "2026-10-08"
     }
   ],
   "schema_version": "0.1.0",
   "symmetric_relations": {
+    "adapter/unity-urp-analytic-crescent": [],
+    "adapter/unity-urp-baseline-sheet-particles": [],
+    "adapter/unity-urp-game-particle-conversion": [],
     "adapter/unity-urp-inner-cut-afterimage": [],
     "adapter/unity-urp-noise-density": [],
     "composition/combat-readability": [],
@@ -12567,10 +15428,17 @@
     "evaluation/projectile-readability": [],
     "evaluation/status-refresh-and-overlap": [],
     "evidence/completed-slash-inner-cut-preview": [],
+    "evidence/game-effect-conversion-preview": [],
+    "evidence/lightweight-vfx-web-sources": [],
+    "evidence/melee-weapon-free-design-preview": [],
     "evidence/organic-fire-volume-preview": [],
     "evidence/particle-simulation-and-renderer-source": [],
     "evidence/quality-baseline-to-core-only": [],
+    "evidence/skill-baselines-preview": [],
+    "evidence/slash-weapon-variants-preview": [],
+    "evidence/sword-slash-analytic-crescent-preview": [],
     "evidence/vfx-gameplay-clarity-source": [],
+    "evidence/weapon-contact-free-design-preview": [],
     "recipe/accented-heavy-impact": [],
     "recipe/aquatic-protein-consumption": [],
     "recipe/attack-reduction": [],
@@ -12595,6 +15463,8 @@
     "recipe/mana-remedy-use": [],
     "recipe/meal-vitality": [],
     "recipe/meal-vitality-activation": [],
+    "recipe/melee-weapon-afterimages": [],
+    "recipe/metal-contact-sparks": [],
     "recipe/periodic-health-restoration": [],
     "recipe/periodic-mana-restoration": [],
     "recipe/premium-remedy-use": [],
@@ -12636,6 +15506,7 @@
     "recipe/wide-weapon-sweep": [],
     "rendering/emission-and-opacity": [],
     "rendering/ground-footprint": [],
+    "rendering/lightweight-vfx-catalog": [],
     "rendering/world-depth-and-transparency": [],
     "resource/effect-mask-atlas": [],
     "resource/flame-flipbook": [],
@@ -12659,7 +15530,12 @@
     "semantic/restoration": [],
     "semantic/slash": [],
     "semantic/starchy-food": [],
+    "technique/afterimage-weight-timing": [],
+    "technique/analytic-crescent-uv": [],
+    "technique/arc-reach-asymmetry": [],
     "technique/arc-sweep": [],
+    "technique/articulated-closing-parts": [],
+    "technique/axial-thrust-cone": [],
     "technique/billboard": [
       {
         "derived": true,
@@ -12672,13 +15548,16 @@
         "when": "限定した画角で板の見え方が成立する場合。"
       }
     ],
+    "technique/blunt-motion-smear": [],
     "technique/body-shell": [],
     "technique/completed-arc-afterimage": [],
     "technique/cone-burst": [],
     "technique/converge-motes": [],
+    "technique/crumbling-heavy-wedge": [],
     "technique/directional-flow-surface": [],
     "technique/directional-streak": [],
     "technique/event-pulse": [],
+    "technique/fan-rib-reveal": [],
     "technique/flipbook-particles": [
       {
         "derived": true,
@@ -12703,7 +15582,18 @@
     ],
     "technique/folded-axial-billboard": [],
     "technique/history-ribbon": [],
-    "technique/inner-cut-sdf": [],
+    "technique/ignition-burst": [],
+    "technique/inner-cut-sdf": [
+      {
+        "derived": true,
+        "reason": "同じ「固定外形から内側を抜く」役割。こちらは距離場テクスチャを使わず、厚みの形を弧に沿った関数で持つ。",
+        "relation_index": 1,
+        "source": "technique/analytic-crescent-uv",
+        "target": "technique/analytic-crescent-uv",
+        "type": "alternative"
+      }
+    ],
+    "technique/internal-source-leak": [],
     "technique/mesh-core": [
       {
         "derived": true,
@@ -12729,7 +15619,12 @@
     "technique/orbit-glyphs": [],
     "technique/oriented-projectile-core": [],
     "technique/particle-emission": [],
+    "technique/radial-layered-vortex": [],
     "technique/radial-wave": [],
+    "technique/rotating-sweep-trails": [],
+    "technique/rotation-overshoot": [],
+    "technique/slash-pressure-haze": [],
+    "technique/status-flow-particles": [],
     "technique/surface-density-core": [
       {
         "derived": true,
@@ -12754,6 +15649,8 @@
         "target": "technique/surface-density-core",
         "type": "alternative"
       }
-    ]
+    ],
+    "technique/volumetric-object-proxy": [],
+    "technique/wave-direction-semantics": []
   }
 }

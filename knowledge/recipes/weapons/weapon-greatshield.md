@@ -5,8 +5,8 @@ kind: "recipe"
 title: "大盾：面で押し込む衝撃"
 summary: "盾の面に沿う楕円の圧力と幅広い接触で、面の打撃を伝える。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 2
+updated_at: "2026-10-08"
 aliases: ["大盾：面で押し込む衝撃","greatshield"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
@@ -37,7 +37,10 @@ relations:
   - target: "evaluation/combat-shape-and-events"
     type: "evaluated_by"
     reason: "採用先の実画面で形・イベント・終了条件を確認する。"
-evidence: []
+  - target: "technique/wave-direction-semantics"
+    type: "enhances"
+    reason: "この武器・命中に関わる因子。"
+evidence: ["evidence/weapon-contact-free-design-preview"]
 superseded_by: []
 ---
 
@@ -77,6 +80,10 @@ Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実�
 攻撃の面が読め、防御バリアや周囲への範囲攻撃と誤認しない。
 
 上記は観察条件であり、成功を確認した記録ではない。
+
+## 関わる因子
+
+- 押し出しの圧は前へ進める。盾の面に沿って横へだけ広げると受け流しに見える。（[technique/wave-direction-semantics](../../techniques/wave-direction-semantics.md)）
 
 ## 接続する知識
 

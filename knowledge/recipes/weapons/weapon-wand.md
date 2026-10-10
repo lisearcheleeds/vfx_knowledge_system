@@ -5,8 +5,8 @@ kind: "recipe"
 title: "ワンド：小さな滴状の魔法弾"
 summary: "小さな鋭い滴と短い細尾で、ワンドの1半径R/s射出を軽快に見せる。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 2
+updated_at: "2026-10-08"
 aliases: ["ワンド：小さな滴状の魔法弾","wand"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
@@ -47,7 +47,10 @@ relations:
   - target: "evaluation/projectile-readability"
     type: "evaluated_by"
     reason: "採用先の実画面で形・イベント・終了条件を確認する。"
-evidence: []
+  - target: "technique/volumetric-object-proxy"
+    type: "enhances"
+    reason: "この武器・命中に関わる因子。"
+evidence: ["evidence/weapon-contact-free-design-preview"]
 superseded_by: []
 ---
 
@@ -89,6 +92,10 @@ Staffと基本部品を共用し、核の縦横比、射出、尾幅、接触形
 遠距離で小型核を見失わず、Staffとの違いが形で読める。
 
 上記は観察条件であり、成功を確認した記録ではない。
+
+## 関わる因子
+
+- 魔法の矢の芯は丸い光ではなく、前寄りで尖る立体（ダーツの読み）。（[technique/volumetric-object-proxy](../../techniques/volumetric-object-proxy.md)）
 
 ## 接続する知識
 

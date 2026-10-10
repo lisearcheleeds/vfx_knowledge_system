@@ -20,14 +20,14 @@
           ],
           [
             "contour",
-            "technique/inner-cut-sdf",
-            "共有円SDFは内側の抜きだけ。色UVと輪郭座標を分離。",
-            "固有の厚み・戻り短縮・終了は制作記録を参照。"
+            "technique/analytic-crescent-uv",
+            "弧帯UV上の解析式。厚みの最大は振り終わり寄り0.65、最大の厚み0.62m（外半径1.6m）、両端は尖らせる。外縁の明部と外光、筋の流れ。",
+            "Rise0.075秒（前半で大きく上げる）と抜き・短縮を同時開始。0.22秒で細い外縁、0.30秒までに先端へ縮んで消える。"
           ]
         ],
         "timing": "発火時点で刃が通過済み。判定範囲はgame_contractを保持し、ゲーム接続は未実施。",
-        "decision": "旧動作同期・履歴主案から完成残像の専用Selectionへ変更。短剣も針ではなく深く細い三日月。",
-        "sharing": "SDF素材とShaderを共有。形・幅・奥行き・残留は専用調整。DrawCall統合は未検証。"
+        "decision": "前任版を参照せず作り直した解析式の三日月を採用（85点）。火花は命中演出へ分離。消失カーブの調整が残る。",
+        "sharing": "Shaderは基準版専用（ユーザー判断で新設を許可）。共通Shaderへの統合はゲーム用の段階で決める。"
       },
       "mapping_notes": "実EffectIdと採用値は制作記録を参照。今回の承認は基準版の見た目。ゲーム用削減・ゲーム時計/Pool接続・実機性能は別段階。旧提案はinitial_proposalに保持。",
       "initial_proposal": {
@@ -64,9 +64,16 @@
       },
       "adopted_selection": {
         "scope": "completed-afterimage-baseline-preview",
+        "path": "runs/sword-slash-2-2026-10-06.selection.yaml",
+        "production_record": "runs/sword-slash-2-2026-10-06.md",
+        "status": "appearance-rated-85-curve-tuning-pending"
+      },
+      "previous_adoption": {
+        "scope": "completed-afterimage-baseline-preview",
         "path": "runs/slash-afterimage-2026-10-06.selection.yaml",
         "production_record": "runs/slash-afterimage-2026-10-06.md",
-        "status": "appearance-approved-game-integration-unverified"
+        "status": "appearance-approved-game-integration-unverified",
+        "note": "内側SDFの版（1020001001_SwordSlash）。ユーザー評価65点。"
       }
     },
     {
@@ -79,6 +86,12 @@
       "game_contract": "通常攻撃：扇形120度。",
       "visual_adjustments": {
         "layers": [
+          [
+            "afterimage",
+            "technique/crumbling-heavy-wedge",
+            "武器から推測して一から作った判定後の残像（_3）。",
+            "値は制作記録。"
+          ],
           [
             "weighted-arc",
             "technique/arc-sweep",
@@ -99,10 +112,16 @@
           ]
         ],
         "timing": "120度の前方扇形。足元の大規模な粉塵や床破壊は通常攻撃へ付け足さない。",
-        "decision": "斧頭の質量を、弧の外側の厚さと終端に残る形で表す。剣を単純に拡大せず、内側の暗い面と遅れる外縁で重さを作る。",
+        "decision": "剣の作り方を土台にせず、武器から推測して作った（版1 80点）。",
         "sharing": "弧・履歴・切断命中は共有候補。終端の厚みと持続を斧の固有調整にする。"
       },
-      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。",
+      "adopted_selection": {
+        "scope": "afterimage-baseline-preview",
+        "path": "runs/melee-weapon-free-design-2026-10-07.axe.selection.yaml",
+        "production_record": "runs/melee-weapon-free-design-2026-10-07.md",
+        "status": "v1-rated-80-v2-pending-review"
+      }
     },
     {
       "category": "weapons",
@@ -120,13 +139,25 @@
           ],
           [
             "contour",
-            "technique/inner-cut-sdf",
+            "technique/analytic-crescent-uv",
             "共有円SDFは内側の抜きだけ。色UVと輪郭座標を分離。",
             "固有の厚み・戻り短縮・終了は制作記録を参照。"
+          ],
+          [
+            "weight",
+            "technique/afterimage-weight-timing",
+            "太い本体を長く、細い外縁だけの時間を全体の約1割に。",
+            "抜きの前半をゆっくり。全体は剣の約1.3倍。"
+          ],
+          [
+            "pressure",
+            "technique/slash-pressure-haze",
+            "主役の外縁に重ねた薄く広い柔らかな霞。",
+            "0.02〜0.30秒、外へゆっくり広がる。"
           ]
         ],
         "timing": "発火時点で刃が通過済み。判定範囲はgame_contractを保持し、ゲーム接続は未実施。",
-        "decision": "旧動作同期・履歴主案から完成残像の専用Selectionへ変更。短剣も針ではなく深く細い三日月。",
+        "decision": "剣の知見から展開。重さは時間配分、破壊力は剣圧の霞で読ませる（80点）。",
         "sharing": "SDF素材とShaderを共有。形・幅・奥行き・残留は専用調整。DrawCall統合は未検証。"
       },
       "mapping_notes": "実EffectIdと採用値は制作記録を参照。今回の承認は基準版の見た目。ゲーム用削減・ゲーム時計/Pool接続・実機性能は別段階。旧提案はinitial_proposalに保持。",
@@ -164,9 +195,16 @@
       },
       "adopted_selection": {
         "scope": "completed-afterimage-baseline-preview",
+        "path": "runs/slash-weapon-variants-2026-10-07.greatsword.selection.yaml",
+        "production_record": "runs/slash-weapon-variants-2026-10-07.md",
+        "status": "appearance-rated-80-curve-tuning-pending"
+      },
+      "previous_adoption": {
+        "scope": "completed-afterimage-baseline-preview",
         "path": "runs/slash-afterimage-2026-10-06.selection.yaml",
         "production_record": "runs/slash-afterimage-2026-10-06.md",
-        "status": "appearance-approved-game-integration-unverified"
+        "status": "appearance-approved-game-integration-unverified",
+        "note": "内側SDFの版（改訂1）。"
       }
     },
     {
@@ -179,6 +217,12 @@
       "game_contract": "通常攻撃：円形、判定持続0.35秒。半径はゲーム入力。",
       "visual_adjustments": {
         "layers": [
+          [
+            "afterimage",
+            "technique/rotating-sweep-trails",
+            "武器から推測して一から作った判定後の残像（_3）。",
+            "値は制作記録。"
+          ],
           [
             "circular-cut",
             "technique/arc-sweep",
@@ -199,10 +243,16 @@
           ]
         ],
         "timing": "0.35秒はゲーム側の判定持続。一周の位相は実モーションへ合わせ、複数周回やヒット回数を追加しない。",
-        "decision": "円形のまとまりと鎌の連続性を一本の細い円周で表す。太い全画面トーラスや複数の同心円を主役にしない。",
+        "decision": "剣の作り方を土台にせず、武器から推測して作った（版1 90点）。",
         "sharing": "旋風斬と円形弧の原理を共有するが、鎌は細く持続区間に追従する。"
       },
-      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。",
+      "adopted_selection": {
+        "scope": "afterimage-baseline-preview",
+        "path": "runs/melee-weapon-free-design-2026-10-07.scythe.selection.yaml",
+        "production_record": "runs/melee-weapon-free-design-2026-10-07.md",
+        "status": "v1-rated-90-v2-pending-review"
+      }
     },
     {
       "category": "weapons",
@@ -220,13 +270,19 @@
           ],
           [
             "contour",
-            "technique/inner-cut-sdf",
+            "technique/analytic-crescent-uv",
             "共有円SDFは内側の抜きだけ。色UVと輪郭座標を分離。",
             "固有の厚み・戻り短縮・終了は制作記録を参照。"
+          ],
+          [
+            "reach",
+            "technique/arc-reach-asymmetry",
+            "振り終わり側を短くした片側の短い三日月（刃渡りの短さ）。",
+            "長い振り始め側は最初の一瞬だけ見せて早く縮める。"
           ]
         ],
         "timing": "発火時点で刃が通過済み。判定範囲はgame_contractを保持し、ゲーム接続は未実施。",
-        "decision": "旧動作同期・履歴主案から完成残像の専用Selectionへ変更。短剣も針ではなく深く細い三日月。",
+        "decision": "剣の知見から展開。刃渡りの短さは振り終わり側を短くして読ませる（振り始め側を短くすると薙刀の射程に見えた）。",
         "sharing": "SDF素材とShaderを共有。形・幅・奥行き・残留は専用調整。DrawCall統合は未検証。"
       },
       "mapping_notes": "実EffectIdと採用値は制作記録を参照。今回の承認は基準版の見た目。ゲーム用削減・ゲーム時計/Pool接続・実機性能は別段階。旧提案はinitial_proposalに保持。",
@@ -258,9 +314,16 @@
       },
       "adopted_selection": {
         "scope": "completed-afterimage-baseline-preview",
+        "path": "runs/slash-weapon-variants-2026-10-07.dagger.selection.yaml",
+        "production_record": "runs/slash-weapon-variants-2026-10-07.md",
+        "status": "dagger-v3-pending-review"
+      },
+      "previous_adoption": {
+        "scope": "completed-afterimage-baseline-preview",
         "path": "runs/slash-afterimage-2026-10-06.selection.yaml",
         "production_record": "runs/slash-afterimage-2026-10-06.md",
-        "status": "appearance-approved-game-integration-unverified"
+        "status": "appearance-approved-game-integration-unverified",
+        "note": "内側SDFの版（改訂1）。"
       }
     },
     {
@@ -309,6 +372,12 @@
       "visual_adjustments": {
         "layers": [
           [
+            "afterimage",
+            "technique/blunt-motion-smear",
+            "武器から推測して一から作った判定後の残像（_3）。",
+            "値は制作記録。"
+          ],
+          [
             "rod-wake",
             "technique/history-ribbon",
             "棒の先端側二点から薄い灰白の帯。武器幅の2〜3倍に留める。",
@@ -322,10 +391,16 @@
           ]
         ],
         "timing": "水平・縦振りの運動面は実モーション。足元の地割れや範囲ダメージを追加しない。",
-        "decision": "武器の実運動を後流で拾い、当たった瞬間だけ放射形へ切り替える。棒に剣の刃のような連続した高明度の弧を付けない。",
+        "decision": "剣の作り方を土台にせず、武器から推測して作った（版1 75点）。",
         "sharing": "後流は拳・大盾の小さな運動にも流用可能。接触は打撃共通。"
       },
-      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。",
+      "adopted_selection": {
+        "scope": "afterimage-baseline-preview",
+        "path": "runs/melee-weapon-free-design-2026-10-07.rod.selection.yaml",
+        "production_record": "runs/melee-weapon-free-design-2026-10-07.md",
+        "status": "v1-rated-75-v2-pending-review"
+      }
     },
     {
       "category": "weapons",
@@ -396,6 +471,12 @@
       "visual_adjustments": {
         "layers": [
           [
+            "afterimage",
+            "technique/fan-rib-reveal",
+            "武器から推測して一から作った判定後の残像（_3）。",
+            "値は制作記録。"
+          ],
+          [
             "fan-wake",
             "technique/history-ribbon",
             "扇の外縁を薄い帯で追う。幅0.025L、銀灰。",
@@ -415,10 +496,16 @@
           ]
         ],
         "timing": "接触は受領した打撃分類に合わせる。風弾や遠距離の扇を射出しない。",
-        "decision": "軽い金属の外縁と扇の切り返しを、薄い線の組で表す。見た目が扇でも、マスタの直接攻撃を120度等の範囲攻撃として描かない。",
+        "decision": "剣の作り方を土台にせず、武器から推測して作った（版1 85点）。",
         "sharing": "細帯と筋の技法を共用し、扇の外縁の三筋が識別点。"
       },
-      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。"
+      "mapping_notes": "受領内容に基づく採用案。実行時EffectIdと共用アセット境界は未確定。",
+      "adopted_selection": {
+        "scope": "afterimage-baseline-preview",
+        "path": "runs/melee-weapon-free-design-2026-10-07.ironfan.selection.yaml",
+        "production_record": "runs/melee-weapon-free-design-2026-10-07.md",
+        "status": "v1-rated-85-v2-pending-review"
+      }
     },
     {
       "category": "weapons",

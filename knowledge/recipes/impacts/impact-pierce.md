@@ -5,8 +5,8 @@ kind: "recipe"
 title: "一点へ刺さる刺突の命中"
 summary: "攻撃軸の細い白芯、短い圧縮環、背後へ抜ける小片で一点接触を強調する。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 2
+updated_at: "2026-10-08"
 aliases: ["一点へ刺さる刺突の命中","impact-pierce"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
@@ -48,7 +48,7 @@ relations:
   - target: "rendering/emission-and-opacity"
     type: "requires"
     reason: "????????????????????????"
-evidence: []
+evidence: ["evidence/weapon-contact-free-design-preview"]
 superseded_by: []
 ---
 
@@ -89,6 +89,10 @@ Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実�
 接触位置が一点で読め、空振りでは反応しない。頭上UIに長い針を伸ばさない。
 
 上記は観察条件であり、成功を確認した記録ではない。
+
+## 関わる因子
+
+- 一点の命中に輪を使わない。輪は範囲・エネルギーの解放で、光線の命中に読める。（[composition/combat-readability](../../compositions/combat-readability.md)）
 
 ## 接続する知識
 

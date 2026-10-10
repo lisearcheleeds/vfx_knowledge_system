@@ -5,12 +5,15 @@ kind: "recipe"
 title: "鉄扇：薄い三筋の切り返し"
 summary: "扇の外縁から短い三筋を出し、軽い金属の切り返しを見せる。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 2
+updated_at: "2026-10-07"
 aliases: ["鉄扇：薄い三筋の切り返し","ironfan"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
 relations:
+  - target: "technique/fan-rib-reveal"
+    type: "candidate"
+    reason: "判定後の残像を作る場合の、骨が開く扇の技法（評価85点）。"
   - target: "semantic/blunt-impact"
     type: "expresses"
     reason: "この演出が伝える意味と視覚要件。"
@@ -97,3 +100,7 @@ Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実�
 ## 検証状態
 
 実装・エンジン再生・撮影・性能測定は未実施。数値は制作初期値であり、実測値ではない。
+
+## 判定後の残像（2026-10-07）
+
+このレシピは振りの位相を見せる初期案。判定後に発火する残像は recipe/melee-weapon-afterimages の入口から作る（この武器では technique/fan-rib-reveal）。

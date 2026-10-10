@@ -5,12 +5,15 @@ kind: "recipe"
 title: "鎌：途切れない円形の薙ぎ"
 summary: "細い円周を刃先に沿って一周展開し、円形攻撃の流れを保つ。"
 status: "draft"
-revision: 1
-updated_at: "2026-10-04"
+revision: 2
+updated_at: "2026-10-07"
 aliases: ["鎌：途切れない円形の薙ぎ","scythe"]
 tags: ["recipe","combat"]
 scope: "engine-neutral"
 relations:
+  - target: "technique/rotating-sweep-trails"
+    type: "candidate"
+    reason: "判定後の残像を作る場合の、範囲の円盤と回る刃の技法（評価90点）。"
   - target: "semantic/slash"
     type: "expresses"
     reason: "この演出が伝える意味と視覚要件。"
@@ -97,3 +100,7 @@ Wは身体幅、Hは身長、Lは武器の可視長、Rは実範囲、θは実�
 ## 検証状態
 
 実装・エンジン再生・撮影・性能測定は未実施。数値は制作初期値であり、実測値ではない。
+
+## 判定後の残像（2026-10-07）
+
+このレシピは振りの位相を見せる初期案。判定後に発火する残像は recipe/melee-weapon-afterimages の入口から作る（この武器では technique/rotating-sweep-trails）。
